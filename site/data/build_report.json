@@ -1,0 +1,11 @@
+{
+  "count": 20,
+  "source": "Owner-supplied 20 catchment polygons (repaired working copy)",
+  "source_sha256": "246c1d436c232f1885d3a5c5a79f824c62ef5ed25a38e5353acb38ba344d4730",
+  "display_geometry_tolerance_m": 300,
+  "max_simplification_area_delta_pct": 0.029137,
+  "aggregate_simplification_area_delta_pct": 0.00029,
+  "public_data_scope": "only boundary names, geometry, ids, calculated areas and old alias; no stakeholder text or source Drive URLs",
+  "area_method": "EPSG:6933 equal-area calculation stored in original registry (km2)",
+  "caution": "Not an independent approval of boundary accuracy; validation and licensing review pending"
+}

@@ -1,0 +1,21 @@
+id,name,slug,historical_alias,area_km2,label_lon,label_lat
+SCMP-C01,Aloma-Konshisha,aloma-konshisha,,16020.9,8.467965,6.813208
+SCMP-C02,Benue-Mada,benue-mada,Okwa-Mada,30844.4,7.984394,8.575243
+SCMP-C03,Gaji-Lamurde,gaji-lamurde,,29784.0,11.024997,9.575337
+SCMP-C04,Gulbin-Ka,gulbin-ka,,29552.4,4.350435,11.400628
+SCMP-C05,Gurara-Gbako,gurara-gbako,,39020.4,6.713515,8.886097
+SCMP-C06,Hadejia Jama'are,hadejia-jama-are,,123907.4,9.357687,12.238899
+SCMP-C07,Hawul-Kilange,hawul-kilange,,111428.8,13.427947,8.850083
+SCMP-C08,Kaduna-Mariga,kaduna-mariga,,26476.6,5.914758,10.089377
+SCMP-C09,Lokoja-Niger,lokoja-niger,,26615.1,6.810705,6.961756
+SCMP-C10,Malenda,malenda,,23450.8,4.862605,10.658553
+SCMP-C11,Misau-Komadugu Gana,misau-komadugu-gana,,23622.3,10.809432,11.961011
+SCMP-C12,Ngada,ngada,,44322.7,12.251981,11.815593
+SCMP-C13,Oshin-Oyi,oshin-oyi,,49883.0,4.344526,9.207065
+SCMP-C14,Rima,rima,,101933.7,7.138068,13.355231
+SCMP-C15,Sarkin Pawa-Kaduna,sarkin-pawa-kaduna,,38833.9,7.695019,10.514162
+SCMP-C16,Shemankar-Katsina Ala,shemankar-katsina-ala,,53589.7,9.059793,7.721008
+SCMP-C17,Sokoto-Zamfara,sokoto-zamfara,,45705.0,5.183716,12.396346
+SCMP-C18,Wase-Taraba,wase-taraba,,54459.8,10.920173,7.991743
+SCMP-C19,Yedseram,yedseram,,67734.6,14.386427,11.836798
+SCMP-C20,Zungur-Gongola,zungur-gongola,,50274.1,12.099846,10.475106

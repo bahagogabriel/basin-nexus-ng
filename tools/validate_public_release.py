@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+"""Stdlib-only publication gate for Basin Nexus NG GitHub Pages site."""
+from pathlib import Path
+import json, re
+root=Path(__file__).resolve().parents[1]
+site=root/'site'
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','.nojekyll'}
+actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
+assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
+registry=json.loads((site/'data/registry.json').read_text('utf-8'))
+geometry=json.loads((site/'data/catchments.geojson').read_text('utf-8'))
+report=json.loads((site/'data/build_report.json').read_text('utf-8'))
+assert len(registry)==len(geometry['features'])==report['count']==20
+ids=[r['id'] for r in registry];geo_ids=[g['properties']['id'] for g in geometry['features']]
+assert len(set(ids))==20 and set(ids)==set(geo_ids)
+assert all(r['name'] and r['area_km2']>0 for r in registry)
+assert sum(r['historical_alias']=='Okwa-Mada' for r in registry)==1
+assert next(r for r in registry if r['historical_alias']=='Okwa-Mada')['name']=='Benue-Mada'
+assert all(f['geometry']['type'] in ('Polygon','MultiPolygon') for f in geometry['features'])
+assert geometry['type']=='FeatureCollection'
+assert report['max_simplification_area_delta_pct']<0.1
+html=(site/'index.html').read_text('utf-8')
+assert '<title>Basin Nexus NG' in html
+assert 'PUBLIC BOUNDARY PREVIEW' in html
+for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv']:
+    assert path in html
+for forbidden in ('drive.google.com/file/', 'SCMP_Evidence_Register_REVIEW',
+                  'SCMP_Asset_Observations_REVIEW','personal contact details:',
+                  '4,929 evidence entries','Signed Stakeholder Engagement'):
+    assert forbidden.lower() not in html.lower(), f'Sensitive or review-only reference: {forbidden}'
+assert all(p.stat().st_size < 2_000_000 for p in site.rglob('*') if p.is_file())
+print('PUBLIC RELEASE GATE: PASS — 20 geographic features, approved file allowlist, alias, geometry metadata and review-data exclusions')
