@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.5.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.5.1.
 
 ## Status
 
@@ -14,6 +14,10 @@ The public site contains only the vetted **boundary preview data**: user-supplie
 4. Going forward, push approved updates to main; GitHub Actions tests and publishes them. Refresh the same URL after the workflow finishes (Ctrl+Shift+R if cached).
 
 **Deployment note:** Publishing is not verified until the Pages workflow succeeds and the live URL is checked.
+
+## Map interaction fix (v0.5.1)
+
+Polygon clicks and touch taps now select and zoom to the clicked catchment, while map dragging continues to pan. Pointer capture is assigned to the original press target (not the outer SVG), and keyboard-focus styling follows the polygon outline instead of drawing a rectangular box. Verified locally in headless Chromium on desktop and touch layouts; a dependency-free static regression gate also runs before Pages deployment.
 
 ## Local preview
 

@@ -25,6 +25,8 @@ jobs:
           python-version: '3.11'
       - name: Verify public-release allowlist and geometry records
         run: python tools/validate_public_release.py
+      - name: Guard map click and drag regression
+        run: python tools/test_map_interaction.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only
