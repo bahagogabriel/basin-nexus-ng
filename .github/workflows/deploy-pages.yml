@@ -35,6 +35,8 @@ jobs:
         run: python tools/test_canvas_map_v09.py
       - name: Guard Canvas position and idle-render regression
         run: python tools/test_canvas_drift.py
+      - name: Verify coarse river and lake publication policy
+        run: python tools/test_public_hydro_overview.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only

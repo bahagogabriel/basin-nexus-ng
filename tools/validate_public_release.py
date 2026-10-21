@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -41,13 +41,21 @@ assert adminqa['status']=='PROVISIONAL_MAP_GEOMETRY'
 assert adminqa['adm1']['sha256']==admin['sourceHashADM1'] and adminqa['adm2']['sha256']==admin['sourceHashADM2']
 assert adminqa['max_state_area_delta_pct']<1 and adminqa['max_lga_area_delta_pct']<3
 assert set(f['properties']['id'] for f in adm2['features'])=={l['id'] for v in admin['byCatchment'].values() for l in v['lgas']}
+watermeta=json.loads((site/'data/hydro_reference_metadata.json').read_text('utf-8'))
+rivers=json.loads((site/'data/rivers_overview.geojson').read_text('utf-8'))
+lakes=json.loads((site/'data/lakes_overview.geojson').read_text('utf-8'))
+assert watermeta['status']=='OVERVIEW_REFERENCE_ONLY'
+assert watermeta['source_commit']=='ca96624a56bd078437bca8184e78163e5039ad19'
+assert len(rivers['features'])==watermeta['datasets']['river']['output_count']==5
+assert len(lakes['features'])==watermeta['datasets']['lake']['output_count']==2
+assert all(f['properties']['precision']=='overview_only' and f['properties']['not_a_dam_inventory'] for f in rivers['features']+lakes['features'])
 assert report['max_simplification_area_delta_pct']<0.1
 html=(site/'index.html').read_text('utf-8')
 assert 'id="mapCanvas"' in html
 assert 'svg.addEventListener(' not in html
 assert '<title>Basin Nexus NG' in html
 assert 'PUBLIC BOUNDARY PREVIEW' in html
-for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson']:
+for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json']:
     assert path in html
 for forbidden in ('drive.google.com/file/', 'SCMP_Evidence_Register_REVIEW',
                   'SCMP_Asset_Observations_REVIEW','personal contact details:',

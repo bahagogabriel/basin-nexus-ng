@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.9.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 1.0.
 
 ## Status
 
@@ -77,3 +77,9 @@ The profiles list state shares as percentages of **total** catchment area. Inter
 The interactive geographic panel uses one HTML5 Canvas instead of rebuilding 20 catchment, 37 state and intersecting LGA SVG paths for each pointer movement. Polygon paths are cached, with requestAnimationFrame-controlled redraw and device-pixel-ratio capped at 1.5 for efficient touch-screen rendering. Native Pointer Events support mouse/stylus dragging, two-contact touch pinch-to-zoom and two-finger translation; mouse wheel and on-screen buttons remain operational.
 
 When LGAs are enabled, they have high-contrast gold boundaries **inside the selected catchment** and display accessible pop-up details (LGA name, state and approximate within-catchment area) when tapped. At suitable zoom levels, non-overlapping LGA labels are displayed. All counts, boundaries, source attribution, and review status are unchanged. Browser QA covers actual mouse drag, synthetic two-pointer gesture, taps and LGA selection; deploy uses the same GitHub Pages URL.
+
+## Stage 2E-A — major rivers and waterbodies (v1.0)
+
+The public atlas includes Natural Earth 1:50m water geography (public domain; source pinned to `ca96624a56bd078437bca8184e78163e5039ad19`). Automated EPSG:6933 selection against a 20km buffered union of the 20 catchments retained five river features and two lake/reservoir features. One degenerate *global-source* river feature was logged and excluded. Full original catchment polygons are unchanged.
+
+The hydro layers show **only overview-scale major rivers and large waterbodies**. They are not a comprehensive stream network, nor a verified dam/irrigation infrastructure inventory. The selected-catchment profile data remain provisional and unaffected. Users can toggle rivers and lakes independently, inspect water feature names and see source warnings. Dams and stakeholder asset observations stay out of public mapped asset layers until their locations are verified.
