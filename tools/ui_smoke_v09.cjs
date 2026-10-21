@@ -62,6 +62,12 @@ async function responsiveUX(page,label){
  });
  assert(inspect.scrollWidth<=inspect.viewport+3,label+': unwanted horizontal overflow '+JSON.stringify(inspect));
  assert(inspect.canvas.w>Math.min(320,v.width*.72),label+': canvas too narrow');
+ assert(inspect.canvas.top>=0&&inspect.canvas.top<Math.min(500,v.height*.60),label+': map starts too far below first viewport, top='+inspect.canvas.top+' viewport='+v.height);
+ assert(inspect.canvas.top+Math.min(inspect.canvas.h,230)<v.height,label+': not enough map is visible without scrolling');
+ if(v.width<=980){
+  const order=await page.evaluate(()=>{const a=document.querySelector('.mapPanel').getBoundingClientRect(),b=document.querySelector('.directory').getBoundingClientRect();return [a.top,b.top]});
+  assert(order[0]<order[1],label+': mobile/tablet map must precede catchment directory');
+ }
  assert(inspect.active.includes('Benue-Mada'),label+': missing active catchment context');
  assert(!inspect.layerOpen,label+': settings must start closed');
  if(v.width<=780)assert(!inspect.legendOpen,label+': legend should start collapsed on phones');

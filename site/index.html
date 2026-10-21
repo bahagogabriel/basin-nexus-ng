@@ -75,9 +75,79 @@
  .hero h1{font-size:24px}
 }
 @media(prefers-reduced-motion:reduce){.list button,.buttonlink,.toggle{transition:none!important}html{scroll-behavior:auto}}
+
+/* UX-A2: map-first arrival; the first viewport should contain a usable map. */
+header .top{padding:9px 20px;min-height:64px;gap:12px}
+header .logo{width:40px;height:40px;border-radius:12px}
+header .logo svg{width:27px;height:27px}
+header .brandname{font-size:20px}
+header .brandsub{font-size:9px;margin-top:3px}
+header .nav button{padding:8px 12px}
+.layout{padding:11px 16px 20px}
+.hero{margin:0 0 11px;gap:14px;align-items:center}
+.hero .eyebrow{font-size:10px;letter-spacing:.7px}
+.hero h1{font-size:clamp(19px,2vw,27px);letter-spacing:-.65px;line-height:1.15;margin:3px 0 2px}
+.hero p{font-size:12px;line-height:1.45;max-width:900px}
+.hero .stats{flex:none;gap:7px}
+.hero .stat{min-width:89px;border-radius:10px;padding:7px 11px}
+.hero .stat b{font-size:19px;line-height:1.15}
+.hero .stat small{font-size:10px}
+@media(min-width:1181px){
+ .columns{height:clamp(570px,calc(100dvh - 180px),970px);min-height:0}
+ .panel{min-height:0}
+ .directory .list{min-height:0;max-height:none}
+ .mapPanel .mapbody{flex:1;min-height:0;height:auto;max-height:none}
+ .detailPanel .details{min-height:0;overflow:auto}
+ .maphead{min-height:58px;padding:10px 14px}
+ .mapbar{min-height:50px;padding:7px 12px}
+ .maphead h2{font-size:16px}
+}
+@media(min-width:981px) and (max-width:1180px){
+ .columns{height:auto;min-height:0;align-items:stretch}
+ .columns .directory,.columns .mapPanel{height:clamp(540px,calc(100dvh - 190px),790px)}
+ .columns .mapPanel .mapbody{height:auto;min-height:0;max-height:none;flex:1}
+ .columns .directory .list{max-height:none;min-height:0}
+ .columns .detailPanel{min-height:380px}
+}
+@media(max-width:980px){
+ .columns{height:auto;min-height:0;display:flex;flex-direction:column}
+ .mapPanel{order:1}
+ .directory{order:2}
+ .detailPanel{order:3}
+ .mapPanel .mapbody{height:clamp(430px,58dvh,690px);max-height:none;min-height:430px;flex:initial}
+ .mapPanel .maphead{padding:11px 13px}
+ .mapPanel .mapbar{padding:8px 11px}
+ .directory .list{max-height:220px;min-height:0}
+}
+@media(max-width:780px){
+ header .top{padding:8px 12px;gap:7px}
+ header .nav{gap:2px;justify-content:flex-start;width:auto}
+ header .nav button{padding:7px 9px;font-size:12px}
+ .layout{padding:9px 11px 20px}
+ .hero{margin-bottom:9px;gap:9px}
+ .hero h1{font-size:clamp(17px,4.2vw,23px)}
+ .hero p{font-size:11px}
+ .hero .stats{display:none}
+ .mapPanel .mapbody{height:clamp(430px,59dvh,650px)}
+}
+@media(max-width:540px){
+ header .top{flex-wrap:wrap}
+ header .brand{flex:1 1 100%}
+ header .nav{flex:1 1 auto;order:2}
+ header .status{display:none}
+ .hero{align-items:start}
+ .hero .eyebrow{font-size:9px}
+ .hero h1{font-size:20px}
+ .hero p{font-size:11px;line-height:1.35}
+ .mapPanel .mapbody{height:clamp(395px,54dvh,590px);min-height:395px}
+ .mapPanel .maphead{padding:9px 11px}
+ .mapPanel .mapbar{padding:8px 10px}
+ .mapbar-primary{gap:6px}
+ .riverDensity{max-width:150px}
+}
 </style></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navAbout">About the atlas</button><button id="navData">Data & downloads</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
-<main class="layout" id="pageExplore"><div class="hero"><div><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria's strategic catchments</h1><p>These 20 catchments reflect the study’s main Northern Nigeria focus. Explore their geography, major rivers and large waterbodies. Hydrological catchments can extend beyond Nigeria’s borders; the national outline shows the political context without clipping them.</p></div><div class="stats"><div class="stat"><b>20</b><small>Catchments mapped</small></div><div class="stat"><b>2026</b><small>Initial data review</small></div></div></div>
+<main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria.</p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
 <div class="columns" id="columns"><section class="panel directory" aria-label="Catchment directory"><div class="panelhead"><h2>Catchment directory</h2><p>Search catchment, state or LGA</p><input class="search" id="catchmentSearch" aria-label="Find catchment, state or LGA" placeholder="Find catchment, state or LGA..."></div><div class="list" id="catchmentList" aria-live="polite"><div class="spinner">Loading catchments…</div></div><div class="count" id="catchmentCount">20 catchments</div></section>
 <section class="panel mapPanel" aria-label="Interactive strategic catchment and river map"><div class="maphead">
   <div class="map-title"><h2>Explore the map</h2><p id="mapActiveSummary" aria-live="polite">Select a catchment to explore its river system</p></div>

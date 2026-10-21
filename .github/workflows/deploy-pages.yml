@@ -68,6 +68,8 @@ jobs:
           name: basin-nexus-v14-release-browser-qa
           path: review/browser-v09/
           if-no-files-found: warn
+      - name: Verify map-first homepage and phone-first explorer
+        run: python tools/test_map_first.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only

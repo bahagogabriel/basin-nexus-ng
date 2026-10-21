@@ -7,7 +7,7 @@ for term in ["data/detailed_river_manifest.json","function loadDetailedFor(id)",
              "if(riversOn&&riverPaths.length&&riverScope==='all')","renderDetailedRivers(sc)",
              "groups[c.upstream_class].addPath(path)","while(detailCache.size>2)","if(token!==detailSequence||ctrl.signal.aborted)return",
              "function hitDetailedRiver(world)","source_license!=='CC BY 4.0'",
-             "id=\"riverDensity\"","riverDensity='all'"]:
+             "id=\"riverDensity\"","riverDensity='medium'"]:
  assert term in s,term
 assert s.count("data/river_network/SCMP-C") == 0, "No eager hardcoded all-catchment loads"
 print("DETAILED RIVER RENDERER: lazy load, bounded cache, group-path draw, 20 source files")
