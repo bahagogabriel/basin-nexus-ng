@@ -28,7 +28,7 @@
     {
       "id": "SCMP-C04",
       "outside_pct_indicative": 6.6,
-      "outside_pct_unrounded": 6.6,
+      "outside_pct_unrounded": 6.585255553218854,
       "classification": "extends_beyond_nigeria"
     },
     {
@@ -40,13 +40,13 @@
     {
       "id": "SCMP-C06",
       "outside_pct_indicative": 32.1,
-      "outside_pct_unrounded": 32.1,
+      "outside_pct_unrounded": 32.13521303065732,
       "classification": "extends_beyond_nigeria"
     },
     {
       "id": "SCMP-C07",
       "outside_pct_indicative": 78,
-      "outside_pct_unrounded": 78,
+      "outside_pct_unrounded": 78.00878152012744,
       "classification": "extends_beyond_nigeria"
     },
     {
@@ -70,25 +70,25 @@
     {
       "id": "SCMP-C11",
       "outside_pct_indicative": 2.7,
-      "outside_pct_unrounded": 2.7,
+      "outside_pct_unrounded": 2.690028683923247,
       "classification": "extends_beyond_nigeria"
     },
     {
       "id": "SCMP-C12",
       "outside_pct_indicative": 1.4,
-      "outside_pct_unrounded": 1.4,
+      "outside_pct_unrounded": 1.3959453752640965,
       "classification": "extends_beyond_nigeria"
     },
     {
       "id": "SCMP-C13",
       "outside_pct_indicative": 8.8,
-      "outside_pct_unrounded": 8.8,
+      "outside_pct_unrounded": 8.7584813693148,
       "classification": "extends_beyond_nigeria"
     },
     {
       "id": "SCMP-C14",
       "outside_pct_indicative": 65.8,
-      "outside_pct_unrounded": 65.8,
+      "outside_pct_unrounded": 65.7940145704546,
       "classification": "extends_beyond_nigeria"
     },
     {
@@ -100,7 +100,7 @@
     {
       "id": "SCMP-C16",
       "outside_pct_indicative": 19.6,
-      "outside_pct_unrounded": 19.6,
+      "outside_pct_unrounded": 19.553920624313065,
       "classification": "extends_beyond_nigeria"
     },
     {
@@ -112,13 +112,13 @@
     {
       "id": "SCMP-C18",
       "outside_pct_indicative": 8.8,
-      "outside_pct_unrounded": 8.8,
+      "outside_pct_unrounded": 8.843803441006713,
       "classification": "extends_beyond_nigeria"
     },
     {
       "id": "SCMP-C19",
       "outside_pct_indicative": 72.7,
-      "outside_pct_unrounded": 72.7,
+      "outside_pct_unrounded": 72.70297772876017,
       "classification": "extends_beyond_nigeria"
     },
     {

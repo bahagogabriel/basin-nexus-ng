@@ -1,10 +1,10 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.5.1.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.6.
 
 ## Status
 
-The public site contains only the vetted **boundary preview data**: user-supplied 20 catchment polygons (simplified for visual display), names, stable identifiers, historical alias and calculated areas. No stakeholder submissions, signed materials, personal information, privately held source documents, or unverified infrastructure coordinates are published.
+The public site contains only the vetted **boundary preview data**: user-supplied 20 catchment polygons (simplified for visual display), names, stable identifiers, historical alias, calculated areas, plus a separate Natural Earth national boundary reference. No stakeholder submissions, signed materials, personal information, privately held source documents, or unverified infrastructure coordinates are published.
 
 ## GitHub Pages deployment (continuous publishing)
 
@@ -44,6 +44,14 @@ See `site/data/build_report.json` for reproducible geometry metadata. The data m
 ## Publish policy (project default)
 
 For every subsequent Basin Nexus NG iteration: produce tests, check for confidential source material, commit *approved public assets* to this repository, verify the GitHub Pages build and share the **same live site URL** and commit SHA. Maintain source-sensitive evidence and working geometries outside the public site.
+
+## Nigeria political boundary and study scope (v0.6)
+
+The underlying stakeholder engagement study focuses **mainly on Northern Nigeria**, not all of Nigeria. The 20 **hydrological** catchments are shown unmodified, including sections extending beyond Nigeria's political borders.
+
+The dashed national outline is a **Natural Earth Admin 0 Countries 1:110m** small-scale reference (public domain). It does not define cadastral, treaty, or administrative authority and must not be used as a surveyed/legal border. [Natural Earth source](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson). It is toggleable on the atlas map.
+
+An EPSG:6933 polygon-overlay screening indicates 10 of 20 catchments extend across Nigeria's outline at this scale. This is an indicative **mapping QA screen**, not verified international-area statistics. The check uses generalized country boundaries and web-simplified catchments; state/LGA joins and precise jurisdictional analysis are still pending. The source boundary's geographic accuracy and publication permission will require appropriate project review.
 
 ## Developing the geographic join
 
