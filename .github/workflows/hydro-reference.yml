@@ -1,0 +1,61 @@
+name: Build water geography reference layers
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_hydro_reference.py'
+      - '.github/workflows/hydro-reference.yml'
+      - 'site/data/catchments.geojson'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install geometry dependencies
+        run: python -m pip install "shapely>=2.0,<3" "pyproj>=3.5,<4" "requests>=2.31,<3"
+      - name: Build and QA public hydrological overview layers
+        run: python tools/build_hydro_reference.py
+      - name: Promote verified public overview geometries
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp review/hydro-reference/rivers_overview.geojson site/data/
+          cp review/hydro-reference/lakes_overview.geojson site/data/
+          cp review/hydro-reference/hydro_reference_metadata.json site/data/
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('site/data')
+          r=json.loads((p/'rivers_overview.geojson').read_text())
+          l=json.loads((p/'lakes_overview.geojson').read_text())
+          m=json.loads((p/'hydro_reference_metadata.json').read_text())
+          assert m['status']=='OVERVIEW_REFERENCE_ONLY'
+          assert 1<=len(r['features'])<=1000 and 1<=len(l['features'])<=500
+          assert m['datasets']['river']['output_count']==len(r['features'])
+          assert m['datasets']['lake']['output_count']==len(l['features'])
+          assert all(f['properties']['precision']=='overview_only' for f in r['features']+l['features'])
+          assert all(f['properties']['not_a_dam_inventory'] for f in r['features']+l['features'])
+          print('WATER GEOGRAPHY PUBLICATION QA: PASS')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/rivers_overview.geojson site/data/lakes_overview.geojson site/data/hydro_reference_metadata.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish source-pinned Natural Earth river and lake overview layers"
+            git push origin HEAD:main
+          else
+            echo "Hydro overview already current"
+          fi
+      - name: Upload provenance and QA artefact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-hydrology-overview-stage2e
+          path: review/hydro-reference/
+          if-no-files-found: warn
