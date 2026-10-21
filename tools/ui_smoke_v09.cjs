@@ -48,10 +48,34 @@ async function testWaterLayers(page,name){
  console.log(name+': PASS river/lake toggles, scale labelling, Kainji waterbody hit and popup');
 }
 
+
+async function responsiveUX(page,label){
+ const v=page.viewportSize();if(!v)return;
+ const inspect=await page.evaluate(()=>{
+  const bounds=id=>{const r=document.querySelector(id).getBoundingClientRect();return {w:r.width,h:r.height,top:r.top,left:r.left}};
+  return {scrollWidth:document.documentElement.scrollWidth,viewport:window.innerWidth,
+   map:bounds('.mapPanel'),canvas:bounds('#mapCanvas'),
+   layerOpen:document.querySelector('#layerManager').open,
+   active:document.querySelector('#mapActiveSummary').textContent,
+   legendOpen:document.querySelector('#countryLegend').open,
+   grid:getComputedStyle(document.querySelector('.columns')).display}
+ });
+ assert(inspect.scrollWidth<=inspect.viewport+3,label+': unwanted horizontal overflow '+JSON.stringify(inspect));
+ assert(inspect.canvas.w>Math.min(320,v.width*.72),label+': canvas too narrow');
+ assert(inspect.active.includes('Benue-Mada'),label+': missing active catchment context');
+ assert(!inspect.layerOpen,label+': settings must start closed');
+ if(v.width<=780)assert(!inspect.legendOpen,label+': legend should start collapsed on phones');
+ await page.locator('#countryLegend > summary').click();
+ const toggled=await page.locator('#countryLegend').evaluate(n=>n.open);
+ assert.equal(toggled,!inspect.legendOpen,label+': legend disclosure is not interactive');
+ console.log(label+': RESPONSIVE UX PASS '+v.width+'px, map width '+Math.round(inspect.canvas.w)+'px, no overflow');
+}
+
 async function test(page,name){
  page.on('pageerror',e=>errors.push(name+': '+e.message));
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
+ await responsiveUX(page,name);
  assert.equal(await page.locator('#mapCanvas').count(),1);
  assert.equal((await metric(page)).selected,'SCMP-C02');
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===1769,{timeout:45000});
@@ -73,11 +97,18 @@ async function test(page,name){
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'all');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'selected');
  await testWaterLayers(page,name);
+ const manager=page.locator('#layerManager');
+ assert.equal(await manager.evaluate(n=>n.open),false,'Layers menu should be collapsed on load');
+ await page.locator('#layerManager > summary').click();
+ assert.equal(await manager.evaluate(n=>n.open),true,'Layers menu should open');
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'false');
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'true');
  await page.locator('#lgaToggle').click();
  await page.waitForFunction(()=>document.querySelector('#lgaToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
  assert.match(await page.locator('#mapNote').innerText(),/outlined in gold/i);
+ await page.locator('#focusMapBtn').click();
+ const focusView=(await metric(page)).view;
+ assert(focusView.w<1020,name+': Focus catchment failed to zoom');
  await page.locator('#catchmentList button[data-id="SCMP-C03"]').click();
  await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Gaji-Lamurde');
  assert.equal((await metric(page)).selected,'SCMP-C03');
@@ -156,6 +187,12 @@ async function pinch(page){
  await ready();browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const desktop=await browser.newPage({viewport:{width:1512,height:950}});
  await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
+ const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
+ const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
+ await phone.goto(url,{waitUntil:'domcontentloaded'});
+ await phone.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
+ await responsiveUX(phone,'phone390');await phone.screenshot({path:path.join(folder,'phone_ux_a.png'),fullPage:true});
+ await phoneContext.close();
  const tabletContext=await browser.newContext({viewport:{width:810,height:1080},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const tablet=await tabletContext.newPage();await test(tablet,'tablet');await pinch(tablet);await assertIdleStability(tablet,'tablet after pinch',4);
  await tablet.screenshot({path:path.join(folder,'tablet_pinch.png'),fullPage:true});
