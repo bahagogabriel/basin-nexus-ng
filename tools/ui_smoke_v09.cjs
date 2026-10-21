@@ -88,6 +88,21 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ await page.locator('#navKnowledge').click();
+ await page.waitForFunction(()=>document.querySelector('#knowledgeCards article.knowledgeCard')?.querySelector('h3'));
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': expected 20 source-coverage records');
+ assert.match(await page.locator('#knowledgeCount').innerText(),/20 of 20/);
+ await page.locator('#knowledgeTheme').selectOption('policies');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': policies are indexed across all 20 catchments');
+ await page.locator('#knowledgeSearch').fill('Okwa');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),1,name+': historical catchment alias must work');
+ assert.match(await page.locator('#knowledgeCards h3').innerText(),/Benue-Mada/);
+ await page.locator('button[data-knowledge-map="SCMP-C02"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C02');
+ assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ await page.locator('#overviewBtn').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected===null);
+ console.log(name+': PASS 20 source-coverage entries, themes, aliases, and map navigation');
  assert.equal(await page.locator('#mapHint').evaluate(n=>n.open),false,name+': map guide must start collapsed');
  await page.locator('#mapHint > summary').click();
  assert.equal(await page.locator('#mapHint').evaluate(n=>n.open),true);
@@ -254,5 +269,5 @@ async function pinch(page){
  const tablet=await tabletContext.newPage();await test(tablet,'tablet');await pinch(tablet);await assertIdleStability(tablet,'tablet after pinch',4);
  await tablet.screenshot({path:path.join(folder,'tablet_pinch.png'),fullPage:true});
  await tabletContext.close();
- assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v1.6: REGIONAL FIRST, CATCHMENT SWITCHING, LGA, PINCH AND STABILITY ALL PASS')
+ assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v1.7: SOURCE INDEX, REGIONAL FIRST, CATCHMENT SWITCHING, LGA, PINCH AND STABILITY ALL PASS')
  }catch(e){console.error(e.stack||e);process.exitCode=1}finally{await browser?.close();server.kill('SIGTERM')}})();
