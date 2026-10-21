@@ -33,6 +33,8 @@ jobs:
         run: python tools/check_browser_js.py
       - name: Verify Canvas map and gesture regression
         run: python tools/test_canvas_map_v09.py
+      - name: Guard Canvas position and idle-render regression
+        run: python tools/test_canvas_drift.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only

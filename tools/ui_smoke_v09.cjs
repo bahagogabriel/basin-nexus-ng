@@ -64,6 +64,24 @@ async function test(page,name){
  await page.screenshot({path:path.join(folder,name+'.png'),fullPage:true});
  console.log(name+': PASS Canvas pan, LGA selection/popup and layer switches');
 }
+
+async function assertIdleStability(page,name,seconds=3){
+ const snapshot=()=>page.evaluate(()=>{
+   const cv=document.querySelector('#mapCanvas'),panel=document.querySelector('#mapbody');
+   const cr=cv.getBoundingClientRect(),pr=panel.getBoundingClientRect(),m=window.__BN_MAP_DIAGNOSTICS__;
+   return {view:{...m.view},frames:m.frames,canvas:[cr.left,cr.top,cr.width,cr.height,cv.width,cv.height],
+    parent:[pr.left,pr.top,pr.width,pr.height],cssPosition:getComputedStyle(cv).position}
+ });
+ const before=await snapshot();await delay(seconds*1000);const after=await snapshot();
+ assert.equal(before.cssPosition,'absolute',name+': canvas still participates in layout');
+ for(const v of ['x','y','w','h'])assert(Math.abs(after.view[v]-before.view[v])<1e-8,name+': map view moved while idle ('+v+')');
+ for(const label of ['canvas','parent'])for(let i=0;i<6&&(i<(label==='parent'?4:6));i++){
+  assert(Math.abs(after[label][i]-before[label][i])<1.1,name+': '+label+' layout shifted while idle, column '+i);
+ }
+ assert(after.frames-before.frames<=2,name+': continuous canvas repaint while idle ('+(after.frames-before.frames)+' frames)');
+ console.log(name+': IDLE STABILITY PASS '+seconds+' seconds, viewport fixed, layout stable, '+(after.frames-before.frames)+' draws');
+}
+
 async function pinch(page){
  const cv=page.locator('#mapCanvas');await cv.scrollIntoViewIfNeeded();const r=await cv.boundingBox();
  const session=await page.context().newCDPSession(page),x=r.x+r.width*.5,y=r.y+r.height*.5;
@@ -79,9 +97,9 @@ async function pinch(page){
 (async()=>{try{
  await ready();browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const desktop=await browser.newPage({viewport:{width:1512,height:950}});
- await test(desktop,'desktop');await desktop.close();
+ await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
  const tabletContext=await browser.newContext({viewport:{width:810,height:1080},deviceScaleFactor:2,isMobile:true,hasTouch:true});
- const tablet=await tabletContext.newPage();await test(tablet,'tablet');await pinch(tablet);
+ const tablet=await tabletContext.newPage();await test(tablet,'tablet');await pinch(tablet);await assertIdleStability(tablet,'tablet after pinch',4);
  await tablet.screenshot({path:path.join(folder,'tablet_pinch.png'),fullPage:true});
  await tabletContext.close();
  assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v0.9: ALL PASS')
