@@ -1,0 +1,33 @@
+name: Provisional Nigeria administrative crosswalk QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/stage_admin_crosswalk.py'
+      - 'tools/test_admin_crosswalk.py'
+      - '.github/workflows/admin-crosswalk-qa.yml'
+      - 'site/data/catchments.geojson'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  admin-overlay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install geospatial geometry dependencies
+        run: python -m pip install "shapely>=2.0,<3" "pyproj>=3.5,<4" "requests>=2.31,<3"
+      - name: Test geometrical and parent-name rules
+        run: python tools/test_admin_crosswalk.py
+      - name: Compute preliminary admin overlaps
+        run: python tools/stage_admin_crosswalk.py
+      - name: Save QA tables (not public Pages)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-admin-crosswalk-provisional
+          path: review/admin-crosswalk/
+          if-no-files-found: warn
