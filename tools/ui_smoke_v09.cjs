@@ -68,6 +68,7 @@ async function test(page,name){
  console.log(name+': PASS 2,038 Sarkin Pawa–Kaduna detailed FAO river reaches, all three density choices');
  await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C02',{timeout:45000});
+ await page.locator('#zoomReset').click();
  assert.equal((await metric(page)).riverScope,'selected');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'all');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'selected');
