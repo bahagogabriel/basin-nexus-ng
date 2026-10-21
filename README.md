@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.6.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.7.
 
 ## Status
 
@@ -52,6 +52,12 @@ The underlying stakeholder engagement study focuses **mainly on Northern Nigeria
 The dashed national outline is a **Natural Earth Admin 0 Countries 1:110m** small-scale reference (public domain). It does not define cadastral, treaty, or administrative authority and must not be used as a surveyed/legal border. [Natural Earth source](https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson). It is toggleable on the atlas map.
 
 An EPSG:6933 polygon-overlay screening indicates 10 of 20 catchments extend across Nigeria's outline at this scale. This is an indicative **mapping QA screen**, not verified international-area statistics. The check uses generalized country boundaries and web-simplified catchments; state/LGA joins and precise jurisdictional analysis are still pending. The source boundary's geographic accuracy and publication permission will require appropriate project review.
+
+## Stage 2C — Provisional State and LGA Spatial Join (v0.7)
+
+Data now include 102 catchment–state and 754 catchment–LGA geometric intersections, calculated against the 2022 GRID3 Nigeria ADM1 (37) and ADM2 (774) administrative boundaries distributed by geoBoundaries gbOpen (CC BY 4.0). Source dataset SHA-256 checksums and study-catchment hash are embedded in the public crosswalk JSON. Area overlaps were computed in EPSG:6933 from **web-simplified** catchments, not the full-resolution project Geopackage. These provisional observations must **not** be treated as official allocations or precise international boundaries. No original stakeholder-submitted evidence or personal information is published.
+
+The profiles list state shares as percentages of **total** catchment area. International portions remain outside Nigeria and do not get assigned to states. The directory can be searched by catchment, state or LGA. The simplified admin polygons themselves are not yet a switchable map layer; the preliminary spatial relationships and downloadable tables are provided for transparent review.
 
 ## Developing the geographic join
 

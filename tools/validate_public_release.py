@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -26,11 +26,17 @@ assert context['total_catchments']==20 and len(context['coverage'])==20
 assert set(x['id'] for x in context['coverage'])==set(ids)
 assert all(0<=x['outside_pct_unrounded']<=100 for x in context['coverage'])
 assert context['extension_count_indicative']==sum(x['classification']=='extends_beyond_nigeria' for x in context['coverage'])
+admin=json.loads((site/'data/admin_crosswalk_provisional.json').read_text('utf-8'))
+assert admin['status']=='PROVISIONAL_GEOMETRIC_OVERLAY'
+assert admin['totalCatchments']==20 and admin['totalStateIntersections']==102 and admin['totalLGAIntersections']==754
+assert set(admin['byCatchment'])==set(ids)
+assert sum(len(v['states']) for v in admin['byCatchment'].values())==102
+assert sum(len(v['lgas']) for v in admin['byCatchment'].values())==754
 assert report['max_simplification_area_delta_pct']<0.1
 html=(site/'index.html').read_text('utf-8')
 assert '<title>Basin Nexus NG' in html
 assert 'PUBLIC BOUNDARY PREVIEW' in html
-for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json']:
+for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv']:
     assert path in html
 for forbidden in ('drive.google.com/file/', 'SCMP_Evidence_Register_REVIEW',
                   'SCMP_Asset_Observations_REVIEW','personal contact details:',
