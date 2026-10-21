@@ -43,6 +43,8 @@ assert adminqa['max_state_area_delta_pct']<1 and adminqa['max_lga_area_delta_pct
 assert set(f['properties']['id'] for f in adm2['features'])=={l['id'] for v in admin['byCatchment'].values() for l in v['lgas']}
 assert report['max_simplification_area_delta_pct']<0.1
 html=(site/'index.html').read_text('utf-8')
+assert 'id="mapCanvas"' in html
+assert 'svg.addEventListener(' not in html
 assert '<title>Basin Nexus NG' in html
 assert 'PUBLIC BOUNDARY PREVIEW' in html
 for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson']:

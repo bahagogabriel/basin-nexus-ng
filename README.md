@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.8.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.9.
 
 ## Status
 
@@ -71,3 +71,9 @@ The profiles list state shares as percentages of **total** catchment area. Inter
 ## Developing the geographic join
 
 `tools/build_admin_crosswalk.py` is included as an integration script for validated Nigeria ADM1 and ADM2 GIS inputs. The Nigeria state/LGA crosswalk is not yet calculated or published. Prefer geoBoundaries `gbOpen` Nigeria GRID3-derived ADM1 and ADM2 under CC BY 4.0, after approval and attribution.
+
+## Stage v0.9: tablet and desktop map interaction
+
+The interactive geographic panel uses one HTML5 Canvas instead of rebuilding 20 catchment, 37 state and intersecting LGA SVG paths for each pointer movement. Polygon paths are cached, with requestAnimationFrame-controlled redraw and device-pixel-ratio capped at 1.5 for efficient touch-screen rendering. Native Pointer Events support mouse/stylus dragging, two-contact touch pinch-to-zoom and two-finger translation; mouse wheel and on-screen buttons remain operational.
+
+When LGAs are enabled, they have high-contrast gold boundaries **inside the selected catchment** and display accessible pop-up details (LGA name, state and approximate within-catchment area) when tapped. At suitable zoom levels, non-overlapping LGA labels are displayed. All counts, boundaries, source attribution, and review status are unchanged. Browser QA covers actual mouse drag, synthetic two-pointer gesture, taps and LGA selection; deploy uses the same GitHub Pages URL.

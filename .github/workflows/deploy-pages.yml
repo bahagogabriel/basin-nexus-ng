@@ -33,8 +33,8 @@ jobs:
         run: python tools/test_public_admin_catalogue.py
       - name: Check browser JavaScript syntax
         run: python tools/check_browser_js.py
-      - name: Verify state and selected-catchment LGA map layers
-        run: python tools/test_admin_map_layers.py
+      - name: Verify Canvas map and gesture regression
+        run: python tools/test_canvas_map_v09.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only
