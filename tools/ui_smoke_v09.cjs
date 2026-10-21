@@ -254,5 +254,5 @@ async function pinch(page){
  const tablet=await tabletContext.newPage();await test(tablet,'tablet');await pinch(tablet);await assertIdleStability(tablet,'tablet after pinch',4);
  await tablet.screenshot({path:path.join(folder,'tablet_pinch.png'),fullPage:true});
  await tabletContext.close();
- assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v1.5: REGIONAL FIRST, CATCHMENT SWITCHING, LGA, PINCH AND STABILITY ALL PASS')
+ assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v1.6: REGIONAL FIRST, CATCHMENT SWITCHING, LGA, PINCH AND STABILITY ALL PASS')
  }catch(e){console.error(e.stack||e);process.exitCode=1}finally{await browser?.close();server.kill('SIGTERM')}})();
