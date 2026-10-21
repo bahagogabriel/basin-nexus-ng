@@ -5,7 +5,7 @@ s=(Path(__file__).resolve().parents[1]/'site/index.html').read_text(encoding='ut
 for value in ("riverScope='all',riverDensity='medium'","selected=null;riverScope='all'",
 "function showOverview()","function updateRiverScopeUI()",
 "el('overviewBtn').addEventListener('click',showOverview)",
-"showOverview()).catch","disabled>All catchments</button>","id=\\"riverDensity\\"",
+"showOverview()).catch","disabled>All catchments</button>","id=\"riverDensity\"",
 "Select a catchment to load its FAO 2026 modeled river network",
 "renderList();renderDetails();setView(full)",
 "20 strategic catchments · choose a region to explore its rivers",
@@ -14,7 +14,7 @@ for value in ("riverScope='all',riverDensity='medium'","selected=null;riverScope
  if value=="public geographic data":continue
  assert value in s,value
 assert "choose('SCMP-C02',false)" not in s
-assert "<details class=\\"countryLegend\\" id=\\"countryLegend\\">" in s
+assert "<details class=\"countryLegend\" id=\"countryLegend\">" in s
 assert "riverScope='selected';mapMetrics.selected=id" in s
 assert "loadDetailedFor(id)" in s
 assert "if(!selected)return" in s
