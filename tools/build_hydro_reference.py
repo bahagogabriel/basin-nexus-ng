@@ -22,8 +22,8 @@ TMP = ROOT / 'review' / 'hydro-reference'
 SOURCE_REF = 'ca96624a56bd078437bca8184e78163e5039ad19'
 SOURCE = 'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/' + SOURCE_REF + '/geojson/'
 URLS = {
-  'river': SOURCE + 'ne_50m_rivers_lake_centerlines.geojson',
-  'lake': SOURCE + 'ne_50m_lakes.geojson',
+  'river': SOURCE + 'ne_10m_rivers_lake_centerlines.geojson',
+  'lake': SOURCE + 'ne_10m_lakes.geojson',
 }
 FORWARD = Transformer.from_crs(4326,6933,always_xy=True).transform
 BACK = Transformer.from_crs(6933,4326,always_xy=True).transform
@@ -76,11 +76,11 @@ def process(kind,original,domain):
         if name:stats['named_count']+=1
         else:stats['unnamed_count']+=1
         out.append({'type':'Feature','properties':{
-          'id':f'NE50_{kind.upper()}_{idx+1:04d}',
+          'id':f'NE10_{kind.upper()}_{idx+1:04d}',
           'name':name or None,
           'category':'river_network' if kind=='river' else 'lake_waterbody',
           'source':'Natural Earth',
-          'source_scale':'1:50m',
+          'source_scale':'1:10m',
           'precision':'overview_only',
           'not_a_dam_inventory':True,
         },'geometry':mapping(transform(BACK,render))})
@@ -96,7 +96,7 @@ def main():
     geo=[transform(FORWARD,shape(f['geometry'])) for f in catch['features']]
     domain=unary_union(geo).buffer(CONTEXT_BUFFER_M)
     assert domain.is_valid and domain.area>1e11
-    meta={'status':'OVERVIEW_REFERENCE_ONLY','source':'Natural Earth 1:50m rivers and lakes',
+    meta={'status':'OVERVIEW_REFERENCE_ONLY','source':'Natural Earth 1:10m rivers and lakes',
       'source_repo':'https://github.com/nvkelso/natural-earth-vector',
       'source_commit':SOURCE_REF,'license':'Natural Earth public domain',
       'purpose':'Water geography overview, not site-surveyed rivers, dams, reservoirs, irrigation assets or high-resolution river networks',

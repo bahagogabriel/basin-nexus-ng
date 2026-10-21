@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 1.0.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 1.1.
 
 ## Status
 
@@ -83,3 +83,7 @@ When LGAs are enabled, they have high-contrast gold boundaries **inside the sele
 The public atlas includes Natural Earth 1:50m water geography (public domain; source pinned to `ca96624a56bd078437bca8184e78163e5039ad19`). Automated EPSG:6933 selection against a 20km buffered union of the 20 catchments retained five river features and two lake/reservoir features. One degenerate *global-source* river feature was logged and excluded. Full original catchment polygons are unchanged.
 
 The hydro layers show **only overview-scale major rivers and large waterbodies**. They are not a comprehensive stream network, nor a verified dam/irrigation infrastructure inventory. The selected-catchment profile data remain provisional and unaffected. Users can toggle rivers and lakes independently, inspect water feature names and see source warnings. Dams and stakeholder asset observations stay out of public mapped asset layers until their locations are verified.
+
+## Stage 2E-B — Natural Earth 1:10m upgraded water geography (v1.1)
+
+Preflight against the 20-buffered-catchment domain found 17 1:10m river features (vs. five at 1:50m) and two major lake/reservoir features. The 1:10m revision adds overview coverage of Gongola, Hadejia, Kaduna, Sokoto and other named rivers. Natural Earth remains map-scale reference data; it cannot represent small rivers, detailed drainage, asset conditions or surveyed dam positions. Original 1:50m release is recoverable from repository history. Source quality, pin and SHA-256 metadata are preserved in `site/data/hydro_reference_metadata.json`.

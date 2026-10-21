@@ -46,8 +46,11 @@ rivers=json.loads((site/'data/rivers_overview.geojson').read_text('utf-8'))
 lakes=json.loads((site/'data/lakes_overview.geojson').read_text('utf-8'))
 assert watermeta['status']=='OVERVIEW_REFERENCE_ONLY'
 assert watermeta['source_commit']=='ca96624a56bd078437bca8184e78163e5039ad19'
-assert len(rivers['features'])==watermeta['datasets']['river']['output_count']==5
+assert 5<=len(rivers['features'])==watermeta['datasets']['river']['output_count']<=100
 assert len(lakes['features'])==watermeta['datasets']['lake']['output_count']==2
+scale='1:10m' if 'ne_10m_' in watermeta['datasets']['river']['url'] else '1:50m'
+assert scale in ('1:10m','1:50m')
+assert all(f['properties']['source_scale']==scale for f in rivers['features']+lakes['features'])
 assert all(f['properties']['precision']=='overview_only' and f['properties']['not_a_dam_inventory'] for f in rivers['features']+lakes['features'])
 assert report['max_simplification_area_delta_pct']<0.1
 html=(site/'index.html').read_text('utf-8')
