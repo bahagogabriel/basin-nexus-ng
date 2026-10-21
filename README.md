@@ -91,3 +91,9 @@ Preflight against the 20-buffered-catchment domain found 17 1:10m river features
 ## Automated builder → Pages handoff
 
 The Pages workflow also runs after successful hydrology or administrative map-layer build workflows. This is essential because data commits made by the workflow's GitHub token do not themselves start normal push-triggered workflows. Failed source-generation runs do not pass the handoff. The Pages job still applies its public-asset allowlist, geometry, JavaScript and publication-safety checks before uploading the site.
+
+## Stage 2E-C — catchment river focus (v1.2)
+
+The river drawing defaults to a **selected-catchment-only** mode, with Canvas clipping of the existing 1:10m Natural Earth major river linework to the selected hydrological polygon. A control can switch back to regional context, preserving the main river continuities for orientation. The geometry source and catchment boundaries are unchanged. River hit-testing respects the selected catchment; switching the mode does not destroy touch/pan/zoom or LGA interactions. This is an *overview-only* display and does not imply a complete per-catchment stream network. A catchment with no visible Natural Earth line still contains unmapped streams and tributaries.
+
+A detailed network from a scientific hydrography source (e.g., HydroRIVERS, subject to its terms) must be processed with topology, river order, catchment clipping and QA before being introduced as the complete river system.

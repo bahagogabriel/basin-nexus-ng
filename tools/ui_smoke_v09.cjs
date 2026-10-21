@@ -54,6 +54,9 @@ async function test(page,name){
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
  assert.equal(await page.locator('#mapCanvas').count(),1);
  assert.equal((await metric(page)).selected,'SCMP-C02');
+ assert.equal((await metric(page)).riverScope,'selected');
+ await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'all');
+ await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'selected');
  await testWaterLayers(page,name);
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'false');
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'true');
