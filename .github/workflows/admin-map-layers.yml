@@ -1,0 +1,30 @@
+name: Generate provisional state and LGA map layers
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_admin_map_layers.py'
+      - '.github/workflows/admin-map-layers.yml'
+      - 'site/data/admin_crosswalk_provisional.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-geometry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install projected polygon processing
+        run: python -m pip install "shapely>=2.0,<3" "pyproj>=3.5,<4" "requests>=2.31,<3"
+      - name: Generate simplified state and study-area LGA geometry
+        run: python tools/build_admin_map_layers.py
+      - name: Archive map geometry for release inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-administrative-map-layers-v08-review
+          path: review/admin-map-layers/
+          if-no-files-found: warn
