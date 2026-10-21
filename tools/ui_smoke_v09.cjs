@@ -16,8 +16,8 @@ async function testWaterLayers(page,name){
  const lakes=page.locator('#lakesToggle'),rivers=page.locator('#riversToggle');
  assert.equal(await rivers.getAttribute('aria-pressed'),'true');
  assert.equal(await lakes.getAttribute('aria-pressed'),'true');
- assert.match(await page.locator('#riverLegend').innerText(),/FAO 2026/);
- assert.match(await page.locator('#lakeLegend').innerText(),/1:10m/);
+ assert.match(await page.locator('#riverLegend').textContent(),/FAO 2026/);
+ assert.match(await page.locator('#lakeLegend').textContent(),/1:10m/);
  await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'false');
  await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'true');
  await lakes.click();assert.equal(await lakes.getAttribute('aria-pressed'),'false');
