@@ -74,7 +74,7 @@ def main():
                   'source':URL,'http_status':code,
                   'explanation':'Official HydroRIVERS source did not authorize this automated download. No source geometries were obtained, processed, or published.',
                   'required_next_step':'Use a licensed and accessible source such as the FAO AQUASTAT CC BY 4.0 river release, or an authorized HydroRIVERS download.'}
-            (REPORT/'density_and_license_hold.json').write_text(json.dumps(hold,indent=2)+'\\n','utf-8')
+            (REPORT/'density_and_license_hold.json').write_text(json.dumps(hold,indent=2)+'\n','utf-8')
             print('HYDRORIVERS PREFLIGHT HOLD: official download returned HTTP',code)
             return
         shp=unpack_safely(original,tmp/'extracted')
