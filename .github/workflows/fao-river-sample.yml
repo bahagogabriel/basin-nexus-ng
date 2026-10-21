@@ -1,0 +1,28 @@
+name: Sample FAO AQUASTAT river network WFS (QA only)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/sample_fao_river_wfs.py'
+      - '.github/workflows/fao-river-sample.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install request client
+        run: python -m pip install 'requests>=2.31,<3'
+      - name: Query tiny WFS samples without publishing shapes
+        run: python tools/sample_fao_river_wfs.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-fao-2026-wfs-sample
+          path: review/fao-river-sample/small_wfs_query.json
+          if-no-files-found: error
