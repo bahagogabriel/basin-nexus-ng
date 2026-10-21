@@ -1,10 +1,10 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 1.1.
+**Nigeria's Open Catchment Knowledge Atlas** — public geospatial knowledge atlas, UI/UX v1.4 candidate.
 
 ## Status
 
-The public site contains only the vetted **boundary preview data**: user-supplied 20 catchment polygons (simplified for visual display), names, stable identifiers, historical alias, calculated areas, plus a separate Natural Earth national boundary reference. No stakeholder submissions, signed materials, personal information, privately held source documents, or unverified infrastructure coordinates are published.
+The public atlas includes 20 simplified catchment polygons and areas, provisional 2022 GRID3 state/LGA overlays, 2026 FAO AQUASTAT modeled river-reach networks by catchment, and Natural Earth political/major-water reference layers. It does **not** publish confidential stakeholder submissions, signed materials, personal information, unverified facility coordinates or privately held documents. The source and scientific limitations for each published dataset are documented, and the release remains an exploratory—not statutory or surveyed—geographic atlas.
 
 ## GitHub Pages deployment (continuous publishing)
 
