@@ -1,0 +1,29 @@
+name: Preflight more detailed hydrology, internal QA only
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/preflight_hydro_ne10.py'
+      - '.github/workflows/hydro-ne10-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install spatial packages
+        run: python -m pip install "shapely>=2.0,<3" "pyproj>=3.5,<4" "requests>=2.31,<3"
+      - name: Assess 1:10m river and lake source density and integrity
+        run: python tools/preflight_hydro_ne10.py
+      - name: Archive review-only evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-hydro-ne10-internal-preflight
+          path: review/hydro10m-preflight/
+          if-no-files-found: warn
