@@ -1,0 +1,67 @@
+name: Build FAO AQUASTAT catchment-specific river networks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_fao_river_network.py'
+      - '.github/workflows/fao-detailed-rivers.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install spatial processing packages
+        run: python -m pip install 'shapely>=2.0,<3' 'requests>=2.31,<3'
+      - name: Download, clip and check 2026 FAO river reaches
+        run: python tools/build_fao_river_network.py
+      - name: Check generated files, license and counts before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          p=Path('review/fao-detailed-rivers')
+          m=json.loads((p/'detailed_river_manifest.json').read_text())
+          assert m['status']=='PROVISIONAL_DETAILED_RIVER_NETWORK' and m['license']=='CC BY 4.0 (FAO AQUASTAT)'
+          assert len(m['files'])==20
+          assert m['source_intersecting_unique_reaches']>5000
+          assert m['total_display_reaches']>=m['source_intersecting_unique_reaches']
+          for catch,info in m['files'].items():
+              b=(p/'river_network'/(catch+'.geojson')).read_bytes()
+              assert len(b)==info['bytes'] and hashlib.sha256(b).hexdigest()==info['sha256']
+              d=json.loads(b)
+              assert len(d['features'])==info['count']
+              assert all(f['properties']['source_license']=='CC BY 4.0' for f in d['features'])
+          print('DETAILED WFS HYDRO QUALITY GATE: PASS')
+          PY
+      - name: Promote only validated derived FAO geometry to public data
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site/data/river_network
+          cp review/fao-detailed-rivers/river_network/*.geojson site/data/river_network/
+          cp review/fao-detailed-rivers/detailed_river_manifest.json site/data/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/river_network/ site/data/detailed_river_manifest.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish 20 FAO CC BY river-network files with provenance"
+            git push origin HEAD:main
+          else
+            echo "No detailed FAO data change"
+          fi
+      - name: Archive non-sensitive QA manifest only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-fao-detailed-river-qa
+          path: review/fao-detailed-rivers/detailed_river_manifest.json
+          if-no-files-found: warn
