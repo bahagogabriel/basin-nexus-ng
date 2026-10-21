@@ -1,0 +1,295 @@
+{
+  "version": "SCMP_SOURCE_INDEX_2026-10-21_01",
+  "publication_status": "PUBLIC_METADATA_ONLY",
+  "source_collection": "Institutional SCMP catchment engagement communiqués in user-provided internal Drive",
+  "source_documents_reviewed": 20,
+  "source_contents_published": false,
+  "coordinates_or_observations_published": false,
+  "note": "Topic headings located in original source documents. Their resource claims, coordinates, intervention status and public permissions have not been verified.",
+  "themes": [
+    {
+      "key": "natural_resources",
+      "label": "Natural resources"
+    },
+    {
+      "key": "threats_challenges",
+      "label": "Threats & challenges"
+    },
+    {
+      "key": "socioeconomics",
+      "label": "Socioeconomics"
+    },
+    {
+      "key": "policies",
+      "label": "Policies"
+    }
+  ],
+  "catchments": [
+    {
+      "id": "SCMP-C01",
+      "name": "Aloma-Konshisha",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C02",
+      "name": "Benue-Mada",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C03",
+      "name": "Gaji-Lamurde",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C04",
+      "name": "Gulbin-Ka",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C05",
+      "name": "Gurara-Gbako",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C06",
+      "name": "Hadejia Jama'are",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C07",
+      "name": "Hawul-Kilange",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C08",
+      "name": "Kaduna-Mariga",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C09",
+      "name": "Lokoja-Niger",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C10",
+      "name": "Malenda",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C11",
+      "name": "Misau-Komadugu Gana",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C12",
+      "name": "Ngada",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C13",
+      "name": "Oshin-Oyi",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C14",
+      "name": "Rima",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C15",
+      "name": "Sarkin Pawa-Kaduna",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C16",
+      "name": "Shemankar-Katsina Ala",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C17",
+      "name": "Sokoto-Zamfara",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C18",
+      "name": "Wase-Taraba",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C19",
+      "name": "Yedseram",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    },
+    {
+      "id": "SCMP-C20",
+      "name": "Zungur-Gongola",
+      "source_documents_located": 1,
+      "source_section_keys": [
+        "natural_resources",
+        "threats_challenges",
+        "socioeconomics",
+        "policies"
+      ],
+      "verification": "Internal source review",
+      "public_release": "Metadata only"
+    }
+  ],
+  "limitations": [
+    "Signed records, attendance lists and private source documents are excluded.",
+    "Presence of a named section does not verify any statement or resource.",
+    "Past/present interventions occur under different headings and require manual contextual extraction.",
+    "No reported asset coordinates or sensitive localities are released."
+  ]
+}

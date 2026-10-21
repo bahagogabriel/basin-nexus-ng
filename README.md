@@ -117,3 +117,7 @@ The release browser suite now verifies the absence of any preselected catchment,
 ## UX-C1 — directory synchronisation and unobtrusive map guidance (v1.6)
 
 On map or directory selection, the currently selected catchment is scrolled into view in the directory when not already visible. The user can still search and scroll manually. Returning to overview resets directory and profile scroll positions. The large persistent instruction box is replaced with a collapsible Map guide. In-panel navigation links to modeled rivers, national boundary context, provisional states/LGAs, and evidence publication status. Changes are interface-only; no scientific or geometry outputs are edited. Release browser QA covers desktop/tablet selections, profile navigation, river loading, touch gestures, and phone layout.
+
+## Stage 3A — SCMP stakeholder source-coverage index (v1.7)
+
+Twenty institutional engagement communiqués have been located and read, one for each catchment. Each contains the source headings Natural Resources, Threats and Challenges, Socioeconomics, and Policies. This release publishes **only that thematic source-availability metadata**, with no raw documents, stakeholder claims, private Drive URLs, signatures, names, or unverified facility coordinates. Intervention records remain pending manual extraction where dispersed under other headings. The public Knowledge index supports topic/catchment searching and links back to the relevant map; scientific source and asset verification remain distinct activities.
