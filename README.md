@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.7.
+**Nigeria's Open Catchment Knowledge Atlas** — public geographic boundary preview, version 0.8.
 
 ## Status
 
@@ -58,6 +58,15 @@ An EPSG:6933 polygon-overlay screening indicates 10 of 20 catchments extend acro
 Data now include 102 catchment–state and 754 catchment–LGA geometric intersections, calculated against the 2022 GRID3 Nigeria ADM1 (37) and ADM2 (774) administrative boundaries distributed by geoBoundaries gbOpen (CC BY 4.0). Source dataset SHA-256 checksums and study-catchment hash are embedded in the public crosswalk JSON. Area overlaps were computed in EPSG:6933 from **web-simplified** catchments, not the full-resolution project Geopackage. These provisional observations must **not** be treated as official allocations or precise international boundaries. No original stakeholder-submitted evidence or personal information is published.
 
 The profiles list state shares as percentages of **total** catchment area. International portions remain outside Nigeria and do not get assigned to states. The directory can be searched by catchment, state or LGA. The simplified admin polygons themselves are not yet a switchable map layer; the preliminary spatial relationships and downloadable tables are provided for transparent review.
+
+## Stage 2D — state and LGA map overlays (v0.8)
+
+- Optional state/FCT boundary display: 37 2022 GRID3-derived polygons, source-pinned via geoBoundaries; shown by default.
+- Optional LGA boundary display: lazy-loaded 495 distinct intersecting LGA polygons (not all Nigeria), **clipped visually** to the selected catchment; off by default.
+- Both are simplified EPSG:6933 geometry derivatives, for display only. They do not change catchment boundaries or the separate analytically calculated catchment–administrative crosswalk.
+- State and LGA boundaries are **provisional**, CC BY 4.0 with GRID3 / geoBoundaries credit; they are not legal/current administrative determinations.
+- Admin0 country outline remains a separate, coarse-scale Natural Earth 1:110m context layer.
+- The JSON QA metadata contains pinned source hashes, feature counts, and maximum area differences resulting from simplification. These display geometries are generated and geometry-tested in the automated administrative-layer workflow.
 
 ## Developing the geographic join
 
