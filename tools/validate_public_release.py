@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json',...{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
