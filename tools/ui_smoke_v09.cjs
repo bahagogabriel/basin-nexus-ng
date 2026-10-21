@@ -88,6 +88,11 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ assert.equal(await page.locator('#mapHint').evaluate(n=>n.open),false,name+': map guide must start collapsed');
+ await page.locator('#mapHint > summary').click();
+ assert.equal(await page.locator('#mapHint').evaluate(n=>n.open),true);
+ await page.locator('#mapHint > summary').click();
+ assert.equal(await page.locator('#mapHint').evaluate(n=>n.open),false);
  assert.equal((await metric(page)).selected,null,name+': launch must not preselect a catchment');
  assert.equal((await metric(page)).riverScope,'all');
  assert.equal((await metric(page)).detailCount,0);
@@ -124,6 +129,18 @@ async function test(page,name){
  await page.locator('#catchmentList button[data-id="SCMP-C15"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C15'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===2038,{timeout:45000});
  assert.match(await page.locator('#details').innerText(),/2,038/);
+ const activeRow=page.locator('#catchmentList button.active');
+ assert.equal(await activeRow.getAttribute('data-id'),'SCMP-C15');
+ const visibleRow=await page.evaluate(()=>{
+  const row=document.querySelector('#catchmentList button.active').getBoundingClientRect(),box=document.querySelector('#catchmentList').getBoundingClientRect();
+  return row.top>=box.top-1&&row.bottom<=box.bottom+1;
+ });
+ assert(visibleRow,name+': active catchment should remain visible in the directory');
+ assert.equal(await page.locator('.profileJumps button').count(),4);
+ await page.locator('button[data-profile-target="profileAdmin"]').click();
+ await page.waitForFunction(()=>document.querySelector('#details').scrollTop>45,{timeout:5500});
+ assert.equal(await page.locator('#profileAdmin').count(),1);
+ await page.locator('button[data-profile-target="profileRivers"]').click();
  await page.screenshot({path:path.join(folder,name+'_sarkin_rivers.png'),fullPage:true});
  console.log(name+': PASS regional launch + overview return + 2,038 Sarkin Pawa–Kaduna FAO reaches, all river density choices');
  await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
@@ -141,7 +158,7 @@ async function test(page,name){
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'true');
  await page.locator('#lgaToggle').click();
  await page.waitForFunction(()=>document.querySelector('#lgaToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
- assert.match(await page.locator('#mapNote').innerText(),/outlined in gold/i);
+ assert.match(await page.locator('#mapNote').textContent(),/outlined in gold/i);
  await page.locator('#focusMapBtn').click();
  const focusView=(await metric(page)).view;
  assert(focusView.w<1020,name+': Focus catchment failed to zoom');
