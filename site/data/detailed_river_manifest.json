@@ -1,0 +1,270 @@
+{
+  "status": "PROVISIONAL_DETAILED_RIVER_NETWORK",
+  "license": "CC BY 4.0 (FAO AQUASTAT)",
+  "source": "https://data.fao.org/catalog/dataset/e22667af-3977-4e9f-b58b-67fb91b0fa87",
+  "source_wfs": "https://data.apps.fao.org/map/gsrv/gsrv1/aquamaps/wfs",
+  "layer": "aquamaps:river_network",
+  "version": "2026-06-15",
+  "derived_from": "HydroRIVERS 15-arcsecond modeled network",
+  "source_note": "Modelled river reaches; smaller streams may be missing. A reach generally qualifies at >=10 km2 drainage or >=0.1 m3/s average flow.",
+  "catchment_source": "user supplied and verified 20 catchments, simplified for web",
+  "source_catchment_sha256": "03ebae7c95895919d820aaed146a9030f99833831dc5bea9b8c776dca43df90b",
+  "bbox_wgs84": [
+    2.811907770718119,
+    5.848699054947526,
+    15.498497691177898,
+    15.282583552836284
+  ],
+  "bbox_candidate_count": 80478,
+  "page_size": 1750,
+  "pages": 46,
+  "source_unique_ids": 80478,
+  "source_intersecting_unique_reaches": 51906,
+  "source_geometry_warnings": [],
+  "display_units": "Individual clipped river reaches, not independently surveyed rivers",
+  "hierarchy_method": "upstream drainage area: >=1000, >=100, <100 square kilometres",
+  "topology_warning": "NEXT_DOWN and MAIN_RIV are original source IDs; clips and catchment boundaries can separate connected reaches.",
+  "files": {
+    "SCMP-C01": {
+      "name": "Aloma-Konshisha",
+      "file": "river_network/SCMP-C01.geojson",
+      "count": 1920,
+      "bytes": 1032372,
+      "sha256": "fd84350a1efe8d5dc648eb42c63d2301bc4f0a7e4b5746d16365c1bd9bb6b88c",
+      "classes": {
+        "small_upstream_below100": 1399,
+        "medium_upstream_100plus": 352,
+        "large_upstream_1000plus": 169
+      }
+    },
+    "SCMP-C02": {
+      "name": "Benue-Mada",
+      "file": "river_network/SCMP-C02.geojson",
+      "count": 1769,
+      "bytes": 995455,
+      "sha256": "15252beec2a014b38d2834aeca485a10fa69c44a950de53e52119054dd4fc41c",
+      "classes": {
+        "small_upstream_below100": 1164,
+        "medium_upstream_100plus": 406,
+        "large_upstream_1000plus": 199
+      }
+    },
+    "SCMP-C03": {
+      "name": "Gaji-Lamurde",
+      "file": "river_network/SCMP-C03.geojson",
+      "count": 1376,
+      "bytes": 796339,
+      "sha256": "51cc0384bb3ae453a619e0a4b00bfee6a9dd2d71707454c20e6436e48be6dc60",
+      "classes": {
+        "small_upstream_below100": 853,
+        "medium_upstream_100plus": 351,
+        "large_upstream_1000plus": 172
+      }
+    },
+    "SCMP-C04": {
+      "name": "Gulbin-Ka",
+      "file": "river_network/SCMP-C04.geojson",
+      "count": 1416,
+      "bytes": 804028,
+      "sha256": "992086624e85295496f70f740ba9c08b0c3c9f0d197533bfd2c2f5d973a5a5ac",
+      "classes": {
+        "small_upstream_below100": 868,
+        "medium_upstream_100plus": 333,
+        "large_upstream_1000plus": 215
+      }
+    },
+    "SCMP-C05": {
+      "name": "Gurara-Gbako",
+      "file": "river_network/SCMP-C05.geojson",
+      "count": 2274,
+      "bytes": 1267184,
+      "sha256": "2360c632e92bf6e2df381858ec2d2d6441191971852ec9dacd444f29ad93613a",
+      "classes": {
+        "small_upstream_below100": 1483,
+        "medium_upstream_100plus": 515,
+        "large_upstream_1000plus": 276
+      }
+    },
+    "SCMP-C06": {
+      "name": "Hadejia Jama'are",
+      "file": "river_network/SCMP-C06.geojson",
+      "count": 5568,
+      "bytes": 3270239,
+      "sha256": "302688e405cda7bad3365027d1148bed2939f2d6df5e55d90754f130b2ce0798",
+      "classes": {
+        "small_upstream_below100": 3427,
+        "medium_upstream_100plus": 1261,
+        "large_upstream_1000plus": 880
+      }
+    },
+    "SCMP-C07": {
+      "name": "Hawul-Kilange",
+      "file": "river_network/SCMP-C07.geojson",
+      "count": 5732,
+      "bytes": 3266330,
+      "sha256": "37e942764623dd715eb63a3353ab15007c87c1df0c61cee95bbc89c293abe845",
+      "classes": {
+        "small_upstream_below100": 3620,
+        "medium_upstream_100plus": 1336,
+        "large_upstream_1000plus": 776
+      }
+    },
+    "SCMP-C08": {
+      "name": "Kaduna-Mariga",
+      "file": "river_network/SCMP-C08.geojson",
+      "count": 1299,
+      "bytes": 735212,
+      "sha256": "6f4e663dde433f888bd4927f48adac81dd19ef050f8473b90f2999082627d001",
+      "classes": {
+        "small_upstream_below100": 818,
+        "medium_upstream_100plus": 313,
+        "large_upstream_1000plus": 168
+      }
+    },
+    "SCMP-C09": {
+      "name": "Lokoja-Niger",
+      "file": "river_network/SCMP-C09.geojson",
+      "count": 2553,
+      "bytes": 1390407,
+      "sha256": "a6bf362a8b91237416aea223761f80838008cfcfc8fa78304739465bdf0420e1",
+      "classes": {
+        "small_upstream_below100": 1854,
+        "medium_upstream_100plus": 458,
+        "large_upstream_1000plus": 241
+      }
+    },
+    "SCMP-C10": {
+      "name": "Malenda",
+      "file": "river_network/SCMP-C10.geojson",
+      "count": 1101,
+      "bytes": 623093,
+      "sha256": "0647559920b81ae5ba0a79887177cc8361a8ab0ebc1b54b786eb5b6f4cdf686f",
+      "classes": {
+        "small_upstream_below100": 668,
+        "medium_upstream_100plus": 254,
+        "large_upstream_1000plus": 179
+      }
+    },
+    "SCMP-C11": {
+      "name": "Misau-Komadugu Gana",
+      "file": "river_network/SCMP-C11.geojson",
+      "count": 1103,
+      "bytes": 646326,
+      "sha256": "14080a440c125b3a54524b94ddf5ac110ed171ac9d9682a540921509e7719d64",
+      "classes": {
+        "small_upstream_below100": 669,
+        "medium_upstream_100plus": 215,
+        "large_upstream_1000plus": 219
+      }
+    },
+    "SCMP-C12": {
+      "name": "Ngada",
+      "file": "river_network/SCMP-C12.geojson",
+      "count": 1903,
+      "bytes": 1135277,
+      "sha256": "81a6b18b2cf87913e309f1ae16adcbf89fd2a8d78c186d0787b6758bd4dc4f15",
+      "classes": {
+        "small_upstream_below100": 1140,
+        "medium_upstream_100plus": 469,
+        "large_upstream_1000plus": 294
+      }
+    },
+    "SCMP-C13": {
+      "name": "Oshin-Oyi",
+      "file": "river_network/SCMP-C13.geojson",
+      "count": 2588,
+      "bytes": 1450366,
+      "sha256": "37bde275d0625ed338d7229e4f6d37ee2b047f9c35508ca2dc49c362e9f22263",
+      "classes": {
+        "small_upstream_below100": 1657,
+        "medium_upstream_100plus": 591,
+        "large_upstream_1000plus": 340
+      }
+    },
+    "SCMP-C14": {
+      "name": "Rima",
+      "file": "river_network/SCMP-C14.geojson",
+      "count": 4548,
+      "bytes": 2610838,
+      "sha256": "669d0b90a379e6ec242870ca3e8a9fee3c6aeeeeee54200ff07ab75dda27f7db",
+      "classes": {
+        "medium_upstream_100plus": 1024,
+        "small_upstream_below100": 2712,
+        "large_upstream_1000plus": 812
+      }
+    },
+    "SCMP-C15": {
+      "name": "Sarkin Pawa-Kaduna",
+      "file": "river_network/SCMP-C15.geojson",
+      "count": 2038,
+      "bytes": 1146182,
+      "sha256": "f2ee342cdbf1040410b0f327cef753e85f35463680456b692a03477f9d68b0e3",
+      "classes": {
+        "small_upstream_below100": 1314,
+        "medium_upstream_100plus": 419,
+        "large_upstream_1000plus": 305
+      }
+    },
+    "SCMP-C16": {
+      "name": "Shemankar-Katsina Ala",
+      "file": "river_network/SCMP-C16.geojson",
+      "count": 3974,
+      "bytes": 2197142,
+      "sha256": "f054af2a706ec6d414d5eb06493280c15c46ba363432f2c4c144e9c20229ee3a",
+      "classes": {
+        "small_upstream_below100": 2719,
+        "medium_upstream_100plus": 795,
+        "large_upstream_1000plus": 460
+      }
+    },
+    "SCMP-C17": {
+      "name": "Sokoto-Zamfara",
+      "file": "river_network/SCMP-C17.geojson",
+      "count": 2080,
+      "bytes": 1183726,
+      "sha256": "274cc64f4d25e18597518b03c0f883e45e7e74e84326ac9ade85dae3c8de6b86",
+      "classes": {
+        "small_upstream_below100": 1264,
+        "medium_upstream_100plus": 426,
+        "large_upstream_1000plus": 390
+      }
+    },
+    "SCMP-C18": {
+      "name": "Wase-Taraba",
+      "file": "river_network/SCMP-C18.geojson",
+      "count": 3454,
+      "bytes": 1935487,
+      "sha256": "3b91fa87aa96c34429f0ae6b2778479594839e083cffec147b3cfb77cd4eec4e",
+      "classes": {
+        "small_upstream_below100": 2320,
+        "medium_upstream_100plus": 728,
+        "large_upstream_1000plus": 406
+      }
+    },
+    "SCMP-C19": {
+      "name": "Yedseram",
+      "file": "river_network/SCMP-C19.geojson",
+      "count": 2897,
+      "bytes": 1712043,
+      "sha256": "6aaee8113e7222cd214f4869e6c52b95a13ecdc4155ddb35b9f2806b7310ee29",
+      "classes": {
+        "small_upstream_below100": 1730,
+        "large_upstream_1000plus": 558,
+        "medium_upstream_100plus": 609
+      }
+    },
+    "SCMP-C20": {
+      "name": "Zungur-Gongola",
+      "file": "river_network/SCMP-C20.geojson",
+      "count": 2419,
+      "bytes": 1396883,
+      "sha256": "036b36de47b5c654635c8ad5aa5d2cbbd9bed2ea2a34b5ddd42cb6733732f250",
+      "classes": {
+        "small_upstream_below100": 1490,
+        "large_upstream_1000plus": 351,
+        "medium_upstream_100plus": 578
+      }
+    }
+  },
+  "total_display_reaches": 52012
+}
