@@ -23,6 +23,14 @@ class Stage3BPrivateQATest(unittest.TestCase):
     def test_boolean_latitude_rejected(self):
         result=audit([claim(coordinates={'latitude':True,'longitude':8,'uncertainty_m':1,'verification':'independently_validated'})])
         self.assertEqual(result['flag_counts']['COORDINATE_NOT_VERIFIED'],1)
+    def test_missing_spatial_method(self):
+        location={'latitude':6.1,'longitude':7.2,'uncertainty_m':50,'verification':'independently_validated'}
+        self.assertEqual(audit([claim(coordinates=location)])['flag_counts']['COORDINATE_NOT_VERIFIED'],1)
+    def test_valid_spatial_method_candidate_still_not_public(self):
+        location={'latitude':6.1,'longitude':7.2,'uncertainty_m':50,'verification':'independently_validated','method':'GNSS field survey'}
+        report=audit([claim(coordinates=location)])
+        self.assertEqual(report['readiness_counts']['validated_point_candidate'],1)
+        self.assertEqual(report['approved_for_publication'],0)
     def test_reconciliation_conflict(self):
         a=claim(reconciliation_group='SYN-A',quantity=2,unit='m3')
         b=claim(internal_claim_id='SYN-002',reconciliation_group='SYN-A',quantity=3,unit='m3')

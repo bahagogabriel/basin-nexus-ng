@@ -33,7 +33,7 @@ def audit(rows):
         if row.get('privacy_flag') not in ('NONE','REVIEW','RESTRICTED'): issues.add('PRIVACY_REVIEW_REQUIRED')
         position=row.get('coordinates')
         if position is None: readiness['no_verified_point']+=1
-        elif not isinstance(position,dict) or position.get('verification')!='independently_validated' or any(isinstance(position.get(k),bool) or not isinstance(position.get(k),(int,float)) or not math.isfinite(position[k]) for k in ('latitude','longitude','uncertainty_m')) or not (-90<=position['latitude']<=90 and -180<=position['longitude']<=180 and 0<=position['uncertainty_m']<=1e7):
+        elif not isinstance(position,dict) or position.get('verification')!='independently_validated' or not isinstance(position.get('method'),str) or len(position['method'].strip())<8 or any(isinstance(position.get(k),bool) or not isinstance(position.get(k),(int,float)) or not math.isfinite(position[k]) for k in ('latitude','longitude','uncertainty_m')) or not (-90<=position['latitude']<=90 and -180<=position['longitude']<=180 and 0<=position['uncertainty_m']<=1e7):
             issues.add('COORDINATE_NOT_VERIFIED'); readiness['unvalidated_point_rejected']+=1
         else: readiness['validated_point_candidate']+=1
         group=row.get('reconciliation_group')

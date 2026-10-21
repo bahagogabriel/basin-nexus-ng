@@ -19,3 +19,19 @@ The generated QA file contains counts and diagnostic codes only; it is **not** p
 5. Human reviewers must separately establish source rights, privacy clearance, scientific accuracy, record-by-record release authorizations and location validation. The existing `tools/evidence_publication_gate.py` and `tools/validate_public_release.py` remain mandatory; passing automated checks alone cannot authorize publication.
 
 **Stage 3B remains a private working stage.** The public Knowledge index remains metadata-only. No unapproved claim, source document or asset point can be published.
+
+## Evidence found in the source intake that tooling must catch
+
+- File names containing **Signed Stakeholder Engagement** are *restricted signed derivatives*, not ordinary thematic inputs. Restricted categories take precedence over document themes; source classification is not redistribution permission.
+- Different versions of source documents must remain separate until original paragraphs or table cells are reconciled. A word overlap score cannot certify that two versions are identical.
+- Multi-table dam submissions can repeat facilities with unequal capacities. Track table/sheet identity, exact row, quantity and original unit; only explicitly reviewer-linked asset keys may be compared and **no competing value should be selected automatically**.
+- Source statements are not independently measured site coordinates. Private QA now requires a documented independent method for any non-null coordinate candidate.
+
+Synthetic regression commands:
+
+```sh
+python -m unittest discover -s tools -p 'test_stage3b_source_integrity.py' -v
+python -m unittest discover -s tools -p 'test_stage3b_private_qa.py' -v
+```
+
+All actual source manifests, claim registers and QA dashboards belong in owner-restricted storage outside GitHub. GitHub Pages continues to publish the existing safe `site/` allowlist exclusively.
