@@ -49,7 +49,7 @@ function cacheHydro(rivers,lakes,meta){
   throw Error('Hydrology provenance and feature count mismatch');
  riverPaths=rivers.features.map(f=>({id:f.properties.id,name:f.properties.name,kind:'river',path:linePath(f.geometry)}));
  lakePaths=lakes.features.map(f=>({id:f.properties.id,name:f.properties.name,kind:'lake',path:makePath(f.geometry)}));
- waterMeta=meta;schedulePaint()
+ waterMeta=meta;const scale=meta.datasets.river.url.includes('ne_10m_')?'1:10m':'1:50m';el('riverLegend').lastChild.nodeValue='Major rivers · '+scale;el('lakeLegend').lastChild.nodeValue='Lakes / reservoirs · '+scale;schedulePaint()
 }
 function showHydro(feature){
  activeHydro=feature;

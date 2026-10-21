@@ -87,3 +87,7 @@ The hydro layers show **only overview-scale major rivers and large waterbodies**
 ## Stage 2E-B — Natural Earth 1:10m upgraded water geography (v1.1)
 
 Preflight against the 20-buffered-catchment domain found 17 1:10m river features (vs. five at 1:50m) and two major lake/reservoir features. The 1:10m revision adds overview coverage of Gongola, Hadejia, Kaduna, Sokoto and other named rivers. Natural Earth remains map-scale reference data; it cannot represent small rivers, detailed drainage, asset conditions or surveyed dam positions. Original 1:50m release is recoverable from repository history. Source quality, pin and SHA-256 metadata are preserved in `site/data/hydro_reference_metadata.json`.
+
+## Automated builder → Pages handoff
+
+The Pages workflow also runs after successful hydrology or administrative map-layer build workflows. This is essential because data commits made by the workflow's GitHub token do not themselves start normal push-triggered workflows. Failed source-generation runs do not pass the handoff. The Pages job still applies its public-asset allowlist, geometry, JavaScript and publication-safety checks before uploading the site.

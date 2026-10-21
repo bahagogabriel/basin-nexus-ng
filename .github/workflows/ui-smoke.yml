@@ -7,6 +7,9 @@ on:
       - 'site/data/adm1_states_provisional.geojson'
       - 'site/data/adm2_lgas_study_provisional.geojson'
       - 'site/data/admin_crosswalk_provisional.json'
+      - 'site/data/rivers_overview.geojson'
+      - 'site/data/lakes_overview.geojson'
+      - 'site/data/hydro_reference_metadata.json'
       - 'tools/ui_smoke_v09.cjs'
       - '.github/workflows/ui-smoke.yml'
   workflow_dispatch:
