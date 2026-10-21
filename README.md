@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public geospatial knowledge atlas, UI/UX v1.4 candidate.
+**Nigeria's Open Catchment Knowledge Atlas** — public metadata-only Knowledge index and geospatial atlas **v1.7**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
 
 ## Status
 
