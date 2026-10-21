@@ -203,7 +203,7 @@ function showHover(e){
  const p=local(e),world=fromScreen(p.x,p.y),id=hitCatchment(world);
  let name=id?catchPaths.get(id).name+' catchment':'';
  const lga=id?hitLGA(id,world):null;const hydro=hitHydro(world);
- if(lga)name=lga.name+' · '+lga.state+' (LGA)';if(hydro)name=(hydro.name||'Water feature')+' · Water overview';
+ if(hydro)name=(hydro.name||'Water feature')+' · Water overview';if(lga)name=lga.name+' · '+lga.state+' (LGA)';
  canvas.style.cursor=(id||hydro)?'pointer':'grab';
  if(name)tip(e,name);else el('tooltip').style.display='none'
 }
@@ -301,9 +301,9 @@ function tap(e){const p=local(e),world=fromScreen(p.x,p.y),id=hitCatchment(world
  mapMetrics.tapHits++;
  const row=id?hitLGA(id,world):null;
  if(id)choose(id,id!==selected);
+ if(row){activeHydro=null;el('hydroInfo').classList.add('hidden');showLGA(row);return}
  if(water){showHydro(water);return}
- activeHydro=null;el('hydroInfo').classList.add('hidden');
- if(row)showLGA(row)
+ activeHydro=null;el('hydroInfo').classList.add('hidden')
 }
 function pointerEnd(e,cancelled=false){
  if(!pointerMap.has(e.pointerId))return;

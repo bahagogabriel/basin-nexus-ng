@@ -37,6 +37,8 @@ jobs:
         run: python tools/test_canvas_drift.py
       - name: Verify coarse river and lake publication policy
         run: python tools/test_public_hydro_overview.py
+      - name: Guard LGA and water feature click precedence
+        run: python tools/test_hydro_lga_click_priority.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only
