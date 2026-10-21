@@ -9,12 +9,52 @@ const server=spawn('python3',['-m','http.server','8791','--bind','127.0.0.1','--
 let browser;const errors=[];const url='http://127.0.0.1:8791/';
 async function ready(){for(let i=0;i<60;i++){try{const r=await fetch(url);if(r.ok)return}catch{}await delay(250)}throw Error('Server did not respond')}
 async function metric(page){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__BN_MAP_DIAGNOSTICS__)))}
+
+async function testWaterLayers(page,name){
+ const lakes=page.locator('#lakesToggle'),rivers=page.locator('#riversToggle');
+ assert.equal(await rivers.getAttribute('aria-pressed'),'true');
+ assert.equal(await lakes.getAttribute('aria-pressed'),'true');
+ assert.match(await page.locator('#riverLegend').innerText(),/1:10m/);
+ assert.match(await page.locator('#lakeLegend').innerText(),/1:10m/);
+ await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'false');
+ await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'true');
+ await lakes.click();assert.equal(await lakes.getAttribute('aria-pressed'),'false');
+ await lakes.click();assert.equal(await lakes.getAttribute('aria-pressed'),'true');
+ // Select a point inside the source polygon using the same geographic projection.
+ const point=await page.evaluate(async()=>{
+  const fc=await(await fetch('data/lakes_overview.geojson')).json(),f=fc.features.find(x=>x.properties.name==='Kainji Reservoir');
+  if(!f)return null;
+  const canvas=document.querySelector('#mapCanvas'),r=canvas.getBoundingClientRect(),view=window.__BN_MAP_DIAGNOSTICS__.view;
+  const scale=Math.min(r.width/view.w,r.height/view.h),ox=(r.width-view.w*scale)/2,oy=(r.height-view.h*scale)/2;
+  const xy=p=>[48+(p[0]-2.4)/13.2*922,25+(15.32-p[1])/11.37*698];
+  const c=document.createElement('canvas').getContext('2d'),path=new Path2D();
+  const poly=f.geometry.type==='MultiPolygon'?f.geometry.coordinates[0]:f.geometry.coordinates;
+  for(const ring of poly){ring.forEach((p,i)=>{const q=xy(p);i?path.lineTo(...q):path.moveTo(...q)});path.closePath()}
+  const outer=poly[0],v=outer.map(xy),xmin=Math.min(...v.map(x=>x[0])),xmax=Math.max(...v.map(x=>x[0])),
+    ymin=Math.min(...v.map(x=>x[1])),ymax=Math.max(...v.map(x=>x[1]));
+  for(let yi=1;yi<=20;yi++)for(let xi=1;xi<=20;xi++){
+   const wx=xmin+(xmax-xmin)*xi/21,wy=ymin+(ymax-ymin)*yi/21;
+   if(!c.isPointInPath(path,wx,wy,'evenodd'))continue;
+   const x=ox+(wx-view.x)*scale,y=oy+(wy-view.y)*scale;
+   if(x>30&&x<r.width-30&&y>60&&y<r.height-35)return {x:r.left+x,y:r.top+y}
+  }
+  return null;
+ });
+ assert(point,name+': no visible target within Kainji Reservoir');
+ await page.mouse.click(point.x,point.y);
+ await page.waitForFunction(()=>!document.querySelector('#hydroInfo')?.classList.contains('hidden'),null,{timeout:5000});
+ assert.match(await page.locator('#hydroInfo').innerText(),/Kainji Reservoir/);
+ assert.match(await page.locator('#hydroInfo').innerText(),/Natural Earth overview/);
+ console.log(name+': PASS river/lake toggles, scale labelling, Kainji waterbody hit and popup');
+}
+
 async function test(page,name){
  page.on('pageerror',e=>errors.push(name+': '+e.message));
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
  assert.equal(await page.locator('#mapCanvas').count(),1);
  assert.equal((await metric(page)).selected,'SCMP-C02');
+ await testWaterLayers(page,name);
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'false');
  await page.locator('#stateToggle').click();assert.equal(await page.locator('#stateToggle').getAttribute('aria-pressed'),'true');
  await page.locator('#lgaToggle').click();
