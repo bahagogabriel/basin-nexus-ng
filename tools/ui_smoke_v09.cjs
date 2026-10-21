@@ -11,6 +11,8 @@ async function ready(){for(let i=0;i<60;i++){try{const r=await fetch(url);if(r.o
 async function metric(page){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__BN_MAP_DIAGNOSTICS__)))}
 
 async function testWaterLayers(page,name){
+ const manager=page.locator('#layerManager');
+ if(!await manager.evaluate(n=>n.open))await page.locator('#layerManager > summary').click();
  const lakes=page.locator('#lakesToggle'),rivers=page.locator('#riversToggle');
  assert.equal(await rivers.getAttribute('aria-pressed'),'true');
  assert.equal(await lakes.getAttribute('aria-pressed'),'true');
@@ -20,6 +22,8 @@ async function testWaterLayers(page,name){
  await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'true');
  await lakes.click();assert.equal(await lakes.getAttribute('aria-pressed'),'false');
  await lakes.click();assert.equal(await lakes.getAttribute('aria-pressed'),'true');
+ await page.locator('#layerManager > summary').click();
+ assert.equal(await manager.evaluate(n=>n.open),false,'Close layer menu to inspect the map');
  // Select a point inside the source polygon using the same geographic projection.
  const point=await page.evaluate(async()=>{
   const fc=await(await fetch('data/lakes_overview.geojson')).json(),f=fc.features.find(x=>x.properties.name==='Kainji Reservoir');
