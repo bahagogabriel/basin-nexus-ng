@@ -3,7 +3,8 @@
 from pathlib import Path
 s=(Path(__file__).resolve().parents[1]/"site/index.html").read_text("utf-8")
 assert 'id="riverScopeToggle"' in s
-assert "riverScope='selected'" in s
+assert "riverScope='all'" in s
+assert "riverScope='selected';mapMetrics.selected=id" in s
 assert "renderDetailedRivers(sc)" in s
 assert "if(riversOn&&riverPaths.length&&riverScope==='all')" in s
 assert "function riverAllowedAt(world)" in s
