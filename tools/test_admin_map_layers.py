@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""QA gate for admin-boundary SVG layer switching, geometry references and file safety."""
+"""QA gate for admin-boundary Canvas layer switching, geometry references and file safety."""
 from pathlib import Path
 import json
 p=Path(__file__).resolve().parents[1]/'site'
@@ -13,11 +13,11 @@ assert len(lgas['features'])==qa['study_intersecting_adm2_features']==495
 assert len({f['properties']['id'] for f in lgas['features']})==495
 for c in adm['byCatchment'].values():
  assert all(x['id'] in {f['properties']['id'] for f in lgas['features']} for x in c['lgas'])
-for check in ("function drawAdmin(g)","lgaClipStudy","function choose(id,zoom){selected=id;renderList();renderDetails();nodes();",
+for check in ("function draw(", "ctx.clip(cp.path,'evenodd')","function choose(id,zoom){selected=id;mapMetrics.selected=id;",
               "id=\"stateToggle\"","id=\"lgaToggle\"","data/adm1_states_provisional.geojson",
               "data/adm2_lgas_study_provisional.geojson","pointer-events:none"):
  assert check in html,check
-assert "e.target.setPointerCapture(e.pointerId)" in html
+assert "canvas.setPointerCapture(e.pointerId)" in html
 assert "svg.setPointerCapture(e.pointerId)" not in html
 assert len(list(p.rglob('*.csv')))<=3
 print("ADMIN MAP UI + PROVENANCE GATE: PASS")

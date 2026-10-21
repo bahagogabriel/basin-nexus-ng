@@ -17,7 +17,8 @@ assert set(x['id'] for x in context['coverage'])==set(f['properties']['id'] for 
 assert 'nationalToggle' in html and 'nigeriaOutline' in html
 assert 'path.nigeriaOutline{fill:none;' in html and 'pointer-events:none' in html
 assert 'national=country' in html
-assert 'e.target.setPointerCapture(e.pointerId)' in html
+assert "canvas.addEventListener('pointerdown'" in html
+assert 'canvas.setPointerCapture(e.pointerId)' in html
 assert 'svg.setPointerCapture(e.pointerId)' not in html
 assert 'Northern Nigeria' in html
 print('COUNTRY CONTEXT GATE: PASS — 20 catchments and non-interactive 1:110m national overlay')
