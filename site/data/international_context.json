@@ -1,0 +1,131 @@
+{
+  "source": "Natural Earth Admin 0 Countries 1:110m (public domain)",
+  "source_url": "https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson",
+  "purpose": "Geographic context only; NOT authoritative legal boundaries",
+  "cross_border_area_note": "Values are indicative only because country outline is generalised 1:110m and web catchments are simplified",
+  "method": "Polygon differences EPSG:6933; outside_pct=area(catchment - Nigeria) / area(catchment); >0.5% classified beyond Nigeria",
+  "total_catchments": 20,
+  "extension_count_indicative": 10,
+  "coverage": [
+    {
+      "id": "SCMP-C01",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C02",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C03",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C04",
+      "outside_pct_indicative": 6.6,
+      "outside_pct_unrounded": 6.6,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C05",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C06",
+      "outside_pct_indicative": 32.1,
+      "outside_pct_unrounded": 32.1,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C07",
+      "outside_pct_indicative": 78,
+      "outside_pct_unrounded": 78,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C08",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C09",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C10",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C11",
+      "outside_pct_indicative": 2.7,
+      "outside_pct_unrounded": 2.7,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C12",
+      "outside_pct_indicative": 1.4,
+      "outside_pct_unrounded": 1.4,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C13",
+      "outside_pct_indicative": 8.8,
+      "outside_pct_unrounded": 8.8,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C14",
+      "outside_pct_indicative": 65.8,
+      "outside_pct_unrounded": 65.8,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C15",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C16",
+      "outside_pct_indicative": 19.6,
+      "outside_pct_unrounded": 19.6,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C17",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    },
+    {
+      "id": "SCMP-C18",
+      "outside_pct_indicative": 8.8,
+      "outside_pct_unrounded": 8.8,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C19",
+      "outside_pct_indicative": 72.7,
+      "outside_pct_unrounded": 72.7,
+      "classification": "extends_beyond_nigeria"
+    },
+    {
+      "id": "SCMP-C20",
+      "outside_pct_indicative": 0,
+      "outside_pct_unrounded": 0,
+      "classification": "within_nigeria_at_map_scale"
+    }
+  ]
+}

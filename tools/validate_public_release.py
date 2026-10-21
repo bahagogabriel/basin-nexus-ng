@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -18,11 +18,19 @@ assert sum(r['historical_alias']=='Okwa-Mada' for r in registry)==1
 assert next(r for r in registry if r['historical_alias']=='Okwa-Mada')['name']=='Benue-Mada'
 assert all(f['geometry']['type'] in ('Polygon','MultiPolygon') for f in geometry['features'])
 assert geometry['type']=='FeatureCollection'
+country=json.loads((site/'data/nigeria_boundary.geojson').read_text('utf-8'))
+context=json.loads((site/'data/international_context.json').read_text('utf-8'))
+assert len(country['features'])==1 and country['features'][0]['properties']['name']=='Nigeria'
+assert country['features'][0]['properties']['classification']=='context_only'
+assert context['total_catchments']==20 and len(context['coverage'])==20
+assert set(x['id'] for x in context['coverage'])==set(ids)
+assert all(0<=x['outside_pct_unrounded']<=100 for x in context['coverage'])
+assert context['extension_count_indicative']==sum(x['classification']=='extends_beyond_nigeria' for x in context['coverage'])
 assert report['max_simplification_area_delta_pct']<0.1
 html=(site/'index.html').read_text('utf-8')
 assert '<title>Basin Nexus NG' in html
 assert 'PUBLIC BOUNDARY PREVIEW' in html
-for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv']:
+for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json']:
     assert path in html
 for forbidden in ('drive.google.com/file/', 'SCMP_Evidence_Register_REVIEW',
                   'SCMP_Asset_Observations_REVIEW','personal contact details:',
