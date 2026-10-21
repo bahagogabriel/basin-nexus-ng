@@ -72,20 +72,46 @@ async function responsiveUX(page,label){
   const order=await page.evaluate(()=>{const a=document.querySelector('.mapPanel').getBoundingClientRect(),b=document.querySelector('.directory').getBoundingClientRect();return [a.top,b.top]});
   assert(order[0]<order[1],label+': mobile/tablet map must precede catchment directory');
  }
- assert(inspect.active.includes('Benue-Mada'),label+': missing active catchment context');
+ assert(inspect.active.includes('20 strategic catchments'),label+': regional context must be shown on arrival');
  assert(!inspect.layerOpen,label+': settings must start closed');
  if(v.width<=780)assert(!inspect.legendOpen,label+': legend should start collapsed on phones');
  await page.locator('#countryLegend > summary').click();
  const toggled=await page.locator('#countryLegend').evaluate(n=>n.open);
  assert.equal(toggled,!inspect.legendOpen,label+': legend disclosure is not interactive');
+ await page.locator('#countryLegend > summary').click();
+ assert.equal(await page.locator('#countryLegend').evaluate(n=>n.open),inspect.legendOpen,label+': legend should return to original state');
  console.log(label+': RESPONSIVE UX PASS '+v.width+'px, map width '+Math.round(inspect.canvas.w)+'px, no overflow');
 }
 
 async function test(page,name){
  page.on('pageerror',e=>errors.push(name+': '+e.message));
  await page.goto(url,{waitUntil:'domcontentloaded'});
- await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ assert.equal((await metric(page)).selected,null,name+': launch must not preselect a catchment');
+ assert.equal((await metric(page)).riverScope,'all');
+ assert.equal((await metric(page)).detailCount,0);
+ assert.equal(await page.locator('button[data-id].active').count(),0,name+': catchment should not be highlighted at launch');
+ assert.equal(await page.locator('#overviewBtn').isDisabled(),true);
+ assert.equal(await page.locator('#focusMapBtn').isDisabled(),true);
+ assert.equal(await page.locator('#riverScopeToggle').isDisabled(),true);
+ assert.equal(await page.locator('#riverDensity').isDisabled(),true);
+ assert.equal(await page.locator('#lgaToggle').isDisabled(),true);
+ await page.screenshot({path:path.join(folder,name+'_regional_launch.png'),fullPage:true});
+ await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
+ await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Benue-Mada');
+ assert.equal((await metric(page)).selected,'SCMP-C02');
+ assert.equal((await metric(page)).riverScope,'selected');
+ assert.equal(await page.locator('#riverScopeToggle').isEnabled(),true);
+ assert.equal(await page.locator('#riverDensity').isEnabled(),true);
+ await page.locator('#overviewBtn').click();
+ await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Explore all 20 catchments');
+ assert.equal((await metric(page)).selected,null);
+ assert.equal((await metric(page)).riverScope,'all');
+ assert.equal((await metric(page)).view.w,1020);
+ assert.equal((await metric(page)).detailFor,null);
+ await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
+ await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Benue-Mada');
  assert.equal(await page.locator('#mapCanvas').count(),1);
  assert.equal((await metric(page)).selected,'SCMP-C02');
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===1769,{timeout:45000});
@@ -99,7 +125,7 @@ async function test(page,name){
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C15'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===2038,{timeout:45000});
  assert.match(await page.locator('#details').innerText(),/2,038/);
  await page.screenshot({path:path.join(folder,name+'_sarkin_rivers.png'),fullPage:true});
- console.log(name+': PASS 2,038 Sarkin Pawa–Kaduna detailed FAO river reaches, all three density choices');
+ console.log(name+': PASS regional launch + overview return + 2,038 Sarkin Pawa–Kaduna FAO reaches, all river density choices');
  await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C02',{timeout:45000});
  await page.locator('#zoomReset').click();
@@ -200,12 +226,12 @@ async function pinch(page){
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
  await phone.goto(url,{waitUntil:'domcontentloaded'});
- await phone.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
+ await phone.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(phone,'phone390');await phone.screenshot({path:path.join(folder,'phone_ux_a.png'),fullPage:true});
  await phoneContext.close();
  const tabletContext=await browser.newContext({viewport:{width:810,height:1080},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const tablet=await tabletContext.newPage();await test(tablet,'tablet');await pinch(tablet);await assertIdleStability(tablet,'tablet after pinch',4);
  await tablet.screenshot({path:path.join(folder,'tablet_pinch.png'),fullPage:true});
  await tabletContext.close();
- assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v0.9: ALL PASS')
+ assert.deepEqual(errors,[],errors.join('\n'));console.log('BROWSER QA v1.5: REGIONAL FIRST, CATCHMENT SWITCHING, LGA, PINCH AND STABILITY ALL PASS')
  }catch(e){console.error(e.stack||e);process.exitCode=1}finally{await browser?.close();server.kill('SIGTERM')}})();

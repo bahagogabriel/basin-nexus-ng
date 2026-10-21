@@ -59,6 +59,8 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Verify regional-first launch and selection policy
+        run: python tools/test_regional_launch.py
       - name: Verify desktop, tablet and phone usability before publishing
         run: node tools/ui_smoke_v09.cjs
       - name: Archive reviewed interface screenshots
