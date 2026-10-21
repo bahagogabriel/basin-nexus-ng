@@ -138,7 +138,11 @@ async function test(page,name){
  assert(visibleRow,name+': active catchment should remain visible in the directory');
  assert.equal(await page.locator('.profileJumps button').count(),4);
  await page.locator('button[data-profile-target="profileAdmin"]').click();
- await page.waitForFunction(()=>document.querySelector('#details').scrollTop>45,{timeout:5500});
+ await page.waitForFunction(()=>{
+  const panel=document.querySelector('#details'),target=document.querySelector('#profileAdmin');
+  const r=target.getBoundingClientRect();
+  return panel.scrollTop>45||(r.top>=0&&r.top<innerHeight*.65);
+ },{timeout:5500});
  assert.equal(await page.locator('#profileAdmin').count(),1);
  await page.locator('button[data-profile-target="profileRivers"]').click();
  await page.screenshot({path:path.join(folder,name+'_sarkin_rivers.png'),fullPage:true});

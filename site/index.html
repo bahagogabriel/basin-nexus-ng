@@ -568,7 +568,10 @@ el('details').addEventListener('click',e=>{
  const destination=el(button.dataset.profileTarget);if(!destination)return;
  const panel=el('details'),dy=destination.getBoundingClientRect().top-panel.getBoundingClientRect().top;
  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- panel.scrollTo({top:Math.max(0,panel.scrollTop+dy-12),behavior:reduced?'instant':'smooth'});
+ const behavior=reduced?'instant':'smooth';
+ if(panel.scrollHeight>panel.clientHeight+5)
+  panel.scrollTo({top:Math.max(0,panel.scrollTop+dy-12),behavior});
+ else destination.scrollIntoView({block:'start',behavior});
 });
 el('nationalToggle').addEventListener('click',()=>{nationalOn=!nationalOn;el('nationalToggle').textContent=nationalOn?'Hide Nigeria border':'Show Nigeria border';el('nationalToggle').setAttribute('aria-pressed',String(nationalOn));el('nationalLegend').classList.toggle('hidden',!nationalOn);schedulePaint()});
 el('stateToggle').addEventListener('click',()=>{statesOn=!statesOn;el('stateToggle').textContent=statesOn?'Hide states':'Show states';el('stateToggle').setAttribute('aria-pressed',String(statesOn));el('stateLegend').classList.toggle('hidden',!statesOn);schedulePaint()});
