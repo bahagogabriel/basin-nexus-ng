@@ -7,7 +7,7 @@ on:
       - 'site/data/adm1_states_provisional.geojson'
       - 'site/data/adm2_lgas_study_provisional.geojson'
       - 'site/data/admin_crosswalk_provisional.json'
-      - 'tools/ui_smoke_v08.cjs'
+      - 'tools/ui_smoke_v09.cjs'
       - '.github/workflows/ui-smoke.yml'
   workflow_dispatch:
 permissions:
@@ -24,12 +24,12 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Run desktop and mobile boundary-map tests
-        run: node tools/ui_smoke_v08.cjs
+      - name: Run desktop and tablet map interaction and pinch QA
+        run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: basin-nexus-browser-v08-qa
-          path: review/browser-v08/
+          name: basin-nexus-browser-v09-qa
+          path: review/browser-v09/
           if-no-files-found: warn
