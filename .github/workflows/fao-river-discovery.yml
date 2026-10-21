@@ -1,0 +1,27 @@
+name: Discover FAO AQUASTAT 2026 river feature service
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/discover_fao_river_wfs.py'
+      - '.github/workflows/fao-river-discovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install XML and request dependencies
+        run: python -m pip install 'requests>=2.31,<3' 'lxml>=5,<7'
+      - name: Discover permitted river feature services (no data publication)
+        run: python tools/discover_fao_river_wfs.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-fao-river-wfs-discovery
+          path: review/fao-rivers-capabilities/fao_wfs_discovery.json
+          if-no-files-found: error

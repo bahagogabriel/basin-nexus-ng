@@ -65,7 +65,18 @@ def main():
     top=max(x.bounds[3] for x in polys)+0.2
     with tempfile.TemporaryDirectory(prefix='bn-hydrorivers-') as tmp:
         tmp=Path(tmp);original=tmp/'hydrorivers_africa.zip'
-        source=download(original)
+        try:
+            source=download(original)
+        except requests.exceptions.HTTPError as exc:
+            code=getattr(exc.response,'status_code',None)
+            if code not in (401,403):raise
+            hold={'status':'BLOCKED_OFFICIAL_DOWNLOAD','publication_approved':False,
+                  'source':URL,'http_status':code,
+                  'explanation':'Official HydroRIVERS source did not authorize this automated download. No source geometries were obtained, processed, or published.',
+                  'required_next_step':'Use a licensed and accessible source such as the FAO AQUASTAT CC BY 4.0 river release, or an authorized HydroRIVERS download.'}
+            (REPORT/'density_and_license_hold.json').write_text(json.dumps(hold,indent=2)+'\\n','utf-8')
+            print('HYDRORIVERS PREFLIGHT HOLD: official download returned HTTP',code)
+            return
         shp=unpack_safely(original,tmp/'extracted')
         info=pyogrio.read_info(str(shp))
         actual_crs=str(info['crs'])
