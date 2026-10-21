@@ -14,7 +14,7 @@ async function testWaterLayers(page,name){
  const lakes=page.locator('#lakesToggle'),rivers=page.locator('#riversToggle');
  assert.equal(await rivers.getAttribute('aria-pressed'),'true');
  assert.equal(await lakes.getAttribute('aria-pressed'),'true');
- assert.match(await page.locator('#riverLegend').innerText(),/1:10m/);
+ assert.match(await page.locator('#riverLegend').innerText(),/FAO 2026/);
  assert.match(await page.locator('#lakeLegend').innerText(),/1:10m/);
  await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'false');
  await rivers.click();assert.equal(await rivers.getAttribute('aria-pressed'),'true');
@@ -54,6 +54,20 @@ async function test(page,name){
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Benue-Mada',{timeout:35000});
  assert.equal(await page.locator('#mapCanvas').count(),1);
  assert.equal((await metric(page)).selected,'SCMP-C02');
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===1769,{timeout:45000});
+ assert.equal((await metric(page)).detailFor,'SCMP-C02',name+': expected Benue-Mada detailed rivers');
+ const riverSelector=page.locator('#riverDensity');
+ await riverSelector.selectOption('main');assert.equal(await riverSelector.inputValue(),'main');
+ await riverSelector.selectOption('medium');assert.equal(await riverSelector.inputValue(),'medium');
+ await riverSelector.selectOption('all');
+ // Validate the exact catchment shown in the user's screenshots.
+ await page.locator('#catchmentList button[data-id="SCMP-C15"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C15'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===2038,{timeout:45000});
+ assert.match(await page.locator('#details').innerText(),/2,038/);
+ await page.screenshot({path:path.join(folder,name+'_sarkin_rivers.png'),fullPage:true});
+ console.log(name+': PASS 2,038 Sarkin Pawa–Kaduna detailed FAO river reaches, all three density choices');
+ await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C02',{timeout:45000});
  assert.equal((await metric(page)).riverScope,'selected');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'all');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'selected');
