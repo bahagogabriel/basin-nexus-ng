@@ -41,17 +41,21 @@ def source_json(url):
 
 def safe_geom(geom,kind):
     g=make_valid(geom)
+    if g.is_empty:return None
     if kind=='river' and g.geom_type not in ('LineString','MultiLineString'):
         raise ValueError('Unexpected river geometry '+g.geom_type)
     if kind=='lake' and g.geom_type not in ('Polygon','MultiPolygon'):
         raise ValueError('Unexpected lake geometry '+g.geom_type)
-    if not g.is_valid or g.is_empty:raise ValueError('Invalid source geometry')
+    if not g.is_valid:raise ValueError('Invalid source geometry')
     return g
 
 def process(kind,original,domain):
-    out=[];stats={'original_count':len(original),'intersecting_count':0,'named_count':0,'unnamed_count':0}
+    out=[];stats={'original_count':len(original),'intersecting_count':0,'named_count':0,'unnamed_count':0,'invalid_empty_source_indices':[]}
     for idx,f in enumerate(original):
         geometry=safe_geom(shape(f['geometry']),kind)
+        if geometry is None:
+            stats['invalid_empty_source_indices'].append(idx)
+            continue
         projected=transform(FORWARD,geometry)
         if not projected.intersects(domain):
             continue
@@ -80,6 +84,8 @@ def process(kind,original,domain):
           'precision':'overview_only',
           'not_a_dam_inventory':True,
         },'geometry':mapping(transform(BACK,render))})
+    if len(stats['invalid_empty_source_indices'])>15:
+        raise RuntimeError('Too many degenerate features in '+kind+' source')
     out.sort(key=lambda f:f['properties']['id'])
     return {'type':'FeatureCollection','name':f'basin_nexus_{kind}_overview_50m','features':out},stats
 
