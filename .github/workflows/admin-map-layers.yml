@@ -8,7 +8,7 @@ on:
       - 'site/data/admin_crosswalk_provisional.json'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build-geometry:
     runs-on: ubuntu-latest
@@ -21,6 +21,36 @@ jobs:
         run: python -m pip install "shapely>=2.0,<3" "pyproj>=3.5,<4" "requests>=2.31,<3"
       - name: Generate simplified state and study-area LGA geometry
         run: python tools/build_admin_map_layers.py
+      - name: Commit verified provisional map geometry
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp review/admin-map-layers/adm1_states_provisional.geojson site/data/
+          cp review/admin-map-layers/adm2_lgas_study_provisional.geojson site/data/
+          cp review/admin-map-layers/admin_map_layer_QA.json site/data/
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('site/data')
+          s=json.loads((p/'adm1_states_provisional.geojson').read_text())
+          l=json.loads((p/'adm2_lgas_study_provisional.geojson').read_text())
+          qa=json.loads((p/'admin_map_layer_QA.json').read_text())
+          assert len(s['features'])==qa['adm1_features']==37
+          assert len(l['features'])==qa['study_intersecting_adm2_features']==495
+          assert qa['max_state_area_delta_pct']<1.0
+          assert qa['max_lga_area_delta_pct']<3.0
+          assert all(f['properties']['state_id'] for f in l['features'])
+          print('GEOMETRY PUBLICATION CHECK: PASS')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/adm1_states_provisional.geojson site/data/adm2_lgas_study_provisional.geojson site/data/admin_map_layer_QA.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Add source-pinned provisional state and study-area LGA map geometries"
+            git push origin HEAD:main
+          else
+            echo "Geometry already matches checked-in assets"
+          fi
       - name: Archive map geometry for release inspection
         if: always()
         uses: actions/upload-artifact@v4
