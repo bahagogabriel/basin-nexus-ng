@@ -78,6 +78,8 @@ jobs:
         run: python tools/test_public_knowledge_index.py
       - name: Test future evidence publication safeguards
         run: python tools/test_evidence_publication_gate.py
+      - name: Test Stage 3B private-review synthetic QA
+        run: python -m unittest discover -s tools -p 'test_stage3b_private_qa.py' -v
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload public site only
