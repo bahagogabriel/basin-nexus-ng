@@ -92,6 +92,15 @@ async function test(page,name){
  await page.waitForFunction(()=>document.querySelector('#knowledgeCards article.knowledgeCard')?.querySelector('h3'));
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': expected 20 source-coverage records');
  assert.match(await page.locator('#knowledgeCount').innerText(),/20 of 20/);
+ assert.equal(await page.locator('#knowledgeCards .knowledgeEvent').count(),20,name+': engagement provenance must exist per catchment');
+ assert.match(await page.locator('#knowledgeCards .knowledgeEvent').first().innerText(),/2024|2025/);
+ await page.locator('#knowledgeYear').selectOption('2024');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),6,name+': only six 2024 source records');
+ await page.locator('#knowledgeYear').selectOption('2025');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),14,name+': only fourteen 2025 source records');
+ await page.locator('#knowledgeYear').selectOption('all');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': all-year source reset');
+
  await page.locator('#knowledgeTheme').selectOption('policies');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': policies are indexed across all 20 catchments');
  await page.locator('#knowledgeSearch').fill('Okwa');
