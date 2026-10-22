@@ -9,7 +9,7 @@ registry=json.loads((site/'data/registry.json').read_text())
 assert d['publication_status']=='PUBLIC_METADATA_ONLY'
 assert d['engagement_provenance_status']=='SOURCE_EVENT_METADATA_ONLY'
 assert d['source_records_publicly_cleared']==0
-assert 'official endorsement' in d['attribution_notice']
+assert 'formal endorsement' in d['attribution_notice']
 assert d['coordinates_or_observations_published'] is False
 assert d['source_documents_reviewed']==len(d['catchments'])==20
 assert not d['source_contents_published'] and not d['coordinates_or_observations_published']
