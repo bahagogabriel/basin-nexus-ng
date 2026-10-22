@@ -108,6 +108,8 @@ async function test(page,name){
  assert.match(await page.locator('#knowledgeCards h3').innerText(),/Benue-Mada/);
  await page.locator('button[data-knowledge-map="SCMP-C02"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C02');
+ assert.match(await page.locator('#details .knowledgeProfile').innerText(),/Lokoja/,name+': profile must expose institutional workshop provenance');
+ assert.match(await page.locator('#details .knowledgeProfile').innerText(),/15–23 August 2025/,name+': profile must expose source date range');
  assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
  await page.locator('#overviewBtn').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected===null);
