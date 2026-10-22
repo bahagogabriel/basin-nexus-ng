@@ -71,6 +71,9 @@ coverage=json.loads((site/'data/stakeholder_coverage_index.json').read_text())
 assert coverage['publication_status']=='PUBLIC_METADATA_ONLY'
 assert coverage['source_documents_reviewed']==20
 assert coverage['source_contents_published'] is False and coverage['coordinates_or_observations_published'] is False
+assert coverage['engagement_provenance_status']=='SOURCE_EVENT_METADATA_ONLY'
+assert coverage['source_records_publicly_cleared']==0
+assert all(x['source_type']=='SCMP institutional stakeholder engagement communiqué' and x['engagement_date_start']<=x['engagement_date_end'] and x['engagement_city'] in ('Kano','Sokoto','Ilorin','Lokoja','Gombe') for x in coverage['catchments'])
 assert len(coverage['catchments'])==20 and set(x['id'] for x in coverage['catchments'])==set(ids)
 assert all(len(x['source_section_keys'])==4 and x['public_release']=='Metadata only' for x in coverage['catchments'])
 assert report['max_simplification_area_delta_pct']<0.1
