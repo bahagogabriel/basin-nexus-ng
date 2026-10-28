@@ -38,6 +38,11 @@ class PinnedDamPreflightTests(unittest.TestCase):
     def test_wrong_expected_count_rejected(self):
         data,md5=payload()
         with self.assertRaises(ValueError):preflight(data,md5,1429)
+    def test_legacy_publisher_encoding_with_valid_checksum(self):
+        raw="Country,DamName,Lat,Lon,Capacity_MCM,Year\nNigeria,Fictional reservoir name,0,0,2,2025\n".replace("reservoir", "réservoir").encode("cp1252")
+        v=preflight(raw,hashlib.md5(raw).hexdigest(),1)
+        self.assertEqual(v["source_character_encoding"],"cp1252")
+        self.assertEqual(v["nigeria_source_country_rows"],1)
     def test_invalid_encoding_rejected(self):
         raw=b'\xff'*512
         with self.assertRaises(ValueError):preflight(raw,hashlib.md5(raw).hexdigest(),2)
