@@ -144,6 +144,7 @@ async function test(page,name){
  await page.locator('#knowledgeLGA').selectOption({label:'Jos South · Plateau'});
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),4,name+': Jos South intersects four catchments in provisional crosswalk');
  assert.equal(await page.locator('#knowledgeCards .knowledgeGeo').count(),8,name+': both state and LGA overlap descriptions must appear');
+ await page.locator('#knowledgeCards .knowledgeDetail summary').first().click();
  assert.match(await page.locator('#knowledgeCards .knowledgeDetail').first().innerText(),/FAO AQUASTAT 2026/);
  assert.equal(await page.locator('#knowledgeExport').isEnabled(),true);
  const downloadWait=page.waitForEvent('download');
