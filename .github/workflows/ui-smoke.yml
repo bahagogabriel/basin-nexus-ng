@@ -19,6 +19,11 @@ on:
       - 'tools/test_stage3d_k_provenance_triage.py'
       - 'tools/test_stage3d_e_release_pipeline.py'
       - 'site/data/public_evidence_catalogue.json'
+      - 'site/data/external_reference_sources.json'
+      - 'tools/preflight_wa_dams_2026.py'
+      - 'tools/test_preflight_wa_dams_2026.py'
+      - 'tools/test_external_reference_sources.py'
+      - '.github/workflows/wa-dam-source-preflight.yml'
       - 'tools/stage3c_private_editorial_qa.py'
       - 'tools/stage3c_source_context_qa.py'
       - 'tools/test_stage3c_source_context_qa.py'
@@ -73,6 +78,10 @@ jobs:
           python3 -m unittest discover -s tools -p 'test_stage3d_g_priority_queue.py' -v
       - name: Verify Stage 3D-K independence and historical source interpretation (synthetic only)
         run: python3 -m unittest discover -s tools -p 'test_stage3d_k_provenance_triage.py' -v
+      - name: Validate third-party source registry and pinned CSV schema with synthetic data
+        run: |
+          python3 tools/test_external_reference_sources.py
+          python3 -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
