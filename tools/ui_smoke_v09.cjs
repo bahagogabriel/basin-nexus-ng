@@ -111,7 +111,14 @@ async function test(page,name){
  assert.equal(await page.locator('#damRefLegend').evaluate(el=>el.classList.contains('hidden')),false);
  // Select original-source Kainji reference, but require nonverification in the card.
  const pos=await page.evaluate(()=>{
-   const world=xy([4.6108,9.8631]);return toScreen(world[0],world[1])
+   // Recompute the documented world-to-screen transform, as map internals are scoped.
+   const view=window.__BN_MAP_DIAGNOSTICS__.view;
+   const box=document.getElementById('mapCanvas').getBoundingClientRect();
+   const wx=48+(4.6108-2.4)/(15.6-2.4)*922;
+   const wy=25+(15.32-9.8631)/(15.32-3.95)*698;
+   const scale=Math.min(box.width/view.w,box.height/view.h);
+   const ox=(box.width-view.w*scale)/2,oy=(box.height-view.h*scale)/2;
+   return {x:ox+(wx-view.x)*scale,y:oy+(wy-view.y)*scale};
  });
  const rect=await page.locator('#mapCanvas').boundingBox();
  await page.mouse.click(rect.x+pos.x,rect.y+pos.y);
