@@ -101,6 +101,33 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ // Stage 3D-S: source research overlay starts hidden, is opt-in, and never confirms a dam.
+ assert.equal(await page.locator('#compiledDamQuickToggle').isEnabled(),true,name+': optional source research layer loaded');
+ assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'false');
+ assert.equal(await page.locator('#damRefLegend').evaluate(el=>el.classList.contains('hidden')),true);
+ await page.locator('#compiledDamQuickToggle').click();
+ assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'true');
+ assert.match(await page.locator('#compiledDamStatus').textContent(),/186 published compiled references/);
+ assert.equal(await page.locator('#damRefLegend').evaluate(el=>el.classList.contains('hidden')),false);
+ // Select original-source Kainji reference, but require nonverification in the card.
+ const pos=await page.evaluate(()=>{
+   // Recompute the documented world-to-screen transform, as map internals are scoped.
+   const view=window.__BN_MAP_DIAGNOSTICS__.view;
+   const box=document.getElementById('mapCanvas').getBoundingClientRect();
+   const wx=48+(4.6108-2.4)/(15.6-2.4)*922;
+   const wy=25+(15.32-9.8631)/(15.32-3.95)*698;
+   const scale=Math.min(box.width/view.w,box.height/view.h);
+   const ox=(box.width-view.w*scale)/2,oy=(box.height-view.h*scale)/2;
+   return {x:ox+(wx-view.x)*scale,y:oy+(wy-view.y)*scale};
+ });
+ const rect=await page.locator('#mapCanvas').boundingBox();
+ await page.mouse.click(rect.x+pos.x,rect.y+pos.y);
+ assert.match(await page.locator('#damRefInfo').innerText(),/Kainji/);
+ assert.match(await page.locator('#damRefInfo').innerText(),/Not independently verified/);
+ await page.locator('#closeDamRef').click();
+ await page.locator('#compiledDamQuickToggle').click();
+ assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'false');
+ assert.equal(await page.locator('#damRefInfo').isVisible(),false);
  // Stage 3D-O: aggregate source review is accessible and contains no facility points.
  await page.locator('#navData').click();
  assert.equal(await page.locator('#waDamReferenceSummary').count(),1,name+': Data page research summary');

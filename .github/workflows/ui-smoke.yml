@@ -22,6 +22,8 @@ on:
       - 'site/data/confirmed_dam_sites.json'
       - 'tools/validate_confirmed_dam_sites.py'
       - 'tools/test_validate_confirmed_dam_sites.py'
+      - 'site/data/wa_dam_compiled_reference_preview.json'
+      - 'tools/test_compiled_dam_preview.py'
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'site/data/external_reference_sources.json'
@@ -99,6 +101,8 @@ jobs:
         run: |
           python3 tools/validate_confirmed_dam_sites.py
           python3 -m unittest discover -s tools -p 'test_validate_confirmed_dam_sites.py' -v
+      - name: Guard opt-in compiled reference points, quarantines and zero confirmed dams
+        run: python3 tools/test_compiled_dam_preview.py
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
