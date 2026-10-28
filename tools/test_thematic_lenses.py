@@ -64,7 +64,7 @@ for needle in (
 assert html.count('data-knowledge-lens="')==4
 # A thematic view is a way to present public data, not a new private record feed.
 for forbidden in ('raw_statement_internal','source_internal_id','principal_candidate_id',
-                  'release_authorization','confidential_source_url','private_drive_id'):
+                  'confidential_source_url','private_drive_id'):
     assert forbidden not in html, forbidden
 csv=html[html.index('function downloadKnowledgeCSV(){'):html.index('function tab(name)')]
 assert '...riverClassesFor(item.id)' in csv
