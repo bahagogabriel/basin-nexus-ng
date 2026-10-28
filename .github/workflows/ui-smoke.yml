@@ -15,6 +15,8 @@ on:
       - 'tools/test_stage3d_f_editorial_workbench.py'
       - 'tools/stage3d_g_priority_queue.py'
       - 'tools/test_stage3d_g_priority_queue.py'
+      - 'tools/stage3d_k_provenance_triage.py'
+      - 'tools/test_stage3d_k_provenance_triage.py'
       - 'tools/test_stage3d_e_release_pipeline.py'
       - 'site/data/public_evidence_catalogue.json'
       - 'tools/stage3c_private_editorial_qa.py'
@@ -69,6 +71,8 @@ jobs:
         run: |
           python3 -m unittest discover -s tools -p 'test_stage3d_f_editorial_workbench.py' -v
           python3 -m unittest discover -s tools -p 'test_stage3d_g_priority_queue.py' -v
+      - name: Verify Stage 3D-K independence and historical source interpretation (synthetic only)
+        run: python3 -m unittest discover -s tools -p 'test_stage3d_k_provenance_triage.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
