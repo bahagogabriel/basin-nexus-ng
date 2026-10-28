@@ -60,12 +60,13 @@ def preflight(data, expected_md5=EXPECTED_CSV_MD5, expected_count=EXPECTED_ROWS)
         text=data.decode("utf-8-sig")
     except UnicodeDecodeError as exc:
         raise ValueError("CSV encoding unexpected; manual review required") from exc
-    rows=list(csv.DictReader(io.StringIO(text,newline="")))
-    if not rows:
-        raise ValueError("Empty CSV")
-    columns=list(rows[0])
+    reader=csv.DictReader(io.StringIO(text,newline=""))
+    columns=list(reader.fieldnames or [])
     if len(columns)!=len(set(columns)) or len(columns)<5:
         raise ValueError("Duplicate or unexpected number of CSV columns")
+    rows=list(reader)
+    if not rows:
+        raise ValueError("Empty CSV")
     if any(not isinstance(k,str) or not k.strip() or len(k)>120 for k in columns):
         raise ValueError("Malformed CSV headers")
     if len(rows)!=expected_count:
