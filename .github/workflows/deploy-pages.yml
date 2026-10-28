@@ -37,6 +37,10 @@ jobs:
         run: python tools/test_wa_dam_reference_counts.py
       - name: Verify public compiled dam-reference name/provenance/year completeness
         run: python tools/test_wa_dam_source_quality.py
+      - name: Enforce zero confirmed facility records until actual individual reviews exist
+        run: |
+          python tools/validate_confirmed_dam_sites.py
+          python -m unittest discover -s tools -p 'test_validate_confirmed_dam_sites.py' -v
       - name: Verify international context screening
         run: python tools/test_country_context.py
       - name: Verify provisional public administrative catalogue

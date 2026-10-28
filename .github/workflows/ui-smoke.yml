@@ -19,6 +19,11 @@ on:
       - 'tools/test_stage3d_k_provenance_triage.py'
       - 'tools/test_stage3d_e_release_pipeline.py'
       - 'site/data/public_evidence_catalogue.json'
+      - 'site/data/confirmed_dam_sites.json'
+      - 'tools/validate_confirmed_dam_sites.py'
+      - 'tools/test_validate_confirmed_dam_sites.py'
+      - 'tools/build_wa_2026_dam_candidate_review.py'
+      - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'site/data/external_reference_sources.json'
       - 'tools/preflight_wa_dams_2026.py'
       - 'tools/test_preflight_wa_dams_2026.py'
@@ -90,6 +95,10 @@ jobs:
         run: python tools/test_wa_dam_reference_counts.py
       - name: Verify public compiled 2026 dam source-name and source-year completeness
         run: python tools/test_wa_dam_source_quality.py
+      - name: Guard confirmed unnamed dams and synthetic independently reviewed admission receipts
+        run: |
+          python3 tools/validate_confirmed_dam_sites.py
+          python3 -m unittest discover -s tools -p 'test_validate_confirmed_dam_sites.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
