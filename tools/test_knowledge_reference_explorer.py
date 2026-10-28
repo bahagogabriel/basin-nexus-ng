@@ -44,7 +44,12 @@ for key,entry in admin['byCatchment'].items():
    ids[lga['id']] = (lga['name'],lga['state'])
 assert (state_links,lga_links,len(ids))==(102,754,495)
 
-assert "public geography reference explorer v1.10" in html
+assert "thematic evidence explorer v1.11" in html
+assert "function riverClassesFor(id)" in html
+assert "function renderKnowledgeLens(rows)" in html
+assert "function renderKnowledgeCardLens(c,row,admin,river)" in html
+assert "id=\"knowledgeCrossborder\"" in html
+assert "id=\"knowledgeLenses\"" in html
 required = ('id="knowledgeLGA"','id="knowledgeSort"','id="knowledgeExport"',
             'function updateKnowledgeLGAOptions()','function filteredKnowledge()',
             'function downloadKnowledgeCSV()', 'FAO modeled river reaches',
@@ -68,4 +73,9 @@ assert 'catchment_area_km2' in csv_fn and 'modeled_river_reaches_fao_2026' in cs
 assert "'provisional geographic references'" in csv_fn
 assert 'fetch(' not in csv_fn
 assert re.search(r'\.disabled=result\.length===0',html)
+assert 'modeled_reaches_upstream_below100_km2' in csv_fn
+assert 'modeled_reaches_upstream_100_to_below1000_km2' in csv_fn
+assert 'modeled_reaches_upstream_1000plus_km2' in csv_fn
+assert '...riverClassesFor(item.id)' in csv_fn
+assert "cross==='all'||(Number(admin?.outsidePct||0)>0.5)===(cross==='yes')" in html
 print('STAGE 3D-B PUBLIC GEOGRAPHY, HYDROLOGY, DOWNLOAD AND PRIVACY CONTRACT: PASS')
