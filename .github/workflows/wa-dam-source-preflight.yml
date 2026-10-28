@@ -8,6 +8,8 @@ on:
       - 'tools/review_wa_dam_identity_2026.py'
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/build_stage3d_u_evidence_workbench.py'
+      - 'tools/test_stage3d_u_evidence_workbench.py'
       - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/test_review_wa_dam_identity_2026.py'
@@ -23,6 +25,8 @@ on:
       - 'tools/review_wa_dam_identity_2026.py'
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/build_stage3d_u_evidence_workbench.py'
+      - 'tools/test_stage3d_u_evidence_workbench.py'
       - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/test_review_wa_dam_identity_2026.py'
@@ -50,6 +54,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_review_wa_dam_identity_2026.py' -v
           python -m unittest discover -s tools -p 'test_build_wa_2026_dam_candidate_review.py' -v
           python -m unittest discover -s tools -p 'test_triage_wa_dam_compiled_references.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_u_evidence_workbench.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -65,6 +70,16 @@ jobs:
       - name: Stage 3D-T source-only proximity and identity triage (no facility confirmation)
         if: github.event_name != 'pull_request'
         run: python tools/triage_wa_dam_compiled_references.py --candidate-artifact review/compiled_wa_dam_candidates_NOT_VERIFIED.json --review-output review/wa_dam_reference_triage_NOT_CONFIRMED.json
+      - name: Stage 3D-U generate high-priority reviewer-only evidence workbench
+        if: github.event_name != 'pull_request'
+        run: python tools/build_stage3d_u_evidence_workbench.py --triage review/wa_dam_reference_triage_NOT_CONFIRMED.json --review-output review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json
+      - name: Archive non-public 19-case contextual evidence review packet
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: west-africa-2026-19-case-evidence-workbench-NOT-CONFIRMED
+          path: review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json
+          if-no-files-found: error
       - name: Archive reviewer-only triage queue; never the public site directory
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
