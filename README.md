@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.8.1**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
+**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.9**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
 
 ## Status
 
@@ -127,3 +127,7 @@ Twenty institutional engagement communiqués have been located and read, one for
 The public Knowledge index now supports a host-city filter (Kano, Sokoto, Ilorin, Lokoja, Gombe), combined with existing year, source-theme and catchment search filters, plus an accessible Reset filters control. These are **meeting host cities**, not facility locations or catchment geocentres. All 20 source events remain metadata-only.
 
 The private editorial pilot receives `tools/stage3c_private_editorial_qa.py`, a conservative, aggregate-only QA utility and adversarial synthetic tests. Private inputs/outputs must be outside the public repository; no source wording or candidate IDs are emitted to terminal reports. The tool never grants or implies public release permission. See `docs/STAGE3C_EDITORIAL_QA.md`.
+
+## Stage 3D-A — State/FCT geographic discovery (v1.9)
+
+The public Knowledge index now filters the 20 catchment/source-event profiles using **provisional state/FCT catchment polygon intersection**. State options come from the previously published 2022 GRID3/geoBoundaries crosswalk, with rounded overlap areas. This is **not** workshop participation, source geography or facility positioning. All original source restrictions remain. Private synthetic-only source-context QA validates pilot/source pairing and refuses public-repository inputs. See docs/STAGE3D_A_DISCOVERY_AND_CONTEXT_QA.md.

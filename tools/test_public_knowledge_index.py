@@ -28,9 +28,10 @@ assert sum(c['engagement_date_start'].startswith('2024-') for c in d['catchments
 assert sum(c['engagement_date_start'].startswith('2025-') for c in d['catchments'])==14
 assert {c['engagement_city'] for c in d['catchments']}=={'Kano','Sokoto','Ilorin','Lokoja','Gombe'}
 html=(site/'index.html').read_text()
-assert 'engagement provenance preview v1.8.1' in html
+assert 'geographic discovery preview v1.9' in html
+assert "state==='all'||(administrative?.byCatchment?.[c.id]?.states||[]).some(s=>s.name===state)" in html
 assert "city==='all'||c.engagement_city===city" in html
-for s in ('id="navKnowledge"','id="pageKnowledge"','id="knowledgeSearch"','id="knowledgeTheme"','id="knowledgeCards"','function renderKnowledge()','data/stakeholder_coverage_index.json','id="knowledgeYear"','id="knowledgeCity"','id="knowledgeReset"','class="knowledgeEvidence"','Institutional SCMP engagement communiqué'):
+for s in ('id="navKnowledge"','id="pageKnowledge"','id="knowledgeSearch"','id="knowledgeTheme"','id="knowledgeCards"','function renderKnowledge()','data/stakeholder_coverage_index.json','id="knowledgeYear"','id="knowledgeCity"','id="knowledgeState"','id="knowledgeReset"','class="knowledgeEvidence"','Institutional SCMP engagement communiqué'):
  assert s in html,s
 for s in ('drive.google.com/file/','4,929 evidence entries','Signed Stakeholder Engagement'):
  assert s.lower() not in html.lower()

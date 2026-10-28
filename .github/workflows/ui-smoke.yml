@@ -6,6 +6,8 @@ on:
       - 'site/index.html'
       - 'tools/ui_smoke_v09.cjs'
       - 'tools/stage3c_private_editorial_qa.py'
+      - 'tools/stage3c_source_context_qa.py'
+      - 'tools/test_stage3c_source_context_qa.py'
       - 'tools/test_stage3c_private_editorial_qa.py'
       - '.github/workflows/ui-smoke.yml'
   push:
@@ -37,6 +39,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify Stage 3C-B editorial privacy guardrails (synthetic)
         run: python3 -m unittest discover -s tools -p 'test_stage3c_private_editorial_qa.py' -v
+      - name: Verify private source-context integrity (synthetic only)
+        run: python3 -m unittest discover -s tools -p 'test_stage3c_source_context_qa.py' -v
       - name: Check public engagement metadata contract
         run: python3 tools/test_public_knowledge_index.py
       - name: Run desktop and tablet map interaction and pinch QA
