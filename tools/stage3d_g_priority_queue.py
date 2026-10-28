@@ -26,7 +26,7 @@ ROW=re.compile(r"^(BN-3B-\d{3}-L\d{4})\s*\|\s*(SCMP-C(?:0[1-9]|1\d|20))"
 def parse_flags(text):
     result=[]
     ids=set()
-    for line in text.lstrip("\ufeff").splitlines():
+    for line in text.strip().lstrip("\ufeff").splitlines():
         item=line.strip()
         if not item.startswith("BN-3B-"):
             continue
