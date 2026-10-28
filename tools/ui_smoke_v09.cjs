@@ -7,7 +7,20 @@ const fs=require('node:fs'),path=require('node:path');
 const folder=path.join(process.cwd(),'review/browser-v09');fs.mkdirSync(folder,{recursive:true});
 const server=spawn('python3',['-m','http.server','8791','--bind','127.0.0.1','--directory','site'],{stdio:'ignore'});
 let browser;const errors=[];const url='http://127.0.0.1:8791/';
-async function ready(){for(let i=0;i<60;i++){try{const r=await fetch(url);if(r.ok)return}catch{}await delay(250)}throw Error('Server did not respond')}
+async function ready(){
+ const http=require('node:http');
+ for(let i=0;i<60;i++){
+  try{
+   const status=await new Promise((resolve,reject)=>{
+    const req=http.get(url,res=>{res.resume();resolve(res.statusCode)});
+    req.once('error',reject);req.setTimeout(1500,()=>req.destroy(Error('HTTP server readiness timed out')));
+   });
+   if(status===200)return;
+  }catch{}
+  await delay(250);
+ }
+ throw Error('Server did not respond');
+}
 async function metric(page){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__BN_MAP_DIAGNOSTICS__)))}
 
 async function testWaterLayers(page,name){
