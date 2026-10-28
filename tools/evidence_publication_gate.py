@@ -55,10 +55,10 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
             _fail(f"record {idx}: invalid or duplicate public ID")
         seen.add(uid)
         ids=rec.get("catchment_ids")
-        if not isinstance(ids,list) or not ids or set(ids)-allowed_catchments:
-            _fail(f"record {idx}: unknown or missing catchment relationship")
-        if any(not isinstance(x,str) for x in ids):
-            _fail(f"record {idx}: invalid catchment relationship type")
+        if not isinstance(ids,list) or not ids or any(not isinstance(x,str) for x in ids):
+            _fail(f"record {idx}: invalid or missing catchment relationship")
+        if set(ids)-allowed_catchments:
+            _fail(f"record {idx}: unknown catchment relationship")
         if len(ids)!=len(set(ids)):
             _fail(f"record {idx}: repeated catchment ID")
         if rec.get("theme") not in ALLOWED_THEMES or rec.get("record_type") not in ALLOWED_TYPES:
