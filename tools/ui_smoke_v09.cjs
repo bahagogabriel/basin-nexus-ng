@@ -104,11 +104,11 @@ async function test(page,name){
  // Stage 3D-S: source research overlay starts hidden, is opt-in, and never confirms a dam.
  assert.equal(await page.locator('#compiledDamQuickToggle').isEnabled(),true,name+': optional source research layer loaded');
  assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'false');
- assert.equal(await page.locator('#damRefLegend').isVisible(),false);
+ assert.equal(await page.locator('#damRefLegend').evaluate(el=>el.classList.contains('hidden')),true);
  await page.locator('#compiledDamQuickToggle').click();
  assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'true');
  assert.match(await page.locator('#compiledDamStatus').textContent(),/186 published compiled references/);
- assert.equal(await page.locator('#damRefLegend').isVisible(),true);
+ assert.equal(await page.locator('#damRefLegend').evaluate(el=>el.classList.contains('hidden')),false);
  // Select original-source Kainji reference, but require nonverification in the card.
  const pos=await page.evaluate(()=>{
    const world=xy([4.6108,9.8631]);return toScreen(world[0],world[1])
