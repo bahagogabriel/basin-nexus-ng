@@ -33,6 +33,8 @@ jobs:
         run: |
           python tools/test_external_reference_sources.py
           python -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
+      - name: Verify scientific 2026 dam source count aggregation and attribution
+        run: python tools/test_wa_dam_reference_counts.py
       - name: Verify international context screening
         run: python tools/test_country_context.py
       - name: Verify provisional public administrative catalogue
