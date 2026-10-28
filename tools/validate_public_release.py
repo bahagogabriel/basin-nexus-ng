@@ -88,7 +88,7 @@ assert 'id="mapCanvas"' in html
 assert 'svg.addEventListener(' not in html
 assert '<title>Basin Nexus NG' in html
 assert 'PUBLIC GEOGRAPHY PREVIEW' in html
-for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json']:
+for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json']:
     assert path in html
 for forbidden in ('drive.google.com/file/', 'SCMP_Evidence_Register_REVIEW',
                   'SCMP_Asset_Observations_REVIEW','personal contact details:',
