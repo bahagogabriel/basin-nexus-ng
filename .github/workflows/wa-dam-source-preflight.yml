@@ -5,6 +5,8 @@ on:
     paths:
       - 'tools/preflight_wa_dams_2026.py'
       - 'tools/review_wa_dam_catchments_2026.py'
+      - 'tools/review_wa_dam_identity_2026.py'
+      - 'tools/test_review_wa_dam_identity_2026.py'
       - 'tools/test_review_wa_dam_catchments_2026.py'
       - 'tools/test_preflight_wa_dams_2026.py'
       - 'site/data/external_reference_sources.json'
@@ -14,6 +16,8 @@ on:
     paths:
       - 'tools/preflight_wa_dams_2026.py'
       - 'tools/review_wa_dam_catchments_2026.py'
+      - 'tools/review_wa_dam_identity_2026.py'
+      - 'tools/test_review_wa_dam_identity_2026.py'
       - 'tools/test_review_wa_dam_catchments_2026.py'
       - 'site/data/external_reference_sources.json'
       - '.github/workflows/wa-dam-source-preflight.yml'
@@ -35,12 +39,16 @@ jobs:
           python tools/test_external_reference_sources.py
           python -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
           python -m unittest discover -s tools -p 'test_review_wa_dam_catchments_2026.py' -v
+          python -m unittest discover -s tools -p 'test_review_wa_dam_identity_2026.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
       - name: Verify original WGS84 source geometry and calculate candidate catchment overlap counts
         if: github.event_name != 'pull_request'
         run: python tools/review_wa_dam_catchments_2026.py --fetch --catchments site/data/catchments.geojson --report review/wa_dams_2026_candidate_catchment_qa.json
+      - name: Audit 2026 dam source identity, provenance and nearby positions without point export
+        if: github.event_name != 'pull_request'
+        run: python tools/review_wa_dam_identity_2026.py --fetch --catchments site/data/catchments.geojson --report review/wa_dams_2026_identity_source_qa.json
       - name: Archive aggregate-only source QA report; never archive raw CSV or coordinates
         if: github.event_name != 'pull_request' && always()
         uses: actions/upload-artifact@v4
@@ -49,4 +57,5 @@ jobs:
           path: |
             review/wa_dams_2026_preflight.json
             review/wa_dams_2026_candidate_catchment_qa.json
+            review/wa_dams_2026_identity_source_qa.json
           if-no-files-found: warn
