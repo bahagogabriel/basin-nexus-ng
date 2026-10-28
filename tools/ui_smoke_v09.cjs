@@ -100,6 +100,19 @@ async function test(page,name){
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),14,name+': only fourteen 2025 source records');
  await page.locator('#knowledgeYear').selectOption('all');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': all-year source reset');
+ for(const [city,expected] of [['Kano',6],['Sokoto',3],['Ilorin',4],['Lokoja',4],['Gombe',3]]){
+  await page.locator('#knowledgeCity').selectOption(city);
+  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),expected,name+': incorrect '+city+' source count');
+ }
+ await page.locator('#knowledgeCity').selectOption('Sokoto');
+ await page.locator('#knowledgeYear').selectOption('2024');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),0,name+': impossible year/city combination must be empty');
+ assert.match(await page.locator('#knowledgeCards').innerText(),/No matching engagement source/);
+ await page.locator('#knowledgeReset').click();
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': reset must clear combined filters');
+ assert.equal(await page.locator('#knowledgeCity').inputValue(),'all');
+ assert.equal(await page.locator('#knowledgeYear').inputValue(),'all');
+
 
  await page.locator('#knowledgeTheme').selectOption('policies');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': policies are indexed across all 20 catchments');
