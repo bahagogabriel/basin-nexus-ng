@@ -107,7 +107,7 @@ async function test(page,name){
  assert.equal(await page.locator('#damRefLegend').isVisible(),false);
  await page.locator('#compiledDamQuickToggle').click();
  assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'true');
- assert.match(await page.locator('#compiledDamStatus').innerText(),/186 published compiled references/);
+ assert.match(await page.locator('#compiledDamStatus').textContent(),/186 published compiled references/);
  assert.equal(await page.locator('#damRefLegend').isVisible(),true);
  // Select original-source Kainji reference, but require nonverification in the card.
  const pos=await page.evaluate(()=>{
