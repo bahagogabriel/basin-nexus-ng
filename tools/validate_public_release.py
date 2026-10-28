@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json','data/external_reference_sources.json','data/wa_dams_2026_catchment_reference_counts.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json','data/external_reference_sources.json','data/wa_dams_2026_catchment_reference_counts.json','data/wa_dams_2026_source_quality.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -16,6 +16,7 @@ import sys
 sys.path.insert(0,str(root/'tools'))
 import test_external_reference_sources
 import test_wa_dam_reference_counts
+import test_wa_dam_source_quality
 ids=[r['id'] for r in registry];geo_ids=[g['properties']['id'] for g in geometry['features']]
 assert len(set(ids))==20 and set(ids)==set(geo_ids)
 assert all(r['name'] and r['area_km2']>0 for r in registry)

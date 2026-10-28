@@ -25,6 +25,8 @@ on:
       - 'tools/test_external_reference_sources.py'
       - 'site/data/wa_dams_2026_catchment_reference_counts.json'
       - 'tools/test_wa_dam_reference_counts.py'
+      - 'tools/test_wa_dam_source_quality.py'
+      - 'site/data/wa_dams_2026_source_quality.json'
       - '.github/workflows/wa-dam-source-preflight.yml'
       - 'tools/stage3c_private_editorial_qa.py'
       - 'tools/stage3c_source_context_qa.py'
@@ -86,6 +88,8 @@ jobs:
           python3 -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
       - name: Guard public aggregate 2026 dam reference counts and zero point disclosure
         run: python tools/test_wa_dam_reference_counts.py
+      - name: Verify public compiled 2026 dam source-name and source-year completeness
+        run: python tools/test_wa_dam_source_quality.py
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots

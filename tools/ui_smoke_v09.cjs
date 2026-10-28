@@ -210,8 +210,14 @@ async function test(page,name){
  assert.match(await page.locator('#knowledgeThemePanel').innerText(),/2024/);
  assert.match(await page.locator('#knowledgeThemePanel').innerText(),/2025/);
  await page.locator('#knowledgeLenses button[data-knowledge-lens="assets"]').click();
- assert.match(await page.locator('#knowledgeThemePanel').innerText(),/no individual infrastructure facilities/i);
- assert.match(await page.locator('#knowledgeCards .knowledgeCardLens').first().innerText(),/No individually cleared facility/);
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/189/);
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/71 have usable dam names/);
+ assert.match(await page.locator('#knowledgeCards .knowledgeCardLens').first().innerText(),/Compiled 2026 dam-source references/);
+ await page.locator('#knowledgeSort').selectOption('dam_refs');
+ assert.match(await page.locator('#knowledgeCards h3').first().innerText(),/Hadejia Jama'are/);
+ await page.locator('#knowledgeSort').selectOption('dam_named');
+ assert.match(await page.locator('#knowledgeCards h3').first().innerText(),/Hadejia Jama'are/);
+ await page.locator('#knowledgeSort').selectOption('name');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20);
  await page.locator('#knowledgeReset').click();
  assert.equal(await page.locator('#knowledgeCrossborder').inputValue(),'all');
