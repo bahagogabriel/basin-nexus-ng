@@ -27,6 +27,8 @@ on:
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/build_stage3d_u_evidence_workbench.py'
+      - 'tools/test_stage3d_u_evidence_workbench.py'
       - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'site/data/external_reference_sources.json'
       - 'tools/preflight_wa_dams_2026.py'
@@ -54,6 +56,8 @@ on:
       - 'site/data/hydro_reference_metadata.json'
       - 'tools/ui_smoke_v09.cjs'
       - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/build_stage3d_u_evidence_workbench.py'
+      - 'tools/test_stage3d_u_evidence_workbench.py'
       - 'tools/test_triage_wa_dam_compiled_references.py'
       - '.github/workflows/ui-smoke.yml'
   workflow_dispatch:
@@ -107,6 +111,8 @@ jobs:
           python3 -m unittest discover -s tools -p 'test_validate_confirmed_dam_sites.py' -v
       - name: Guard opt-in compiled reference points, quarantines and zero confirmed dams
         run: python3 tools/test_compiled_dam_preview.py
+      - name: Guard Stage 3D-U high-priority evidence worksheet (synthetic only)
+        run: python3 -m unittest discover -s tools -p 'test_stage3d_u_evidence_workbench.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
