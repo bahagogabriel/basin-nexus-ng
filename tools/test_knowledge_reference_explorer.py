@@ -19,7 +19,7 @@ assert admin['status']=='PROVISIONAL_GEOMETRIC_OVERLAY'
 assert admin['boundaryYear']==2022
 assert 'GRID3' in admin['sourceAttribution']
 assert water['status']=='PROVISIONAL_DETAILED_RIVER_NETWORK'
-assert 'FAO' in water['source']
+assert 'data.fao.org' in water['source']
 assert sources['publication_status']=='PUBLIC_METADATA_ONLY'
 assert sources['source_records_publicly_cleared']==0
 assert sources['source_contents_published'] is False
