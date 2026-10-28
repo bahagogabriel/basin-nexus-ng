@@ -84,6 +84,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_stage3b_private_qa.py' -v
       - name: Test Stage 3C-B private editorial safeguards (synthetic only)
         run: python -m unittest discover -s tools -p 'test_stage3c_private_editorial_qa.py' -v
+      - name: Test Stage 3C-C source-context pairing privacy (synthetic only)
+        run: python -m unittest discover -s tools -p 'test_stage3c_source_context_qa.py' -v
       - name: Guard signed-source classification and numeric reconciliation
         run: python -m unittest discover -s tools -p 'test_stage3b_source_integrity.py' -v
       - name: Configure Pages
