@@ -78,7 +78,7 @@ def inspect(csv_bytes:bytes, zip_bytes:bytes,catchment_geojson:Path,
             raise ValueError("Nigerian row lacks numeric WGS84 coordinates")
         if not all(math.isfinite(x) for x in (longitude,latitude)) or not (-180<=longitude<=180 and -90<=latitude<=90):
             raise ValueError("Nigerian source coordinate outside geographic WGS84 range")
-        if not is_known(row["ID"]):
+        if not str(row["ID"] or "").strip():
             raise ValueError("Nigerian source record lacks identifier")
         named=is_known(row["Dam_Name"])
         name=norm(row["Dam_Name"]) if named else ""
