@@ -203,6 +203,23 @@ header .nav button{padding:8px 12px}
 .knowledgeDetail summary{font-weight:750;font-size:12px;color:#21685e;cursor:pointer}
 .knowledgeDetail p{font-size:11px;line-height:1.6;color:#4d7068;margin:10px 0 0}
 .knowledgeReset:disabled{cursor:not-allowed;opacity:.52}
+.evidenceCatalogue{margin-top:26px;padding:19px;background:white;border:1px solid #cbded5;border-radius:13px}
+.evidenceCatalogue h3{margin:0 0 7px;font-size:17px}
+.evidenceCatalogue>p{font-size:12px;line-height:1.6;color:#4b6d65}
+.evidenceFilters{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.evidenceFilters label{display:flex;flex-direction:column;gap:7px;flex:1 1 175px;font-size:12px;font-weight:750}
+.evidenceFilters select,.evidenceFilters input{padding:11px;border-radius:8px;border:1px solid #bed8ce;color:#224f47;background:#fff;min-height:44px}
+.evidenceList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.evidenceEntry{border:1px solid #d1e5da;border-radius:10px;padding:13px;background:#fcfefb}
+.evidenceEntry h4{font-size:14px;margin:4px 0}
+.evidenceEntry p{font-size:12px;line-height:1.6}
+.evidenceEntry small{font-size:11px;color:#48695d}
+.evidenceEntry .evidenceStatus{display:inline-block;padding:5px 8px;background:#edf4ed;border-radius:6px;font-weight:750;font-size:11px}
+.evidenceEntry button{border:0;border-radius:7px;color:white;background:#167b6f;padding:9px;font-size:12px;font-weight:800}
+.evidenceEntry details{margin-top:10px;font-size:11px}
+.evidenceEntry summary{cursor:pointer;color:#246a5e;font-weight:750}
+.evidenceEmpty{background:#f3f8f4;border-left:3px solid #4b987d;padding:13px;border-radius:8px;font-size:12px;line-height:1.65}
+@media(max-width:800px){.evidenceList{grid-template-columns:1fr}}
 .knowledgeLenses{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}
 .knowledgeLens{min-height:44px;border:1px solid #cbded5;border-radius:9px;padding:10px 14px;background:white;color:#285d55;font-size:12px;font-weight:800}
 .knowledgeLens[aria-pressed="true"]{background:#126f62;color:white;border-color:#126f62}
@@ -271,18 +288,29 @@ header .nav button{padding:8px 12px}
 <section id="knowledgeThemePanel" class="knowledgeThemePanel" aria-live="polite" aria-label="Thematic summary"></section>
 <p id="knowledgeCount" aria-live="polite">Loading source coverage…</p>
 <div class="knowledgeCards" id="knowledgeCards"></div>
+<section id="evidenceCataloguePanel" class="evidenceCatalogue" aria-label="Approved public evidence catalogue">
+<h3>Approved evidence catalogue</h3>
+<p>Browse individually approved public source statements by topic and verification level. Records appear here only after review of their publication rights, source context and privacy; mapped positions require a separate location check. These records are distinct from the workshop source-heading index.</p>
+<div class="evidenceFilters">
+<label for="evidenceSearch">Search published statements<input type="search" id="evidenceSearch" placeholder="Search approved records" autocomplete="off"></label>
+<label for="evidenceTheme">Evidence topic<select id="evidenceTheme"><option value="all">All approved topics</option><option value="water_infrastructure">Water infrastructure</option><option value="natural_resources">Natural resources</option><option value="ecosystems">Ecosystems</option><option value="threats_challenges">Environmental threats</option><option value="socioeconomics">Socioeconomics</option><option value="policies">Policies</option><option value="interventions">Interventions</option></select></label>
+<label for="evidenceStatus">Verification status<select id="evidenceStatus"><option value="all">All verification levels</option><option value="stakeholder_reported">Stakeholder-reported</option><option value="cross_checked">Cross-checked</option><option value="independently_verified">Independently verified</option></select></label>
+</div>
+<p id="evidenceCount" aria-live="polite">Checking public evidence availability…</p>
+<div id="evidenceList" class="evidenceList" aria-live="polite"></div>
+</section>
 <h3>How evidence is prepared for release</h3>
 <div class="knowledgeSteps"><div><strong>1. Source intake</strong><p>Check the communiqué and its catchment identification.</p></div><div><strong>2. Claim extraction</strong><p>Record statements with source locations and original wording.</p></div><div><strong>3. Scientific QA</strong><p>Check contradictions, actual positions, dates and uncertainty.</p></div><div><strong>4. Publication decision</strong><p>Release approved records with clear source and verification status.</p></div></div>
 <p><a href="data/stakeholder_coverage_index.json" download>Download public index metadata (JSON)</a>. The source documents themselves remain internal.</p>
 </div></section><section class="layout hidden" id="pageAbout"><div class="other"><div class="eyebrow">About Basin Nexus NG</div><h2>Connecting landscapes, resources and knowledge.</h2><p>Basin Nexus NG is being developed as an accessible geographic knowledge atlas for Nigeria's strategic catchments. Its long-term goal is to connect physical geography with water infrastructure, ecosystem and biodiversity resources, environmental pressures, stakeholder perspectives and development interventions.</p><div class="grid2"><div class="info"><strong>Public and evidence-led</strong><p>Information will be accompanied by clear provenance, dates, geographic precision and verification status. Stakeholder statements are not automatically classified as confirmed facts.</p></div><div class="info"><strong>20 catchments, one connected atlas</strong><p>The current preview uses the 20 catchment polygons supplied for the project. Benue–Mada replaces the historic name Okwa–Mada.</p></div><div class="info"><strong>Spatial accuracy</strong><p>Catchment geometries were checked and repaired; the map uses a simplified display version. The separate Nigeria boundary is Natural Earth Admin 0 at 1:110m scale (public domain, illustrative only). Catchment boundaries have not been clipped; administrative intersections and asset locations are not yet approved.</p></div><div class="info"><strong>Respectful publication</strong><p>Signed documents, attendance registers, private contact details and source statements will not be published without appropriate review and permission.</p></div></div><h3>Northern Nigeria study footprint</h3><p>The source study focuses primarily on Northern Nigeria. Catchment boundaries are hydrological, not political: some extend across international borders. The separate dashed Nigeria outline provides geographic context only and is not a substitute for an official surveyed boundary.</p><h3>Current release scope</h3><p>The current public atlas brings together all 20 catchment boundaries, provisional state/LGA intersections, national geographic context and modelled FAO AQUASTAT 2026 river reaches for each catchment. Natural Earth provides overview-scale major rivers and waterbodies. These geographic datasets carry source and accuracy notes and remain distinct from confidential stakeholder submissions. The platform does <strong>not</strong> yet publish unverified dam locations, stakeholder evidence records, signed documents or contact details.</p><button class="buttonlink" id="aboutGo" type="button">Explore the interactive atlas</button></div></section>
 <section class="layout hidden" id="pageData"><div class="other"><div class="eyebrow">Public data downloads</div><h2>Available geographic data</h2><p>The data catalogue contains public geographic reference files and source documentation. Catchment boundaries are user-supplied display derivatives; administrative intersections remain provisional, and FAO river reaches are modelled rather than surveyed channels. These datasets are suitable for exploratory mapping, not authoritative statutory or infrastructure determinations.</p><div class="grid2"><div class="info"><strong>20 catchments · GeoJSON</strong><p>Polygon boundaries in WGS 84 (EPSG:4326), simplified for web display.</p><a class="buttonlink" href="data/catchments.geojson" download>Download GeoJSON</a></div><div class="info"><strong>Catchment register · CSV</strong><p>Stable IDs, names, aliases, areas and map label coordinates.</p><a class="buttonlink" href="data/catchments.csv" download>Download CSV</a></div></div><h3>Nigeria political boundary context</h3><p>The switchable national outline uses <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a> Admin 0 Countries at 1:110m (public domain). It is a small-scale visual reference, not a legal/survey boundary. The cross-border classifications are indicative and based on approximate overlays of these generalised lines; do not use them for jurisdictional or area statistics.</p><h3>Detailed catchment rivers and regional water context</h3><p><b>Rivers: selected catchment</b> now loads the 2026 FAO AQUASTAT river reach network within the selected catchment. Use River detail to show main reaches, main and tributaries, or all modeled reaches. <b>Rivers: regional context</b> instead shows coarse but continuous Natural Earth 1:10m major rivers across the catchments. Detailed lines are clipped to the supplied catchment polygons, so source connectivity may cross those displayed boundaries.</p><p>Modelled river reaches are based on a 15-arcsecond network, not a complete survey of perennial and seasonal streams. Main/tributary/small labels reflect the <em>source's upstream drainage area</em> thresholds of 1,000 and 100 km²; these are not Strahler orders. FAO AQUASTAT (2026) CC BY 4.0; HydroRIVERS-derived model. <a href="data/detailed_river_manifest.json" download>Download provenance and catchment network counts</a>.</p><p>Natural Earth overview-scale rivers and lakes are mapped as generalised blue lines and waterbody polygons. This limited overview includes a few major rivers and large waterbodies only. It is not a comprehensive local drainage network, verified dam register, reservoir inventory, or infrastructure location database. The full transboundary catchment area is retained. Turn individual layers on/off from the map controls. Data source: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>, public domain.</p><p><a href="data/rivers_overview.geojson" download>Download overview river GeoJSON</a> · <a href="data/lakes_overview.geojson" download>Download lake / reservoir overview GeoJSON</a> · <a href="data/hydro_reference_metadata.json" download>View source metadata and limitations</a>.</p><h3>State and LGA map layers (provisional)</h3><p>State and LGA counts in individual catchment profiles were calculated by intersecting the simplified catchments with the 2022 GRID3 Nigeria state and LGA polygons distributed through geoBoundaries gbOpen. These are <b>provisional area-based relationships</b>; they are not jurisdictional claims, a list of workshop participants, or current official LGA allocations. Some catchments extend outside Nigeria. The mapped outside-Nigeria fractions use the more detailed ADM1 union and may differ from the 1:110m Natural Earth context. The map has switchable state/FCT boundary lines for all 37 units and an optional layer showing only the relevant intersecting LGA boundaries <b>clipped to the selected catchment</b>. It contains 495 distinct relevant LGA polygons, not all 774 nationally. Administrative geometry is a simplified display derivative; the original intersection statistics were calculated separately.</p><p><a href="data/adm1_states_provisional.geojson" download>Download provisional state boundary GeoJSON</a> · <a href="data/adm2_lgas_study_provisional.geojson" download>Download relevant LGA boundary GeoJSON</a> · <a href="data/catchment_states_provisional.csv" download>Download preliminary catchment/state CSV</a> · <a href="data/catchment_lgas_provisional.csv" download>Download preliminary catchment/LGA CSV</a> · <a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer">Source: geoBoundaries / GRID3 (CC BY 4.0)</a>.</p><h3>Stakeholder knowledge index</h3><p>The public Knowledge index identifies section availability across 20 internal institutional engagement communiqués. Four consistent themes are indexed for every catchment. This release includes no private documents, individual claims or facility coordinates. <a href="data/stakeholder_coverage_index.json" download>Download the metadata-only index</a>. Intervention descriptions require additional structured review.</p><h3>What is not yet in the public catalogue?</h3><p>Stakeholder-reported resources, infrastructure condition, dam and irrigation locations, mineral occurrences, natural heritage areas, proposed interventions and private project documents remain in internal review until source locations and publication status are verified. Provisional state/LGA geometric intersections and modelled river reaches are already available above, with limitations clearly identified.</p><h3>Methods and source notes</h3><p>Catchment areas were calculated from the project working geometry in EPSG:6933. For web display, the validated polygons were simplified with topology preservation using a 300 m tolerance in a projected coordinate system, without materially changing their mapped extents. The original shapefile and full-resolution working GeoPackage remain outside the public site.</p><p>The provisional state/LGA intersections have been calculated from geoBoundaries / GRID3 (2022), CC BY 4.0. Administrative source precision, cross-border interpretation and project acceptance remain under review. Only public geometric relationships are included; sensitive stakeholder records remain excluded.</p></div></section>
-<footer class="foot"><div>© 2026 Basin Nexus NG · Public geography and thematic evidence explorer v1.11 · User-supplied catchment geography, subject to project boundary approval</div><div>Built for transparent, traceable geographic discovery.</div></footer>
+<footer class="foot"><div>© 2026 Basin Nexus NG · Public geography and approved evidence catalogue preview v1.12 · User-supplied catchment geography, subject to project boundary approval</div><div>Built for transparent, traceable geographic discovery.</div></footer>
 <script>
 (()=>{'use strict';
 
 const extent=[2.4,3.95,15.6,15.32],full={x:0,y:0,w:1020,h:750};
 const el=id=>document.getElementById(id),canvas=el('mapCanvas'),ctx=canvas.getContext('2d',{alpha:true});
-let catchments=[],geo=[],national=null,countryContext=null,administrative=null,admStates=null,admLgas=null,lgaPromise=null,selected=null,waterMeta=null,detailedManifest=null,knowledgeIndex=null;
+let catchments=[],geo=[],national=null,countryContext=null,administrative=null,admStates=null,admLgas=null,lgaPromise=null,selected=null,waterMeta=null,detailedManifest=null,knowledgeIndex=null,publicEvidence=null,evidenceLoadState='pending';
 let labelsOn=true,nationalOn=true,statesOn=true,lgasOn=false,riversOn=true,lakesOn=true,riverScope='all',riverDensity='medium',expanded=false,viewport={...full};
 let catchPaths=new Map(),statePaths=[],countryPath=null,lgaPaths=new Map(),riverPaths=[],lakePaths=[],activeLGA=null,activeHydro=null,paintScheduled=false,detailCache=new Map(),detailAbort=null,detailSequence=0,detailStatus='idle';
 let pointerMap=new Map(),startSingle=null,pinch=null,gestureUsed=false,dragged=false,hoverName='';
@@ -702,6 +730,82 @@ function renderKnowledgeCardLens(c,row,admin,river){
  return '<div class="knowledgeCardLens"><strong>No individually cleared facility or intervention records published.</strong>'
    +'<small>Information may exist in restricted source material; no location, inventory completeness or approval can be inferred.</small></div>';
 }
+const evidenceLabels={
+ water_infrastructure:'Water infrastructure',natural_resources:'Natural resources',
+ ecosystems:'Ecosystems',threats_challenges:'Environmental threats',
+ socioeconomics:'Socioeconomics',policies:'Policies',interventions:'Interventions'
+};
+const evidenceLevels={
+ stakeholder_reported:'Stakeholder-reported (not independently confirmed)',
+ cross_checked:'Cross-checked against other sources',
+ independently_verified:'Independently verified statement'
+};
+function acceptPublicEvidence(document){
+ const expected=['publication_status','records','schema_version','type'];
+ if(!document||typeof document!=='object'||Array.isArray(document)
+     ||Object.keys(document).sort().join('|')!==expected.join('|')
+     ||document.type!=='PublicEvidenceCollection'||document.schema_version!=='BN_PUBLIC_EVIDENCE_V1'
+     ||document.publication_status!=='APPROVED_PUBLIC_ONLY'
+     ||!Array.isArray(document.records)||document.records.length>500)return false;
+ const ids=new Set(),validCatchments=new Set(catchments.map(c=>c.id));
+ for(const row of document.records){
+  if(!row||typeof row!=='object'||Array.isArray(row)
+    ||typeof row.record_id!=='string'||!/^BN-[A-Z0-9-]{5,50}$/.test(row.record_id)
+    ||ids.has(row.record_id)||!Array.isArray(row.catchment_ids)||!row.catchment_ids.length
+    ||row.catchment_ids.some(id=>!validCatchments.has(id))
+    ||!(row.theme in evidenceLabels)||!(row.evidence_status in evidenceLevels)
+    ||!['resource_report','facility_report','risk_report','policy_report','intervention_report'].includes(row.record_type)
+    ||typeof row.statement!=='string'||row.statement.trim().length<5
+    ||typeof row.source_reference!=='string'||row.source_reference.trim().length<5
+    ||typeof row.source_locator!=='string'||row.source_locator.trim().length<5
+    ||typeof row.release_authorization!=='string'||!/^PUBLIC-[A-Z0-9-]{5,60}$/.test(row.release_authorization)
+    ||row.public_source_url&&(!/^https:\/\//.test(row.public_source_url)
+       ||/drive\.google\.com|docs\.google\.com|localhost|127\.0\.0\.1/i.test(row.public_source_url))
+    ||row.location&&(
+        row.location.verification!=='independently_validated'
+        ||!Number.isFinite(row.location.latitude)||!Number.isFinite(row.location.longitude)
+        ||!Number.isFinite(row.location.uncertainty_m)
+        ||row.location.latitude < -90||row.location.latitude > 90
+        ||row.location.longitude < -180||row.location.longitude > 180
+        ||row.location.uncertainty_m < 0||typeof row.location.method!=='string'
+       ))return false;
+  ids.add(row.record_id);
+ }
+ return true;
+}
+function renderEvidenceCatalogue(scope){
+ const list=el('evidenceList'),count=el('evidenceCount');
+ if(evidenceLoadState!=='ready'){
+  count.textContent='Approved evidence catalogue unavailable';
+  list.innerHTML='<p class="evidenceEmpty">The public record feed is unavailable or has failed its schema check. This is not evidence that no records exist. The geographical atlas remains usable.</p>';
+  return;
+ }
+ const all=publicEvidence.records;
+ const catchmentScope=new Set(scope.map(c=>c.id));
+ const query=clean(el('evidenceSearch').value),theme=el('evidenceTheme').value,status=el('evidenceStatus').value;
+ const found=all.filter(r=>r.catchment_ids.some(id=>catchmentScope.has(id))
+   &&(theme==='all'||r.theme===theme)&&(status==='all'||r.evidence_status===status)
+   &&clean([r.record_id,r.statement,r.source_reference].join(' ')).includes(query));
+ count.textContent=found.length+' matching approved records · '+all.length+' publicly released overall';
+ if(!all.length){
+  list.innerHTML='<p class="evidenceEmpty">No individual stakeholder evidence records are cleared for public release yet. This does not mean that infrastructure, environmental challenges or interventions are absent. The source-document catalogue remains private until the required approvals.</p>';
+  return;
+ }
+ list.innerHTML=found.length?found.map(r=>{
+  const catchment=r.catchment_ids.map(id=>catchments.find(c=>c.id===id)?.name||id);
+  const sourceUrl=r.public_source_url?'<p><a href="'+esc(r.public_source_url)+'" target="_blank" rel="noopener noreferrer">Open reviewed public source</a></p>':'';
+  const position=r.location?'<p><b>Independently validated position:</b> '+r.location.latitude.toFixed(5)+', '+r.location.longitude.toFixed(5)
+   +' · uncertainty '+Number(r.location.uncertainty_m).toLocaleString()+' m · method: '+esc(r.location.method)
+   +'. Map navigation below selects the catchment, not the facility point.</p>':'<p>Location withheld or not independently validated; no asset point is mapped.</p>';
+  return '<article class="evidenceEntry"><small>'+esc(r.record_id)+' · '+esc(evidenceLabels[r.theme])+'</small>'
+   +'<h4>'+esc(evidenceLevels[r.evidence_status])+'</h4><p>'+esc(r.statement)+'</p>'
+   +'<div class="evidenceStatus">Approved for public release · '+esc(r.evidence_status)+'</div>'
+   +'<p><b>Associated catchments:</b> '+catchment.map(esc).join(' · ')+'</p>'
+   +'<details><summary>Source and location details</summary><p><b>Attribution:</b> '+esc(r.source_reference)
+   +' · '+esc(r.source_locator)+'</p>'+position+sourceUrl+'</details>'
+   +'<button type="button" data-evidence-map="'+esc(r.catchment_ids[0])+'">Explore related catchment on map</button></article>';
+ }).join(''):'<p class="evidenceEmpty">There are approved records in the catalogue, but none match the current filters. Try another topic, verification status or catchment.</p>';
+}
 function initKnowledgeStates(){
  const states=new Set();
  for(const c of catchments){
@@ -760,6 +864,7 @@ function renderKnowledge(){
  const state=el('knowledgeState').value,lgaId=el('knowledgeLGA').value;
  el('knowledgeCount').textContent=result.length+' of '+knowledgeIndex.catchments.length+' catchments · public geography and institutional source metadata';
  el('knowledgeExport').disabled=result.length===0;
+ renderEvidenceCatalogue(result);
  el('knowledgeCards').innerHTML=result.length?result.map(c=>{
   const row=catchments.find(x=>x.id===c.id), admin=administrative?.byCatchment?.[c.id];
   const river=detailedManifest?.files?.[c.id], stateRecord=(admin?.states||[]).find(s=>s.name===state),
@@ -829,8 +934,15 @@ el('knowledgeLenses').addEventListener('click',e=>{
  renderKnowledge();
 });
 el('knowledgeExport').addEventListener('click',downloadKnowledgeCSV);
+for(const id of ['evidenceSearch','evidenceTheme','evidenceStatus'])
+ el(id).addEventListener(id==='evidenceSearch'?'input':'change',renderKnowledge);
+el('evidenceList').addEventListener('click',e=>{
+ const button=e.target.closest('button[data-evidence-map]');if(!button)return;
+ const id=button.dataset.evidenceMap;if(!catchments.some(c=>c.id===id))return;
+ tab('Explore');el('catchmentSearch').value='';choose(id,true);
+});
 el('knowledgeReset').addEventListener('click',()=>{
- el('knowledgeSearch').value='';el('knowledgeTheme').value='all';el('knowledgeYear').value='all';el('knowledgeCity').value='all';el('knowledgeState').value='all';updateKnowledgeLGAOptions();el('knowledgeSort').value='name';el('knowledgeCrossborder').value='all';knowledgeLens='water';for(const item of el('knowledgeLenses').querySelectorAll('button'))item.setAttribute('aria-pressed',String(item.dataset.knowledgeLens==='water'));renderKnowledge();el('knowledgeSearch').focus();
+ el('knowledgeSearch').value='';el('knowledgeTheme').value='all';el('knowledgeYear').value='all';el('knowledgeCity').value='all';el('knowledgeState').value='all';updateKnowledgeLGAOptions();el('knowledgeSort').value='name';el('knowledgeCrossborder').value='all';el('evidenceSearch').value='';el('evidenceTheme').value='all';el('evidenceStatus').value='all';knowledgeLens='water';for(const item of el('knowledgeLenses').querySelectorAll('button'))item.setAttribute('aria-pressed',String(item.dataset.knowledgeLens==='water'));renderKnowledge();el('knowledgeSearch').focus();
 });
 el('knowledgeCards').addEventListener('click',e=>{
  const b=e.target.closest('button[data-knowledge-map]');if(!b)return;
@@ -941,6 +1053,6 @@ canvas.addEventListener('keydown',e=>{
  else if(e.key.startsWith('Arrow')){e.preventDefault();const d=viewport.w*.065;
   setView({...viewport,x:viewport.x+(e.key==='ArrowRight'?d:e.key==='ArrowLeft'?-d:0),y:viewport.y+(e.key==='ArrowDown'?d:e.key==='ArrowUp'?-d:0)})}
 });
-Promise.all([fetch('data/registry.json').then(r=>{if(!r.ok)throw new Error('registry download failed');return r.json()}),fetch('data/catchments.geojson').then(r=>{if(!r.ok)throw new Error('geometry download failed');return r.json()}),fetch('data/nigeria_boundary.geojson').then(r=>{if(!r.ok)throw new Error('national boundary download failed');return r.json()}),fetch('data/international_context.json').then(r=>{if(!r.ok)throw new Error('border context download failed');return r.json()}),fetch('data/admin_crosswalk_provisional.json').then(r=>{if(!r.ok)throw new Error('admin crosswalk download failed');return r.json()}),fetch('data/adm1_states_provisional.geojson').then(r=>{if(!r.ok)throw new Error('state boundary download failed');return r.json()}),fetch('data/rivers_overview.geojson').then(r=>{if(!r.ok)throw new Error('river layer download failed');return r.json()}),fetch('data/lakes_overview.geojson').then(r=>{if(!r.ok)throw new Error('lake layer download failed');return r.json()}),fetch('data/hydro_reference_metadata.json').then(r=>{if(!r.ok)throw new Error('hydro metadata download failed');return r.json()}),fetch('data/detailed_river_manifest.json').then(r=>{if(!r.ok)throw new Error('FAO detailed network manifest failed');return r.json()}),fetch('data/stakeholder_coverage_index.json').then(r=>{if(!r.ok)throw Error('source coverage metadata failed');return r.json()})]).then(([registry,collection,country,context,admin,states,rivers,lakes,hydroMeta,detailMeta,knowledge])=>{if(registry.length!==20||collection.features.length!==20||country.features.length!==1||context.total_catchments!==20||admin.totalCatchments!==20||states.features.length!==37)throw new Error('Unexpected geometry counts');catchments=registry;geo=collection.features;national=country;countryContext=context;administrative=admin;admStates=states;detailedManifest=detailMeta;if(detailMeta.status!=='PROVISIONAL_DETAILED_RIVER_NETWORK'||Object.keys(detailMeta.files).length!==20)throw Error('Unverified FAO river manifest');if(knowledge.publication_status!=='PUBLIC_METADATA_ONLY'||knowledge.source_documents_reviewed!==20||knowledge.catchments.length!==20||knowledge.source_contents_published!==false)throw Error('Invalid knowledge index');knowledgeIndex=knowledge;initKnowledgeStates();cacheBasePaths();cacheHydro(rivers,lakes,hydroMeta);showOverview();renderKnowledge()}).catch(e=>{el('catchmentList').innerHTML='<div class="empty">Map data could not be loaded. Open this site through GitHub Pages or a local web server.</div>';el('details').innerHTML='<div class="aside">The map is temporarily unavailable. Please refresh after deployment finishes.</div>';console.error('Basin Nexus NG data error',e)});
+Promise.all([fetch('data/registry.json').then(r=>{if(!r.ok)throw new Error('registry download failed');return r.json()}),fetch('data/catchments.geojson').then(r=>{if(!r.ok)throw new Error('geometry download failed');return r.json()}),fetch('data/nigeria_boundary.geojson').then(r=>{if(!r.ok)throw new Error('national boundary download failed');return r.json()}),fetch('data/international_context.json').then(r=>{if(!r.ok)throw new Error('border context download failed');return r.json()}),fetch('data/admin_crosswalk_provisional.json').then(r=>{if(!r.ok)throw new Error('admin crosswalk download failed');return r.json()}),fetch('data/adm1_states_provisional.geojson').then(r=>{if(!r.ok)throw new Error('state boundary download failed');return r.json()}),fetch('data/rivers_overview.geojson').then(r=>{if(!r.ok)throw new Error('river layer download failed');return r.json()}),fetch('data/lakes_overview.geojson').then(r=>{if(!r.ok)throw new Error('lake layer download failed');return r.json()}),fetch('data/hydro_reference_metadata.json').then(r=>{if(!r.ok)throw new Error('hydro metadata download failed');return r.json()}),fetch('data/detailed_river_manifest.json').then(r=>{if(!r.ok)throw new Error('FAO detailed network manifest failed');return r.json()}),fetch('data/stakeholder_coverage_index.json').then(r=>{if(!r.ok)throw Error('source coverage metadata failed');return r.json()}),fetch('data/public_evidence_catalogue.json').then(r=>{if(!r.ok)throw Error('public evidence catalogue failed');return r.json()}).catch(()=>null)]).then(([registry,collection,country,context,admin,states,rivers,lakes,hydroMeta,detailMeta,knowledge,evidence])=>{if(registry.length!==20||collection.features.length!==20||country.features.length!==1||context.total_catchments!==20||admin.totalCatchments!==20||states.features.length!==37)throw new Error('Unexpected geometry counts');catchments=registry;geo=collection.features;national=country;countryContext=context;administrative=admin;admStates=states;detailedManifest=detailMeta;if(detailMeta.status!=='PROVISIONAL_DETAILED_RIVER_NETWORK'||Object.keys(detailMeta.files).length!==20)throw Error('Unverified FAO river manifest');if(knowledge.publication_status!=='PUBLIC_METADATA_ONLY'||knowledge.source_documents_reviewed!==20||knowledge.catchments.length!==20||knowledge.source_contents_published!==false)throw Error('Invalid knowledge index');knowledgeIndex=knowledge;publicEvidence=acceptPublicEvidence(evidence)?evidence:null;evidenceLoadState=publicEvidence?'ready':'unavailable';initKnowledgeStates();cacheBasePaths();cacheHydro(rivers,lakes,hydroMeta);showOverview();renderKnowledge()}).catch(e=>{el('catchmentList').innerHTML='<div class="empty">Map data could not be loaded. Open this site through GitHub Pages or a local web server.</div>';el('details').innerHTML='<div class="aside">The map is temporarily unavailable. Please refresh after deployment finishes.</div>';console.error('Basin Nexus NG data error',e)});
 })();
 </script></body></html>
