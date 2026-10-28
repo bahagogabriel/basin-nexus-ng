@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.9**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
+**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.10**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
 
 ## Status
 
@@ -131,3 +131,11 @@ The private editorial pilot receives `tools/stage3c_private_editorial_qa.py`, a 
 ## Stage 3D-A — State/FCT geographic discovery (v1.9)
 
 The public Knowledge index now filters the 20 catchment/source-event profiles using **provisional state/FCT catchment polygon intersection**. State options come from the previously published 2022 GRID3/geoBoundaries crosswalk, with rounded overlap areas. This is **not** workshop participation, source geography or facility positioning. All original source restrictions remain. Private synthetic-only source-context QA validates pilot/source pairing and refuses public-repository inputs. See docs/STAGE3D_A_DISCOVERY_AND_CONTEXT_QA.md.
+
+## Stage 3D-B — public geographic and modeled-water reference explorer (v1.10)
+
+The source-metadata Knowledge page now supports a state-constrained, crosswalk-grounded **LGA filter** (495 distinct provisional LGAs, including overlapping catchments); each card shows mapped catchment area, count of FAO AQUASTAT modeled river reaches and number of intersecting LGAs, with expandable provenance and uncertainty. Sort by catchment name, mapped area or FAO modeled reach count. Export a CSV for the *current filtered public reference summary* (no private source words, IDs, attendance or facility coordinates). Changing state clears an incompatible LGA selection, and Reset clears every filter and sort.
+
+These reference counts are not evidence of water discharge, water-quality monitoring, infrastructure facilities, stakeholder participation or official catchment jurisdictions. The export contains only values already published in the accepted registry, provisional GRID3 crosswalk, FAO 2026 river manifest and public SCMP meeting-event metadata. Public source-coverage index remains explicitly metadata-only; zero individual claims cleared.
+
+The release adds a strict geometry/water/CSV metadata contract validator and extended desktop/tablet phone browser/download regression. See `docs/STAGE3D_B_REFERENCE_EXPLORER.md`.
