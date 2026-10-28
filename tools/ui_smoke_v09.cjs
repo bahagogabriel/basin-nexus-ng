@@ -127,6 +127,17 @@ async function test(page,name){
  assert.equal(await page.locator('#knowledgeYear').inputValue(),'all');
 
 
+ await page.locator('#knowledgeState').selectOption('Plateau');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),7,name+': Plateau must have seven provisional geometry overlaps');
+ assert.equal(await page.locator('#knowledgeCards .knowledgeGeo').count(),7,name+': state-specific caveats absent');
+ assert.match(await page.locator('#knowledgeCards .knowledgeGeo').first().innerText(),/km²/);
+ await page.locator('#knowledgeState').selectOption('Abuja Federal Capital Territory');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),2,name+': FCT must have two provisional geographic overlaps');
+ await page.locator('#knowledgeState').selectOption('Niger');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),6,name+': Niger state overlap count is six');
+ await page.locator('#knowledgeReset').click();
+ assert.equal(await page.locator('#knowledgeState').inputValue(),'all',name+': reset must clear geographic filter');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20);
  await page.locator('#knowledgeTheme').selectOption('policies');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': policies are indexed across all 20 catchments');
  await page.locator('#knowledgeSearch').fill('Okwa');
