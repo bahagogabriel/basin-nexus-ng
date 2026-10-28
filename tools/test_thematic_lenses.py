@@ -52,13 +52,13 @@ for needle in (
     "renderKnowledgeLens(result);",
     "renderKnowledgeCardLens(c,row,admin,river)",
     "cross==='all'||(Number(admin?.outsidePct||0)>0.5)===(cross==='yes')",
-    'No individually cleared facility or intervention records published',
-    'Source documents have been reviewed privately, but no individual infrastructure facilities',
+    'Compiled 2026 dam-source references:',
+    'These are descriptive <b>source-column completeness indicators</b>',
     'Reaches may appear in more than one catchment clip',
     'modeled_reaches_upstream_below100_km2',
     'modeled_reaches_upstream_100_to_below1000_km2',
     'modeled_reaches_upstream_1000plus_km2',
-    'No individually cleared facility or intervention records',
+    'not an authoritative dam inventory',
 ):
     assert needle in html, needle
 assert html.count('data-knowledge-lens="')==4
