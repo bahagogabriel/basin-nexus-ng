@@ -45,6 +45,10 @@ class PinnedDamPreflightTests(unittest.TestCase):
         cols=["Country","COUNTRY","DamName","Lat","Lon","Cap"]
         data,md5=payload(cols=cols)
         with self.assertRaises(ValueError):preflight(data,md5,2)
+    def test_duplicate_raw_csv_headers_are_rejected(self):
+        raw=b"Country,Country,DamName,Lat,Lon,Cap\nNigeria,Nigeria,Example,0,0,2\n"
+        with self.assertRaises(ValueError):
+            preflight(raw,hashlib.md5(raw).hexdigest(),1)
     def test_invalid_url_fails_closed(self):
         with self.assertRaises(ValueError):fetch_pinned("https://example.com/unsafe")
     def test_no_source_values_returned(self):
