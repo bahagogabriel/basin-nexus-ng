@@ -73,9 +73,9 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
                 _fail(f"record {idx}: invalid {key}")
             if "drive.google.com" in v.lower() or "docs.google.com" in v.lower():
                 _fail(f"record {idx}: private source reference")
-            if re.search(r"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}",v,re.I):
+            if re.search(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}",v,re.I):
                 _fail(f"record {idx}: email address in published evidence")
-            if re.search(r"(?i)(?:\\bprivate_drive_id\\b|\\bsource_internal_id\\b|\\brelease_authorization\\b|\\braw_statement_internal\\b)",v):
+            if re.search(r"(?i)(?:\bprivate_drive_id\b|\bsource_internal_id\b|\brelease_authorization\b|\braw_statement_internal\b)",v):
                 _fail(f"record {idx}: internal review marker in public text")
         url=rec.get("public_source_url")
         if url is not None:
@@ -98,7 +98,7 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
         notes=rec.get("notes")
         if notes is not None and (not isinstance(notes,str) or len(notes)>1200
                 or "drive.google.com" in notes.lower() or "docs.google.com" in notes.lower()
-                or re.search(r"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}",notes,re.I)):
+                or re.search(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}",notes,re.I)):
             _fail(f"record {idx}: invalid or private notes")
     return {"validated_public_records":len(records),"mapped_locations":sum(x.get("location") is not None for x in records)}
 
