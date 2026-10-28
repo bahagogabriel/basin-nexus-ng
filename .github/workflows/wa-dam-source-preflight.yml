@@ -6,6 +6,8 @@ on:
       - 'tools/preflight_wa_dams_2026.py'
       - 'tools/review_wa_dam_catchments_2026.py'
       - 'tools/review_wa_dam_identity_2026.py'
+      - 'tools/build_wa_2026_dam_candidate_review.py'
+      - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/test_review_wa_dam_identity_2026.py'
       - 'tools/test_review_wa_dam_catchments_2026.py'
       - 'tools/test_preflight_wa_dams_2026.py'
@@ -17,6 +19,8 @@ on:
       - 'tools/preflight_wa_dams_2026.py'
       - 'tools/review_wa_dam_catchments_2026.py'
       - 'tools/review_wa_dam_identity_2026.py'
+      - 'tools/build_wa_2026_dam_candidate_review.py'
+      - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/test_review_wa_dam_identity_2026.py'
       - 'tools/test_review_wa_dam_catchments_2026.py'
       - 'site/data/external_reference_sources.json'
@@ -40,6 +44,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
           python -m unittest discover -s tools -p 'test_review_wa_dam_catchments_2026.py' -v
           python -m unittest discover -s tools -p 'test_review_wa_dam_identity_2026.py' -v
+          python -m unittest discover -s tools -p 'test_build_wa_2026_dam_candidate_review.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -49,6 +54,16 @@ jobs:
       - name: Audit 2026 dam source identity, provenance and nearby positions without point export
         if: github.event_name != 'pull_request'
         run: python tools/review_wa_dam_identity_2026.py --fetch --catchments site/data/catchments.geojson --report review/wa_dams_2026_identity_source_qa.json
+      - name: Prepare inspectable compiled reference candidates from pinned original source
+        if: github.event_name != 'pull_request'
+        run: python tools/build_wa_2026_dam_candidate_review.py --fetch --catchments site/data/catchments.geojson --review-output review/compiled_wa_dam_candidates_NOT_VERIFIED.json
+      - name: Archive CC BY 4.0 compiled reference candidates for further review; NOT verified
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: west-africa-2026-public-source-research-candidates-unverified
+          path: review/compiled_wa_dam_candidates_NOT_VERIFIED.json
+          if-no-files-found: error
       - name: Archive aggregate-only source QA report; never archive raw CSV or coordinates
         if: github.event_name != 'pull_request' && always()
         uses: actions/upload-artifact@v4
