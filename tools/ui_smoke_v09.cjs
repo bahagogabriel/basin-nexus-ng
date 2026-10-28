@@ -101,6 +101,14 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ // Stage 3D-O: aggregate source review is accessible and contains no facility points.
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#waDamReferenceSummary').count(),1,name+': Data page research summary');
+ assert.match(await page.locator('#waDamReferenceSummary').innerText(),/189 source point positions across 18 of 20 catchments/);
+ await page.locator('#waDamReferenceCounts summary').click();
+ assert.equal(await page.locator('#waDamReferenceCounts tbody tr').count(),20,name+': exactly 20 source-count rows');
+ assert.equal(await page.locator('[data-reference-catchment-id="SCMP-C06"]').getAttribute('data-reference-count'),'33');
+ assert.equal(await page.locator('[data-reference-catchment-id="SCMP-C03"]').getAttribute('data-reference-count'),'0');
  await page.locator('#navKnowledge').click();
  await page.waitForFunction(()=>document.querySelector('#knowledgeCards article.knowledgeCard')?.querySelector('h3'));
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': expected 20 source-coverage records');
