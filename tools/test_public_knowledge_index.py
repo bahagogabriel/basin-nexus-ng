@@ -28,7 +28,11 @@ assert sum(c['engagement_date_start'].startswith('2024-') for c in d['catchments
 assert sum(c['engagement_date_start'].startswith('2025-') for c in d['catchments'])==14
 assert {c['engagement_city'] for c in d['catchments']}=={'Kano','Sokoto','Ilorin','Lokoja','Gombe'}
 html=(site/'index.html').read_text()
-assert 'public geography reference explorer v1.10' in html
+assert 'thematic evidence explorer v1.11' in html
+assert "id=\"knowledgeLenses\"" in html
+assert "id=\"knowledgeCrossborder\"" in html
+assert "function renderKnowledgeLens(rows)" in html
+assert "function renderKnowledgeCardLens(c,row,admin,river)" in html
 assert 'function downloadKnowledgeCSV()' in html
 assert 'function updateKnowledgeLGAOptions()' in html
 assert 'function filteredKnowledge()' in html
@@ -37,7 +41,7 @@ assert 'source metadata only' in html
 assert "state==='all'||(admin?.states||[]).some(s=>s.name===state)" in html
 assert "lga==='all'||(admin?.lgas||[]).some(l=>l.id===lga)" in html
 assert "city==='all'||c.engagement_city===city" in html
-for s in ('id="navKnowledge"','id="pageKnowledge"','id="knowledgeSearch"','id="knowledgeTheme"','id="knowledgeCards"','function renderKnowledge()','data/stakeholder_coverage_index.json','id="knowledgeYear"','id="knowledgeCity"','id="knowledgeState"','id="knowledgeLGA"','id="knowledgeSort"','id="knowledgeExport"','id="knowledgeReset"','class="knowledgeEvidence"','Institutional SCMP engagement communiqué'):
+for s in ('id="navKnowledge"','id="pageKnowledge"','id="knowledgeSearch"','id="knowledgeTheme"','id="knowledgeCards"','function renderKnowledge()','data/stakeholder_coverage_index.json','id="knowledgeYear"','id="knowledgeCity"','id="knowledgeState"','id="knowledgeLGA"','id="knowledgeSort"','id="knowledgeCrossborder"','id="knowledgeExport"','id="knowledgeReset"','class="knowledgeEvidence"','Institutional SCMP engagement communiqué'):
  assert s in html,s
 for s in ('drive.google.com/file/','4,929 evidence entries','Signed Stakeholder Engagement'):
  assert s.lower() not in html.lower()
