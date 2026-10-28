@@ -203,6 +203,20 @@ header .nav button{padding:8px 12px}
 .knowledgeDetail summary{font-weight:750;font-size:12px;color:#21685e;cursor:pointer}
 .knowledgeDetail p{font-size:11px;line-height:1.6;color:#4d7068;margin:10px 0 0}
 .knowledgeReset:disabled{cursor:not-allowed;opacity:.52}
+.knowledgeLenses{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 10px}
+.knowledgeLens{min-height:44px;border:1px solid #cbded5;border-radius:9px;padding:10px 14px;background:white;color:#285d55;font-size:12px;font-weight:800}
+.knowledgeLens[aria-pressed="true"]{background:#126f62;color:white;border-color:#126f62}
+.knowledgeLens:focus-visible{outline:3px solid #42bbab;outline-offset:2px}
+.knowledgeThemePanel{background:#fff;border:1px solid #cbded5;border-radius:12px;padding:16px;margin-bottom:18px}
+.knowledgeThemePanel h3{font-size:16px;margin:0 0 6px}.knowledgeThemePanel p{font-size:12px;margin:7px 0 11px;line-height:1.6;color:#42685e}
+.knowledgeThemeMetrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+.knowledgeThemeMetrics>div{background:#eff7f1;border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:3px}
+.knowledgeThemeMetrics b{font-size:19px;color:#174d44}.knowledgeThemeMetrics span{font-size:11px;color:#496d63}
+.knowledgeBreakdown{display:flex;height:13px;border-radius:7px;overflow:hidden;background:#e9efeb;margin:10px 0}
+.knowledgeBreakdown span:nth-child(1){background:#6dbb96}.knowledgeBreakdown span:nth-child(2){background:#2c9585}.knowledgeBreakdown span:nth-child(3){background:#155a69}
+.knowledgeCardLens{background:#f4f9f7;border:1px solid #d3e4db;border-radius:9px;padding:10px 12px;margin-top:12px;color:#234d46;font-size:12px;line-height:1.6}
+.knowledgeCardLens strong{font-size:12px}.knowledgeCardLens small{display:block;color:#58726d;font-size:11px;margin-top:5px}
+@media(max-width:520px){.knowledgeThemeMetrics{grid-template-columns:1fr}.knowledgeLens{flex:1 1 44%}}
 @media(max-width:480px){.knowledgeFacts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .knowledgeCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .knowledgeCard{padding:15px;border:1px solid #cce1d7;background:#fff;border-radius:12px}
@@ -247,7 +261,14 @@ header .nav button{padding:8px 12px}
 <div class="knowledgeStats"><div><b>20</b><span>Engagement communiqués reviewed</span></div><div><b>20</b><span>Catchments covered</span></div><div><b>4</b><span>Common themes indexed</span></div><div><b>0</b><span>Reported facilities mapped from these sources</span></div></div>
 <div class="knowledgeNotice"><strong>How stakeholder information is attributed</strong><p>Source: institutional stakeholder engagement for the Strategic Catchment Management Plan (SCMP), attended by representatives of relevant institutions. Information in the communiqués is <strong>stakeholder-reported</strong> and is not automatically a measured fact, a verified asset location, or the formal endorsement of every participating institution. Individual findings will appear only after privacy, provenance, scientific and publication review. Signed documents, attendance and personal information are excluded.</p></div>
 <div class="knowledgeEvidence" aria-label="Evidence status explanation"><div><strong>Source documented</strong><span>Engagement date, host city and themes located in communiqué.</span></div><div><strong>Stakeholder-reported</strong><span>A specific source-attributed statement, not independent confirmation.</span></div><div><strong>Independently validated</strong><span>Checked using separate evidence; location uncertainty identified.</span></div><div><strong>Approved for publication</strong><span>Rights, privacy and review checks cleared for release.</span></div></div>
-<div class="knowledgeFilters"><label for="knowledgeSearch">Search catchments<input id="knowledgeSearch" type="search" placeholder="Find catchment / former name" autocomplete="off"></label><label for="knowledgeTheme">Source theme<select id="knowledgeTheme"><option value="all">All topics</option><option value="natural_resources">Natural resources</option><option value="threats_challenges">Threats &amp; challenges</option><option value="socioeconomics">Socioeconomics</option><option value="policies">Policies</option></select></label><label for="knowledgeYear">Engagement year<select id="knowledgeYear"><option value="all">All years</option><option value="2024">2024</option><option value="2025">2025</option></select></label><label for="knowledgeCity">Host city<select id="knowledgeCity"><option value="all">All host cities</option><option value="Kano">Kano</option><option value="Sokoto">Sokoto</option><option value="Ilorin">Ilorin</option><option value="Lokoja">Lokoja</option><option value="Gombe">Gombe</option></select></label><label for="knowledgeState">State/FCT geographic overlap (provisional)<select id="knowledgeState"><option value="all">All states / FCT</option></select></label><label for="knowledgeLGA">LGA geographic overlap (provisional)<select id="knowledgeLGA"><option value="all">All LGAs</option></select></label><label for="knowledgeSort">Order catchments<select id="knowledgeSort"><option value="name">Name (A–Z)</option><option value="area">Largest mapped area</option><option value="rivers">Most modeled river reaches</option></select></label><button id="knowledgeReset" type="button" class="knowledgeReset">Reset filters</button><button id="knowledgeExport" type="button" class="knowledgeReset">Download filtered public summary (CSV)</button></div><p class="knowledgeGeoNotice">State and LGA matches use approximate polygon intersections from 2022 GRID3/geoBoundaries. A catchment may intersect several LGAs. These intersections do not establish workshop participation, source-claim locations, official jurisdiction or facility positions. River counts are modeled FAO AQUASTAT reaches, not river flow measurements.</p>
+<div class="knowledgeFilters"><label for="knowledgeSearch">Search catchments<input id="knowledgeSearch" type="search" placeholder="Find catchment / former name" autocomplete="off"></label><label for="knowledgeTheme">Source theme<select id="knowledgeTheme"><option value="all">All topics</option><option value="natural_resources">Natural resources</option><option value="threats_challenges">Threats &amp; challenges</option><option value="socioeconomics">Socioeconomics</option><option value="policies">Policies</option></select></label><label for="knowledgeYear">Engagement year<select id="knowledgeYear"><option value="all">All years</option><option value="2024">2024</option><option value="2025">2025</option></select></label><label for="knowledgeCity">Host city<select id="knowledgeCity"><option value="all">All host cities</option><option value="Kano">Kano</option><option value="Sokoto">Sokoto</option><option value="Ilorin">Ilorin</option><option value="Lokoja">Lokoja</option><option value="Gombe">Gombe</option></select></label><label for="knowledgeState">State/FCT geographic overlap (provisional)<select id="knowledgeState"><option value="all">All states / FCT</option></select></label><label for="knowledgeLGA">LGA geographic overlap (provisional)<select id="knowledgeLGA"><option value="all">All LGAs</option></select></label><label for="knowledgeSort">Order catchments<select id="knowledgeSort"><option value="name">Name (A–Z)</option><option value="area">Largest mapped area</option><option value="rivers">Most modeled river reaches</option></select></label><label for="knowledgeCrossborder">Cross-border extent (indicative)<select id="knowledgeCrossborder"><option value="all">All catchments</option><option value="yes">Some area beyond Nigeria</option><option value="no">Within Nigeria on this overlay</option></select></label><button id="knowledgeReset" type="button" class="knowledgeReset">Reset filters</button><button id="knowledgeExport" type="button" class="knowledgeReset">Download filtered public summary (CSV)</button></div><p class="knowledgeGeoNotice">State and LGA matches use approximate polygon intersections from 2022 GRID3/geoBoundaries. A catchment may intersect several LGAs. These intersections do not establish workshop participation, source-claim locations, official jurisdiction or facility positions. River counts are modeled FAO AQUASTAT reaches, not river flow measurements.</p>
+<div class="knowledgeLenses" id="knowledgeLenses" role="group" aria-label="Explore thematic public data">
+<button type="button" class="knowledgeLens" data-knowledge-lens="water" aria-pressed="true">Water network</button>
+<button type="button" class="knowledgeLens" data-knowledge-lens="geography" aria-pressed="false">Geographic footprint</button>
+<button type="button" class="knowledgeLens" data-knowledge-lens="engagement" aria-pressed="false">Engagement sources</button>
+<button type="button" class="knowledgeLens" data-knowledge-lens="assets" aria-pressed="false">Infrastructure &amp; interventions</button>
+</div>
+<section id="knowledgeThemePanel" class="knowledgeThemePanel" aria-live="polite" aria-label="Thematic summary"></section>
 <p id="knowledgeCount" aria-live="polite">Loading source coverage…</p>
 <div class="knowledgeCards" id="knowledgeCards"></div>
 <h3>How evidence is prepared for release</h3>
@@ -255,7 +276,7 @@ header .nav button{padding:8px 12px}
 <p><a href="data/stakeholder_coverage_index.json" download>Download public index metadata (JSON)</a>. The source documents themselves remain internal.</p>
 </div></section><section class="layout hidden" id="pageAbout"><div class="other"><div class="eyebrow">About Basin Nexus NG</div><h2>Connecting landscapes, resources and knowledge.</h2><p>Basin Nexus NG is being developed as an accessible geographic knowledge atlas for Nigeria's strategic catchments. Its long-term goal is to connect physical geography with water infrastructure, ecosystem and biodiversity resources, environmental pressures, stakeholder perspectives and development interventions.</p><div class="grid2"><div class="info"><strong>Public and evidence-led</strong><p>Information will be accompanied by clear provenance, dates, geographic precision and verification status. Stakeholder statements are not automatically classified as confirmed facts.</p></div><div class="info"><strong>20 catchments, one connected atlas</strong><p>The current preview uses the 20 catchment polygons supplied for the project. Benue–Mada replaces the historic name Okwa–Mada.</p></div><div class="info"><strong>Spatial accuracy</strong><p>Catchment geometries were checked and repaired; the map uses a simplified display version. The separate Nigeria boundary is Natural Earth Admin 0 at 1:110m scale (public domain, illustrative only). Catchment boundaries have not been clipped; administrative intersections and asset locations are not yet approved.</p></div><div class="info"><strong>Respectful publication</strong><p>Signed documents, attendance registers, private contact details and source statements will not be published without appropriate review and permission.</p></div></div><h3>Northern Nigeria study footprint</h3><p>The source study focuses primarily on Northern Nigeria. Catchment boundaries are hydrological, not political: some extend across international borders. The separate dashed Nigeria outline provides geographic context only and is not a substitute for an official surveyed boundary.</p><h3>Current release scope</h3><p>The current public atlas brings together all 20 catchment boundaries, provisional state/LGA intersections, national geographic context and modelled FAO AQUASTAT 2026 river reaches for each catchment. Natural Earth provides overview-scale major rivers and waterbodies. These geographic datasets carry source and accuracy notes and remain distinct from confidential stakeholder submissions. The platform does <strong>not</strong> yet publish unverified dam locations, stakeholder evidence records, signed documents or contact details.</p><button class="buttonlink" id="aboutGo" type="button">Explore the interactive atlas</button></div></section>
 <section class="layout hidden" id="pageData"><div class="other"><div class="eyebrow">Public data downloads</div><h2>Available geographic data</h2><p>The data catalogue contains public geographic reference files and source documentation. Catchment boundaries are user-supplied display derivatives; administrative intersections remain provisional, and FAO river reaches are modelled rather than surveyed channels. These datasets are suitable for exploratory mapping, not authoritative statutory or infrastructure determinations.</p><div class="grid2"><div class="info"><strong>20 catchments · GeoJSON</strong><p>Polygon boundaries in WGS 84 (EPSG:4326), simplified for web display.</p><a class="buttonlink" href="data/catchments.geojson" download>Download GeoJSON</a></div><div class="info"><strong>Catchment register · CSV</strong><p>Stable IDs, names, aliases, areas and map label coordinates.</p><a class="buttonlink" href="data/catchments.csv" download>Download CSV</a></div></div><h3>Nigeria political boundary context</h3><p>The switchable national outline uses <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a> Admin 0 Countries at 1:110m (public domain). It is a small-scale visual reference, not a legal/survey boundary. The cross-border classifications are indicative and based on approximate overlays of these generalised lines; do not use them for jurisdictional or area statistics.</p><h3>Detailed catchment rivers and regional water context</h3><p><b>Rivers: selected catchment</b> now loads the 2026 FAO AQUASTAT river reach network within the selected catchment. Use River detail to show main reaches, main and tributaries, or all modeled reaches. <b>Rivers: regional context</b> instead shows coarse but continuous Natural Earth 1:10m major rivers across the catchments. Detailed lines are clipped to the supplied catchment polygons, so source connectivity may cross those displayed boundaries.</p><p>Modelled river reaches are based on a 15-arcsecond network, not a complete survey of perennial and seasonal streams. Main/tributary/small labels reflect the <em>source's upstream drainage area</em> thresholds of 1,000 and 100 km²; these are not Strahler orders. FAO AQUASTAT (2026) CC BY 4.0; HydroRIVERS-derived model. <a href="data/detailed_river_manifest.json" download>Download provenance and catchment network counts</a>.</p><p>Natural Earth overview-scale rivers and lakes are mapped as generalised blue lines and waterbody polygons. This limited overview includes a few major rivers and large waterbodies only. It is not a comprehensive local drainage network, verified dam register, reservoir inventory, or infrastructure location database. The full transboundary catchment area is retained. Turn individual layers on/off from the map controls. Data source: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>, public domain.</p><p><a href="data/rivers_overview.geojson" download>Download overview river GeoJSON</a> · <a href="data/lakes_overview.geojson" download>Download lake / reservoir overview GeoJSON</a> · <a href="data/hydro_reference_metadata.json" download>View source metadata and limitations</a>.</p><h3>State and LGA map layers (provisional)</h3><p>State and LGA counts in individual catchment profiles were calculated by intersecting the simplified catchments with the 2022 GRID3 Nigeria state and LGA polygons distributed through geoBoundaries gbOpen. These are <b>provisional area-based relationships</b>; they are not jurisdictional claims, a list of workshop participants, or current official LGA allocations. Some catchments extend outside Nigeria. The mapped outside-Nigeria fractions use the more detailed ADM1 union and may differ from the 1:110m Natural Earth context. The map has switchable state/FCT boundary lines for all 37 units and an optional layer showing only the relevant intersecting LGA boundaries <b>clipped to the selected catchment</b>. It contains 495 distinct relevant LGA polygons, not all 774 nationally. Administrative geometry is a simplified display derivative; the original intersection statistics were calculated separately.</p><p><a href="data/adm1_states_provisional.geojson" download>Download provisional state boundary GeoJSON</a> · <a href="data/adm2_lgas_study_provisional.geojson" download>Download relevant LGA boundary GeoJSON</a> · <a href="data/catchment_states_provisional.csv" download>Download preliminary catchment/state CSV</a> · <a href="data/catchment_lgas_provisional.csv" download>Download preliminary catchment/LGA CSV</a> · <a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer">Source: geoBoundaries / GRID3 (CC BY 4.0)</a>.</p><h3>Stakeholder knowledge index</h3><p>The public Knowledge index identifies section availability across 20 internal institutional engagement communiqués. Four consistent themes are indexed for every catchment. This release includes no private documents, individual claims or facility coordinates. <a href="data/stakeholder_coverage_index.json" download>Download the metadata-only index</a>. Intervention descriptions require additional structured review.</p><h3>What is not yet in the public catalogue?</h3><p>Stakeholder-reported resources, infrastructure condition, dam and irrigation locations, mineral occurrences, natural heritage areas, proposed interventions and private project documents remain in internal review until source locations and publication status are verified. Provisional state/LGA geometric intersections and modelled river reaches are already available above, with limitations clearly identified.</p><h3>Methods and source notes</h3><p>Catchment areas were calculated from the project working geometry in EPSG:6933. For web display, the validated polygons were simplified with topology preservation using a 300 m tolerance in a projected coordinate system, without materially changing their mapped extents. The original shapefile and full-resolution working GeoPackage remain outside the public site.</p><p>The provisional state/LGA intersections have been calculated from geoBoundaries / GRID3 (2022), CC BY 4.0. Administrative source precision, cross-border interpretation and project acceptance remain under review. Only public geometric relationships are included; sensitive stakeholder records remain excluded.</p></div></section>
-<footer class="foot"><div>© 2026 Basin Nexus NG · Public geography and public geography reference explorer v1.10 · User-supplied catchment geography, subject to project boundary approval</div><div>Built for transparent, traceable geographic discovery.</div></footer>
+<footer class="foot"><div>© 2026 Basin Nexus NG · Public geography and thematic evidence explorer v1.11 · User-supplied catchment geography, subject to project boundary approval</div><div>Built for transparent, traceable geographic discovery.</div></footer>
 <script>
 (()=>{'use strict';
 
@@ -616,6 +637,71 @@ function zoom(factor,screenX=.5,screenY=.5){
  setView({x:anchor.x-(screenX*s.w-c.ox)/c.scale,y:anchor.y-(screenY*s.h-c.oy)/c.scale,w,h})
 }
 
+let knowledgeLens='water';
+const riverClassKeys=['small_upstream_below100','medium_upstream_100plus','large_upstream_1000plus'];
+function riverClassesFor(id){
+ const data=detailedManifest?.files?.[id],classes=data?.classes||{};
+ return riverClassKeys.map(key=>Number(classes[key]||0));
+}
+function renderKnowledgeLens(rows){
+ const panel=el('knowledgeThemePanel'),count=rows.length;
+ const fmt=n=>Number(n||0).toLocaleString();
+ const metric=(value,label)=>'<div><b>'+fmt(value)+'</b><span>'+label+'</span></div>';
+ if(knowledgeLens==='water'){
+  const sums=[0,0,0];
+  for(const row of rows){riverClassesFor(row.id).forEach((x,i)=>sums[i]+=x);}
+  const total=sums.reduce((a,b)=>a+b,0);
+  const widths=sums.map(x=>total?(100*x/total).toFixed(2):'0');
+  panel.innerHTML='<h3>Modeled water-network hierarchy · '+count+' matching catchments</h3>'
+  +'<p>FAO AQUASTAT (2026) catchment-clipped modeled river reaches, grouped by upstream drainage area in km². These counts are not river length, discharge, navigability or water-quality measurements. Reaches may appear in more than one catchment clip.</p>'
+  +'<div class="knowledgeBreakdown" role="img" aria-label="Upstream-area group shares: below 100 km² '+fmt(sums[0])+', 100 to below 1000 km² '+fmt(sums[1])+', 1000 km² or greater '+fmt(sums[2])+'">'
+  +widths.map(w=>'<span style="width:'+w+'%"></span>').join('')+'</div>'
+  +'<div class="knowledgeThemeMetrics">'+metric(sums[0],'Reaches: upstream area below 100 km²')
+  +metric(sums[1],'Reaches: 100–&lt;1,000 km²')+metric(sums[2],'Reaches: ≥1,000 km²')+'</div>';
+ }else if(knowledgeLens==='geography'){
+  const areas=rows.reduce((sum,row)=>sum+Number(catchments.find(c=>c.id===row.id)?.area_km2||0),0);
+  const stateLinks=rows.reduce((sum,row)=>sum+(administrative?.byCatchment?.[row.id]?.states?.length||0),0);
+  const cross=rows.filter(row=>Number(administrative?.byCatchment?.[row.id]?.outsidePct||0)>0.5).length;
+  panel.innerHTML='<h3>Geographic footprint · '+count+' matching catchments</h3>'
+   +'<p>Area comes from the mapped SCMP catchment polygons. State/FCT intersections use approximate 2022 GRID3/geoBoundaries overlays. Summed areas may overlap and are not an official national area total.</p>'
+   +'<div class="knowledgeThemeMetrics">'+metric(Math.round(areas),'Sum of mapped catchment km²')
+   +metric(stateLinks,'Catchment–state/FCT intersections')
+   +metric(cross,'Catchments with >0.5% indicative extent outside Nigeria')+'</div>';
+ }else if(knowledgeLens==='engagement'){
+  const years=rows.reduce((x,r)=>{const y=r.engagement_date_start.slice(0,4);x[y]=(x[y]||0)+1;return x;},{});
+  panel.innerHTML='<h3>Institutional engagement source coverage · '+count+' catchments</h3>'
+   +'<p>These are documented 2024–2025 SCMP workshop event records and four communiqué section headings. Workshop host cities are not the locations of natural resources, facilities or affected communities. Source presence is not independent verification or the endorsement of every participant.</p>'
+   +'<div class="knowledgeThemeMetrics">'+metric(count,'Communiqués in current results')
+   +metric(years['2024']||0,'Source events starting in 2024')
+   +metric(years['2025']||0,'Source events starting in 2025')+'</div>';
+ }else{
+  panel.innerHTML='<h3>Infrastructure and interventions · publication status</h3>'
+   +'<p>Source documents have been reviewed privately, but no individual infrastructure facilities, intervention claims or positions are authorized for display. This view is a publication-readiness indicator, not an assertion that these catchments contain no infrastructure or interventions.</p>'
+   +'<div class="knowledgeThemeMetrics">'+metric(count,'Catchments in current selection')
+   +metric(0,'Individually cleared stakeholder records')
+   +metric(0,'Verified stakeholder facility points published')+'</div>';
+ }
+}
+function renderKnowledgeCardLens(c,row,admin,river){
+ const fmt=x=>Number(x||0).toLocaleString();
+ if(knowledgeLens==='water'){
+  const [small,medium,large]=riverClassesFor(c.id);
+  return '<div class="knowledgeCardLens"><strong>Modeled network groups</strong> · '+fmt(small)+' &lt;100 km² upstream; '+fmt(medium)+' 100–&lt;1,000 km²; '+fmt(large)+' ≥1,000 km².'
+   +'<small>Drainage-area thresholds, not river width, flow or verified order.</small></div>';
+ }
+ if(knowledgeLens==='geography'){
+  const top=[...(admin?.states||[])].sort((a,b)=>b.km2-a.km2).slice(0,3);
+  return '<div class="knowledgeCardLens"><strong>Largest provisional state/FCT intersections:</strong> '
+   +(top.map(s=>esc(s.name)+' ('+fmt(Math.round(s.km2))+' km²)').join(' · ')||'Not available')
+   +'<small>Indicative outside-Nigeria portion: '+Number(admin?.outsidePct||0).toFixed(1)+'% of mapped catchment. Overlaps are not state jurisdiction or stakeholder participation.</small></div>';
+ }
+ if(knowledgeLens==='engagement'){
+  return '<div class="knowledgeCardLens"><strong>Documented SCMP session:</strong> '+esc(c.engagement_city)+' · '+esc(c.engagement_period)
+   +'<small>All four communiqué source headings indexed; individual claims not released.</small></div>';
+ }
+ return '<div class="knowledgeCardLens"><strong>No individually cleared facility or intervention records published.</strong>'
+   +'<small>Information may exist in restricted source material; no location, inventory completeness or approval can be inferred.</small></div>';
+}
 function initKnowledgeStates(){
  const states=new Set();
  for(const c of catchments){
@@ -645,7 +731,7 @@ function filteredKnowledge(){
  const q=clean(el('knowledgeSearch').value),theme=el('knowledgeTheme').value,
        year=el('knowledgeYear').value,city=el('knowledgeCity').value,
        state=el('knowledgeState').value,lga=el('knowledgeLGA').value,
-       sort=el('knowledgeSort').value;
+       sort=el('knowledgeSort').value,cross=el('knowledgeCrossborder').value;
  const byId=new Map(catchments.map(c=>[c.id,c]));
  const result=knowledgeIndex.catchments.filter(c=>{
   const row=byId.get(c.id), admin=administrative?.byCatchment?.[c.id];
@@ -656,6 +742,7 @@ function filteredKnowledge(){
    &&(city==='all'||c.engagement_city===city)
    &&(state==='all'||(admin?.states||[]).some(s=>s.name===state))
    &&(lga==='all'||(admin?.lgas||[]).some(l=>l.id===lga))
+   &&(cross==='all'||(Number(admin?.outsidePct||0)>0.5)===(cross==='yes'))
  });
  const quantity=c=>detailedManifest?.files?.[c.id]?.count||0;
  result.sort((a,b)=>{
@@ -668,6 +755,7 @@ function filteredKnowledge(){
 function renderKnowledge(){
  if(!knowledgeIndex)return;
  const result=filteredKnowledge();
+ renderKnowledgeLens(result);
  const themeLabels=Object.fromEntries(knowledgeIndex.themes.map(t=>[t.key,t.label]));
  const state=el('knowledgeState').value,lgaId=el('knowledgeLGA').value;
  el('knowledgeCount').textContent=result.length+' of '+knowledgeIndex.catchments.length+' catchments · public geography and institutional source metadata';
@@ -687,6 +775,7 @@ function renderKnowledge(){
    +'<span><b>'+(admin?.lgas.length||0).toLocaleString()+'</b><small>Intersecting LGAs · provisional</small></span></div>'
    +'<p>SCMP communiqué section headings located:</p><div class="knowledgeTags">'+c.source_section_keys.map(k=>'<span>'+esc(themeLabels[k])+'</span>').join('')+'</div>'
    +geo
+   +renderKnowledgeCardLens(c,row,admin,river)
    +'<details class="knowledgeDetail"><summary>Data interpretation and source status</summary>'
    +'<p><b>Geography:</b> '+(admin?.states.length||0)+' state/FCT and '+(admin?.lgas.length||0)+' LGA polygon intersections; GRID3/geoBoundaries 2022, approximate, not official catchment administration.'
    +(admin?.outsidePct>0.5?' About '+admin.outsidePct.toFixed(1)+'% of the catchment lies beyond the Nigerian administrative boundary (indicative).':'')+'</p>'
@@ -700,6 +789,7 @@ function downloadKnowledgeCSV(){
  if(!rows.length)return;
  const header=['catchment_id','catchment_name','catchment_area_km2','modeled_river_reaches_fao_2026',
   'provisional_state_intersections','provisional_lga_intersections','international_area_pct_indicative',
+  'modeled_reaches_upstream_below100_km2','modeled_reaches_upstream_100_to_below1000_km2','modeled_reaches_upstream_1000plus_km2',
   'scmp_engagement_host_city','scmp_engagement_period','source_evidence_status','individual_claims_published','geographic_status'];
  const safe=value=>{
   let s=String(value??'');
@@ -710,6 +800,7 @@ function downloadKnowledgeCSV(){
  for(const item of rows){
   const c=catchments.find(x=>x.id===item.id),a=administrative?.byCatchment?.[item.id],river=detailedManifest?.files?.[item.id];
   const values=[item.id,item.name,c?.area_km2??'',river?.count??'',a?.states.length??'',a?.lgas.length??'',a?.outsidePct??'',
+                ...riverClassesFor(item.id),
                 item.engagement_city,item.engagement_period,'source metadata only',0,'provisional geographic references'];
   lines.push(values.map(safe).join(','));
  }
@@ -730,9 +821,16 @@ el('knowledgeCity').addEventListener('change',renderKnowledge);
 el('knowledgeState').addEventListener('change',()=>{updateKnowledgeLGAOptions();renderKnowledge()});
 el('knowledgeLGA').addEventListener('change',renderKnowledge);
 el('knowledgeSort').addEventListener('change',renderKnowledge);
+el('knowledgeCrossborder').addEventListener('change',renderKnowledge);
+el('knowledgeLenses').addEventListener('click',e=>{
+ const button=e.target.closest('button[data-knowledge-lens]');if(!button)return;
+ knowledgeLens=button.dataset.knowledgeLens;
+ for(const item of el('knowledgeLenses').querySelectorAll('button[data-knowledge-lens]'))item.setAttribute('aria-pressed',String(item===button));
+ renderKnowledge();
+});
 el('knowledgeExport').addEventListener('click',downloadKnowledgeCSV);
 el('knowledgeReset').addEventListener('click',()=>{
- el('knowledgeSearch').value='';el('knowledgeTheme').value='all';el('knowledgeYear').value='all';el('knowledgeCity').value='all';el('knowledgeState').value='all';updateKnowledgeLGAOptions();el('knowledgeSort').value='name';renderKnowledge();el('knowledgeSearch').focus();
+ el('knowledgeSearch').value='';el('knowledgeTheme').value='all';el('knowledgeYear').value='all';el('knowledgeCity').value='all';el('knowledgeState').value='all';updateKnowledgeLGAOptions();el('knowledgeSort').value='name';el('knowledgeCrossborder').value='all';knowledgeLens='water';for(const item of el('knowledgeLenses').querySelectorAll('button'))item.setAttribute('aria-pressed',String(item.dataset.knowledgeLens==='water'));renderKnowledge();el('knowledgeSearch').focus();
 });
 el('knowledgeCards').addEventListener('click',e=>{
  const b=e.target.closest('button[data-knowledge-map]');if(!b)return;
