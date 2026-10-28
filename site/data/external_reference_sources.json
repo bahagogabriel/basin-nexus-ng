@@ -14,12 +14,13 @@
       "doi": "10.60507/FK2/YLDK1Y",
       "publication_date": "2026-02-26",
       "license": "CC BY 4.0",
-      "status": "ACQUISITION_AND_SPATIAL_QA_PENDING",
+      "status": "SOURCE_CHECKSUM_AND_COUNTRY_VERIFIED_SPATIAL_QA_PENDING",
       "regional_dam_points_reported": 1429,
       "regional_reservoir_polygons_reported": 1258,
       "source_file_doi": "10.60507/FK2/YLDK1Y/WKZDRQ",
       "dam_csv_md5": "046b106da1e3a57ec2f1c461fe411b26",
-      "note": "Regional dataset counts, not Nigerian catchment totals. No facility points have been ingested, matched or field validated. Country-wise records and site precision require source-file review."
+      "note": "Exact publisher CSV MD5 and regional 1,429 rows verified; 231 original CSV entries are labelled Nigeria. Nigeria catchment matches, position accuracy and unique physical facilities have not yet been checked. These are source-record labels, not field-verified asset locations.",
+      "nigeria_source_country_rows": 231
     },
     {
       "id": "NGSA_MINERAL_OCCURRENCE",
@@ -35,7 +36,8 @@
       "regional_reservoir_polygons_reported": null,
       "source_file_doi": null,
       "dam_csv_md5": null,
-      "note": "NGSA describes a Microsoft Access database with occurrence locations, commodity, reserve and grade fields; individual records not acquired. Database description is not proof of a particular reserve."
+      "note": "NGSA describes a Microsoft Access database with occurrence locations, commodity, reserve and grade fields; individual records not acquired. Database description is not proof of a particular reserve.",
+      "nigeria_source_country_rows": null
     },
     {
       "id": "NGSA_NMRDSS",
@@ -51,7 +53,8 @@
       "regional_reservoir_polygons_reported": null,
       "source_file_doi": null,
       "dam_csv_md5": null,
-      "note": "Read-only official decision-support portal; no permission to copy individual geoscience records is asserted."
+      "note": "Read-only official decision-support portal; no permission to copy individual geoscience records is asserted.",
+      "nigeria_source_country_rows": null
     },
     {
       "id": "NGSA_MAP_DERIVED_COMPILATION",
@@ -67,7 +70,8 @@
       "regional_reservoir_polygons_reported": null,
       "source_file_doi": null,
       "dam_csv_md5": null,
-      "note": "974 occurrence records reported by compiler; compiled from map interpretation, not a primary NGSA structured database, measured mineral reserves or independently verified site positions. Check original NGSA map rights separately."
+      "note": "974 occurrence records reported by compiler; compiled from map interpretation, not a primary NGSA structured database, measured mineral reserves or independently verified site positions. Check original NGSA map rights separately.",
+      "nigeria_source_country_rows": null
     }
   ]
 }
