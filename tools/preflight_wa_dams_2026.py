@@ -67,7 +67,7 @@ def preflight(data, expected_md5=EXPECTED_CSV_MD5, expected_count=EXPECTED_ROWS)
             break
         except UnicodeDecodeError:
             continue
-    if text is None or any(ord(c)<32 and c not in "\\r\\n\\t" for c in text):
+    if text is None or any(ord(c)<32 and c not in "\r\n\t" for c in text):
         raise ValueError("CSV encoding invalid despite publisher checksum")
     reader=csv.DictReader(io.StringIO(text,newline=""))
     columns=list(reader.fieldnames or [])
