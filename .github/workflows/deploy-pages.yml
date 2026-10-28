@@ -100,6 +100,8 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_stage3d_f_editorial_workbench.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_g_priority_queue.py' -v
+      - name: Guard Stage 3D-K provenance and date-scope safety (synthetic only)
+        run: python -m unittest discover -s tools -p 'test_stage3d_k_provenance_triage.py' -v
       - name: Guard signed-source classification and numeric reconciliation
         run: python -m unittest discover -s tools -p 'test_stage3b_source_integrity.py' -v
       - name: Configure Pages
