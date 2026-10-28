@@ -37,7 +37,7 @@ for source in sources:
     assert 'href="'+source["url"]+'"' in html
 assert 'id="externalReferenceSources"' in html
 assert 'href="data/external_reference_sources.json"' in html
-assert 'not yet been checked' in html
+assert 'not a count within our catchments' in html
 public=json.loads((site/"data/public_evidence_catalogue.json").read_text(encoding="utf-8"))
 assert public["records"]==[]
 for prohibited in ("WA_Dams_2026.geojson","mineral_occurrence_points.geojson","candidate_geolocation.json"):
