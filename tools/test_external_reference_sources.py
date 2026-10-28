@@ -17,7 +17,7 @@ assert ids=={"WA_DAMS_2026","NGSA_MINERAL_OCCURRENCE","NGSA_NMRDSS","NGSA_MAP_DE
 assert len(set(r["url"] for r in sources))==4
 for row in sources:
     assert set(row)=={"id","subject","name","producer","url","doi","publication_date","license","status",
-     "regional_dam_points_reported","regional_reservoir_polygons_reported","source_file_doi","dam_csv_md5","note"}
+     "regional_dam_points_reported","regional_reservoir_polygons_reported","source_file_doi","dam_csv_md5","note","nigeria_source_country_rows"}
     assert row["url"].startswith("https://")
     assert row["status"]!="PUBLISHED_AS_VERIFIED_ASSETS"
     assert 15<len(row["note"])<800
@@ -27,7 +27,9 @@ wa=next(x for x in sources if x["id"]=="WA_DAMS_2026")
 assert wa["dam_csv_md5"]=="046b106da1e3a57ec2f1c461fe411b26"
 assert wa["source_file_doi"]=="10.60507/FK2/YLDK1Y/WKZDRQ"
 assert wa["regional_dam_points_reported"]==1429 and wa["regional_reservoir_polygons_reported"]==1258
-assert wa["status"]=="ACQUISITION_AND_SPATIAL_QA_PENDING"
+assert wa["status"]=="SOURCE_CHECKSUM_AND_COUNTRY_VERIFIED_SPATIAL_QA_PENDING"
+assert wa["nigeria_source_country_rows"]==231
+assert all(x["nigeria_source_country_rows"] is None for x in sources if x["id"]!="WA_DAMS_2026")
 assert all(x["regional_dam_points_reported"] is None for x in sources if x["id"]!="WA_DAMS_2026")
 html=(site/"index.html").read_text(encoding="utf-8")
 for source in sources:
