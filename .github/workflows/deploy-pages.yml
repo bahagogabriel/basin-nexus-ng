@@ -29,6 +29,10 @@ jobs:
           python-version: '3.11'
       - name: Verify public-release allowlist and geometry records
         run: python tools/validate_public_release.py
+      - name: Validate public-only external research source registry and synthetic CSV integrity
+        run: |
+          python tools/test_external_reference_sources.py
+          python -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
       - name: Verify international context screening
         run: python tools/test_country_context.py
       - name: Verify provisional public administrative catalogue

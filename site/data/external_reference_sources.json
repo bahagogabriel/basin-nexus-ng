@@ -1,0 +1,73 @@
+{
+  "schema_version": "BN_EXTERNAL_REFERENCE_V1",
+  "status": "PUBLIC_SOURCE_LINKS_ONLY",
+  "reviewed_on": "2026-10-28",
+  "source_records_integrated": 0,
+  "facility_points_published": 0,
+  "sources": [
+    {
+      "id": "WA_DAMS_2026",
+      "subject": "water_infrastructure",
+      "name": "West Africa Dams and Reservoirs Dataset",
+      "producer": "Kouassi et al. (2026), bonndata University of Bonn",
+      "url": "https://bonndata.uni-bonn.de/dataset.xhtml?persistentId=doi%3A10.60507%2FFK2%2FYLDK1Y",
+      "doi": "10.60507/FK2/YLDK1Y",
+      "publication_date": "2026-02-26",
+      "license": "CC BY 4.0",
+      "status": "ACQUISITION_AND_SPATIAL_QA_PENDING",
+      "regional_dam_points_reported": 1429,
+      "regional_reservoir_polygons_reported": 1258,
+      "source_file_doi": "10.60507/FK2/YLDK1Y/WKZDRQ",
+      "dam_csv_md5": "046b106da1e3a57ec2f1c461fe411b26",
+      "note": "Regional dataset counts, not Nigerian catchment totals. No facility points have been ingested, matched or field validated. Country-wise records and site precision require source-file review."
+    },
+    {
+      "id": "NGSA_MINERAL_OCCURRENCE",
+      "subject": "mineral_resources",
+      "name": "National Mineral Occurrence Database",
+      "producer": "Nigeria Geological Survey Agency (NGSA)",
+      "url": "https://ngsa.gov.ng/database/",
+      "doi": null,
+      "publication_date": null,
+      "license": "NOT_VERIFIED_FOR_REUSE",
+      "status": "OFFICIAL_DATABASE_ACCESS_REQUIRED",
+      "regional_dam_points_reported": null,
+      "regional_reservoir_polygons_reported": null,
+      "source_file_doi": null,
+      "dam_csv_md5": null,
+      "note": "NGSA describes a Microsoft Access database with occurrence locations, commodity, reserve and grade fields; individual records not acquired. Database description is not proof of a particular reserve."
+    },
+    {
+      "id": "NGSA_NMRDSS",
+      "subject": "mineral_resources",
+      "name": "Nigerian Mineral Resources Decision Support System",
+      "producer": "Nigeria Geological Survey Agency (NGSA)",
+      "url": "https://ngsa.gov.ng/decision-support-system/",
+      "doi": null,
+      "publication_date": null,
+      "license": "NOT_VERIFIED_FOR_REUSE",
+      "status": "OFFICIAL_INTERACTIVE_REFERENCE_ONLY",
+      "regional_dam_points_reported": null,
+      "regional_reservoir_polygons_reported": null,
+      "source_file_doi": null,
+      "dam_csv_md5": null,
+      "note": "Read-only official decision-support portal; no permission to copy individual geoscience records is asserted."
+    },
+    {
+      "id": "NGSA_MAP_DERIVED_COMPILATION",
+      "subject": "mineral_resources",
+      "name": "Nigeria Mineral Resources Database (independent 2026 compilation)",
+      "producer": "whoisOlaxtra (2026), based on NGSA Mineral Resources Map (2023)",
+      "url": "https://github.com/whoisolaxtra/nigeria-mineral-resources-database",
+      "doi": "10.5281/zenodo.21997333",
+      "publication_date": "2026-08-01",
+      "license": "COMPILER_CC_BY_4_ORIGINAL_SOURCE_RIGHTS_SEPARATE",
+      "status": "DERIVATIVE_SOURCE_UNDER_ASSESSMENT",
+      "regional_dam_points_reported": null,
+      "regional_reservoir_polygons_reported": null,
+      "source_file_doi": null,
+      "dam_csv_md5": null,
+      "note": "974 occurrence records reported by compiler; compiled from map interpretation, not a primary NGSA structured database, measured mineral reserves or independently verified site positions. Check original NGSA map rights separately."
+    }
+  ]
+}

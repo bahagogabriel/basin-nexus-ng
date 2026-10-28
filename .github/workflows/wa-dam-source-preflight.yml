@@ -1,0 +1,40 @@
+name: Independent 2026 West Africa dam-source intake QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/preflight_wa_dams_2026.py'
+      - 'tools/test_preflight_wa_dams_2026.py'
+      - 'site/data/external_reference_sources.json'
+      - '.github/workflows/wa-dam-source-preflight.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/preflight_wa_dams_2026.py'
+      - 'site/data/external_reference_sources.json'
+      - '.github/workflows/wa-dam-source-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Synthetic source-safety preflight tests
+        run: |
+          python tools/test_external_reference_sources.py
+          python -m unittest discover -s tools -p 'test_preflight_wa_dams_2026.py' -v
+      - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
+        if: github.event_name != 'pull_request'
+        run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
+      - name: Archive aggregate-only source QA report; never archive raw CSV or coordinates
+        if: github.event_name != 'pull_request' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: west-africa-2026-dam-source-aggregate-qa
+          path: review/wa_dams_2026_preflight.json
+          if-no-files-found: warn
