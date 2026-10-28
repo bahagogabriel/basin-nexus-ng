@@ -1,0 +1,162 @@
+{
+  "schema_version": "BN_WA_DAM_SOURCE_QUALITY_V1",
+  "status": "ORIGINAL_PUBLISHER_COMPILED_REFERENCE_METADATA_REVIEW_ONLY",
+  "reviewed_on": "2026-10-28",
+  "source_dataset_doi": "10.60507/FK2/YLDK1Y",
+  "source_csv_md5": "046b106da1e3a57ec2f1c461fe411b26",
+  "source_shapefile_md5": "a87f9b4ef2e96625b737ffac8595c138",
+  "source_crs_epsg": 4326,
+  "license": "CC BY 4.0",
+  "verification_workflow": "https://github.com/bahagogabriel/basin-nexus-ng/actions/runs/40733789032",
+  "national_source_summary": {
+    "nigeria_labelled_source_rows": 231,
+    "rows_with_usable_source_name": 84,
+    "rows_without_usable_source_name": 147,
+    "rows_with_main_source_label": 231,
+    "rows_with_recognizable_dam_year": 76,
+    "rows_without_recognizable_dam_year": 155,
+    "repeated_normalized_name_groups": 5,
+    "source_rows_in_repeated_name_groups": 11,
+    "pairs_of_source_points_within_250_metres": 1,
+    "pairs_of_source_points_within_1_km": 10,
+    "source_rows_with_neighbor_within_1_km": 15,
+    "same_normalized_name_pairs_within_1_km": 1,
+    "same_normalized_name_pairs_within_5_km": 2
+  },
+  "within_study_catchment_summary": {
+    "intersecting_compiled_source_points": 189,
+    "source_points_with_usable_name": 71,
+    "source_points_with_main_source_label": 189,
+    "source_points_with_recognizable_dam_year": 62,
+    "catchments_with_at_least_one_compiled_point": 18,
+    "catchments_without_compiled_source_point": 2
+  },
+  "by_catchment": {
+    "SCMP-C01": {
+      "source_positions": 2,
+      "named_source_rows": 1,
+      "rows_with_source_label": 2,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C02": {
+      "source_positions": 12,
+      "named_source_rows": 1,
+      "rows_with_source_label": 12,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C03": {
+      "source_positions": 0,
+      "named_source_rows": 0,
+      "rows_with_source_label": 0,
+      "rows_with_recognizable_year": 0
+    },
+    "SCMP-C04": {
+      "source_positions": 1,
+      "named_source_rows": 1,
+      "rows_with_source_label": 1,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C05": {
+      "source_positions": 21,
+      "named_source_rows": 9,
+      "rows_with_source_label": 21,
+      "rows_with_recognizable_year": 7
+    },
+    "SCMP-C06": {
+      "source_positions": 33,
+      "named_source_rows": 16,
+      "rows_with_source_label": 33,
+      "rows_with_recognizable_year": 16
+    },
+    "SCMP-C07": {
+      "source_positions": 3,
+      "named_source_rows": 1,
+      "rows_with_source_label": 3,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C08": {
+      "source_positions": 6,
+      "named_source_rows": 4,
+      "rows_with_source_label": 6,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C09": {
+      "source_positions": 1,
+      "named_source_rows": 0,
+      "rows_with_source_label": 1,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C10": {
+      "source_positions": 10,
+      "named_source_rows": 5,
+      "rows_with_source_label": 10,
+      "rows_with_recognizable_year": 4
+    },
+    "SCMP-C11": {
+      "source_positions": 1,
+      "named_source_rows": 0,
+      "rows_with_source_label": 1,
+      "rows_with_recognizable_year": 0
+    },
+    "SCMP-C12": {
+      "source_positions": 1,
+      "named_source_rows": 0,
+      "rows_with_source_label": 1,
+      "rows_with_recognizable_year": 1
+    },
+    "SCMP-C13": {
+      "source_positions": 10,
+      "named_source_rows": 4,
+      "rows_with_source_label": 10,
+      "rows_with_recognizable_year": 3
+    },
+    "SCMP-C14": {
+      "source_positions": 17,
+      "named_source_rows": 3,
+      "rows_with_source_label": 17,
+      "rows_with_recognizable_year": 4
+    },
+    "SCMP-C15": {
+      "source_positions": 26,
+      "named_source_rows": 3,
+      "rows_with_source_label": 26,
+      "rows_with_recognizable_year": 3
+    },
+    "SCMP-C16": {
+      "source_positions": 10,
+      "named_source_rows": 6,
+      "rows_with_source_label": 10,
+      "rows_with_recognizable_year": 2
+    },
+    "SCMP-C17": {
+      "source_positions": 9,
+      "named_source_rows": 4,
+      "rows_with_source_label": 9,
+      "rows_with_recognizable_year": 5
+    },
+    "SCMP-C18": {
+      "source_positions": 5,
+      "named_source_rows": 3,
+      "rows_with_source_label": 5,
+      "rows_with_recognizable_year": 3
+    },
+    "SCMP-C19": {
+      "source_positions": 0,
+      "named_source_rows": 0,
+      "rows_with_source_label": 0,
+      "rows_with_recognizable_year": 0
+    },
+    "SCMP-C20": {
+      "source_positions": 21,
+      "named_source_rows": 10,
+      "rows_with_source_label": 21,
+      "rows_with_recognizable_year": 8
+    }
+  },
+  "publication_decision": "AGGREGATE_METADATA_ONLY_NO_POINT_LAYER",
+  "individually_verified_facilities": 0,
+  "individual_dam_source_records_published": 0,
+  "individual_coordinates_published": 0,
+  "stakeholder_records_authorized": 0,
+  "note": "Completeness refers only to source columns of the original published 2026 West African compilation. A name, main source label, year and WGS84 coordinate do not by themselves establish correct site identity, survey accuracy, uniqueness, operation or capacity. Near-neighbor and repeated-name checks are unresolved triage flags. Zero source matches do not imply absence of dams."
+}
