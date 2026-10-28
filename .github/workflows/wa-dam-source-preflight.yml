@@ -7,6 +7,8 @@ on:
       - 'tools/review_wa_dam_catchments_2026.py'
       - 'tools/review_wa_dam_identity_2026.py'
       - 'tools/build_wa_2026_dam_candidate_review.py'
+      - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/test_review_wa_dam_identity_2026.py'
       - 'tools/test_review_wa_dam_catchments_2026.py'
@@ -20,6 +22,8 @@ on:
       - 'tools/review_wa_dam_catchments_2026.py'
       - 'tools/review_wa_dam_identity_2026.py'
       - 'tools/build_wa_2026_dam_candidate_review.py'
+      - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
       - 'tools/test_review_wa_dam_identity_2026.py'
       - 'tools/test_review_wa_dam_catchments_2026.py'
@@ -45,6 +49,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_review_wa_dam_catchments_2026.py' -v
           python -m unittest discover -s tools -p 'test_review_wa_dam_identity_2026.py' -v
           python -m unittest discover -s tools -p 'test_build_wa_2026_dam_candidate_review.py' -v
+          python -m unittest discover -s tools -p 'test_triage_wa_dam_compiled_references.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -57,6 +62,16 @@ jobs:
       - name: Prepare inspectable compiled reference candidates from pinned original source
         if: github.event_name != 'pull_request'
         run: python tools/build_wa_2026_dam_candidate_review.py --fetch --catchments site/data/catchments.geojson --review-output review/compiled_wa_dam_candidates_NOT_VERIFIED.json
+      - name: Stage 3D-T source-only proximity and identity triage (no facility confirmation)
+        if: github.event_name != 'pull_request'
+        run: python tools/triage_wa_dam_compiled_references.py --candidate-artifact review/compiled_wa_dam_candidates_NOT_VERIFIED.json --review-output review/wa_dam_reference_triage_NOT_CONFIRMED.json
+      - name: Archive reviewer-only triage queue; never the public site directory
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: west-africa-2026-source-review-triage-NOT-CONFIRMED
+          path: review/wa_dam_reference_triage_NOT_CONFIRMED.json
+          if-no-files-found: error
       - name: Archive CC BY 4.0 compiled reference candidates for further review; NOT verified
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
