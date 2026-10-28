@@ -168,6 +168,43 @@ async function test(page,name){
  assert.match(await page.locator('#knowledgeCards h3').first().innerText(),/Aloma-Konshisha/);
  await page.locator('#knowledgeReset').click();
  assert.equal(await page.locator('#knowledgeSort').inputValue(),'name');
+ // Stage 3D-C: thematic water hierarchy totals and release gating.
+ assert.equal(await page.locator('#knowledgeLenses button[aria-pressed="true"]').count(),1,name+': exactly one active thematic view');
+ assert.equal(await page.locator('#knowledgeLenses button[aria-pressed="true"]').getAttribute('data-knowledge-lens'),'water');
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/33,169/);
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/11,433/);
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/7,410/);
+ assert.equal(await page.locator('#knowledgeCards .knowledgeCardLens').count(),20);
+ await page.locator('#knowledgeCrossborder').selectOption('yes');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),9,name+': nine cross-border catchments (>0.5% threshold)');
+ const borderRiverTotals=await page.evaluate(()=>{
+  const ids=Object.entries(window.__BN_MAP_DIAGNOSTICS__?.detailedManifest?.files||{});return ids.length;
+ });
+ // A filtered CSV must preserve class breakdown without confidential records.
+ const crossExport=page.waitForEvent('download');
+ await page.locator('#knowledgeExport').click();
+ const borderCsv=fs.readFileSync(await (await crossExport).path(),'utf8');
+ assert.equal(borderCsv.split(/\r?\n/).filter(Boolean).length,10);
+ assert.match(borderCsv,/modeled_reaches_upstream_1000plus_km2/);
+ assert.doesNotMatch(borderCsv,/raw_statement_internal|source_internal_id|release_authorization/);
+ await page.locator('#knowledgeCrossborder').selectOption('no');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),11,name+': 11 catchments are within Nigeria by provisional threshold');
+ await page.locator('#knowledgeCrossborder').selectOption('all');
+ await page.locator('#knowledgeLenses button[data-knowledge-lens="geography"]').click();
+ assert.equal(await page.locator('#knowledgeLenses button[aria-pressed="true"]').getAttribute('data-knowledge-lens'),'geography');
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/102/);
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/9/);
+ assert.match(await page.locator('#knowledgeCards .knowledgeCardLens').first().innerText(),/Largest provisional state/);
+ await page.locator('#knowledgeLenses button[data-knowledge-lens="engagement"]').click();
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/2024/);
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/2025/);
+ await page.locator('#knowledgeLenses button[data-knowledge-lens="assets"]').click();
+ assert.match(await page.locator('#knowledgeThemePanel').innerText(),/no individual infrastructure facilities/i);
+ assert.match(await page.locator('#knowledgeCards .knowledgeCardLens').first().innerText(),/No individually cleared facility/);
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20);
+ await page.locator('#knowledgeReset').click();
+ assert.equal(await page.locator('#knowledgeCrossborder').inputValue(),'all');
+ assert.equal(await page.locator('#knowledgeLenses button[aria-pressed="true"]').getAttribute('data-knowledge-lens'),'water');
  await page.locator('#knowledgeTheme').selectOption('policies');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': policies are indexed across all 20 catchments');
  await page.locator('#knowledgeSearch').fill('Okwa');
