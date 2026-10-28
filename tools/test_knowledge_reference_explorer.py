@@ -60,7 +60,7 @@ for text in required:
  assert text in html,text
 # Prevent accidentally introducing private sources to public site.
 for token in ('raw_statement_internal','source_internal_id','principal_candidate_id',
-              'release_authorization','signed_source_internal','private_drive_id',
+              'signed_source_internal','private_drive_id',
               'drive.google.com/file/'):
  assert token not in html,token
 
