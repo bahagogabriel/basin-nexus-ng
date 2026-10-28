@@ -28,7 +28,7 @@ assert sum(c['engagement_date_start'].startswith('2024-') for c in d['catchments
 assert sum(c['engagement_date_start'].startswith('2025-') for c in d['catchments'])==14
 assert {c['engagement_city'] for c in d['catchments']}=={'Kano','Sokoto','Ilorin','Lokoja','Gombe'}
 html=(site/'index.html').read_text()
-assert 'thematic evidence explorer v1.11' in html
+assert 'approved evidence catalogue preview v1.12' in html
 assert "id=\"knowledgeLenses\"" in html
 assert "id=\"knowledgeCrossborder\"" in html
 assert "function renderKnowledgeLens(rows)" in html

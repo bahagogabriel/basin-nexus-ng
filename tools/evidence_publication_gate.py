@@ -12,6 +12,7 @@ import re
 import sys
 from pathlib import Path
 
+SCHEMA_VERSION="BN_PUBLIC_EVIDENCE_V1"
 ALLOWED_THEMES={"water_infrastructure","natural_resources","ecosystems","threats_challenges","socioeconomics","policies","interventions"}
 ALLOWED_EVIDENCE={"stakeholder_reported","cross_checked","independently_verified"}
 ALLOWED_TYPES={"resource_report","facility_report","risk_report","policy_report","intervention_report"}
@@ -33,9 +34,14 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
         _fail("Expected PublicEvidenceCollection")
     if doc.get("publication_status")!="APPROVED_PUBLIC_ONLY":
         _fail("Only approved public records are allowed")
+    # Accept legacy synthetic test objects, but require versioning for all published site assets.
+    if set(doc)-{"type","publication_status","records","schema_version"}:
+        _fail("Collection contains unknown top-level fields")
+    if "schema_version" in doc and doc["schema_version"]!=SCHEMA_VERSION:
+        _fail("Unsupported public evidence schema")
     records=doc.get("records")
-    if not isinstance(records,list):
-        _fail("Expected records list")
+    if not isinstance(records,list) or len(records)>500:
+        _fail("Expected bounded records list")
     allowed_catchments=allowed_catchments or _read_ids()
     seen=set()
     for idx,rec in enumerate(records):
@@ -49,8 +55,10 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
             _fail(f"record {idx}: invalid or duplicate public ID")
         seen.add(uid)
         ids=rec.get("catchment_ids")
-        if not isinstance(ids,list) or not ids or set(ids)-allowed_catchments:
-            _fail(f"record {idx}: unknown or missing catchment relationship")
+        if not isinstance(ids,list) or not ids or any(not isinstance(x,str) for x in ids):
+            _fail(f"record {idx}: invalid or missing catchment relationship")
+        if set(ids)-allowed_catchments:
+            _fail(f"record {idx}: unknown catchment relationship")
         if len(ids)!=len(set(ids)):
             _fail(f"record {idx}: repeated catchment ID")
         if rec.get("theme") not in ALLOWED_THEMES or rec.get("record_type") not in ALLOWED_TYPES:
@@ -63,11 +71,15 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
             v=rec.get(key)
             if not isinstance(v,str) or len(v.strip())<5 or len(v)>2400:
                 _fail(f"record {idx}: invalid {key}")
-            if "drive.google.com" in v.lower() or "@" in v and key=="source_reference":
-                _fail(f"record {idx}: sensitive/private source locator")
+            if "drive.google.com" in v.lower() or "docs.google.com" in v.lower():
+                _fail(f"record {idx}: private source reference")
+            if re.search(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}",v,re.I):
+                _fail(f"record {idx}: email address in published evidence")
+            if re.search(r"(?i)(?:\bprivate_drive_id\b|\bsource_internal_id\b|\brelease_authorization\b|\braw_statement_internal\b)",v):
+                _fail(f"record {idx}: internal review marker in public text")
         url=rec.get("public_source_url")
         if url is not None:
-            if not isinstance(url,str) or not url.startswith("https://") or "drive.google.com" in url.lower():
+            if not isinstance(url,str) or not url.startswith("https://") or any(host in url.lower() for host in ("drive.google.com","docs.google.com","localhost","127.0.0.1")):
                 _fail(f"record {idx}: public source URL requires a reviewed public HTTPS endpoint")
         position=rec.get("location")
         if position is not None:
@@ -84,8 +96,10 @@ def validate(doc:dict, allowed_catchments:set[str]|None=None)->dict:
                 if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v) or not minval<=v<=maxval:
                     _fail(f"record {idx}: invalid {field}")
         notes=rec.get("notes")
-        if notes is not None and (not isinstance(notes,str) or len(notes)>1200):
-            _fail(f"record {idx}: invalid notes")
+        if notes is not None and (not isinstance(notes,str) or len(notes)>1200
+                or "drive.google.com" in notes.lower() or "docs.google.com" in notes.lower()
+                or re.search(r"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}",notes,re.I)):
+            _fail(f"record {idx}: invalid or private notes")
     return {"validated_public_records":len(records),"mapped_locations":sum(x.get("location") is not None for x in records)}
 
 def main():

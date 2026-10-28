@@ -82,6 +82,12 @@ jobs:
         run: python tools/test_knowledge_reference_explorer.py
       - name: Verify thematic model hierarchy and evidence-readiness policy
         run: python tools/test_thematic_lenses.py
+      - name: Verify public catalogue is approved-only and empty for this release
+        run: python tools/test_public_evidence_catalogue.py
+      - name: Verify source-rights and record fingerprint review gates (synthetic only)
+        run: |
+          python -m unittest discover -s tools -p 'test_hardened_evidence_gate.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_e_release_pipeline.py' -v
       - name: Test future evidence publication safeguards
         run: python tools/test_evidence_publication_gate.py
       - name: Test Stage 3B private-review synthetic QA

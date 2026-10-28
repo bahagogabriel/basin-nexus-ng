@@ -7,6 +7,12 @@ on:
       - 'tools/ui_smoke_v09.cjs'
       - 'tools/test_knowledge_reference_explorer.py'
       - 'tools/test_thematic_lenses.py'
+      - 'tools/test_public_evidence_catalogue.py'
+      - 'tools/evidence_publication_gate.py'
+      - 'tools/test_hardened_evidence_gate.py'
+      - 'tools/stage3d_e_release_pipeline.py'
+      - 'tools/test_stage3d_e_release_pipeline.py'
+      - 'site/data/public_evidence_catalogue.json'
       - 'tools/stage3c_private_editorial_qa.py'
       - 'tools/stage3c_source_context_qa.py'
       - 'tools/test_stage3c_source_context_qa.py'
@@ -49,6 +55,12 @@ jobs:
         run: python3 tools/test_knowledge_reference_explorer.py
       - name: Verify source-safe thematic hierarchy and cross-border analysis
         run: python3 tools/test_thematic_lenses.py
+      - name: Validate public empty evidence catalogue
+        run: python3 tools/test_public_evidence_catalogue.py
+      - name: Verify hardened publication and reviewer-receipt safeguards (synthetic only)
+        run: |
+          python3 -m unittest discover -s tools -p 'test_hardened_evidence_gate.py' -v
+          python3 -m unittest discover -s tools -p 'test_stage3d_e_release_pipeline.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots

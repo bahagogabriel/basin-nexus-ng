@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -73,6 +73,12 @@ assert coverage['source_documents_reviewed']==20
 assert coverage['source_contents_published'] is False and coverage['coordinates_or_observations_published'] is False
 assert coverage['engagement_provenance_status']=='SOURCE_EVENT_METADATA_ONLY'
 assert coverage['source_records_publicly_cleared']==0
+from evidence_publication_gate import validate as validate_evidence, SCHEMA_VERSION
+public_catalogue=json.loads((site/'data/public_evidence_catalogue.json').read_text('utf-8'))
+assert public_catalogue['schema_version']==SCHEMA_VERSION
+assert set(public_catalogue)=={'type','schema_version','publication_status','records'}
+assert public_catalogue['records']==[] # Intentional manual release decision required for nonempty records
+assert validate_evidence(public_catalogue,set(ids))=={'validated_public_records':0,'mapped_locations':0}
 assert all(x['source_type']=='SCMP institutional stakeholder engagement communiqué' and x['engagement_date_start']<=x['engagement_date_end'] and x['engagement_city'] in ('Kano','Sokoto','Ilorin','Lokoja','Gombe') for x in coverage['catchments'])
 assert len(coverage['catchments'])==20 and set(x['id'] for x in coverage['catchments'])==set(ids)
 assert all(len(x['source_section_keys'])==4 and x['public_release']=='Metadata only' for x in coverage['catchments'])
@@ -82,7 +88,7 @@ assert 'id="mapCanvas"' in html
 assert 'svg.addEventListener(' not in html
 assert '<title>Basin Nexus NG' in html
 assert 'PUBLIC GEOGRAPHY PREVIEW' in html
-for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json']:
+for path in ['data/catchments.geojson','data/registry.json','data/catchments.csv','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json']:
     assert path in html
 for forbidden in ('drive.google.com/file/', 'SCMP_Evidence_Register_REVIEW',
                   'SCMP_Asset_Observations_REVIEW','personal contact details:',

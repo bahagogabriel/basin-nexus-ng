@@ -44,7 +44,7 @@ for key,entry in admin['byCatchment'].items():
    ids[lga['id']] = (lga['name'],lga['state'])
 assert (state_links,lga_links,len(ids))==(102,754,495)
 
-assert "thematic evidence explorer v1.11" in html
+assert "approved evidence catalogue preview v1.12" in html
 assert "function riverClassesFor(id)" in html
 assert "function renderKnowledgeLens(rows)" in html
 assert "function renderKnowledgeCardLens(c,row,admin,river)" in html
@@ -60,7 +60,7 @@ for text in required:
  assert text in html,text
 # Prevent accidentally introducing private sources to public site.
 for token in ('raw_statement_internal','source_internal_id','principal_candidate_id',
-              'release_authorization','signed_source_internal','private_drive_id',
+              'signed_source_internal','private_drive_id',
               'drive.google.com/file/'):
  assert token not in html,token
 

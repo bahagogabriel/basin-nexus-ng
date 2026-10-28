@@ -105,6 +105,9 @@ async function test(page,name){
  await page.waitForFunction(()=>document.querySelector('#knowledgeCards article.knowledgeCard')?.querySelector('h3'));
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': expected 20 source-coverage records');
  assert.match(await page.locator('#knowledgeCount').innerText(),/20 of 20/);
+ assert.match(await page.locator('#evidenceCount').innerText(),/0 matching approved records/);
+ assert.match(await page.locator('#evidenceList').innerText(),/No individual stakeholder evidence records are cleared/);
+ assert.equal(await page.locator('#evidenceList .evidenceEntry').count(),0);
  assert.equal(await page.locator('#knowledgeCards .knowledgeEvent').count(),20,name+': engagement provenance must exist per catchment');
  assert.match(await page.locator('#knowledgeCards .knowledgeEvent').first().innerText(),/2024|2025/);
  await page.locator('#knowledgeYear').selectOption('2024');
@@ -370,10 +373,67 @@ async function pinch(page){
  assert(result.view.w<before*.9,'pinch-out did not zoom in');
  console.log('tablet real two-finger pinch: PASS '+before.toFixed(1)+' to '+result.view.w.toFixed(1));
 }
+async function testEvidenceCatalogueFixture(browser){
+ // Browser route fixtures never alter files in site/ or the actual released evidence collection.
+ const make=(record_id,extra={})=>({
+  record_id,catchment_ids:['SCMP-C02'],theme:'water_infrastructure',
+  record_type:'facility_report',statement:'Synthetic fictional field report <img src=x onerror=alert(1)>; not a real facility.',
+  evidence_status:'stakeholder_reported',source_reference:'Synthetic public test provenance',
+  source_locator:'Invented section, paragraph 1',release_authorization:'PUBLIC-SYNTHETIC-11111',
+  location:null,...extra
+ });
+ const fixtures=[
+  make('BN-SYNTH-101'),
+  make('BN-SYNTH-102',{theme:'interventions',evidence_status:'independently_verified',
+   statement:'Invented intervention, used only by the browser acceptance suite.',
+   location:{latitude:9.2,longitude:8.5,verification:'independently_validated',
+             method:'Invented GNSS field inspection',uncertainty_m:35}})
+ ];
+ const approved={schema_version:'BN_PUBLIC_EVIDENCE_V1',type:'PublicEvidenceCollection',
+                 publication_status:'APPROVED_PUBLIC_ONLY',records:fixtures};
+ const c=await browser.newContext({viewport:{width:1200,height:840}});
+ await c.route('**/data/public_evidence_catalogue.json',r=>r.fulfill({
+  status:200,contentType:'application/json',body:JSON.stringify(approved)}));
+ const page=await c.newPage();
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#evidenceCount')?.textContent.includes('2 publicly released overall'),{timeout:35000});
+ await page.locator('#navKnowledge').click();
+ assert.equal(await page.locator('#evidenceList article.evidenceEntry').count(),2);
+ assert.equal(await page.locator('#evidenceList img').count(),0,'Untrusted source text must be HTML escaped');
+ assert.match(await page.locator('#evidenceList').innerText(),/<img src=x onerror=alert\(1\)>/);
+ await page.locator('#evidenceTheme').selectOption('interventions');
+ assert.equal(await page.locator('#evidenceList article.evidenceEntry').count(),1);
+ await page.locator('#evidenceStatus').selectOption('stakeholder_reported');
+ assert.equal(await page.locator('#evidenceList article.evidenceEntry').count(),0);
+ await page.locator('#evidenceStatus').selectOption('independently_verified');
+ assert.equal(await page.locator('#evidenceList article.evidenceEntry').count(),1);
+ await page.locator('#evidenceList details summary').click();
+ assert.match(await page.locator('#evidenceList').innerText(),/uncertainty 35 m/);
+ assert.match(await page.locator('#evidenceList').innerText(),/Map navigation below selects the catchment/);
+ await page.locator('#evidenceList button[data-evidence-map]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C02');
+ assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ await c.close();
+ const invalid=await browser.newContext();
+ await invalid.route('**/data/public_evidence_catalogue.json',r=>r.fulfill({
+  status:200,contentType:'application/json',
+  body:JSON.stringify({...approved,publication_status:'DRAFT'})}));
+ const badPage=await invalid.newPage();
+ await badPage.goto(url,{waitUntil:'domcontentloaded'});
+ await badPage.waitForFunction(()=>document.querySelector('#evidenceCount')?.textContent.includes('unavailable'),{timeout:35000});
+ await badPage.locator('#navKnowledge').click();
+ assert.equal(await badPage.locator('#evidenceList article.evidenceEntry').count(),0);
+ assert.match(await badPage.locator('#evidenceList').innerText(),/failed its schema check/);
+ assert.equal(await badPage.locator('#knowledgeCards article.knowledgeCard').count(),20,'Invalid evidence cannot break geographic atlas');
+ await invalid.close();
+ console.log('APPROVED-ONLY EVIDENCE CATALOGUE: PASS synthetic records, status and theme filters, XSS escaping, map navigation, fail-closed invalid feed');
+}
+
 (async()=>{try{
  await ready();browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const desktop=await browser.newPage({viewport:{width:1512,height:950}});
  await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
+ await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
  await phone.goto(url,{waitUntil:'domcontentloaded'});
