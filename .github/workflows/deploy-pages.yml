@@ -41,6 +41,8 @@ jobs:
         run: |
           python tools/validate_confirmed_dam_sites.py
           python -m unittest discover -s tools -p 'test_validate_confirmed_dam_sites.py' -v
+      - name: Validate licensed 186 source research preview and three withheld identities
+        run: python tools/test_compiled_dam_preview.py
       - name: Verify international context screening
         run: python tools/test_country_context.py
       - name: Verify provisional public administrative catalogue
