@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.10**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
+**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.11**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
 
 ## Status
 
@@ -139,3 +139,9 @@ The source-metadata Knowledge page now supports a state-constrained, crosswalk-g
 These reference counts are not evidence of water discharge, water-quality monitoring, infrastructure facilities, stakeholder participation or official catchment jurisdictions. The export contains only values already published in the accepted registry, provisional GRID3 crosswalk, FAO 2026 river manifest and public SCMP meeting-event metadata. Public source-coverage index remains explicitly metadata-only; zero individual claims cleared.
 
 The release adds a strict geometry/water/CSV metadata contract validator and extended desktop/tablet phone browser/download regression. See `docs/STAGE3D_B_REFERENCE_EXPLORER.md`.
+
+## Stage 3D-C — thematic reference and evidence-readiness lenses (v1.11)
+
+The Knowledge index now supports four distinct thematic views over the **same filtered public catchment set**: (1) FAO AQUASTAT modeled river reaches grouped by upstream drainage-area thresholds (<100, 100–<1,000 and ≥1,000 km²), with per-catchment counts and a transparent total for the selected set; (2) indicative cross-border geographical footprint and top three state/FCT polygon intersections; (3) documented SCMP engagement workshop provenance by 2024/2025 event year; and (4) infrastructure/intervention **publication readiness**, displaying zero public authorizations rather than inventing facilities. A cross-border filter uses the pre-existing geometry-derived `outsidePct > 0.5` threshold. The filtered CSV now includes upstream-drainage reach-class counts.
+
+These model groupings are **not** measured discharge, river width/length or asset inventories. Group totals are based on *catchment-clipped* reach geometries; cross-catchment overlap is not deduplicated. Source presence is not individual claim verification. The infrastructure view means no individually cleared records have been published, **not** that no facilities exist. No private statements, coordinates, permissions, attendance lists or signed documents were added. See `docs/STAGE3D_C_THEMATIC_LENSES.md`.
