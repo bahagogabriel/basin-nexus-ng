@@ -73,6 +73,12 @@ assert coverage['source_documents_reviewed']==20
 assert coverage['source_contents_published'] is False and coverage['coordinates_or_observations_published'] is False
 assert coverage['engagement_provenance_status']=='SOURCE_EVENT_METADATA_ONLY'
 assert coverage['source_records_publicly_cleared']==0
+from evidence_publication_gate import validate as validate_evidence, SCHEMA_VERSION
+public_catalogue=json.loads((site/'data/public_evidence_catalogue.json').read_text('utf-8'))
+assert public_catalogue['schema_version']==SCHEMA_VERSION
+assert set(public_catalogue)=={'type','schema_version','publication_status','records'}
+assert public_catalogue['records']==[] # Intentional manual release decision required for nonempty records
+assert validate_evidence(public_catalogue,set(ids))=={'validated_public_records':0,'mapped_locations':0}
 assert all(x['source_type']=='SCMP institutional stakeholder engagement communiqué' and x['engagement_date_start']<=x['engagement_date_end'] and x['engagement_city'] in ('Kano','Sokoto','Ilorin','Lokoja','Gombe') for x in coverage['catchments'])
 assert len(coverage['catchments'])==20 and set(x['id'] for x in coverage['catchments'])==set(ids)
 assert all(len(x['source_section_keys'])==4 and x['public_release']=='Metadata only' for x in coverage['catchments'])
