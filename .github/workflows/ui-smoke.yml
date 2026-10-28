@@ -1,5 +1,13 @@
 name: Basin Nexus geographic layer browser QA
 on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'site/index.html'
+      - 'tools/ui_smoke_v09.cjs'
+      - 'tools/stage3c_private_editorial_qa.py'
+      - 'tools/test_stage3c_private_editorial_qa.py'
+      - '.github/workflows/ui-smoke.yml'
   push:
     branches: [main]
     paths:
@@ -17,7 +25,7 @@ permissions:
   contents: read
 jobs:
   chromium:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,6 +35,10 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Verify Stage 3C-B editorial privacy guardrails (synthetic)
+        run: python3 -m unittest discover -s tools -p 'test_stage3c_private_editorial_qa.py' -v
+      - name: Check public engagement metadata contract
+        run: python3 tools/test_public_knowledge_index.py
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots

@@ -1,6 +1,6 @@
 # Basin Nexus NG
 
-**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.8**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
+**Nigeria's Open Catchment Knowledge Atlas** — public source-attributed engagement metadata and geospatial atlas **v1.8.1**. Stage 3B private evidence intake and QA tooling is in development; no individual stakeholder record or facility location is approved for public release.
 
 ## Status
 
@@ -121,3 +121,9 @@ On map or directory selection, the currently selected catchment is scrolled into
 ## Stage 3A — SCMP stakeholder source-coverage index (v1.7)
 
 Twenty institutional engagement communiqués have been located and read, one for each catchment. Each contains the source headings Natural Resources, Threats and Challenges, Socioeconomics, and Policies. This release publishes **only that thematic source-availability metadata**, with no raw documents, stakeholder claims, private Drive URLs, signatures, names, or unverified facility coordinates. Intervention records remain pending manual extraction where dispersed under other headings. The public Knowledge index supports topic/catchment searching and links back to the relevant map; scientific source and asset verification remain distinct activities.
+
+## Stage 3C-B — editorial QA and Knowledge discovery (v1.8.1)
+
+The public Knowledge index now supports a host-city filter (Kano, Sokoto, Ilorin, Lokoja, Gombe), combined with existing year, source-theme and catchment search filters, plus an accessible Reset filters control. These are **meeting host cities**, not facility locations or catchment geocentres. All 20 source events remain metadata-only.
+
+The private editorial pilot receives `tools/stage3c_private_editorial_qa.py`, a conservative, aggregate-only QA utility and adversarial synthetic tests. Private inputs/outputs must be outside the public repository; no source wording or candidate IDs are emitted to terminal reports. The tool never grants or implies public release permission. See `docs/STAGE3C_EDITORIAL_QA.md`.

@@ -7,7 +7,20 @@ const fs=require('node:fs'),path=require('node:path');
 const folder=path.join(process.cwd(),'review/browser-v09');fs.mkdirSync(folder,{recursive:true});
 const server=spawn('python3',['-m','http.server','8791','--bind','127.0.0.1','--directory','site'],{stdio:'ignore'});
 let browser;const errors=[];const url='http://127.0.0.1:8791/';
-async function ready(){for(let i=0;i<60;i++){try{const r=await fetch(url);if(r.ok)return}catch{}await delay(250)}throw Error('Server did not respond')}
+async function ready(){
+ const http=require('node:http');
+ for(let i=0;i<60;i++){
+  try{
+   const status=await new Promise((resolve,reject)=>{
+    const req=http.get(url,res=>{res.resume();resolve(res.statusCode)});
+    req.once('error',reject);req.setTimeout(1500,()=>req.destroy(Error('HTTP server readiness timed out')));
+   });
+   if(status===200)return;
+  }catch{}
+  await delay(250);
+ }
+ throw Error('Server did not respond');
+}
 async function metric(page){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__BN_MAP_DIAGNOSTICS__)))}
 
 async function testWaterLayers(page,name){
@@ -100,6 +113,19 @@ async function test(page,name){
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),14,name+': only fourteen 2025 source records');
  await page.locator('#knowledgeYear').selectOption('all');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': all-year source reset');
+ for(const [city,expected] of [['Kano',6],['Sokoto',3],['Ilorin',4],['Lokoja',4],['Gombe',3]]){
+  await page.locator('#knowledgeCity').selectOption(city);
+  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),expected,name+': incorrect '+city+' source count');
+ }
+ await page.locator('#knowledgeCity').selectOption('Sokoto');
+ await page.locator('#knowledgeYear').selectOption('2024');
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),0,name+': impossible year/city combination must be empty');
+ assert.match(await page.locator('#knowledgeCards').innerText(),/No matching engagement source/);
+ await page.locator('#knowledgeReset').click();
+ assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': reset must clear combined filters');
+ assert.equal(await page.locator('#knowledgeCity').inputValue(),'all');
+ assert.equal(await page.locator('#knowledgeYear').inputValue(),'all');
+
 
  await page.locator('#knowledgeTheme').selectOption('policies');
  assert.equal(await page.locator('#knowledgeCards article.knowledgeCard').count(),20,name+': policies are indexed across all 20 catchments');
