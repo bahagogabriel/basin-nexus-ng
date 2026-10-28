@@ -26,6 +26,8 @@ on:
       - 'tools/test_compiled_dam_preview.py'
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
+      - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'site/data/external_reference_sources.json'
       - 'tools/preflight_wa_dams_2026.py'
       - 'tools/test_preflight_wa_dams_2026.py'
@@ -51,6 +53,8 @@ on:
       - 'site/data/lakes_overview.geojson'
       - 'site/data/hydro_reference_metadata.json'
       - 'tools/ui_smoke_v09.cjs'
+      - 'tools/triage_wa_dam_compiled_references.py'
+      - 'tools/test_triage_wa_dam_compiled_references.py'
       - '.github/workflows/ui-smoke.yml'
   workflow_dispatch:
 permissions:
