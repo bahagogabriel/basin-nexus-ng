@@ -56,10 +56,19 @@ def preflight(data, expected_md5=EXPECTED_CSV_MD5, expected_count=EXPECTED_ROWS)
     md5=hashlib.md5(data).hexdigest()
     if md5.lower()!=expected_md5.lower():
         raise ValueError("Source checksum differs from publisher's official MD5")
-    try:
-        text=data.decode("utf-8-sig")
-    except UnicodeDecodeError as exc:
-        raise ValueError("CSV encoding unexpected; manual review required") from exc
+    # The pinned publisher CSV is not entirely UTF-8. Only after exact MD5
+    # verification, attempt common legacy Latin encodings without data loss.
+    text=None
+    encoding=None
+    for candidate in ("utf-8-sig","cp1252","latin-1"):
+        try:
+            text=data.decode(candidate)
+            encoding=candidate
+            break
+        except UnicodeDecodeError:
+            continue
+    if text is None or any(ord(c)<32 and c not in "\\r\\n\\t" for c in text):
+        raise ValueError("CSV encoding invalid despite publisher checksum")
     reader=csv.DictReader(io.StringIO(text,newline=""))
     columns=list(reader.fieldnames or [])
     if len(columns)!=len(set(columns)) or len(columns)<5:
@@ -93,6 +102,7 @@ def preflight(data, expected_md5=EXPECTED_CSV_MD5, expected_count=EXPECTED_ROWS)
         "license":"CC BY 4.0",
         "publisher_md5":expected_md5,
         "computed_md5":md5,
+        "source_character_encoding":encoding,
         "source_records":len(rows),
         "column_names":columns,
         "country_field":country_field,
