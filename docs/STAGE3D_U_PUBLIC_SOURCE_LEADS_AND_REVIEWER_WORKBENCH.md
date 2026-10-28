@@ -1,0 +1,31 @@
+# Stage 3D-U — Independent documentary context leads and fail-closed reviewer workbench
+
+**Prepared:** 28 October 2026. **Publication decision:** **HOLD — ZERO individually confirmed dams.**
+
+## Source boundary and why this stage exists
+
+The **189** published 2026 West Africa dam **compiled source reference positions** intersecting the simplified SCMP 20-catchment display overlay are *not* field-surveyed dams. Three *originally named* records remain withheld from the separate **186-record opt-in unverified reference map**, leaving **68 originally named and 118 source-unnamed** display points. There are **zero** individually independently confirmed dams in the public confirmed register. None of the 88 owner-only stakeholder editorial claims or other private SCMP evidence are included here.
+
+Kouassi et al. (2026), *West Africa Dams and Reservoirs Dataset* (University of Bonn bonndata, CC BY 4.0), DOI https://doi.org/10.60507/FK2/YLDK1Y . Pinned original CSV MD5 `046b106da1e3a57ec2f1c461fe411b26` and original Shapefile ZIP MD5 `a87f9b4ef2e96625b737ffac8595c138`; the original PRJ was audited as EPSG:4326 in earlier source intake. Pinned 186-public-source-tuple SHA-256 `2dc9c81925ea2ed6b2cb82f13410868a96ccc93d1897f3eda6040e924c9dd82a`.
+
+## Independent context reading for the three **withheld** source labels (not a point match)
+
+**WA26-095 — source label 'Souapiti'**: Guinea's Ministry of Energy described an official 12 August 2026 site visit to the **Kaléta–Souapiti hydroelectric complex in Guinea**, documented 13 August 2026. This is strong country-level contrary identity context for the **Nigeria-labelled** compiled source point. It **does not** establish the existence or identity of a dam at the original Nigerian coordinate. Source: [Guinea Ministry of Energy, 13 August 2026](https://www.energie.gov.gn/%F0%9D%90%95%F0%9D%90%88%F0%9D%90%92%F0%9D%90%88%F0%9D%90%93%F0%9D%90%84-%F0%9D%90%93%F0%9D%90%84%F0%9D%90%82%F0%9D%90%87%F0%9D%90%8D%F0%9D%90%88%F0%9D%90%90%F0%9D%90%94%F0%9D%90%84-%F0%9D%90%83/).
+
+**WA26-062 — source label 'Mambilla'**: Nigeria's State House on 18 September 2026 described unresolved legal and development history for the long-delayed Mambilla hydropower **project**; Radio Nigeria on 3 October 2026 reported governors urging its completion and take-off. These materials **do not** independently document a constructed dam at the compiled source position. Neither an unbuilt project nor judicial settlement may be entered as an operating or completed facility. Sources: [State House, 18 September 2026](https://statehouse.gov.ng/icc-case-ab-sunrise-power-and-transmission-company-limited-sunrise-v-federal-government-of-nigeria-nigeria-v-mr-leno-adesanya/) and [Radio Nigeria FRCN, 3 October 2026](https://radionigeria.frcn.gov.ng/news/north-east-governors-seek-speedy-completion-of-mambila-hydropower-project).
+
+**WA26-027 — source label 'Kafin Zaki'**: The federal Eyemark entry for an **Upper Benue RBDA re-design and environmental impact assessment project** was last modified 25 September 2026 and marked **not started**. This is a specific **project** status, **not** proof that no physical works or dam-related infrastructure exists anywhere in the area. It does not validate the compiled source coordinate. Source: [Eyemark project entry](https://www.eyemark.ng/project/re-design-and-enviromental-impact-assessment-of-kafin-zaki-dam-ningi-lga-bauchi-state-ergp557112936).
+
+**Evidence scope rule:** these URLs are public independent **context leads**. They do not constitute point-coordinate confirmation, asset identification, a rights authorization, surveyed uncertainty, a reviewer receipt, or completed dam documentation. Their status is **`independent_point_match: false`** in the workbench. No source-independent site existence decision or facility admission is implied.
+
+## Automation deliverable
+
+`tools/build_stage3d_u_evidence_workbench.py` generates a **research-only, source-only, NOT PUBLIC** receipt workbench from the Stage 3D-T pinned original-source triage artifact. The artifact covers exactly **19** priority references: **3 disputed names** and **16 proximity/repeated-name triage points**. All 11 evidence receipt fields are intentionally **null**, `reviewed_and_confirmed = 0`, `eligible_for_public_confirmation = false`, and `public_layer_status = NO_CHANGE`. The 108 other unnamed and 62 other named source leads remain in Stage T's complete 189-point research queue; they are not lost or claimed as absent.
+
+The generator checks exact source MD5s, research source review schema and no-public-confirmation flags, all 189 source records/priority counts, and the pinned hash of the 186 existing opt-in source markers. It fails closed on duplicate IDs, unexpected/private columns, false reviewer decisions, unknown catchment IDs, mislabelled withheld points and invalid coordinates. URLs are hard-coded contextual documentation, not proof of existence. Unit tests use *fictional* features and never fetch real source files on PRs.
+
+The original source intake workflow re-fetches publisher files only on **main** or manual dispatch, generates Stage T review queue and Stage U 19-item workbench, then stores it in **GitHub Actions artifacts** under `review/`, not the GitHub Pages `site/data/` directory. The strict public allowlist is unchanged.
+
+## Next distinct checkpoint (Stage 3D-V)
+
+Collect named, **dated**, independent human/engineering/field/EO evidence for each proposed dam and verify constructed physical existence and **actual physical structure coordinates**, source-lineage independence, positional validation method + uncertainty in metres, rights/privacy/public release permission, accountable reviewer and reviewer decision. Separate facility existence from its **name** and **operational status**. An honestly confirmed dam without a reliable name can later be called **“Unnamed dam”** *after passing the independent release gate*. A missing original-source name remains **“Unnamed reference point”** pending that gate. No auto-generation of such evidence or auto-publication is permitted.
