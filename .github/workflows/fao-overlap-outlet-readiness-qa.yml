@@ -1,0 +1,64 @@
+name: Audit SCMP study polygon overlaps and modeled outlet-readiness leads
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bk_bl_overlap_outlet_screen.py'
+      - 'tools/test_stage3d_bk_bn_overlap_outlet_screen.py'
+      - '.github/workflows/fao-overlap-outlet-readiness-qa.yml'
+      - 'site/data/fao_study_area_overlap_outlet_readiness.json'
+      - 'site/data/fao_model_boundary_exit_screen_records.csv'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bk_bl_overlap_outlet_screen.py'
+      - 'tools/test_stage3d_bk_bn_overlap_outlet_screen.py'
+      - '.github/workflows/fao-overlap-outlet-readiness-qa.yml'
+      - 'site/data/fao_study_area_overlap_outlet_readiness.json'
+      - 'site/data/fao_model_boundary_exit_screen_records.csv'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install reproducible polygon/area screening
+        run: python -m pip install --disable-pip-version-check 'shapely==2.1.2' 'pyproj==3.7.2'
+      - name: Rebuild exact 20 study overlap matrix and 125 model-source boundary candidates, never approve outlets
+        run: |
+          python -m unittest discover -s tools -p 'test_stage3d_bk_bn_overlap_outlet_screen.py' -v
+          python tools/build_stage3d_bk_bl_overlap_outlet_screen.py --output review/overlap-outlet-screen
+      - name: Publish verified source-only derived output to development PR, never to main
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          test "$HEAD_BRANCH" != main
+          git fetch origin "refs/heads/$HEAD_BRANCH:refs/remotes/origin/$HEAD_BRANCH"
+          git checkout -B "$HEAD_BRANCH" "refs/remotes/origin/$HEAD_BRANCH"
+          if test -e site/data/fao_study_area_overlap_outlet_readiness.json || test -e site/data/fao_model_boundary_exit_screen_records.csv; then
+            python tools/build_stage3d_bk_bl_overlap_outlet_screen.py --check --output site/data
+          else
+            cp review/overlap-outlet-screen/fao_study_area_overlap_outlet_readiness.json site/data/
+            cp review/overlap-outlet-screen/fao_model_boundary_exit_screen_records.csv site/data/
+            python tools/build_stage3d_bk_bl_overlap_outlet_screen.py --check --output site/data
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add site/data/fao_study_area_overlap_outlet_readiness.json site/data/fao_model_boundary_exit_screen_records.csv
+            git commit -m "Add source-verified SCMP overlap and provisional modeled boundary-exit screens"
+            git push origin "HEAD:refs/heads/$HEAD_BRANCH"
+          fi
+      - name: Archive source-derived study area screening (NO outlets field-verified)
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-study-overlap-outlet-screen-RESEARCH-ONLY
+          path: review/overlap-outlet-screen/
+          retention-days: 45
+          if-no-files-found: error
