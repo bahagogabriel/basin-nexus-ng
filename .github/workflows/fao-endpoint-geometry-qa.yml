@@ -1,0 +1,63 @@
+name: Verify clipped FAO source-reach endpoint geometry QA
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
+      - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
+      - '.github/workflows/fao-endpoint-geometry-qa.yml'
+      - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_endpoint_gap_index.json'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
+      - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
+      - '.github/workflows/fao-endpoint-geometry-qa.yml'
+      - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_endpoint_gap_index.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Model-only endpoint geometry and source integrity QA
+        run: |
+          python -m unittest discover -s tools -p 'test_stage3d_ay_az_fao_endpoint_qa.py' -v
+          python tools/build_stage3d_ay_az_fao_endpoint_qa.py --output review/fao-endpoint-geometry
+      - name: Save source-provenance-bound endpoint artifacts to same-repo PR development branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$HEAD_BRANCH" != main
+          git fetch origin "refs/heads/$HEAD_BRANCH:refs/remotes/origin/$HEAD_BRANCH"
+          git checkout -B "$HEAD_BRANCH" "refs/remotes/origin/$HEAD_BRANCH"
+          if test -e site/data/fao_endpoint_gap_summary.json || test -e site/data/fao_endpoint_gap_index.json; then
+            python tools/build_stage3d_ay_az_fao_endpoint_qa.py --check --output site/data
+            echo "Existing source-geometry QA matches all pinned model geometry"
+          else
+            cp review/fao-endpoint-geometry/fao_endpoint_gap_summary.json site/data/
+            cp review/fao-endpoint-geometry/fao_endpoint_gap_index.json site/data/
+            python tools/build_stage3d_ay_az_fao_endpoint_qa.py --check --output site/data
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add site/data/fao_endpoint_gap_summary.json site/data/fao_endpoint_gap_index.json
+            git commit -m "Add source-verified clipped FAO modeled endpoint gap screening"
+            git push origin "HEAD:refs/heads/$HEAD_BRANCH"
+          fi
+      - name: Archive independently generated source-only geometric screening
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-fao-endpoint-geometry-MODEL-QA-ONLY
+          path: review/fao-endpoint-geometry/
+          if-no-files-found: error
+          retention-days: 30

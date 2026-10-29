@@ -419,12 +419,17 @@ async function pinch(page){
 async function testFaoSourceTopology(browser){
  const ctx=await browser.newContext({viewport:{width:1320,height:960}});
  const page=await ctx.newPage();
- const requested=[];
- page.on('request',req=>{if(req.url().includes('fao_downstream_index.json'))requested.push(req.url())});
+ const requested=[],gapRequested=[];
+ page.on('request',req=>{if(req.url().includes('fao_downstream_index.json'))requested.push(req.url());if(req.url().includes('fao_endpoint_gap_index.json'))gapRequested.push(req.url())});
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>document.querySelector('#faoTopologyRows tr button')&&
   document.querySelector('#faoTopologyStatus')?.textContent.includes('33 directed'),{timeout:35000});
  await page.locator('#navData').click();
+ await page.waitForFunction(()=>document.querySelector('#faoGeometryStatus')?.textContent.includes('51,973 endpoint gaps'),{timeout:10000});
+ assert.equal(await page.locator('#faoGeometryRows tr').count(),20);
+ assert.equal(await page.locator('#faoGeometryRows tr').filter({hasText:'Gulbin-Ka'}).count(),1);
+ assert.match(await page.locator('#faoGeometryQA').innerText(),/not.*accuracy|not.*survey|not.*hydraulic|not.*river junction/i);
+ assert.equal(gapRequested.length,0,'Modeled endpoint index must be lazy, not loaded with atlas');
  assert.equal(await page.locator('#faoTopologyRows tr').count(),20);
  assert.match(await page.locator('#faoTopology').innerText(),/not verified hydraulic connections/i);
  assert.equal(requested.length,0,'Global source-ID lookup must load only on user request');
@@ -468,6 +473,8 @@ async function testFaoSourceTopology(browser){
  assert(state.sourceTraceSteps<=40,'Source chain must be bounded to 40 reaches');
  assert.match(await page.locator('#sourceTraceResult').innerText(),/not.*hydraulic|No surveyed continuity|no surveyed continuity/i);
  assert.equal(requested.length,1,'Source graph should be lazy cached');
+ assert.equal(gapRequested.length,1,'Geometric source index must be lazy cached');
+ assert.match(await page.locator('#sourceTraceResult').innerText(),/Clipped geometry screening.*source.chain/i);
  await ctx.close();
  const invalid=await browser.newContext();
  await invalid.route('**/data/fao_downstream_summary.json',async route=>{
@@ -481,6 +488,20 @@ async function testFaoSourceTopology(browser){
  await bad.locator('#navData').click();
  assert.equal(await bad.locator('#faoTopologyRows button').count(),0);
  await invalid.close();
+
+ const geomBad=await browser.newContext();
+ await geomBad.route('**/data/fao_endpoint_gap_summary.json',async route=>{
+   const orig=await route.fetch();const data=await orig.json();
+   data.total_clipped_source_link_classification.endpoint_gt_500m=300;
+   await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(data)});
+ });
+ const corrupt=await geomBad.newPage();
+ await corrupt.goto(url,{waitUntil:'domcontentloaded'});
+ await corrupt.waitForFunction(()=>document.querySelector('#faoGeometryStatus')?.textContent.includes('failed scientific integrity'),{timeout:35000});
+ await corrupt.locator('#navData').click();
+ assert.equal(await corrupt.locator('#faoGeometryRows button').count(),0);
+ await geomBad.close();
+
  console.log('FAO SOURCE NEXT_DOWN: source-only 20-catchment audit, lazy graph, <=40 bounded IDs, map highlight and tamper rejection PASS');
 }
 

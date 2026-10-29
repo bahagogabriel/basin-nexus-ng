@@ -1,0 +1,478 @@
+{
+  "schema_version": "BN_STAGE3D_AY_FAO_CLIPPED_ENDPOINT_GAP_QA_V1",
+  "status": "MODELLED_CLIPPED_GEOMETRY_DIAGNOSTIC_NOT_PHYSICAL_CONNECTIVITY",
+  "source": "FAO AQUASTAT 2026 HydroRIVERS-derived clipped 15-arcsecond modeled river geometry",
+  "license": "CC BY 4.0",
+  "source_manifest_sha256": "2cae41419dda5bdf19e27d6e33e53f37773625f8d6d701fe23f250d8827a83b8",
+  "source_index_sha256": "1f3758fed03744bdfcf7779cc2321d93a709071811c582890ed3fa19bc3205e5",
+  "unique_source_ids": 51906,
+  "clipped_reach_copies": 52012,
+  "geometry_screening_method": "MINIMUM_ENDPOINT_TO_ENDPOINT_GREAT_CIRCLE_METERS_OVER_CLIPPED_SEGMENTS_NOT_FLOW_DIRECTION",
+  "distance_rounding_m": 1,
+  "classification_bands_m": [
+    50,
+    500
+  ],
+  "total_clipped_source_link_classification": {
+    "endpoint_le_50m": 51973,
+    "next_id_not_in_index": 32,
+    "endpoint_gt_500m": 3,
+    "source_terminal_or_unlinked": 4
+  },
+  "by_catchment": {
+    "SCMP-C01": {
+      "name": "Aloma-Konshisha",
+      "clipped_reaches": 1920,
+      "endpoint_le_50m": 1918,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 2,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C02": {
+      "name": "Benue-Mada",
+      "clipped_reaches": 1769,
+      "endpoint_le_50m": 1769,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C03": {
+      "name": "Gaji-Lamurde",
+      "clipped_reaches": 1376,
+      "endpoint_le_50m": 1376,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C04": {
+      "name": "Gulbin-Ka",
+      "clipped_reaches": 1416,
+      "endpoint_le_50m": 1415,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 1,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C05": {
+      "name": "Gurara-Gbako",
+      "clipped_reaches": 2274,
+      "endpoint_le_50m": 2274,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C06": {
+      "name": "Hadejia Jama'are",
+      "clipped_reaches": 5568,
+      "endpoint_le_50m": 5563,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 5,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C07": {
+      "name": "Hawul-Kilange",
+      "clipped_reaches": 5732,
+      "endpoint_le_50m": 5732,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C08": {
+      "name": "Kaduna-Mariga",
+      "clipped_reaches": 1299,
+      "endpoint_le_50m": 1299,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C09": {
+      "name": "Lokoja-Niger",
+      "clipped_reaches": 2553,
+      "endpoint_le_50m": 2548,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 5,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C10": {
+      "name": "Malenda",
+      "clipped_reaches": 1101,
+      "endpoint_le_50m": 1101,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C11": {
+      "name": "Misau-Komadugu Gana",
+      "clipped_reaches": 1103,
+      "endpoint_le_50m": 1093,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 10,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C12": {
+      "name": "Ngada",
+      "clipped_reaches": 1903,
+      "endpoint_le_50m": 1903,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C13": {
+      "name": "Oshin-Oyi",
+      "clipped_reaches": 2588,
+      "endpoint_le_50m": 2588,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C14": {
+      "name": "Rima",
+      "clipped_reaches": 4548,
+      "endpoint_le_50m": 4547,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 1,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C15": {
+      "name": "Sarkin Pawa-Kaduna",
+      "clipped_reaches": 2038,
+      "endpoint_le_50m": 2038,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C16": {
+      "name": "Shemankar-Katsina Ala",
+      "clipped_reaches": 3974,
+      "endpoint_le_50m": 3974,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C17": {
+      "name": "Sokoto-Zamfara",
+      "clipped_reaches": 2080,
+      "endpoint_le_50m": 2080,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C18": {
+      "name": "Wase-Taraba",
+      "clipped_reaches": 3454,
+      "endpoint_le_50m": 3454,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    },
+    "SCMP-C19": {
+      "name": "Yedseram",
+      "clipped_reaches": 2897,
+      "endpoint_le_50m": 2882,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 2,
+      "next_id_not_in_index": 9,
+      "source_terminal_or_unlinked": 4
+    },
+    "SCMP-C20": {
+      "name": "Zungur-Gongola",
+      "clipped_reaches": 2419,
+      "endpoint_le_50m": 2419,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0,
+      "next_id_not_in_index": 0,
+      "source_terminal_or_unlinked": 0
+    }
+  },
+  "cross_catchment_source_link_pair_geometry_screen": [
+    {
+      "from": "SCMP-C01",
+      "to": "SCMP-C16",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C02",
+      "to": "SCMP-C05",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C02",
+      "to": "SCMP-C16",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C03",
+      "to": "SCMP-C07",
+      "source_link_copies": 3,
+      "endpoint_le_50m": 3,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C03",
+      "to": "SCMP-C18",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C04",
+      "to": "SCMP-C10",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C04",
+      "to": "SCMP-C17",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C02",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C08",
+      "source_link_copies": 3,
+      "endpoint_le_50m": 3,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C09",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C06",
+      "to": "SCMP-C11",
+      "source_link_copies": 8,
+      "endpoint_le_50m": 8,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C07",
+      "to": "SCMP-C03",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C08",
+      "to": "SCMP-C05",
+      "source_link_copies": 3,
+      "endpoint_le_50m": 3,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C10",
+      "to": "SCMP-C13",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C06",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C12",
+      "source_link_copies": 7,
+      "endpoint_le_50m": 7,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C19",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C20",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C12",
+      "to": "SCMP-C11",
+      "source_link_copies": 11,
+      "endpoint_le_50m": 11,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C12",
+      "to": "SCMP-C19",
+      "source_link_copies": 9,
+      "endpoint_le_50m": 9,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C13",
+      "to": "SCMP-C05",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C13",
+      "to": "SCMP-C08",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C14",
+      "to": "SCMP-C17",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C15",
+      "to": "SCMP-C08",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C16",
+      "to": "SCMP-C02",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C16",
+      "to": "SCMP-C18",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C17",
+      "to": "SCMP-C04",
+      "source_link_copies": 4,
+      "endpoint_le_50m": 4,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C18",
+      "to": "SCMP-C03",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C18",
+      "to": "SCMP-C16",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C07",
+      "source_link_copies": 2,
+      "endpoint_le_50m": 2,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C11",
+      "source_link_copies": 1,
+      "endpoint_le_50m": 1,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C12",
+      "source_link_copies": 10,
+      "endpoint_le_50m": 10,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    },
+    {
+      "from": "SCMP-C20",
+      "to": "SCMP-C07",
+      "source_link_copies": 3,
+      "endpoint_le_50m": 3,
+      "endpoint_50_to_500m": 0,
+      "endpoint_gt_500m": 0
+    }
+  ],
+  "limitations": [
+    "Close clipped endpoints are not independently verified river topology or proof of hydraulic continuity.",
+    "A large endpoint gap is not proof that model source IDs are incorrect: source features are clipped, truncated or coarse.",
+    "Minimum distance across clipped endpoints is a SCREENING statistic only; it is not field uncertainty or positional accuracy.",
+    "Near, far and close thresholds are transparent descriptive bins, not accuracy tolerances or confidence ratings.",
+    "Direction of geometry vertices and NEXT_DOWN flow direction are not independently reconciled.",
+    "No upstream basin delineation, travel time, flood risk, water availability or dam-site confirmation is inferred."
+  ]
+}
