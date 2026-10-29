@@ -506,6 +506,46 @@ async function testFaoSourceTopology(browser){
 }
 
 
+
+async function testFao89CrossCatchmentSourceReview(browser){
+ const ctx=await browser.newContext({viewport:{width:1280,height:920}});
+ const page=await ctx.newPage();
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#fao89Status')?.textContent.includes('89 original clipped source references'),{timeout:35000});
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#fao89Rows tr[data-fao89-origin]').count(),89);
+ const panel=await page.locator('#fao89Review').innerText();
+ assert.match(panel,/89 originating clipped source records produce 92 destination memberships/);
+ assert.match(panel,/not.*mean all water flows/i);
+ assert.equal(await page.locator('#fao89Rows tr').first().getAttribute('data-fao89-origin'),'SCMP-C12');
+ assert.match(await page.locator('#fao89Rows tr').first().innerText(),/10565250/);
+ await page.locator('#fao89Catchment').selectOption('SCMP-C12');
+ assert.equal(await page.locator('#fao89Rows tr[data-fao89-origin]').count(),19);
+ await page.locator('#fao89Search').fill('10565250');
+ assert.equal(await page.locator('#fao89Rows tr[data-fao89-origin]').count(),1);
+ await page.locator('#fao89Gap').selectOption('0-50');
+ assert.equal(await page.locator('#fao89Rows tr[data-fao89-origin]').count(),0);
+ await page.locator('#fao89Gap').selectOption('500+');
+ assert.equal(await page.locator('#fao89Rows tr[data-fao89-origin]').count(),1);
+ await page.locator('#fao89Rows button[data-fao89-map="SCMP-C12"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C12',{timeout:8000});
+ assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ await ctx.close();
+ const altered=await browser.newContext();
+ await altered.route('**/data/fao_89_catchment_source_boundary_audit.json',async route=>{
+   const fetched=await route.fetch(),data=await fetched.json();
+   data.reference_memberships_across_target_catchments=100;
+   await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(data)});
+ });
+ const bad=await altered.newPage();
+ await bad.goto(url,{waitUntil:'domcontentloaded'});
+ await bad.waitForFunction(()=>document.querySelector('#fao89Status')?.textContent.includes('failed verification'),{timeout:35000});
+ await bad.locator('#navData').click();
+ assert.equal(await bad.locator('#fao89Rows tr[data-fao89-origin]').count(),0);
+ await altered.close();
+ console.log('FAO 89 SOURCE ASSOCIATIONS: 89 clipped refs / 92 target memberships / 33 pair types, sort/filter, map link, and tamper rejection PASS');
+}
+
 async function testOriginalPublisherGapReview(browser){
  const ctx=await browser.newContext({viewport:{width:1280,height:900}});
  const page=await ctx.newPage();
@@ -636,6 +676,7 @@ async function testEvidenceCatalogueFixture(browser){
  await testReachComparison(browser);
  await testFaoSourceTopology(browser);
  await testOriginalPublisherGapReview(browser);
+ await testFao89CrossCatchmentSourceReview(browser);
 await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
