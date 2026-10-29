@@ -18,7 +18,7 @@ on:
       - 'site/data/fao_downstream_index.json'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   validate:
     runs-on: ubuntu-24.04
@@ -31,6 +31,27 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_stage3d_au_av_fao_topology.py' -v
           python tools/build_stage3d_au_av_fao_topology.py --output review/fao-source-topology
+      - name: Add verified source graph to same-repository development PR branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$HEAD_BRANCH" != main
+          if test -e site/data/fao_downstream_summary.json || test -e site/data/fao_downstream_index.json; then
+            python tools/build_stage3d_au_av_fao_topology.py --check --output site/data
+            echo "Existing source graph matches original publisher files"
+          else
+            cp review/fao-source-topology/fao_downstream_summary.json site/data/
+            cp review/fao-source-topology/fao_downstream_index.json site/data/
+            python tools/build_stage3d_au_av_fao_topology.py --check --output site/data
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add site/data/fao_downstream_summary.json site/data/fao_downstream_index.json
+            git commit -m "Add source-validated FAO NEXT_DOWN index and catchment connection QA"
+            git push origin "HEAD:refs/heads/$HEAD_BRANCH"
+          fi
       - name: Archive source-only cross-catchment topology for QA
         uses: actions/upload-artifact@v4
         with:
