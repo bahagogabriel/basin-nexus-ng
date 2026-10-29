@@ -10,6 +10,12 @@ on:
       - 'site/data/river_reach_comparison.json'
       - 'site/data/fao_downstream_summary.json'
       - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_three_original_gap_resolution.json'
+      - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
       - 'site/data/fao_endpoint_gap_index.json'
       - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
       - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
@@ -23,6 +29,12 @@ on:
       - 'site/data/river_reach_comparison.json'
       - 'site/data/fao_downstream_summary.json'
       - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_three_original_gap_resolution.json'
+      - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
       - 'site/data/fao_endpoint_gap_index.json'
       - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
       - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
@@ -102,6 +114,12 @@ on:
       - 'site/data/river_reach_comparison.json'
       - 'site/data/fao_downstream_summary.json'
       - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_three_original_gap_resolution.json'
+      - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
       - 'site/data/fao_endpoint_gap_index.json'
       - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
       - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
@@ -185,6 +203,10 @@ jobs:
         run: python3 -m unittest discover -s tools -p 'test_stage3d_au_av_fao_topology.py' -v
       - name: Validate modeled clipped geometry endpoint separations and source QA limits
         run: python3 -m unittest discover -s tools -p 'test_stage3d_ay_az_fao_endpoint_qa.py' -v
+      - name: Verify original publisher six model records, three uncut junctions and no hydraulic confirmation
+        run: |
+          python3 -m unittest discover -s tools -p 'test_stage3d_bc_original_uncut_fao_review.py' -v
+          python3 -m unittest discover -s tools -p 'test_stage3d_bd_bf_uncut_source_resolution.py' -v
       - name: Guard confirmed unnamed dams and synthetic independently reviewed admission receipts
         run: |
           python3 tools/validate_confirmed_dam_sites.py
