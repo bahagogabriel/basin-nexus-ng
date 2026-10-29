@@ -1,0 +1,40 @@
+name: Verify modelled FAO source downstream topology
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_au_av_fao_topology.py'
+      - 'tools/test_stage3d_au_av_fao_topology.py'
+      - '.github/workflows/fao-topology-source-qa.yml'
+      - 'site/data/fao_downstream_summary.json'
+      - 'site/data/fao_downstream_index.json'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_au_av_fao_topology.py'
+      - 'tools/test_stage3d_au_av_fao_topology.py'
+      - '.github/workflows/fao-topology-source-qa.yml'
+      - 'site/data/fao_downstream_summary.json'
+      - 'site/data/fao_downstream_index.json'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit original FAO source integrity and build NON-CONFIRMING source graph
+        run: |
+          python -m unittest discover -s tools -p 'test_stage3d_au_av_fao_topology.py' -v
+          python tools/build_stage3d_au_av_fao_topology.py --output review/fao-source-topology
+      - name: Archive source-only cross-catchment topology for QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-fao-source-next-down-NOT-VERIFIED
+          path: review/fao-source-topology/
+          retention-days: 30
+          if-no-files-found: error
