@@ -79,6 +79,8 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Install pinned WGS84 source-comparison test dependency
+        run: python3 -m pip install --disable-pip-version-check pyproj==3.7.2
       - name: Verify Stage 3C-B editorial privacy guardrails (synthetic)
         run: python3 -m unittest discover -s tools -p 'test_stage3c_private_editorial_qa.py' -v
       - name: Verify private source-context integrity (synthetic only)
