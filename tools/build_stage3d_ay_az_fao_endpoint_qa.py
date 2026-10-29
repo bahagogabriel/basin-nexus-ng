@@ -10,7 +10,7 @@ a surveyed meeting point, positional accuracy or a proof of physical contact.
 Clipping can manufacture endpoints or obscure original reach continuations.
 """
 from __future__ import annotations
-import argparse, hashlib, json, math
+import argparse, csv, hashlib, json, math
 from collections import Counter, defaultdict
 from pathlib import Path
 from build_stage3d_au_av_fao_topology import build as source_build
@@ -166,6 +166,28 @@ def build(folder=DATA):
         raise ValueError("Geometry gap lookup exceeds safe browser budget")
     return summary,index,compact
 
+def outlier_review_csv(summary,index,source_index):
+    """Only original published source IDs; never facility/field verification."""
+    original={fid:(dn,mask) for fid,dn,mask in source_index["rows"]}
+    ids=source_index["catchment_ids"]
+    flagged=[]
+    for fid,gap in index["rows"]:
+        if gap is None or gap<=500:continue
+        if fid not in original or original[fid][0] not in original:
+            raise ValueError("Unlinked source cannot be endpoint outlier")
+        dn,mask=original[fid]
+        destmask=original[dn][1]
+        flagged.append({
+            "source_hyriv_id":fid,"source_next_down_id":dn,
+            "minimum_clipped_endpoint_separation_m":gap,
+            "source_catchment_ids":";".join(ids[i] for i in range(20) if mask&(1<<i)),
+            "next_source_catchment_ids":";".join(ids[i] for i in range(20) if destmask&(1<<i)),
+            "review_status":"GEOMETRIC_SCREENING_LEAD_NOT_FIELD_VERIFIED"
+        })
+    if len(flagged)!=summary["total_clipped_source_link_classification"]["endpoint_gt_500m"]:
+        raise ValueError("Large model gap triage no longer matches 20 clipped source counts")
+    return flagged
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--output",required=True,type=Path)
@@ -182,6 +204,13 @@ def main():
         a.output.mkdir(parents=True)
         s.write_text(json.dumps(summary,indent=2)+"\n",encoding="utf-8")
         g.write_bytes(compact)
+        source_index=json.loads((DATA/"fao_downstream_index.json").read_text("utf-8"))
+        review=outlier_review_csv(summary,index,source_index)
+        with (a.output/"MODELED_ENDPOINT_GAP_OVER_500M_REVIEW_ONLY.csv").open("w",newline="",encoding="utf-8") as out:
+            writer=csv.DictWriter(out,fieldnames=["source_hyriv_id","source_next_down_id",
+                "minimum_clipped_endpoint_separation_m","source_catchment_ids",
+                "next_source_catchment_ids","review_status"])
+            writer.writeheader();writer.writerows(review)
     print("Stage AY–AZ modeled endpoint screening:",summary["total_clipped_source_link_classification"],
           "cross-catchment pair types",len(summary["cross_catchment_source_link_pair_geometry_screen"]),
           "index bytes",len(compact))
