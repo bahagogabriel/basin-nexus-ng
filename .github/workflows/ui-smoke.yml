@@ -34,6 +34,10 @@ on:
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/build_stage3d_ae_ah_review_desk.py'
       - 'tools/stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/stage3d_an_offline_batch_audit.py'
+      - 'tools/stage3d_ao_verify_portable_kit.py'
+      - 'tools/build_stage3d_am_ap_portable_reviewer_kit.py'
+      - 'tools/test_stage3d_am_ap_portable_reviewer_kit.py'
       - 'tools/build_stage3d_al_evidence_request_kit.py'
       - 'tools/test_stage3d_ai_ak_private_evidence_intake.py'
       - 'tools/test_stage3d_al_evidence_request_kit.py'
@@ -77,6 +81,10 @@ on:
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/build_stage3d_ae_ah_review_desk.py'
       - 'tools/stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/stage3d_an_offline_batch_audit.py'
+      - 'tools/stage3d_ao_verify_portable_kit.py'
+      - 'tools/build_stage3d_am_ap_portable_reviewer_kit.py'
+      - 'tools/test_stage3d_am_ap_portable_reviewer_kit.py'
       - 'tools/build_stage3d_al_evidence_request_kit.py'
       - 'tools/test_stage3d_ai_ak_private_evidence_intake.py'
       - 'tools/test_stage3d_al_evidence_request_kit.py'
@@ -157,6 +165,7 @@ jobs:
         run: |
           python3 -m unittest discover -s tools -p 'test_stage3d_ai_ak_private_evidence_intake.py' -v
           python3 -m unittest discover -s tools -p 'test_stage3d_al_evidence_request_kit.py' -v
+          python3 -m unittest discover -s tools -p 'test_stage3d_am_ap_portable_reviewer_kit.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
