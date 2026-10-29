@@ -1,0 +1,73 @@
+{
+  "schema_version": "BN_STAGE3D_BD_THREE_UNCUT_SOURCE_PAIRS_V1",
+  "status": "PUBLISHER_MODEL_UNCUT_ENDPOINT_MATCH_NOT_SURVEYED_HYDRAULIC_CONFIRMATION",
+  "study_catchments": 20,
+  "reviewed_source_pairs": 3,
+  "source_reaches_reviewed": 6,
+  "original_source_collection_sha256": "90a2864a104b18a475d5e5028da9176d2f948845ea7164c410b08e4c2747895c",
+  "source_index_sha256": "1f3758fed03744bdfcf7779cc2321d93a709071811c582890ed3fa19bc3205e5",
+  "original_source_manifest_sha256": "2cae41419dda5bdf19e27d6e33e53f37773625f8d6d701fe23f250d8827a83b8",
+  "source": "FAO AQUASTAT Rivers (Global edition 2026), modelled HydroRIVERS network",
+  "source_url": "https://data.fao.org/catalog/dataset/e22667af-3977-4e9f-b58b-67fb91b0fa87",
+  "source_layer": "aquamaps:river_network",
+  "source_license": "CC BY 4.0",
+  "source_observation_basis": "Six exact uncut WFS GeoJSON model records (retrieval snapshot); verified NEXT_DOWN model IDs",
+  "all_three_original_model_endpoint_gaps_zero": true,
+  "independent_hydraulic_continuity_verified": false,
+  "source_snapshot_path": "research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson",
+  "cases": [
+    {
+      "catchment_id": "SCMP-C19",
+      "source_hyriv_id": 10505946,
+      "next_down_hyriv_id": 10506074,
+      "clipped_display_min_endpoint_gap_m": 10983.5,
+      "original_uncut_model_min_endpoint_gap_m": 0.0,
+      "publisher_modeled_shared_endpoint_lon_lat": [
+        13.4062,
+        13.5396
+      ],
+      "clipped_source_nearest_endpoint_to_model_junction_m": 5581.5,
+      "clipped_target_nearest_endpoint_to_model_junction_m": 5763.6,
+      "classification": "CLIPPED_DISPLAY_GEOMETRY_ENDPOINT_GAP_WITH_MATCHING_ORIGINAL_MODEL_SOURCE_ENDPOINT",
+      "hydraulic_connection_field_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C04",
+      "source_hyriv_id": 10566530,
+      "next_down_hyriv_id": 10567236,
+      "clipped_display_min_endpoint_gap_m": 4805.2,
+      "original_uncut_model_min_endpoint_gap_m": 0.0,
+      "publisher_modeled_shared_endpoint_lon_lat": [
+        3.5937,
+        11.7104
+      ],
+      "clipped_source_nearest_endpoint_to_model_junction_m": 2882.7,
+      "clipped_target_nearest_endpoint_to_model_junction_m": 3911.4,
+      "classification": "CLIPPED_DISPLAY_GEOMETRY_ENDPOINT_GAP_WITH_MATCHING_ORIGINAL_MODEL_SOURCE_ENDPOINT",
+      "hydraulic_connection_field_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "source_hyriv_id": 10568272,
+      "next_down_hyriv_id": 10568127,
+      "clipped_display_min_endpoint_gap_m": 4885.1,
+      "original_uncut_model_min_endpoint_gap_m": 0.0,
+      "publisher_modeled_shared_endpoint_lon_lat": [
+        15.2979,
+        11.6396
+      ],
+      "clipped_source_nearest_endpoint_to_model_junction_m": 2499.8,
+      "clipped_target_nearest_endpoint_to_model_junction_m": 3391.0,
+      "classification": "CLIPPED_DISPLAY_GEOMETRY_ENDPOINT_GAP_WITH_MATCHING_ORIGINAL_MODEL_SOURCE_ENDPOINT",
+      "hydraulic_connection_field_verified": false
+    }
+  ],
+  "scientific_notices": [
+    "Original source endpoint coincidence diagnoses the clipping-induced distance discrepancy; it does not independently prove in-situ river connectivity.",
+    "These three large >500m gaps concern modeled reach display fragments, not measured discontinuities in physical channels.",
+    "Clipped simplified geometries can remove full source endpoints. Matched original source endpoints must never be spliced into the public catchment map as invented connectors.",
+    "FAO publisher WFS records are model-derived at coarse resolution, not survey-grade or field-verified.",
+    "Only three predetermined source pairs were tested; other source topology links were not independently verified.",
+    "No change to the 20 original catchments, 52,012 clipped features, dam identities or stakeholder data."
+  ]
+}
