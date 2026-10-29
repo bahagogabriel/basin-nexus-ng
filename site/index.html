@@ -234,6 +234,7 @@ header .nav button{padding:8px 12px}
 .knowledgeBreakdown span:nth-child(1){background:#6dbb96}.knowledgeBreakdown span:nth-child(2){background:#2c9585}.knowledgeBreakdown span:nth-child(3){background:#155a69}
 .knowledgeCardLens{background:#f4f9f7;border:1px solid #d3e4db;border-radius:9px;padding:10px 12px;margin-top:12px;color:#234d46;font-size:12px;line-height:1.6}
 .knowledgeCardLens strong{font-size:12px}.knowledgeCardLens small{display:block;color:#58726d;font-size:11px;margin-top:5px}
+.knowledgeSourceIntake{background:#f7f9f5;border:1px dashed #c4d8ca;border-radius:9px;padding:10px 12px;margin-top:12px;color:#234d46;font-size:12px;line-height:1.6}.knowledgeSourceIntake strong{font-size:12px}.knowledgeSourceIntake small{display:block;color:#58726d;font-size:11px;margin-top:5px}
 @media(max-width:520px){.knowledgeThemeMetrics{grid-template-columns:1fr}.knowledgeLens{flex:1 1 44%}}
 @media(max-width:480px){.knowledgeFacts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .knowledgeCards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -1655,7 +1656,7 @@ function renderKnowledge(){
    +'<span><b>'+(admin?.lgas.length||0).toLocaleString()+'</b><small>Intersecting LGAs · provisional</small></span></div>'
    +'<p>SCMP topics indexed (intervention phrase is not verified activity):</p><div class="knowledgeTags">'+c.source_section_keys.map(k=>'<span>'+esc(themeLabels[k])+'</span>').join('')+'</div>'
    +geo
-   +(sourceContentModel?(()=>{const original=sourceContentModel.catchments.find(z=>z.id===c.id);return original?'<div class="knowledgeCardLens"><strong>Original-source intake status</strong><small>Intervention wording: '+(original.original_intervention_phrase_indexed?'indexed':'not found by exact phrase search')+'. Shared Vision source: '+(original.linked_shared_vision_source_in_restricted_set?'linked for private review':'not linked in current intake')+'. Approved stakeholder statements: 0. Original assertions and locations remain withheld.</small></div>':''})():'')
+   +(sourceContentModel?(()=>{const original=sourceContentModel.catchments.find(z=>z.id===c.id);return original?'<div class="knowledgeSourceIntake"><strong>Original-source intake status</strong><small>Intervention wording: '+(original.original_intervention_phrase_indexed?'indexed':'not found by exact phrase search')+'. Shared Vision source: '+(original.linked_shared_vision_source_in_restricted_set?'linked for private review':'not linked in current intake')+'. Approved stakeholder statements: 0. Original assertions and locations remain withheld.</small></div>':''})():'')
    +renderKnowledgeCardLens(c,row,admin,river)
    +'<details class="knowledgeDetail"><summary>Data interpretation and source status</summary>'
    +'<p><b>Geography:</b> '+(admin?.states.length||0)+' state/FCT and '+(admin?.lgas.length||0)+' LGA polygon intersections; GRID3/geoBoundaries 2022, approximate, not official catchment administration.'
