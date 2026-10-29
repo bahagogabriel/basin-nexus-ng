@@ -15,18 +15,24 @@ assert d['source_documents_reviewed']==len(d['catchments'])==20
 assert not d['source_contents_published'] and not d['coordinates_or_observations_published']
 assert {x['id'] for x in registry}=={x['id'] for x in d['catchments']}
 keys={t['key'] for t in d['themes']}
-assert keys=={'natural_resources','threats_challenges','socioeconomics','policies'}
+base_keys={'natural_resources','threats_challenges','socioeconomics','policies'}
+assert keys==base_keys|{'past_present_interventions'}
+intervention_ids={'SCMP-C01','SCMP-C02','SCMP-C03','SCMP-C04','SCMP-C05','SCMP-C07','SCMP-C08','SCMP-C09','SCMP-C10','SCMP-C13','SCMP-C14','SCMP-C15','SCMP-C17','SCMP-C20'}
 for x in d['catchments']:
  assert set(x)=={'id','name','source_documents_located','source_section_keys','verification','public_release','source_type','engagement_date_start','engagement_date_end','engagement_period','engagement_city','evidence_status'}
  assert x['source_type']=='SCMP institutional stakeholder engagement communiqué'
  assert x['evidence_status']=='Source documented; individual claims withheld pending review'
  assert date(2024,1,1)<=date.fromisoformat(x['engagement_date_start'])<=date.fromisoformat(x['engagement_date_end'])<=date(2025,12,31)
  assert x['engagement_date_start'][-10:] and len(x['engagement_city'])>=4
- assert set(x['source_section_keys'])==keys
+ assert set(x['source_section_keys'])==base_keys|({'past_present_interventions'} if x['id'] in intervention_ids else set())
  assert x['source_documents_located']==1 and x['public_release']=='Metadata only'
 assert sum(c['engagement_date_start'].startswith('2024-') for c in d['catchments'])==6
 assert sum(c['engagement_date_start'].startswith('2025-') for c in d['catchments'])==14
 assert {c['engagement_city'] for c in d['catchments']}=={'Kano','Sokoto','Ilorin','Lokoja','Gombe'}
+source_model=json.loads((site/'data/source_content_publication_model.json').read_text())
+assert source_model['publication_status']=='PUBLIC_METADATA_ONLY' and source_model['individual_public_claims_approved']==0
+assert {x['id'] for x in source_model['catchments']}=={x['id'] for x in d['catchments']}
+assert sum(x['linked_shared_vision_source_in_restricted_set'] for x in source_model['catchments'])==19
 html=(site/'index.html').read_text()
 assert 'approved evidence catalogue preview v1.12' in html
 assert "id=\"knowledgeLenses\"" in html
