@@ -1,0 +1,431 @@
+{
+  "schema_version": "BN_STAGE3D_AU_FAO_TOPOLOGY_SUMMARY_V1",
+  "status": "RESEARCH_ONLY_ORIGINAL_SOURCE_LINKS_NO_INDEPENDENT_CONNECTIVITY_PROOF",
+  "source": "FAO AQUASTAT 2026 HydroRIVERS-derived modeled network",
+  "license": "CC BY 4.0",
+  "publisher_source": "https://data.fao.org/catalog/dataset/e22667af-3977-4e9f-b58b-67fb91b0fa87",
+  "source_manifest_sha256": "2cae41419dda5bdf19e27d6e33e53f37773625f8d6d701fe23f250d8827a83b8",
+  "unique_source_reach_ids": 51906,
+  "clipped_catchment_reach_copies": 52012,
+  "source_ids_in_multiple_catchments": 105,
+  "source_cycle_members": 0,
+  "source_cycle_example_ids": [],
+  "counts_by_catchment": {
+    "SCMP-C01": {
+      "name": "Aloma-Konshisha",
+      "clipped_reaches": 1920,
+      "next_down_within_same_catchment": 1917,
+      "next_down_only_outside_selected_catchment": 1,
+      "next_down_not_in_20_catchment_index": 2,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C02": {
+      "name": "Benue-Mada",
+      "clipped_reaches": 1769,
+      "next_down_within_same_catchment": 1767,
+      "next_down_only_outside_selected_catchment": 2,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C03": {
+      "name": "Gaji-Lamurde",
+      "clipped_reaches": 1376,
+      "next_down_within_same_catchment": 1372,
+      "next_down_only_outside_selected_catchment": 4,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C04": {
+      "name": "Gulbin-Ka",
+      "clipped_reaches": 1416,
+      "next_down_within_same_catchment": 1414,
+      "next_down_only_outside_selected_catchment": 2,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C05": {
+      "name": "Gurara-Gbako",
+      "clipped_reaches": 2274,
+      "next_down_within_same_catchment": 2269,
+      "next_down_only_outside_selected_catchment": 5,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C06": {
+      "name": "Hadejia Jama'are",
+      "clipped_reaches": 5568,
+      "next_down_within_same_catchment": 5555,
+      "next_down_only_outside_selected_catchment": 8,
+      "next_down_not_in_20_catchment_index": 5,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C07": {
+      "name": "Hawul-Kilange",
+      "clipped_reaches": 5732,
+      "next_down_within_same_catchment": 5730,
+      "next_down_only_outside_selected_catchment": 2,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C08": {
+      "name": "Kaduna-Mariga",
+      "clipped_reaches": 1299,
+      "next_down_within_same_catchment": 1296,
+      "next_down_only_outside_selected_catchment": 3,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C09": {
+      "name": "Lokoja-Niger",
+      "clipped_reaches": 2553,
+      "next_down_within_same_catchment": 2548,
+      "next_down_only_outside_selected_catchment": 0,
+      "next_down_not_in_20_catchment_index": 5,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C10": {
+      "name": "Malenda",
+      "clipped_reaches": 1101,
+      "next_down_within_same_catchment": 1100,
+      "next_down_only_outside_selected_catchment": 1,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C11": {
+      "name": "Misau-Komadugu Gana",
+      "clipped_reaches": 1103,
+      "next_down_within_same_catchment": 1081,
+      "next_down_only_outside_selected_catchment": 12,
+      "next_down_not_in_20_catchment_index": 10,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C12": {
+      "name": "Ngada",
+      "clipped_reaches": 1903,
+      "next_down_within_same_catchment": 1884,
+      "next_down_only_outside_selected_catchment": 19,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 1
+    },
+    "SCMP-C13": {
+      "name": "Oshin-Oyi",
+      "clipped_reaches": 2588,
+      "next_down_within_same_catchment": 2586,
+      "next_down_only_outside_selected_catchment": 2,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 1
+    },
+    "SCMP-C14": {
+      "name": "Rima",
+      "clipped_reaches": 4548,
+      "next_down_within_same_catchment": 4545,
+      "next_down_only_outside_selected_catchment": 2,
+      "next_down_not_in_20_catchment_index": 1,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C15": {
+      "name": "Sarkin Pawa-Kaduna",
+      "clipped_reaches": 2038,
+      "next_down_within_same_catchment": 2037,
+      "next_down_only_outside_selected_catchment": 1,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C16": {
+      "name": "Shemankar-Katsina Ala",
+      "clipped_reaches": 3974,
+      "next_down_within_same_catchment": 3970,
+      "next_down_only_outside_selected_catchment": 4,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C17": {
+      "name": "Sokoto-Zamfara",
+      "clipped_reaches": 2080,
+      "next_down_within_same_catchment": 2076,
+      "next_down_only_outside_selected_catchment": 4,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C18": {
+      "name": "Wase-Taraba",
+      "clipped_reaches": 3454,
+      "next_down_within_same_catchment": 3452,
+      "next_down_only_outside_selected_catchment": 2,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    },
+    "SCMP-C19": {
+      "name": "Yedseram",
+      "clipped_reaches": 2897,
+      "next_down_within_same_catchment": 2872,
+      "next_down_only_outside_selected_catchment": 12,
+      "next_down_not_in_20_catchment_index": 9,
+      "next_down_null_or_source_terminal": 4,
+      "outbound_targets_with_multiple_catchment_memberships": 1
+    },
+    "SCMP-C20": {
+      "name": "Zungur-Gongola",
+      "clipped_reaches": 2419,
+      "next_down_within_same_catchment": 2416,
+      "next_down_only_outside_selected_catchment": 3,
+      "next_down_not_in_20_catchment_index": 0,
+      "next_down_null_or_source_terminal": 0,
+      "outbound_targets_with_multiple_catchment_memberships": 0
+    }
+  },
+  "cross_catchment_source_link_pairs": [
+    {
+      "from": "SCMP-C01",
+      "to": "SCMP-C16",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C02",
+      "to": "SCMP-C05",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C02",
+      "to": "SCMP-C16",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C03",
+      "to": "SCMP-C07",
+      "source_next_down_links": 3
+    },
+    {
+      "from": "SCMP-C03",
+      "to": "SCMP-C18",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C04",
+      "to": "SCMP-C10",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C04",
+      "to": "SCMP-C17",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C02",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C08",
+      "source_next_down_links": 3
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C09",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C06",
+      "to": "SCMP-C11",
+      "source_next_down_links": 8
+    },
+    {
+      "from": "SCMP-C07",
+      "to": "SCMP-C03",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C08",
+      "to": "SCMP-C05",
+      "source_next_down_links": 3
+    },
+    {
+      "from": "SCMP-C10",
+      "to": "SCMP-C13",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C06",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C12",
+      "source_next_down_links": 7
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C19",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C20",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C12",
+      "to": "SCMP-C11",
+      "source_next_down_links": 11
+    },
+    {
+      "from": "SCMP-C12",
+      "to": "SCMP-C19",
+      "source_next_down_links": 9
+    },
+    {
+      "from": "SCMP-C13",
+      "to": "SCMP-C05",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C13",
+      "to": "SCMP-C08",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C14",
+      "to": "SCMP-C17",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C15",
+      "to": "SCMP-C08",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C16",
+      "to": "SCMP-C02",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C16",
+      "to": "SCMP-C18",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C17",
+      "to": "SCMP-C04",
+      "source_next_down_links": 4
+    },
+    {
+      "from": "SCMP-C18",
+      "to": "SCMP-C03",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C18",
+      "to": "SCMP-C16",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C07",
+      "source_next_down_links": 2
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C11",
+      "source_next_down_links": 1
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C12",
+      "source_next_down_links": 10
+    },
+    {
+      "from": "SCMP-C20",
+      "to": "SCMP-C07",
+      "source_next_down_links": 3
+    }
+  ],
+  "unresolved_next_down_example_ids": [
+    [
+      "SCMP-C01",
+      10791680,
+      10791872
+    ],
+    [
+      "SCMP-C01",
+      10803341,
+      10804662
+    ],
+    [
+      "SCMP-C06",
+      10479437,
+      10480154
+    ],
+    [
+      "SCMP-C06",
+      10486093,
+      10486960
+    ],
+    [
+      "SCMP-C06",
+      10508606,
+      10508738
+    ],
+    [
+      "SCMP-C06",
+      10515516,
+      10514502
+    ],
+    [
+      "SCMP-C06",
+      10523742,
+      10523040
+    ],
+    [
+      "SCMP-C09",
+      10800242,
+      10801439
+    ],
+    [
+      "SCMP-C09",
+      10807065,
+      10807237
+    ],
+    [
+      "SCMP-C09",
+      10807649,
+      10807237
+    ],
+    [
+      "SCMP-C09",
+      10809992,
+      10810400
+    ],
+    [
+      "SCMP-C09",
+      10811325,
+      10812114
+    ]
+  ],
+  "important_limitations": [
+    "NEXT_DOWN is an original FAO/HydroRIVERS modeled reach identifier, not independently verified channel connectivity.",
+    "A downstream identifier outside these 20 catchment clips is unresolved, never assumed to terminate a river.",
+    "The same original reach may intersect more than one catchment, and duplicated clipped reach copies are not separate rivers.",
+    "Cross-catchment source references are candidate links only; geographic adjacency, network geometry and hydraulic continuity are NOT verified.",
+    "Only bounded downstream source-ID walks are supported; no upstream catchment accumulation, reach length, travel time, dam/water quality or flood impact is inferred."
+  ]
+}
