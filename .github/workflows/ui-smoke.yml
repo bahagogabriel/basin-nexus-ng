@@ -14,6 +14,10 @@ on:
       - 'tools/build_stage3d_bg_bh_89_boundary_qa.py'
       - 'tools/test_stage3d_bg_bj_89_boundary_qa.py'
       - 'site/data/fao_89_catchment_source_boundary_audit.json'
+      - 'site/data/fao_study_area_overlap_outlet_readiness.json'
+      - 'site/data/fao_model_boundary_exit_screen_records.csv'
+      - 'tools/build_stage3d_bk_bl_overlap_outlet_screen.py'
+      - 'tools/test_stage3d_bk_bn_overlap_outlet_screen.py'
       - 'site/data/fao_89_catchment_source_boundary_audit.csv'
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
@@ -37,6 +41,10 @@ on:
       - 'tools/build_stage3d_bg_bh_89_boundary_qa.py'
       - 'tools/test_stage3d_bg_bj_89_boundary_qa.py'
       - 'site/data/fao_89_catchment_source_boundary_audit.json'
+      - 'site/data/fao_study_area_overlap_outlet_readiness.json'
+      - 'site/data/fao_model_boundary_exit_screen_records.csv'
+      - 'tools/build_stage3d_bk_bl_overlap_outlet_screen.py'
+      - 'tools/test_stage3d_bk_bn_overlap_outlet_screen.py'
       - 'site/data/fao_89_catchment_source_boundary_audit.csv'
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
@@ -126,6 +134,10 @@ on:
       - 'tools/build_stage3d_bg_bh_89_boundary_qa.py'
       - 'tools/test_stage3d_bg_bj_89_boundary_qa.py'
       - 'site/data/fao_89_catchment_source_boundary_audit.json'
+      - 'site/data/fao_study_area_overlap_outlet_readiness.json'
+      - 'site/data/fao_model_boundary_exit_screen_records.csv'
+      - 'tools/build_stage3d_bk_bl_overlap_outlet_screen.py'
+      - 'tools/test_stage3d_bk_bn_overlap_outlet_screen.py'
       - 'site/data/fao_89_catchment_source_boundary_audit.csv'
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
@@ -221,6 +233,8 @@ jobs:
           python3 -m unittest discover -s tools -p 'test_stage3d_bd_bf_uncut_source_resolution.py' -v
       - name: Verify 89 source-only modeled catchment links, polygon adjacency and count audit
         run: python3 -m unittest discover -s tools -p 'test_stage3d_bg_bj_89_boundary_qa.py' -v
+      - name: Verify 20 study-area overlaps and source-model boundary screening without confirmed outlets
+        run: python3 -m unittest discover -s tools -p 'test_stage3d_bk_bn_overlap_outlet_screen.py' -v
       - name: Guard confirmed unnamed dams and synthetic independently reviewed admission receipts
         run: |
           python3 tools/validate_confirmed_dam_sites.py

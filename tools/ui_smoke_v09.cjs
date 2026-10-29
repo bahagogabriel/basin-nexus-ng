@@ -507,6 +507,49 @@ async function testFaoSourceTopology(browser){
 
 
 
+
+async function testFaoStudyOverlapAndOutletPreflight(browser){
+ const ctx=await browser.newContext({viewport:{width:1300,height:940}});
+ const page=await ctx.newPage();
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#faoOutletPreflightSummary')?.textContent.includes('190 polygon pairs'),{timeout:40000});
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#faoOutletPreflightCatchments tr').count(),20);
+ assert.equal(await page.locator('#faoOutletRows tr[data-outlet-screen]').count(),125);
+ const intro=await page.locator('#faoOutletPreflight').innerText();
+ assert.match(intro,/42 positive-area overlaps/);
+ assert.match(intro,/0 verified outlets/);
+ assert.match(intro,/not verified outlets/);
+ await page.locator('#faoOutletCatchment').selectOption('SCMP-C19');
+ assert.equal(await page.locator('#faoOutletRows tr[data-outlet-screen]').count(),25);
+ await page.locator('#faoOutletClass').selectOption('SOURCE_TERMINAL_OR_UNLINKED');
+ assert.equal(await page.locator('#faoOutletRows tr[data-outlet-screen]').count(),4);
+ await page.locator('#faoOutletClass').selectOption('NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX');
+ assert.equal(await page.locator('#faoOutletRows tr[data-outlet-screen]').count(),9);
+ await page.locator('#faoOutletClass').selectOption('all');
+ await page.locator('#faoOutletSearch').fill('this-is-not-a-source-reach');
+ assert.equal(await page.locator('#faoOutletRows tr[data-outlet-screen]').count(),0);
+ await page.locator('#faoOutletSearch').fill('');
+ await page.locator('#faoOutletPreflightCatchments button[data-fao-outlet-map="SCMP-C19"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C19',{timeout:10000});
+ assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ await ctx.close();
+
+ const invalid=await browser.newContext();
+ await invalid.route('**/data/fao_study_area_overlap_outlet_readiness.json',async route=>{
+  const res=await route.fetch(),body=await res.json();
+  body.actual_verified_outlet_count=12;
+  await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(body)});
+ });
+ const corrupted=await invalid.newPage();
+ await corrupted.goto(url,{waitUntil:'domcontentloaded'});
+ await corrupted.waitForFunction(()=>document.querySelector('#faoOutletPreflightSummary')?.textContent.includes('failed scientific/source checks'),{timeout:40000});
+ await corrupted.locator('#navData').click();
+ assert.equal(await corrupted.locator('#faoOutletRows tr[data-outlet-screen]').count(),0);
+ await invalid.close();
+ console.log('FAO OUTLET PREFLIGHT: 20 polygons, 190 pairs, 125 modeled leads, source-type filtering, 0 real outlets, map navigation, source corruption lockout PASS');
+}
+
 async function testFao89CrossCatchmentSourceReview(browser){
  const ctx=await browser.newContext({viewport:{width:1280,height:920}});
  const page=await ctx.newPage();
@@ -677,6 +720,7 @@ async function testEvidenceCatalogueFixture(browser){
  await testFaoSourceTopology(browser);
  await testOriginalPublisherGapReview(browser);
  await testFao89CrossCatchmentSourceReview(browser);
+ await testFaoStudyOverlapAndOutletPreflight(browser);
 await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));

@@ -28,7 +28,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install pinned FAO study-area geometry screening dependency
-        run: python -m pip install --disable-pip-version-check 'shapely==2.1.2'
+        run: python -m pip install --disable-pip-version-check 'shapely==2.1.2' 'pyproj==3.7.2'
       - name: Verify public-release allowlist and geometry records
         run: python tools/validate_public_release.py
       - name: Validate public-only external research source registry and synthetic CSV integrity
@@ -77,6 +77,8 @@ jobs:
           python -m unittest discover -s tools -p 'test_stage3d_bd_bf_uncut_source_resolution.py' -v
       - name: Verify all 89 crosscatchment source associations and study polygon overlap without inferring flows
         run: python -m unittest discover -s tools -p 'test_stage3d_bg_bj_89_boundary_qa.py' -v
+      - name: Verify original SCMP overlap area, 125 FAO source boundary-screen records and zero true outlet claims
+        run: python -m unittest discover -s tools -p 'test_stage3d_bk_bn_overlap_outlet_screen.py' -v
       - name: Verify UX-A grouped controls and adaptive layout
         run: python tools/test_ux_a.py
       - name: Set up Node for browser usability checks

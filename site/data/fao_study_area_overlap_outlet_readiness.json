@@ -1,0 +1,2963 @@
+{
+  "schema_version": "BN_STAGE3D_BK_MODEL_STUDY_AREA_OVERLAP_EXIT_SCREEN_V1",
+  "status": "SOURCE_CLIPPED_STUDY_AREA_SCREEN_NOT_VERIFIED_HYDROLOGIC_OUTLETS",
+  "provenance_source": "FAO AQUASTAT 2026 modeled original source NEXT_DOWN + SHA256-pinned source SCMP polygons",
+  "source_license": "CC BY 4.0 (FAO network); original user-supplied study polygons",
+  "catchment_source_sha256": "03ebae7c95895919d820aaed146a9030f99833831dc5bea9b8c776dca43df90b",
+  "fao_source_manifest_sha256": "2cae41419dda5bdf19e27d6e33e53f37773625f8d6d701fe23f250d8827a83b8",
+  "source_89_research_count": 89,
+  "out_of_index_next_id_count": 32,
+  "null_source_terminal_count": 4,
+  "source_screen_record_count": 125,
+  "actual_verified_outlet_count": 0,
+  "screen_threshold_m": 250,
+  "screen_overlap": {
+    "projection": "EPSG:6933 global equal-area area-screening; original WGS84 polygons preserved",
+    "screen_sum_catchment_polygon_area_km2": 987456.5,
+    "screen_area_unique_union_km2": 987420.55,
+    "screen_area_double_counted_km2": 35.96,
+    "screen_overlap_pair_count": 42,
+    "study_pair_count": 190,
+    "per_catchment": {
+      "SCMP-C01": {
+        "name": "Aloma-Konshisha",
+        "equal_area_polygon_screen_km2": 16024.03,
+        "positive_area_overlap_with_other_study_areas": 3,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 3,
+        "next_id_only_in_other_study_areas": 1,
+        "next_id_outside_index": 2,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 3
+      },
+      "SCMP-C02": {
+        "name": "Benue-Mada",
+        "equal_area_polygon_screen_km2": 30846.4,
+        "positive_area_overlap_with_other_study_areas": 6,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 2,
+        "next_id_only_in_other_study_areas": 2,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 2
+      },
+      "SCMP-C03": {
+        "name": "Gaji-Lamurde",
+        "equal_area_polygon_screen_km2": 29785.41,
+        "positive_area_overlap_with_other_study_areas": 3,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 4,
+        "next_id_only_in_other_study_areas": 4,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 4
+      },
+      "SCMP-C04": {
+        "name": "Gulbin-Ka",
+        "equal_area_polygon_screen_km2": 29556.5,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 2,
+        "next_id_only_in_other_study_areas": 2,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 2
+      },
+      "SCMP-C05": {
+        "name": "Gurara-Gbako",
+        "equal_area_polygon_screen_km2": 39013.41,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 5,
+        "next_id_only_in_other_study_areas": 5,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 5
+      },
+      "SCMP-C06": {
+        "name": "Hadejia Jama'are",
+        "equal_area_polygon_screen_km2": 123905.04,
+        "positive_area_overlap_with_other_study_areas": 5,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 13,
+        "next_id_only_in_other_study_areas": 8,
+        "next_id_outside_index": 5,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 13
+      },
+      "SCMP-C07": {
+        "name": "Hawul-Kilange",
+        "equal_area_polygon_screen_km2": 111434.15,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 2,
+        "next_id_only_in_other_study_areas": 2,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 2
+      },
+      "SCMP-C08": {
+        "name": "Kaduna-Mariga",
+        "equal_area_polygon_screen_km2": 26479.97,
+        "positive_area_overlap_with_other_study_areas": 5,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 3,
+        "next_id_only_in_other_study_areas": 3,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 3
+      },
+      "SCMP-C09": {
+        "name": "Lokoja-Niger",
+        "equal_area_polygon_screen_km2": 26617.88,
+        "positive_area_overlap_with_other_study_areas": 3,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 5,
+        "next_id_only_in_other_study_areas": 0,
+        "next_id_outside_index": 5,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 5
+      },
+      "SCMP-C10": {
+        "name": "Malenda",
+        "equal_area_polygon_screen_km2": 23444.75,
+        "positive_area_overlap_with_other_study_areas": 3,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 1,
+        "next_id_only_in_other_study_areas": 1,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 1
+      },
+      "SCMP-C11": {
+        "name": "Misau-Komadugu Gana",
+        "equal_area_polygon_screen_km2": 23620.09,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 22,
+        "next_id_only_in_other_study_areas": 12,
+        "next_id_outside_index": 10,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 22
+      },
+      "SCMP-C12": {
+        "name": "Ngada",
+        "equal_area_polygon_screen_km2": 44327.38,
+        "positive_area_overlap_with_other_study_areas": 3,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 19,
+        "next_id_only_in_other_study_areas": 19,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 19
+      },
+      "SCMP-C13": {
+        "name": "Oshin-Oyi",
+        "equal_area_polygon_screen_km2": 49887.02,
+        "positive_area_overlap_with_other_study_areas": 3,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 2,
+        "next_id_only_in_other_study_areas": 2,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 2
+      },
+      "SCMP-C14": {
+        "name": "Rima",
+        "equal_area_polygon_screen_km2": 101940.68,
+        "positive_area_overlap_with_other_study_areas": 2,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 3,
+        "next_id_only_in_other_study_areas": 2,
+        "next_id_outside_index": 1,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 3
+      },
+      "SCMP-C15": {
+        "name": "Sarkin Pawa-Kaduna",
+        "equal_area_polygon_screen_km2": 38838.36,
+        "positive_area_overlap_with_other_study_areas": 6,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 1,
+        "next_id_only_in_other_study_areas": 1,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 1
+      },
+      "SCMP-C16": {
+        "name": "Shemankar-Katsina Ala",
+        "equal_area_polygon_screen_km2": 53587.49,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 4,
+        "next_id_only_in_other_study_areas": 4,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 4
+      },
+      "SCMP-C17": {
+        "name": "Sokoto-Zamfara",
+        "equal_area_polygon_screen_km2": 45699.16,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 4,
+        "next_id_only_in_other_study_areas": 4,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 4
+      },
+      "SCMP-C18": {
+        "name": "Wase-Taraba",
+        "equal_area_polygon_screen_km2": 54462.83,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 2,
+        "next_id_only_in_other_study_areas": 2,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 2
+      },
+      "SCMP-C19": {
+        "name": "Yedseram",
+        "equal_area_polygon_screen_km2": 67714.83,
+        "positive_area_overlap_with_other_study_areas": 4,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 25,
+        "next_id_only_in_other_study_areas": 12,
+        "next_id_outside_index": 9,
+        "source_terminal_or_unlinked": 4,
+        "within_250m_of_polygon_border": 21
+      },
+      "SCMP-C20": {
+        "name": "Zungur-Gongola",
+        "equal_area_polygon_screen_km2": 50271.14,
+        "positive_area_overlap_with_other_study_areas": 10,
+        "no_independently_validated_outlet": true,
+        "modeled_boundary_screen_records": 3,
+        "next_id_only_in_other_study_areas": 3,
+        "next_id_outside_index": 0,
+        "source_terminal_or_unlinked": 0,
+        "within_250m_of_polygon_border": 3
+      }
+    },
+    "overlap_pairs": [
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C02",
+        "screen_overlap_km2": 0.17,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C03",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C04",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C05",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C06",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C07",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 1.4,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 1.41,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C01",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C03",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C04",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C05",
+        "screen_overlap_km2": 1.91,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C06",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C07",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 1.33,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.5,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 1.03,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C02",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.53,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C04",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C05",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C06",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C07",
+        "screen_overlap_km2": 0.51,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.16,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C03",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 2.06,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C05",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C06",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C07",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 0.78,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 1.17,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.07,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 1.87,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C04",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C06",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C07",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 1.42,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 0.51,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "touching_only"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.11,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C05",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C07",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 1.37,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 1.97,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 1.05,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.53,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C06",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 1.73,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C08",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.67,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 1.18,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C07",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.36,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C09",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.71,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.5,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.05,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "touching_only"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C08",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C10",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C09",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C11",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.37,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C10",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C12",
+        "screen_overlap_km2": 2.54,
+        "overlap_of_smaller_pct": 0.01,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.6,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C11",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.78,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C13",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.8,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C12",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 1.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C14",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C13",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C14",
+        "b": "SCMP-C15",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C14",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C14",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.96,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C14",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C14",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C14",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C15",
+        "b": "SCMP-C16",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C15",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.27,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C15",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C15",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C15",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.19,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C16",
+        "b": "SCMP-C17",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C16",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.38,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C16",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C16",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.44,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C17",
+        "b": "SCMP-C18",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C17",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C17",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C18",
+        "b": "SCMP-C19",
+        "screen_overlap_km2": 0.0,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "separate"
+      },
+      {
+        "a": "SCMP-C18",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.42,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      },
+      {
+        "a": "SCMP-C19",
+        "b": "SCMP-C20",
+        "screen_overlap_km2": 0.16,
+        "overlap_of_smaller_pct": 0.0,
+        "source_polygon_relation": "positive_area_overlap"
+      }
+    ]
+  },
+  "boundary_exit_lead_records": [
+    {
+      "catchment_id": "SCMP-C01",
+      "study_area_name": "Aloma-Konshisha",
+      "source_hyriv_id": 10748497,
+      "original_next_down_id_or_blank": 10747532,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C01",
+      "study_area_name": "Aloma-Konshisha",
+      "source_hyriv_id": 10791680,
+      "original_next_down_id_or_blank": 10791872,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C01",
+      "study_area_name": "Aloma-Konshisha",
+      "source_hyriv_id": 10803341,
+      "original_next_down_id_or_blank": 10804662,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C02",
+      "study_area_name": "Benue-Mada",
+      "source_hyriv_id": 10726600,
+      "original_next_down_id_or_blank": 10726599,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C02",
+      "study_area_name": "Benue-Mada",
+      "source_hyriv_id": 10728350,
+      "original_next_down_id_or_blank": 10730012,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C03",
+      "study_area_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10651584,
+      "original_next_down_id_or_blank": 10651951,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C03",
+      "study_area_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10651950,
+      "original_next_down_id_or_blank": 10651949,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C03",
+      "study_area_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10652672,
+      "original_next_down_id_or_blank": 10653041,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C03",
+      "study_area_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10685263,
+      "original_next_down_id_or_blank": 10685629,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C04",
+      "study_area_name": "Gulbin-Ka",
+      "source_hyriv_id": 10570001,
+      "original_next_down_id_or_blank": 10567942,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C04",
+      "study_area_name": "Gulbin-Ka",
+      "source_hyriv_id": 10602519,
+      "original_next_down_id_or_blank": 10603035,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C05",
+      "study_area_name": "Gurara-Gbako",
+      "source_hyriv_id": 10677745,
+      "original_next_down_id_or_blank": 10677744,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C05",
+      "study_area_name": "Gurara-Gbako",
+      "source_hyriv_id": 10681569,
+      "original_next_down_id_or_blank": 10682494,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C05",
+      "study_area_name": "Gurara-Gbako",
+      "source_hyriv_id": 10682670,
+      "original_next_down_id_or_blank": 10684687,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C05",
+      "study_area_name": "Gurara-Gbako",
+      "source_hyriv_id": 10725097,
+      "original_next_down_id_or_blank": 10726017,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C05",
+      "study_area_name": "Gurara-Gbako",
+      "source_hyriv_id": 10730586,
+      "original_next_down_id_or_blank": 10731328,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10479437,
+      "original_next_down_id_or_blank": 10480154,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10486093,
+      "original_next_down_id_or_blank": 10486960,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10508606,
+      "original_next_down_id_or_blank": 10508738,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10515516,
+      "original_next_down_id_or_blank": 10514502,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10523742,
+      "original_next_down_id_or_blank": 10523040,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10529588,
+      "original_next_down_id_or_blank": 10529164,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10532933,
+      "original_next_down_id_or_blank": 10532550,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10535178,
+      "original_next_down_id_or_blank": 10535446,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10536534,
+      "original_next_down_id_or_blank": 10535445,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10543347,
+      "original_next_down_id_or_blank": 10543348,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10547750,
+      "original_next_down_id_or_blank": 10544704,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10552338,
+      "original_next_down_id_or_blank": 10550868,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "study_area_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10570580,
+      "original_next_down_id_or_blank": 10568439,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C07",
+      "study_area_name": "Hawul-Kilange",
+      "source_hyriv_id": 10651392,
+      "original_next_down_id_or_blank": 10651391,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C07",
+      "study_area_name": "Hawul-Kilange",
+      "source_hyriv_id": 10651947,
+      "original_next_down_id_or_blank": 10651946,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C08",
+      "study_area_name": "Kaduna-Mariga",
+      "source_hyriv_id": 10679697,
+      "original_next_down_id_or_blank": 10680654,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C08",
+      "study_area_name": "Kaduna-Mariga",
+      "source_hyriv_id": 10684889,
+      "original_next_down_id_or_blank": 10684890,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C08",
+      "study_area_name": "Kaduna-Mariga",
+      "source_hyriv_id": 10688245,
+      "original_next_down_id_or_blank": 10684890,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C09",
+      "study_area_name": "Lokoja-Niger",
+      "source_hyriv_id": 10800242,
+      "original_next_down_id_or_blank": 10801439,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C09",
+      "study_area_name": "Lokoja-Niger",
+      "source_hyriv_id": 10807065,
+      "original_next_down_id_or_blank": 10807237,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C09",
+      "study_area_name": "Lokoja-Niger",
+      "source_hyriv_id": 10807649,
+      "original_next_down_id_or_blank": 10807237,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C09",
+      "study_area_name": "Lokoja-Niger",
+      "source_hyriv_id": 10809992,
+      "original_next_down_id_or_blank": 10810400,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C09",
+      "study_area_name": "Lokoja-Niger",
+      "source_hyriv_id": 10811325,
+      "original_next_down_id_or_blank": 10812114,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C10",
+      "study_area_name": "Malenda",
+      "source_hyriv_id": 10640974,
+      "original_next_down_id_or_blank": 10641297,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10505944,
+      "original_next_down_id_or_blank": 10505529,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10507007,
+      "original_next_down_id_or_blank": 10505404,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10507429,
+      "original_next_down_id_or_blank": 10505942,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10509134,
+      "original_next_down_id_or_blank": 10508193,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10509405,
+      "original_next_down_id_or_blank": 10509406,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10509676,
+      "original_next_down_id_or_blank": 10509406,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10519365,
+      "original_next_down_id_or_blank": 10519060,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10519366,
+      "original_next_down_id_or_blank": 10519060,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10522476,
+      "original_next_down_id_or_blank": 10523044,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10523321,
+      "original_next_down_id_or_blank": 10522756,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10524755,
+      "original_next_down_id_or_blank": 10522757,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10525251,
+      "original_next_down_id_or_blank": 10523888,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10526006,
+      "original_next_down_id_or_blank": 10524299,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10528160,
+      "original_next_down_id_or_blank": 10527757,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10531961,
+      "original_next_down_id_or_blank": 10532241,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10532238,
+      "original_next_down_id_or_blank": 10532694,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10532557,
+      "original_next_down_id_or_blank": 10532697,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10532807,
+      "original_next_down_id_or_blank": 10532935,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10535316,
+      "original_next_down_id_or_blank": 10533645,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10536932,
+      "original_next_down_id_or_blank": 10536933,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10561254,
+      "original_next_down_id_or_blank": 10560827,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "study_area_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10581401,
+      "original_next_down_id_or_blank": 10582193,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10519063,
+      "original_next_down_id_or_blank": 10518523,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10519064,
+      "original_next_down_id_or_blank": 10517355,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10520379,
+      "original_next_down_id_or_blank": 10519642,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10524865,
+      "original_next_down_id_or_blank": 10520094,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10525377,
+      "original_next_down_id_or_blank": 10524302,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10526006,
+      "original_next_down_id_or_blank": 10524299,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10526926,
+      "original_next_down_id_or_blank": 10525251,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10527616,
+      "original_next_down_id_or_blank": 10527061,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10528747,
+      "original_next_down_id_or_blank": 10528746,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10539454,
+      "original_next_down_id_or_blank": 10539453,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10540549,
+      "original_next_down_id_or_blank": 10539452,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10540844,
+      "original_next_down_id_or_blank": 10539453,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10541386,
+      "original_next_down_id_or_blank": 10539609,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10543352,
+      "original_next_down_id_or_blank": 10544017,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10545293,
+      "original_next_down_id_or_blank": 10543482,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10545433,
+      "original_next_down_id_or_blank": 10544018,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10565250,
+      "original_next_down_id_or_blank": 10558476,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10580724,
+      "original_next_down_id_or_blank": 10580725,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "study_area_name": "Ngada",
+      "source_hyriv_id": 10581415,
+      "original_next_down_id_or_blank": 10580725,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C13",
+      "study_area_name": "Oshin-Oyi",
+      "source_hyriv_id": 10677743,
+      "original_next_down_id_or_blank": 10681568,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C13",
+      "study_area_name": "Oshin-Oyi",
+      "source_hyriv_id": 10684686,
+      "original_next_down_id_or_blank": 10684889,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C14",
+      "study_area_name": "Rima",
+      "source_hyriv_id": 10499323,
+      "original_next_down_id_or_blank": 10499584,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C14",
+      "study_area_name": "Rima",
+      "source_hyriv_id": 10516468,
+      "original_next_down_id_or_blank": 10517466,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C14",
+      "study_area_name": "Rima",
+      "source_hyriv_id": 10516469,
+      "original_next_down_id_or_blank": 10517466,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C15",
+      "study_area_name": "Sarkin Pawa-Kaduna",
+      "source_hyriv_id": 10635550,
+      "original_next_down_id_or_blank": 10636742,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C16",
+      "study_area_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10706035,
+      "original_next_down_id_or_blank": 10706661,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C16",
+      "study_area_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10707186,
+      "original_next_down_id_or_blank": 10706036,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C16",
+      "study_area_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10726598,
+      "original_next_down_id_or_blank": 10725461,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C16",
+      "study_area_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10730764,
+      "original_next_down_id_or_blank": 10727748,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C17",
+      "study_area_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10562810,
+      "original_next_down_id_or_blank": 10564123,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C17",
+      "study_area_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10562811,
+      "original_next_down_id_or_blank": 10564123,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C17",
+      "study_area_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10564790,
+      "original_next_down_id_or_blank": 10564789,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C17",
+      "study_area_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10565087,
+      "original_next_down_id_or_blank": 10566203,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C18",
+      "study_area_name": "Wase-Taraba",
+      "source_hyriv_id": 10684526,
+      "original_next_down_id_or_blank": 10684525,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C18",
+      "study_area_name": "Wase-Taraba",
+      "source_hyriv_id": 10709221,
+      "original_next_down_id_or_blank": 10709220,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10504556,
+      "original_next_down_id_or_blank": 10504140,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10506195,
+      "original_next_down_id_or_blank": 10504420,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10511719,
+      "original_next_down_id_or_blank": 10508457,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10512115,
+      "original_next_down_id_or_blank": 10509835,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10519802,
+      "original_next_down_id_or_blank": null,
+      "source_link_class": "SOURCE_TERMINAL_OR_UNLINKED",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 34776.5,
+      "within_250m_screening_band": false,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10519803,
+      "original_next_down_id_or_blank": null,
+      "source_link_class": "SOURCE_TERMINAL_OR_UNLINKED",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 35624.4,
+      "within_250m_screening_band": false,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10520534,
+      "original_next_down_id_or_blank": null,
+      "source_link_class": "SOURCE_TERMINAL_OR_UNLINKED",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 36122.0,
+      "within_250m_screening_band": false,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10521208,
+      "original_next_down_id_or_blank": null,
+      "source_link_class": "SOURCE_TERMINAL_OR_UNLINKED",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 36122.0,
+      "within_250m_screening_band": false,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10521626,
+      "original_next_down_id_or_blank": 10517881,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10525119,
+      "original_next_down_id_or_blank": 10526145,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10528745,
+      "original_next_down_id_or_blank": 10526539,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10530247,
+      "original_next_down_id_or_blank": 10529299,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10533229,
+      "original_next_down_id_or_blank": 10531105,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10535455,
+      "original_next_down_id_or_blank": 10534093,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10538650,
+      "original_next_down_id_or_blank": 10537474,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10540286,
+      "original_next_down_id_or_blank": 10537474,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10553856,
+      "original_next_down_id_or_blank": 10549414,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10554619,
+      "original_next_down_id_or_blank": 10553127,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10570295,
+      "original_next_down_id_or_blank": 10570296,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10571491,
+      "original_next_down_id_or_blank": 10568267,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10572808,
+      "original_next_down_id_or_blank": 10572407,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10575444,
+      "original_next_down_id_or_blank": 10574645,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": false,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10600532,
+      "original_next_down_id_or_blank": 10600184,
+      "source_link_class": "NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10623947,
+      "original_next_down_id_or_blank": 10623592,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "study_area_name": "Yedseram",
+      "source_hyriv_id": 10625669,
+      "original_next_down_id_or_blank": 10624635,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C20",
+      "study_area_name": "Zungur-Gongola",
+      "source_hyriv_id": 10629384,
+      "original_next_down_id_or_blank": 10630771,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C20",
+      "study_area_name": "Zungur-Gongola",
+      "source_hyriv_id": 10629386,
+      "original_next_down_id_or_blank": 10629385,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    },
+    {
+      "catchment_id": "SCMP-C20",
+      "study_area_name": "Zungur-Gongola",
+      "source_hyriv_id": 10630107,
+      "original_next_down_id_or_blank": 10629385,
+      "source_link_class": "NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS",
+      "distance_nearest_clipped_endpoint_to_study_boundary_m": 0.0,
+      "within_250m_screening_band": true,
+      "study_boundary_intersects_source_fragment": true,
+      "hydraulic_outlet_verified": false
+    }
+  ],
+  "source_method_limits": [
+    "These are 20 possibly overlapping study-area polygons, not a validated mutually exclusive watershed partition.",
+    "An apparent source link to another polygon is not proof of directional water transfer between complete catchments.",
+    "A NEXT_DOWN ID missing outside the 20-study-area index is missing coverage, not necessarily a river outlet.",
+    "A source terminal/unlinked record is not an independently surveyed catchment outlet.",
+    "A clipped model endpoint within 250 m of a polygon border is a screening lead, not a confirmed channel crossing or outlet.",
+    "No candidate point is promoted to a field-verified hydraulic outlet; no new named facility is created.",
+    "Area screening is from EPSG:6933 equal-area transformation of unmodified polygons; not official basin area or land area outside other catchments.",
+    "No inferred upstream hierarchy, flow rates, travel times, dam walls or private stakeholder records were added."
+  ]
+}

@@ -347,6 +347,26 @@ header .nav button{padding:8px 12px}
 <p>A link missing from this 20-catchment index is <strong>not</strong> a river endpoint. A single modeled source reach can intersect multiple clipped catchments. Browser tracing stops at 40 source-ID steps and highlights only geometries already loaded in the selected catchment; it does not delineate an upstream contributing area, travel distance, river length or flood impact.</p>
 <p><a href="data/fao_downstream_summary.json" download>Download source link QA (JSON)</a> · <a href="data/detailed_river_manifest.json" download>Original FAO network manifest</a>. FAO AQUASTAT 2026 CC BY 4.0.</p>
 </section>
+
+<section class="faoLinks" id="faoOutletPreflight" aria-labelledby="faoOutletPreflightTitle">
+<h3 id="faoOutletPreflightTitle">Study-area overlap and provisional river boundary-exit screening</h3>
+<p>Before attempting outlet-aware hydrological analysis, we compared all <strong>190 pairs of the original 20 study-area polygons</strong> and screened <strong>125 modeled FAO reach records</strong> whose source <code>NEXT_DOWN</code> reference crosses the displayed index, leaves it, or is terminal/unlinked. These are <strong>review leads, not verified outlets or a new watershed partition</strong>.</p>
+<div id="faoOutletPreflightSummary" class="reachCompareStatus" aria-live="polite">Loading source-bound overlap and boundary screening…</div>
+<div class="faoLinksScroll"><table aria-label="Twenty study-area overlap and modeled boundary-exit lead counts">
+<thead><tr><th scope="col">Study catchment · map</th><th scope="col">Overlapping study areas</th><th scope="col">Modeled screen leads</th><th scope="col">Source links into other study areas</th><th scope="col">Next source ID outside index</th><th scope="col">Source terminal / unlinked</th><th scope="col">Endpoint ≤250 m from boundary</th></tr></thead>
+<tbody id="faoOutletPreflightCatchments"><tr><td colspan="7">Loading…</td></tr></tbody></table></div>
+<div class="reachCompareControls">
+<label for="faoOutletCatchment">Origin study catchment<select id="faoOutletCatchment"><option value="all">All catchments</option></select></label>
+<label for="faoOutletClass">Source link category<select id="faoOutletClass"><option value="all">All three source categories</option><option value="NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS">NEXT_DOWN in other indexed study areas</option><option value="NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX">NEXT_DOWN outside study index</option><option value="SOURCE_TERMINAL_OR_UNLINKED">Source terminal / unlinked</option></select></label>
+<label for="faoOutletSearch">Find source ID or catchment<input id="faoOutletSearch" type="search" placeholder="e.g. 10565250" autocomplete="off"></label>
+</div>
+<div id="faoOutletRowsStatus" class="reachCompareStatus" role="status" aria-live="polite">Loading source records…</div>
+<div class="faoLinksScroll"><table aria-label="FAO original-model clipped endpoint proximity to study area boundaries, not surveyed outlets">
+<thead><tr><th scope="col">Catchment · map</th><th scope="col">Source reach ID</th><th scope="col">NEXT_DOWN source category</th><th scope="col">Nearest clipped endpoint to study boundary</th><th scope="col">Boundary proximity band</th></tr></thead>
+<tbody id="faoOutletRows"><tr><td colspan="5">Loading…</td></tr></tbody></table></div>
+<p><strong>Limits:</strong> The 250-metre band is a screening threshold, not accuracy tolerance or evidence of a channel crossing. Missing <code>NEXT_DOWN</code> targets indicate the limit of this 20-catchment source index, not necessarily river endpoints. Small overlaps between original study polygons, copied river IDs and clipping effects can mimic transfers. None of the 125 records is a field-verified hydrological outlet; no new outlet point layer or directed basin-flow network has been published.</p>
+<p><a href="data/fao_study_area_overlap_outlet_readiness.json" download>Download 190-pair area and source-screen QA (JSON)</a> · <a href="data/fao_model_boundary_exit_screen_records.csv" download>Download 125 source review records (CSV)</a>. Original study polygons and FAO AQUASTAT 2026 HydroRIVERS-derived modeled network; FAO data CC BY 4.0.</p>
+</section>
 <section class="faoLinks" id="fao89Review" aria-labelledby="fao89Title">
 <h3 id="fao89Title">Cross-catchment modeled river source links — 89-record review</h3>
 <p>Source-linked FAO <code>HYRIV_ID</code> / <code>NEXT_DOWN</code> records are compared across the existing 20 study catchments. <strong>89 originating clipped source records produce 92 destination memberships in 33 directed catchment-pair categories.</strong> Most involve <strong>overlapping study polygons</strong>; they do not establish a flow hierarchy between whole catchments.</p>
@@ -407,7 +427,7 @@ header .nav button{padding:8px 12px}
 
 const extent=[2.4,3.95,15.6,15.32],full={x:0,y:0,w:1020,h:750};
 const el=id=>document.getElementById(id),canvas=el('mapCanvas'),ctx=canvas.getContext('2d',{alpha:true});
-let catchments=[],geo=[],national=null,countryContext=null,administrative=null,admStates=null,admLgas=null,lgaPromise=null,selected=null,waterMeta=null,detailedManifest=null,riverComparison=null,faoTopologySummary=null,fao89Audit=null,faoTopologyGraph=null,faoTopologyRequest=null,faoGeometrySummary=null,faoUncutThree=null,faoEndpointGapMap=null,faoGapRequest=null,activeSourceTrace=null,knowledgeIndex=null,publicEvidence=null,evidenceLoadState='pending',damQuality=null;
+let catchments=[],geo=[],national=null,countryContext=null,administrative=null,admStates=null,admLgas=null,lgaPromise=null,selected=null,waterMeta=null,detailedManifest=null,riverComparison=null,faoTopologySummary=null,fao89Audit=null,faoOutletPreflight=null,faoTopologyGraph=null,faoTopologyRequest=null,faoGeometrySummary=null,faoUncutThree=null,faoEndpointGapMap=null,faoGapRequest=null,activeSourceTrace=null,knowledgeIndex=null,publicEvidence=null,evidenceLoadState='pending',damQuality=null;
 let labelsOn=true,nationalOn=true,statesOn=true,lgasOn=false,riversOn=true,lakesOn=true,riverScope='all',riverDensity='medium',expanded=false,viewport={...full},compiledDamOn=false,compiledDamData=null,selectedDamRef=null;
 let catchPaths=new Map(),statePaths=[],countryPath=null,lgaPaths=new Map(),riverPaths=[],lakePaths=[],activeLGA=null,activeHydro=null,paintScheduled=false,detailCache=new Map(),detailAbort=null,detailSequence=0,detailStatus='idle';
 let pointerMap=new Map(),startSingle=null,pinch=null,gestureUsed=false,dragged=false,hoverName='';
@@ -602,6 +622,113 @@ function renderFaoThreeUncutReview(){
  }).join('');
 }
 
+
+
+function acceptFaoOutletPreflight(value){
+ if(!value||!faoTopologySummary||!fao89Audit||!detailedManifest
+   ||value.schema_version!=='BN_STAGE3D_BK_MODEL_STUDY_AREA_OVERLAP_EXIT_SCREEN_V1'
+   ||value.status!=='SOURCE_CLIPPED_STUDY_AREA_SCREEN_NOT_VERIFIED_HYDROLOGIC_OUTLETS'
+   ||value.catchment_source_sha256!==detailedManifest.source_catchment_sha256
+   ||value.fao_source_manifest_sha256!==faoTopologySummary.source_manifest_sha256
+   ||value.source_89_research_count!==89||value.out_of_index_next_id_count!==32
+   ||value.null_source_terminal_count!==4||value.source_screen_record_count!==125
+   ||value.actual_verified_outlet_count!==0||value.screen_threshold_m!==250
+   ||!value.screen_overlap||!Array.isArray(value.screen_overlap.overlap_pairs)
+   ||value.screen_overlap.overlap_pairs.length!==190
+   ||value.screen_overlap.screen_overlap_pair_count!==42
+   ||value.screen_overlap.screen_area_double_counted_km2!==35.96
+   ||value.screen_overlap.screen_area_unique_union_km2!==987420.55
+   ||!Array.isArray(value.boundary_exit_lead_records)
+   ||value.boundary_exit_lead_records.length!==125
+   ||!value.screen_overlap.per_catchment
+   ||Object.keys(value.screen_overlap.per_catchment).length!==20)return false;
+ const classes={NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS:0,
+    NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX:0,SOURCE_TERMINAL_OR_UNLINKED:0};
+ const ids=new Set(catchments.map(c=>c.id)),per={},seen=new Set(),matches=new Set();
+ let near=0;
+ for(const source of fao89Audit.source_references)
+   matches.add(source.from_catchment_id+'|'+source.source_hyriv_id);
+ for(const x of value.boundary_exit_lead_records){
+   if(!ids.has(x.catchment_id)||!Object.hasOwn(classes,x.source_link_class)
+     ||!Number.isSafeInteger(x.source_hyriv_id)||x.source_hyriv_id<1
+     ||x.original_next_down_id_or_blank!==null
+         &&(!Number.isSafeInteger(x.original_next_down_id_or_blank)||x.original_next_down_id_or_blank<1)
+     ||!Number.isFinite(x.distance_nearest_clipped_endpoint_to_study_boundary_m)
+     ||x.distance_nearest_clipped_endpoint_to_study_boundary_m<0
+     ||typeof x.within_250m_screening_band!=='boolean'
+     ||typeof x.study_boundary_intersects_source_fragment!=='boolean'
+     ||x.hydraulic_outlet_verified!==false
+     ||x.within_250m_screening_band!==(x.distance_nearest_clipped_endpoint_to_study_boundary_m<=250)
+     ||x.source_link_class==='SOURCE_TERMINAL_OR_UNLINKED'&&x.original_next_down_id_or_blank!==null
+     ||x.source_link_class!=='SOURCE_TERMINAL_OR_UNLINKED'&&x.original_next_down_id_or_blank===null)return false;
+   const key=x.catchment_id+'|'+x.source_hyriv_id;
+   if(seen.has(key))return false;seen.add(key);
+   if(x.source_link_class==='NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS'){
+    if(!matches.delete(key))return false;
+   }
+   classes[x.source_link_class]++;
+   per[x.catchment_id]=(per[x.catchment_id]||0)+1;
+   if(x.within_250m_screening_band)near++;
+ }
+ if(seen.size!==125||matches.size!==0
+   ||classes.NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS!==89
+   ||classes.NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX!==32
+   ||classes.SOURCE_TERMINAL_OR_UNLINKED!==4||near!==121)return false;
+ let pairCount=0;
+ for(const p of value.screen_overlap.overlap_pairs){
+  if(!ids.has(p.a)||!ids.has(p.b)||p.a===p.b
+    ||!Number.isFinite(p.screen_overlap_km2)||p.screen_overlap_km2<0
+    ||!['positive_area_overlap','touching_only','separate'].includes(p.source_polygon_relation))return false;
+  if(p.source_polygon_relation==='positive_area_overlap')pairCount++;
+ }
+ if(pairCount!==42)return false;
+ for(const c of catchments){
+  const item=value.screen_overlap.per_catchment[c.id],
+    prev=faoTopologySummary.counts_by_catchment[c.id];
+  if(!item||item.name!==c.name||item.no_independently_validated_outlet!==true
+    ||item.modeled_boundary_screen_records!==(per[c.id]||0)
+    ||item.next_id_only_in_other_study_areas!==prev.next_down_only_outside_selected_catchment
+    ||item.next_id_outside_index!==prev.next_down_not_in_20_catchment_index
+    ||item.source_terminal_or_unlinked!==prev.next_down_null_or_source_terminal)return false;
+ }
+ return true;
+}
+function renderFaoOutletPreflight(){
+ const summary=el('faoOutletPreflightSummary'),top=el('faoOutletPreflightCatchments'),
+       body=el('faoOutletRows'),status=el('faoOutletRowsStatus');
+ if(!faoOutletPreflight){
+  summary.textContent='Study-area model boundary screen unavailable or failed scientific/source checks';
+  status.textContent='No outlets or whole-basin flow connections can be inferred';
+  top.innerHTML='<tr><td colspan="7">Source screening cannot be displayed.</td></tr>';
+  body.innerHTML='<tr><td colspan="5">Source screening cannot be displayed.</td></tr>';return;
+ }
+ const overlap=faoOutletPreflight.screen_overlap;
+ summary.textContent='190 polygon pairs · 42 positive-area overlaps · 35.96 km² aggregate double-counted area screen · 0 verified outlets';
+ top.innerHTML=catchments.map(c=>{
+  const v=overlap.per_catchment[c.id];
+  return '<tr><td><button type="button" data-fao-outlet-map="'+esc(c.id)+'">'+esc(c.name)+'</button></td>'+
+   '<td>'+v.positive_area_overlap_with_other_study_areas+'</td>'+
+   '<td>'+v.modeled_boundary_screen_records+'</td>'+
+   '<td>'+v.next_id_only_in_other_study_areas+'</td>'+
+   '<td>'+v.next_id_outside_index+'</td>'+
+   '<td>'+v.source_terminal_or_unlinked+'</td>'+
+   '<td>'+v.within_250m_of_polygon_border+'</td></tr>';
+ }).join('');
+ const selected=el('faoOutletCatchment').value,type=el('faoOutletClass').value,search=clean(el('faoOutletSearch').value);
+ const matches=faoOutletPreflight.boundary_exit_lead_records.filter(x=>
+    (selected==='all'||selected===x.catchment_id)&&(type==='all'||type===x.source_link_class)
+    &&(!search||clean(x.study_area_name+' '+x.catchment_id+' '+x.source_hyriv_id+' '+(x.original_next_down_id_or_blank||'')).includes(search)));
+ status.textContent=matches.length+' of 125 modeled review records · 121 within 250 m of study boundaries · 0 verified outlets';
+ const classes={NEXT_ID_ONLY_IN_OTHER_STUDY_AREAS:'Next ID in other displayed study area(s)',
+   NEXT_ID_OUTSIDE_AVAILABLE_SOURCE_INDEX:'Next source ID outside 20-area index',
+   SOURCE_TERMINAL_OR_UNLINKED:'Source terminal / unlinked'};
+ body.innerHTML=matches.length?matches.map(x=>
+  '<tr data-outlet-screen="'+esc(x.catchment_id)+'"><td><button type="button" data-fao-outlet-map="'+esc(x.catchment_id)+'">'+esc(x.study_area_name)+'</button></td>'+
+  '<td><code>'+x.source_hyriv_id+'</code></td><td>'+classes[x.source_link_class]+'</td>'+
+  '<td>'+x.distance_nearest_clipped_endpoint_to_study_boundary_m.toLocaleString(undefined,{maximumFractionDigits:1})+' m</td>'+
+  '<td>'+(x.within_250m_screening_band?'Inside 250-m screen':'Beyond 250-m screen')+'</td></tr>').join(''):
+  '<tr><td colspan="5">No research records match these filters.</td></tr>';
+}
 
 function acceptFao89Audit(data){
  if(!data||!faoTopologySummary||!faoGeometrySummary||!detailedManifest
@@ -1559,6 +1686,10 @@ function updateExpansion(){document.body.classList.toggle('expanded',expanded);e
 el('catchmentSearch').addEventListener('input',renderList);
 el('faoThreeUncutRows').addEventListener('click',e=>{const btn=e.target.closest('button[data-original-fao-map]');if(!btn)return;const id=btn.dataset.originalFaoMap;if(!catchments.some(c=>c.id===id))return;tab('Explore');choose(id,true)});
 el('faoGeometryRows').addEventListener('click',e=>{const btn=e.target.closest('button[data-fao-geometry-map]');if(!btn)return;const id=btn.dataset.faoGeometryMap;if(!catchments.some(c=>c.id===id))return;tab('Explore');choose(id,true)});
+el('faoOutletCatchment').addEventListener('change',renderFaoOutletPreflight);
+el('faoOutletClass').addEventListener('change',renderFaoOutletPreflight);
+el('faoOutletSearch').addEventListener('input',renderFaoOutletPreflight);
+el('faoOutletPreflight').addEventListener('click',event=>{const button=event.target.closest('button[data-fao-outlet-map]');if(!button)return;const id=button.dataset.faoOutletMap;if(!catchments.some(c=>c.id===id))return;tab('Explore');choose(id,true)});
 el('fao89Search').addEventListener('input',renderFao89Audit);
 el('fao89Catchment').addEventListener('change',renderFao89Audit);
 el('fao89Gap').addEventListener('change',renderFao89Audit);
@@ -1719,6 +1850,6 @@ canvas.addEventListener('keydown',e=>{
  else if(e.key.startsWith('Arrow')){e.preventDefault();const d=viewport.w*.065;
   setView({...viewport,x:viewport.x+(e.key==='ArrowRight'?d:e.key==='ArrowLeft'?-d:0),y:viewport.y+(e.key==='ArrowDown'?d:e.key==='ArrowUp'?-d:0)})}
 });
-Promise.all([fetch('data/registry.json').then(r=>{if(!r.ok)throw new Error('registry download failed');return r.json()}),fetch('data/catchments.geojson').then(r=>{if(!r.ok)throw new Error('geometry download failed');return r.json()}),fetch('data/nigeria_boundary.geojson').then(r=>{if(!r.ok)throw new Error('national boundary download failed');return r.json()}),fetch('data/international_context.json').then(r=>{if(!r.ok)throw new Error('border context download failed');return r.json()}),fetch('data/admin_crosswalk_provisional.json').then(r=>{if(!r.ok)throw new Error('admin crosswalk download failed');return r.json()}),fetch('data/adm1_states_provisional.geojson').then(r=>{if(!r.ok)throw new Error('state boundary download failed');return r.json()}),fetch('data/rivers_overview.geojson').then(r=>{if(!r.ok)throw new Error('river layer download failed');return r.json()}),fetch('data/lakes_overview.geojson').then(r=>{if(!r.ok)throw new Error('lake layer download failed');return r.json()}),fetch('data/hydro_reference_metadata.json').then(r=>{if(!r.ok)throw new Error('hydro metadata download failed');return r.json()}),fetch('data/detailed_river_manifest.json').then(r=>{if(!r.ok)throw new Error('FAO detailed network manifest failed');return r.json()}),fetch('data/river_reach_comparison.json').then(r=>{if(!r.ok)throw Error('river comparison unavailable');return r.json()}).catch(()=>null),fetch('data/fao_downstream_summary.json').then(r=>{if(!r.ok)throw Error('source topology summary unavailable');return r.json()}).catch(()=>null),fetch('data/fao_endpoint_gap_summary.json').then(r=>{if(!r.ok)throw Error('model geometry QA unavailable');return r.json()}).catch(()=>null),fetch('data/fao_three_original_gap_resolution.json').then(r=>{if(!r.ok)throw Error('original publisher comparison unavailable');return r.json()}).catch(()=>null),fetch('data/fao_89_catchment_source_boundary_audit.json').then(r=>{if(!r.ok)throw Error('89 source associations not available');return r.json()}).catch(()=>null),fetch('data/stakeholder_coverage_index.json').then(r=>{if(!r.ok)throw Error('source coverage metadata failed');return r.json()}),fetch('data/public_evidence_catalogue.json').then(r=>{if(!r.ok)throw Error('public evidence catalogue failed');return r.json()}).catch(()=>null),fetch('data/wa_dams_2026_source_quality.json').then(r=>{if(!r.ok)throw Error('dam-source completeness data failed');return r.json()}).catch(()=>null),fetch('data/wa_dam_compiled_reference_preview.json').then(r=>{if(!r.ok)throw Error('compiled source points unavailable');return r.json()}).catch(()=>null)]).then(([registry,collection,country,context,admin,states,rivers,lakes,hydroMeta,detailMeta,reachData,sourceTopology,sourceGeometry,uncutThree,source89,knowledge,evidence,damSource,damPreview])=>{if(registry.length!==20||collection.features.length!==20||country.features.length!==1||context.total_catchments!==20||admin.totalCatchments!==20||states.features.length!==37)throw new Error('Unexpected geometry counts');catchments=registry;geo=collection.features;national=country;countryContext=context;administrative=admin;admStates=states;detailedManifest=detailMeta;riverComparison=acceptRiverComparison(reachData)?reachData:null;renderRiverComparison();faoTopologySummary=acceptFaoTopologySummary(sourceTopology)?sourceTopology:null;renderFaoTopology();faoGeometrySummary=acceptFaoGeometrySummary(sourceGeometry)?sourceGeometry:null;renderFaoGeometryQA();faoUncutThree=acceptFaoThreeUncutReview(uncutThree)?uncutThree:null;renderFaoThreeUncutReview();el('fao89Catchment').innerHTML='<option value="all">All 20 catchments</option>'+catchments.map(q=>'<option value="'+esc(q.id)+'">'+esc(q.name)+'</option>').join('');fao89Audit=acceptFao89Audit(source89)?source89:null;renderFao89Audit();if(detailMeta.status!=='PROVISIONAL_DETAILED_RIVER_NETWORK'||Object.keys(detailMeta.files).length!==20)throw Error('Unverified FAO river manifest');if(knowledge.publication_status!=='PUBLIC_METADATA_ONLY'||knowledge.source_documents_reviewed!==20||knowledge.catchments.length!==20||knowledge.source_contents_published!==false)throw Error('Invalid knowledge index');knowledgeIndex=knowledge;damQuality=acceptPublicDamSourceQuality(damSource)?damSource:null;compiledDamData=acceptCompiledDamPoints(damPreview)?damPreview:null;el('compiledDamToggle').disabled=!compiledDamData;el('compiledDamQuickToggle').disabled=!compiledDamData;el('compiledDamStatus').textContent=compiledDamData?'Compiled research references ready (186); hidden by default, 0 confirmed dams. Three disputed labels withheld.':'Compiled source-point layer unavailable or invalid; zero confirmed dams. All references withheld.';publicEvidence=acceptPublicEvidence(evidence)?evidence:null;evidenceLoadState=publicEvidence?'ready':'unavailable';initKnowledgeStates();cacheBasePaths();cacheHydro(rivers,lakes,hydroMeta);showOverview();renderKnowledge()}).catch(e=>{el('catchmentList').innerHTML='<div class="empty">Map data could not be loaded. Open this site through GitHub Pages or a local web server.</div>';el('details').innerHTML='<div class="aside">The map is temporarily unavailable. Please refresh after deployment finishes.</div>';console.error('Basin Nexus NG data error',e)});
+Promise.all([fetch('data/registry.json').then(r=>{if(!r.ok)throw new Error('registry download failed');return r.json()}),fetch('data/catchments.geojson').then(r=>{if(!r.ok)throw new Error('geometry download failed');return r.json()}),fetch('data/nigeria_boundary.geojson').then(r=>{if(!r.ok)throw new Error('national boundary download failed');return r.json()}),fetch('data/international_context.json').then(r=>{if(!r.ok)throw new Error('border context download failed');return r.json()}),fetch('data/admin_crosswalk_provisional.json').then(r=>{if(!r.ok)throw new Error('admin crosswalk download failed');return r.json()}),fetch('data/adm1_states_provisional.geojson').then(r=>{if(!r.ok)throw new Error('state boundary download failed');return r.json()}),fetch('data/rivers_overview.geojson').then(r=>{if(!r.ok)throw new Error('river layer download failed');return r.json()}),fetch('data/lakes_overview.geojson').then(r=>{if(!r.ok)throw new Error('lake layer download failed');return r.json()}),fetch('data/hydro_reference_metadata.json').then(r=>{if(!r.ok)throw new Error('hydro metadata download failed');return r.json()}),fetch('data/detailed_river_manifest.json').then(r=>{if(!r.ok)throw new Error('FAO detailed network manifest failed');return r.json()}),fetch('data/river_reach_comparison.json').then(r=>{if(!r.ok)throw Error('river comparison unavailable');return r.json()}).catch(()=>null),fetch('data/fao_downstream_summary.json').then(r=>{if(!r.ok)throw Error('source topology summary unavailable');return r.json()}).catch(()=>null),fetch('data/fao_endpoint_gap_summary.json').then(r=>{if(!r.ok)throw Error('model geometry QA unavailable');return r.json()}).catch(()=>null),fetch('data/fao_three_original_gap_resolution.json').then(r=>{if(!r.ok)throw Error('original publisher comparison unavailable');return r.json()}).catch(()=>null),fetch('data/fao_89_catchment_source_boundary_audit.json').then(r=>{if(!r.ok)throw Error('89 source associations not available');return r.json()}).catch(()=>null),fetch('data/fao_study_area_overlap_outlet_readiness.json').then(r=>{if(!r.ok)throw Error('outlet-readiness model source unavailable');return r.json()}).catch(()=>null),fetch('data/stakeholder_coverage_index.json').then(r=>{if(!r.ok)throw Error('source coverage metadata failed');return r.json()}),fetch('data/public_evidence_catalogue.json').then(r=>{if(!r.ok)throw Error('public evidence catalogue failed');return r.json()}).catch(()=>null),fetch('data/wa_dams_2026_source_quality.json').then(r=>{if(!r.ok)throw Error('dam-source completeness data failed');return r.json()}).catch(()=>null),fetch('data/wa_dam_compiled_reference_preview.json').then(r=>{if(!r.ok)throw Error('compiled source points unavailable');return r.json()}).catch(()=>null)]).then(([registry,collection,country,context,admin,states,rivers,lakes,hydroMeta,detailMeta,reachData,sourceTopology,sourceGeometry,uncutThree,source89,sourceOutlet,knowledge,evidence,damSource,damPreview])=>{if(registry.length!==20||collection.features.length!==20||country.features.length!==1||context.total_catchments!==20||admin.totalCatchments!==20||states.features.length!==37)throw new Error('Unexpected geometry counts');catchments=registry;geo=collection.features;national=country;countryContext=context;administrative=admin;admStates=states;detailedManifest=detailMeta;riverComparison=acceptRiverComparison(reachData)?reachData:null;renderRiverComparison();faoTopologySummary=acceptFaoTopologySummary(sourceTopology)?sourceTopology:null;renderFaoTopology();faoGeometrySummary=acceptFaoGeometrySummary(sourceGeometry)?sourceGeometry:null;renderFaoGeometryQA();faoUncutThree=acceptFaoThreeUncutReview(uncutThree)?uncutThree:null;renderFaoThreeUncutReview();el('fao89Catchment').innerHTML='<option value="all">All 20 catchments</option>'+catchments.map(q=>'<option value="'+esc(q.id)+'">'+esc(q.name)+'</option>').join('');fao89Audit=acceptFao89Audit(source89)?source89:null;renderFao89Audit();el('faoOutletCatchment').innerHTML='<option value="all">All catchments</option>'+catchments.map(q=>'<option value="'+esc(q.id)+'">'+esc(q.name)+'</option>').join('');faoOutletPreflight=acceptFaoOutletPreflight(sourceOutlet)?sourceOutlet:null;renderFaoOutletPreflight();if(detailMeta.status!=='PROVISIONAL_DETAILED_RIVER_NETWORK'||Object.keys(detailMeta.files).length!==20)throw Error('Unverified FAO river manifest');if(knowledge.publication_status!=='PUBLIC_METADATA_ONLY'||knowledge.source_documents_reviewed!==20||knowledge.catchments.length!==20||knowledge.source_contents_published!==false)throw Error('Invalid knowledge index');knowledgeIndex=knowledge;damQuality=acceptPublicDamSourceQuality(damSource)?damSource:null;compiledDamData=acceptCompiledDamPoints(damPreview)?damPreview:null;el('compiledDamToggle').disabled=!compiledDamData;el('compiledDamQuickToggle').disabled=!compiledDamData;el('compiledDamStatus').textContent=compiledDamData?'Compiled research references ready (186); hidden by default, 0 confirmed dams. Three disputed labels withheld.':'Compiled source-point layer unavailable or invalid; zero confirmed dams. All references withheld.';publicEvidence=acceptPublicEvidence(evidence)?evidence:null;evidenceLoadState=publicEvidence?'ready':'unavailable';initKnowledgeStates();cacheBasePaths();cacheHydro(rivers,lakes,hydroMeta);showOverview();renderKnowledge()}).catch(e=>{el('catchmentList').innerHTML='<div class="empty">Map data could not be loaded. Open this site through GitHub Pages or a local web server.</div>';el('details').innerHTML='<div class="aside">The map is temporarily unavailable. Please refresh after deployment finishes.</div>';console.error('Basin Nexus NG data error',e)});
 })();
 </script></body></html>
