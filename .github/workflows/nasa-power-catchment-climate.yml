@@ -1,0 +1,77 @@
+name: Integrate NASA POWER 20 catchment representative-point climate
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bo_bq_nasa_power_climate.py'
+      - 'tools/test_stage3d_bo_br_power_climate.py'
+      - '.github/workflows/nasa-power-catchment-climate.yml'
+      - 'site/data/nasa_power_20_catchment_point_climate_2005_2025.json'
+      - 'site/data/integrated_catchment_indicator_register.json'
+      - 'site/data/integrated_catchment_indicator_register.csv'
+      - 'research/nasa_power_monthly_2005_2025/**'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bo_bq_nasa_power_climate.py'
+      - 'tools/test_stage3d_bo_br_power_climate.py'
+      - '.github/workflows/nasa-power-catchment-climate.yml'
+      - 'site/data/nasa_power_20_catchment_point_climate_2005_2025.json'
+      - 'site/data/integrated_catchment_indicator_register.json'
+      - 'site/data/integrated_catchment_indicator_register.csv'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fast climate source schema tests
+        run: python -m unittest discover -s tools -p 'test_stage3d_bo_br_power_climate.py' -v
+      - name: Acquire NASA POWER original monthly point samples or reconstruct committed source
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -d research/nasa_power_monthly_2005_2025; then
+            python tools/build_stage3d_bo_bq_nasa_power_climate.py --check
+          else
+            python tools/build_stage3d_bo_bq_nasa_power_climate.py --fetch --output review/nasa-power
+          fi
+      - name: Record real NASA 20-point source and 3 derived publications on the same-repository PR only
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          TARGET_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$TARGET_BRANCH" != main
+          if ! test -e site/data/nasa_power_20_catchment_point_climate_2005_2025.json; then
+            git fetch origin "refs/heads/$TARGET_BRANCH:refs/remotes/origin/$TARGET_BRANCH"
+            git checkout -B "$TARGET_BRANCH" "refs/remotes/origin/$TARGET_BRANCH"
+            cp review/nasa-power/nasa_power_20_catchment_point_climate_2005_2025.json site/data/
+            cp review/nasa-power/integrated_catchment_indicator_register.json site/data/
+            cp review/nasa-power/integrated_catchment_indicator_register.csv site/data/
+            python tools/build_stage3d_bo_bq_nasa_power_climate.py --check
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research/nasa_power_monthly_2005_2025 site/data/nasa_power_20_catchment_point_climate_2005_2025.json site/data/integrated_catchment_indicator_register.json site/data/integrated_catchment_indicator_register.csv
+            git commit -m "Integrate 2005–2025 NASA POWER rainfall and temperature point data for all 20 catchments"
+            git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          fi
+      - name: Save new open NASA point-climate dataset for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-20-catchment-NASA-POWER-point-climate-2005-2025
+          path: |
+            review/nasa-power/
+            site/data/nasa_power_20_catchment_point_climate_2005_2025.json
+            site/data/integrated_catchment_indicator_register.json
+            site/data/integrated_catchment_indicator_register.csv
+          retention-days: 45
+          if-no-files-found: warn
