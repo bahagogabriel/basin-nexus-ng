@@ -414,6 +414,41 @@ async function pinch(page){
  assert(result.view.w<before*.9,'pinch-out did not zoom in');
  console.log('tablet real two-finger pinch: PASS '+before.toFixed(1)+' to '+result.view.w.toFixed(1));
 }
+
+async function testReachComparison(browser){
+ const ctx=await browser.newContext({viewport:{width:1320,height:940}});
+ const page=await ctx.newPage();
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#reachCompareStatus')?.textContent.includes('20 of 20'),{timeout:35000});
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#reachCompareRows tr[data-reach-catchment]').count(),20);
+ assert.match(await page.locator('#reachComparison').innerText(),/not drainage length per area/i);
+ await page.locator('#reachCompareSort').selectOption('total');
+ assert.equal(await page.locator('#reachCompareRows tr').first().getAttribute('data-reach-catchment'),'SCMP-C07');
+ await page.locator('#reachCompareSearch').fill('Sokoto');
+ assert.equal(await page.locator('#reachCompareRows tr[data-reach-catchment]').count(),1);
+ assert.equal(await page.locator('#reachCompareRows tr').first().getAttribute('data-reach-catchment'),'SCMP-C17');
+ await page.locator('#reachCompareRows button[data-reach-focus="SCMP-C17"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C17',{timeout:5000});
+ assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ assert.match(await page.locator('#details').innerText(),/not measured drainage density/);
+ await page.locator('#reachProfileCompare').click();
+ assert.equal(await page.locator('#navData').getAttribute('aria-current'),'page');
+ await ctx.close();
+ const invalid=await browser.newContext();
+ await invalid.route('**/data/river_reach_comparison.json',async route=>{
+  const resp=await route.fetch();const data=await resp.json();
+  data.rows[0].reach_count+=1;
+  await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(data)});
+ });
+ const bad=await invalid.newPage();await bad.goto(url,{waitUntil:'domcontentloaded'});
+ await bad.waitForFunction(()=>document.querySelector('#reachCompareStatus')?.textContent.includes('unverified'),{timeout:35000});
+ await bad.locator('#navData').click();
+ assert.equal(await bad.locator('#reachCompareRows tr[data-reach-catchment]').count(),0);
+ await invalid.close();
+ console.log('FAO REACH COMPARISON: 20 catchments, normalized source count, sort/search, map link, profile and invalid-source lockout PASS');
+}
+
 async function testEvidenceCatalogueFixture(browser){
  // Browser route fixtures never alter files in site/ or the actual released evidence collection.
  const make=(record_id,extra={})=>({
@@ -474,7 +509,8 @@ async function testEvidenceCatalogueFixture(browser){
  await ready();browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const desktop=await browser.newPage({viewport:{width:1512,height:950}});
  await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
- await testEvidenceCatalogueFixture(browser);
+ await testReachComparison(browser);
+await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
  await phone.goto(url,{waitUntil:'domcontentloaded'});
