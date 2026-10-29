@@ -9,6 +9,10 @@ on:
       - 'tools/test_stage3d_aq_at_river_comparison.py'
       - 'site/data/river_reach_comparison.json'
       - 'site/data/fao_downstream_summary.json'
+      - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_endpoint_gap_index.json'
+      - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
+      - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
       - 'site/data/fao_downstream_index.json'
       - 'tools/build_stage3d_au_av_fao_topology.py'
       - 'tools/test_stage3d_au_av_fao_topology.py'
@@ -18,6 +22,10 @@ on:
       - 'tools/test_stage3d_aq_at_river_comparison.py'
       - 'site/data/river_reach_comparison.json'
       - 'site/data/fao_downstream_summary.json'
+      - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_endpoint_gap_index.json'
+      - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
+      - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
       - 'site/data/fao_downstream_index.json'
       - 'tools/build_stage3d_au_av_fao_topology.py'
       - 'tools/test_stage3d_au_av_fao_topology.py'
@@ -93,6 +101,10 @@ on:
       - 'tools/test_stage3d_aq_at_river_comparison.py'
       - 'site/data/river_reach_comparison.json'
       - 'site/data/fao_downstream_summary.json'
+      - 'site/data/fao_endpoint_gap_summary.json'
+      - 'site/data/fao_endpoint_gap_index.json'
+      - 'tools/build_stage3d_ay_az_fao_endpoint_qa.py'
+      - 'tools/test_stage3d_ay_az_fao_endpoint_qa.py'
       - 'site/data/fao_downstream_index.json'
       - 'tools/build_stage3d_au_av_fao_topology.py'
       - 'tools/test_stage3d_au_av_fao_topology.py'
@@ -171,6 +183,8 @@ jobs:
         run: python3 -m unittest discover -s tools -p 'test_stage3d_aq_at_river_comparison.py' -v
       - name: Validate publisher NEXT_DOWN source graph and bounded source-only indexing
         run: python3 -m unittest discover -s tools -p 'test_stage3d_au_av_fao_topology.py' -v
+      - name: Validate modeled clipped geometry endpoint separations and source QA limits
+        run: python3 -m unittest discover -s tools -p 'test_stage3d_ay_az_fao_endpoint_qa.py' -v
       - name: Guard confirmed unnamed dams and synthetic independently reviewed admission receipts
         run: |
           python3 tools/validate_confirmed_dam_sites.py
