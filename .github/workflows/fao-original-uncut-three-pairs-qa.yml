@@ -20,7 +20,7 @@ on:
       - '.github/workflows/fao-original-uncut-three-pairs-qa.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   six-source-records:
     runs-on: ubuntu-24.04
