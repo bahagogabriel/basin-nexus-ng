@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Synthetic coordinates and exact-source screening; no surveyed river assertions."""
 from __future__ import annotations
-import copy,math,unittest
+import copy,json,math,unittest
 from pathlib import Path
 from build_stage3d_ay_az_fao_endpoint_qa import (
- band,endpoints,haversine_m,separation_m,build,SOURCE_STATUS,MAX_LOOKUP_BYTES)
+ band,endpoints,haversine_m,separation_m,build,outlier_review_csv,SOURCE_STATUS,MAX_LOOKUP_BYTES)
 
 class SourceEndpointScreenTests(unittest.TestCase):
  def test_synthetic_coincident_and_large_gaps(self):
@@ -36,6 +36,11 @@ class SourceEndpointScreenTests(unittest.TestCase):
   self.assertEqual(sum(s["total_clipped_source_link_classification"].values()),52012)
   self.assertEqual(sum(x["clipped_reaches"] for x in s["by_catchment"].values()),52012)
   self.assertTrue(any("not field uncertainty" in v for v in s["limitations"]))
+  source_index=json.loads((Path(__file__).resolve().parents[1]/"site/data/fao_downstream_index.json").read_text("utf-8"))
+  flagged=outlier_review_csv(s,idx,source_index)
+  self.assertEqual([v["source_hyriv_id"] for v in flagged],[10505946,10566530,10568272])
+  self.assertEqual([v["minimum_clipped_endpoint_separation_m"] for v in flagged],[10983.5,4805.2,4885.1])
+  self.assertTrue(all(v["review_status"]=="GEOMETRIC_SCREENING_LEAD_NOT_FIELD_VERIFIED" for v in flagged))
  def test_reject_invalid_coordinates_and_geometry(self):
   for geometry in ({"type":"Point","coordinates":[6,10]},
     {"type":"LineString","coordinates":[[5,9]]},
