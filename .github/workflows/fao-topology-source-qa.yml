@@ -39,6 +39,8 @@ jobs:
         run: |
           set -euo pipefail
           test "$HEAD_BRANCH" != main
+          git fetch origin "refs/heads/$HEAD_BRANCH:refs/remotes/origin/$HEAD_BRANCH"
+          git checkout -B "$HEAD_BRANCH" "refs/remotes/origin/$HEAD_BRANCH"
           if test -e site/data/fao_downstream_summary.json || test -e site/data/fao_downstream_index.json; then
             python tools/build_stage3d_au_av_fao_topology.py --check --output site/data
             echo "Existing source graph matches original publisher files"
