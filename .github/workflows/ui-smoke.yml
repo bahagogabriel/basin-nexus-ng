@@ -30,6 +30,8 @@ on:
       - 'tools/build_stage3d_u_evidence_workbench.py'
       - 'tools/build_stage3d_v_osm_context_review.py'
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
+      - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
+      - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
       - 'tools/test_stage3d_v_osm_context_review.py'
       - 'tools/test_stage3d_u_evidence_workbench.py'
@@ -63,6 +65,8 @@ on:
       - 'tools/build_stage3d_u_evidence_workbench.py'
       - 'tools/build_stage3d_v_osm_context_review.py'
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
+      - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
+      - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
       - 'tools/test_stage3d_v_osm_context_review.py'
       - 'tools/test_stage3d_u_evidence_workbench.py'
@@ -127,6 +131,8 @@ jobs:
         run: python3 -m unittest discover -s tools -p 'test_stage3d_v_osm_context_review.py' -v
       - name: Guard Stage 3D-W source lineage and satellite-metadata non-confirmation (synthetic)
         run: python3 -m unittest discover -s tools -p 'test_stage3d_w_lineage_eo_discovery.py' -v
+      - name: Guard Stage 3D-X/Y pixel QA provenance and no dam verification (synthetic only)
+        run: python3 -m unittest discover -s tools -p 'test_stage3d_xy_sentinel_pixel_review.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
