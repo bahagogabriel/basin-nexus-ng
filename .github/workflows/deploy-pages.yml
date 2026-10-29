@@ -63,6 +63,8 @@ jobs:
         run: python tools/test_river_focus.py
       - name: Verify detailed catchment river network and renderer
         run: python tools/test_detailed_rivers.py
+      - name: Verify 20 catchment FAO reach comparison JSON, CSV and disclaimers
+        run: python -m unittest discover -s tools -p 'test_stage3d_aq_at_river_comparison.py' -v
       - name: Verify UX-A grouped controls and adaptive layout
         run: python tools/test_ux_a.py
       - name: Set up Node for browser usability checks

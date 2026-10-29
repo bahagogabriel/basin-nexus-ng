@@ -1,0 +1,241 @@
+{
+  "schema_version": "BN_STAGE3D_AQ_CATCHMENT_RIVER_REACH_COMPARISON_V1",
+  "status": "MODELLED_SOURCE_REACH_COMPARISON_NOT_A_FIELD_SURVEY",
+  "source": "FAO AQUASTAT 2026 modeled river reaches (HydroRIVERS-derived)",
+  "source_license": "CC BY 4.0",
+  "source_dataset_url": "https://data.fao.org/catalog/dataset/e22667af-3977-4e9f-b58b-67fb91b0fa87",
+  "source_catchment_sha256": "03ebae7c95895919d820aaed146a9030f99833831dc5bea9b8c776dca43df90b",
+  "underlying_manifest": "detailed_river_manifest.json",
+  "total_catchments": 20,
+  "clipped_reach_segments": 52012,
+  "unique_intersecting_source_reaches": 51906,
+  "metric_notices": [
+    "Counts are clipped FAO modeled reach features, not unique named rivers or measured channels.",
+    "The density is a count of clipped reaches per 1000 km2 of registered catchment area; not drainage length per area or hydrologic network density.",
+    "Large, medium and small are source-upstream-area bands >=1000, 100-999, below 100 km2; not Strahler stream orders.",
+    "Catchment size, source segmentation, boundary clipping and missing minor channels affect comparisons; this is not flood, ecological or facility risk ranking.",
+    "Some catchments cross national borders. Source points, private engagement claims and dam sites are not included."
+  ],
+  "rows": [
+    {
+      "id": "SCMP-C01",
+      "name": "Aloma-Konshisha",
+      "area_km2": 16020.9,
+      "reach_count": 1920,
+      "small_reaches": 1399,
+      "medium_reaches": 352,
+      "large_reaches": 169,
+      "large_share_pct": 8.8,
+      "reaches_per_1000_km2": 119.8
+    },
+    {
+      "id": "SCMP-C02",
+      "name": "Benue-Mada",
+      "area_km2": 30844.4,
+      "reach_count": 1769,
+      "small_reaches": 1164,
+      "medium_reaches": 406,
+      "large_reaches": 199,
+      "large_share_pct": 11.2,
+      "reaches_per_1000_km2": 57.4
+    },
+    {
+      "id": "SCMP-C03",
+      "name": "Gaji-Lamurde",
+      "area_km2": 29784,
+      "reach_count": 1376,
+      "small_reaches": 853,
+      "medium_reaches": 351,
+      "large_reaches": 172,
+      "large_share_pct": 12.5,
+      "reaches_per_1000_km2": 46.2
+    },
+    {
+      "id": "SCMP-C04",
+      "name": "Gulbin-Ka",
+      "area_km2": 29552.4,
+      "reach_count": 1416,
+      "small_reaches": 868,
+      "medium_reaches": 333,
+      "large_reaches": 215,
+      "large_share_pct": 15.2,
+      "reaches_per_1000_km2": 47.9
+    },
+    {
+      "id": "SCMP-C05",
+      "name": "Gurara-Gbako",
+      "area_km2": 39020.4,
+      "reach_count": 2274,
+      "small_reaches": 1483,
+      "medium_reaches": 515,
+      "large_reaches": 276,
+      "large_share_pct": 12.1,
+      "reaches_per_1000_km2": 58.3
+    },
+    {
+      "id": "SCMP-C06",
+      "name": "Hadejia Jama'are",
+      "area_km2": 123907.4,
+      "reach_count": 5568,
+      "small_reaches": 3427,
+      "medium_reaches": 1261,
+      "large_reaches": 880,
+      "large_share_pct": 15.8,
+      "reaches_per_1000_km2": 44.9
+    },
+    {
+      "id": "SCMP-C07",
+      "name": "Hawul-Kilange",
+      "area_km2": 111428.8,
+      "reach_count": 5732,
+      "small_reaches": 3620,
+      "medium_reaches": 1336,
+      "large_reaches": 776,
+      "large_share_pct": 13.5,
+      "reaches_per_1000_km2": 51.4
+    },
+    {
+      "id": "SCMP-C08",
+      "name": "Kaduna-Mariga",
+      "area_km2": 26476.6,
+      "reach_count": 1299,
+      "small_reaches": 818,
+      "medium_reaches": 313,
+      "large_reaches": 168,
+      "large_share_pct": 12.9,
+      "reaches_per_1000_km2": 49.1
+    },
+    {
+      "id": "SCMP-C09",
+      "name": "Lokoja-Niger",
+      "area_km2": 26615.1,
+      "reach_count": 2553,
+      "small_reaches": 1854,
+      "medium_reaches": 458,
+      "large_reaches": 241,
+      "large_share_pct": 9.4,
+      "reaches_per_1000_km2": 95.9
+    },
+    {
+      "id": "SCMP-C10",
+      "name": "Malenda",
+      "area_km2": 23450.8,
+      "reach_count": 1101,
+      "small_reaches": 668,
+      "medium_reaches": 254,
+      "large_reaches": 179,
+      "large_share_pct": 16.3,
+      "reaches_per_1000_km2": 46.9
+    },
+    {
+      "id": "SCMP-C11",
+      "name": "Misau-Komadugu Gana",
+      "area_km2": 23622.3,
+      "reach_count": 1103,
+      "small_reaches": 669,
+      "medium_reaches": 215,
+      "large_reaches": 219,
+      "large_share_pct": 19.9,
+      "reaches_per_1000_km2": 46.7
+    },
+    {
+      "id": "SCMP-C12",
+      "name": "Ngada",
+      "area_km2": 44322.7,
+      "reach_count": 1903,
+      "small_reaches": 1140,
+      "medium_reaches": 469,
+      "large_reaches": 294,
+      "large_share_pct": 15.4,
+      "reaches_per_1000_km2": 42.9
+    },
+    {
+      "id": "SCMP-C13",
+      "name": "Oshin-Oyi",
+      "area_km2": 49883,
+      "reach_count": 2588,
+      "small_reaches": 1657,
+      "medium_reaches": 591,
+      "large_reaches": 340,
+      "large_share_pct": 13.1,
+      "reaches_per_1000_km2": 51.9
+    },
+    {
+      "id": "SCMP-C14",
+      "name": "Rima",
+      "area_km2": 101933.7,
+      "reach_count": 4548,
+      "small_reaches": 2712,
+      "medium_reaches": 1024,
+      "large_reaches": 812,
+      "large_share_pct": 17.9,
+      "reaches_per_1000_km2": 44.6
+    },
+    {
+      "id": "SCMP-C15",
+      "name": "Sarkin Pawa-Kaduna",
+      "area_km2": 38833.9,
+      "reach_count": 2038,
+      "small_reaches": 1314,
+      "medium_reaches": 419,
+      "large_reaches": 305,
+      "large_share_pct": 15,
+      "reaches_per_1000_km2": 52.5
+    },
+    {
+      "id": "SCMP-C16",
+      "name": "Shemankar-Katsina Ala",
+      "area_km2": 53589.7,
+      "reach_count": 3974,
+      "small_reaches": 2719,
+      "medium_reaches": 795,
+      "large_reaches": 460,
+      "large_share_pct": 11.6,
+      "reaches_per_1000_km2": 74.2
+    },
+    {
+      "id": "SCMP-C17",
+      "name": "Sokoto-Zamfara",
+      "area_km2": 45705,
+      "reach_count": 2080,
+      "small_reaches": 1264,
+      "medium_reaches": 426,
+      "large_reaches": 390,
+      "large_share_pct": 18.8,
+      "reaches_per_1000_km2": 45.5
+    },
+    {
+      "id": "SCMP-C18",
+      "name": "Wase-Taraba",
+      "area_km2": 54459.8,
+      "reach_count": 3454,
+      "small_reaches": 2320,
+      "medium_reaches": 728,
+      "large_reaches": 406,
+      "large_share_pct": 11.8,
+      "reaches_per_1000_km2": 63.4
+    },
+    {
+      "id": "SCMP-C19",
+      "name": "Yedseram",
+      "area_km2": 67734.6,
+      "reach_count": 2897,
+      "small_reaches": 1730,
+      "medium_reaches": 609,
+      "large_reaches": 558,
+      "large_share_pct": 19.3,
+      "reaches_per_1000_km2": 42.8
+    },
+    {
+      "id": "SCMP-C20",
+      "name": "Zungur-Gongola",
+      "area_km2": 50274.1,
+      "reach_count": 2419,
+      "small_reaches": 1490,
+      "medium_reaches": 578,
+      "large_reaches": 351,
+      "large_share_pct": 14.5,
+      "reaches_per_1000_km2": 48.1
+    }
+  ]
+}
