@@ -26,6 +26,15 @@ assert actual==expected
 assert len(mod["thematic_sections"])==9
 assert len({x["key"] for x in mod["thematic_sections"]})==9
 assert all(x["release_state"]=="WITHHELD_PENDING_REVIEW" for x in mod["thematic_sections"])
+import sys
+sys.path.insert(0,str(s.parents[0]/"tools"))
+from evidence_publication_gate import ALLOWED_FIELDS,SCHEMA_VERSION
+assert mod["future_evidence_gate_schema_version"]==SCHEMA_VERSION
+assert set(mod["future_approved_record_schema_fields"])==ALLOWED_FIELDS
+assert set(mod["future_required_record_fields"])<=ALLOWED_FIELDS
+assert set(mod["future_optional_record_fields"])==ALLOWED_FIELDS-set(mod["future_required_record_fields"])
+assert mod["future_approved_record_count"]==0
+assert mod["future_evidence_gate_validator"]=="tools/evidence_publication_gate.py"
 assert "data/source_content_publication_model.json" in html
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
