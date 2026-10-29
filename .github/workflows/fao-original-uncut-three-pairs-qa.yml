@@ -1,0 +1,38 @@
+name: Audit six original uncut FAO 2026 modeled river source reaches
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - '.github/workflows/fao-original-uncut-three-pairs-qa.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - '.github/workflows/fao-original-uncut-three-pairs-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  six-source-records:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run synthetic exact-source, topology and bounds tests
+        run: python -m unittest discover -s tools -p 'test_stage3d_bc_original_uncut_fao_review.py' -v
+      - name: Query ONLY six original publisher 2026 WFS reach IDs with strict fail-closed source validation
+        run: python tools/build_stage3d_bc_original_uncut_fao_review.py --output-dir review/fao-six-original-reaches
+      - name: Archive source-only uncut comparison and six publisher geometries for non-public technical QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-fao-six-original-uncut-reaches-NOT-FIELD-VERIFIED
+          path: review/fao-six-original-reaches/
+          if-no-files-found: warn
+          retention-days: 60
