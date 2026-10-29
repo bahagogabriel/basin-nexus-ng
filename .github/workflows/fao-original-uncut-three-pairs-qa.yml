@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bd_bf_uncut_source_resolution.py'
       - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
       - 'site/data/fao_three_original_gap_resolution.json'
       - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
@@ -14,6 +15,7 @@ on:
     paths:
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/test_stage3d_bd_bf_uncut_source_resolution.py'
       - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
       - 'site/data/fao_three_original_gap_resolution.json'
       - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
@@ -32,6 +34,8 @@ jobs:
           python-version: '3.11'
       - name: Run synthetic exact-source, topology and bounds tests
         run: python -m unittest discover -s tools -p 'test_stage3d_bc_original_uncut_fao_review.py' -v
+      - name: Guard frozen six-original source provenance and no physical-link admission
+        run: python -m unittest discover -s tools -p 'test_stage3d_bd_bf_uncut_source_resolution.py' -v
       - name: Query ONLY six original publisher 2026 WFS reach IDs with strict fail-closed source validation
         run: python tools/build_stage3d_bc_original_uncut_fao_review.py --output-dir review/fao-six-original-reaches
       - name: Reconcile three original uncut modeled source junctions to existing pinned clipped geometry
