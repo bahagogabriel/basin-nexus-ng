@@ -1,0 +1,2477 @@
+{
+  "schema_version": "BN_STAGE3D_BG_FAO_89_SOURCE_BOUNDARY_GEOMETRY_QA_V1",
+  "status": "MODELED_SOURCE_ASSOCIATION_AND_CLIPPED_POLYGON_SCREEN_NOT_VERIFIED_FLOW",
+  "source": "FAO AQUASTAT 2026 HydroRIVERS-derived modeled river network",
+  "source_license": "CC BY 4.0",
+  "source_catalogue_url": "https://data.fao.org/catalog/dataset/e22667af-3977-4e9f-b58b-67fb91b0fa87",
+  "source_manifest_sha256": "2cae41419dda5bdf19e27d6e33e53f37773625f8d6d701fe23f250d8827a83b8",
+  "source_graph_sha256": "1f3758fed03744bdfcf7779cc2321d93a709071811c582890ed3fa19bc3205e5",
+  "catchment_polygon_source_sha256": "03ebae7c95895919d820aaed146a9030f99833831dc5bea9b8c776dca43df90b",
+  "source_reach_copies_crossing_selected_catchment_index": 89,
+  "unique_cross_catchment_source_association_pairs": 33,
+  "reference_memberships_across_target_catchments": 92,
+  "target_ids_in_multiple_other_catchments": 3,
+  "geometry_method": "Shapely closest points on existing clipped model lines in WGS84, screening great-circle distance; polygons may overlap",
+  "distance_units": "metres, rounded 0.1; modeled geometry screening only",
+  "polygon_relationship_reference_counts": {
+    "boundaries_touch_or_intersect": 1,
+    "overlapping_study_polygons": 91
+  },
+  "per_catchment": {
+    "SCMP-C01": {
+      "name": "Aloma-Konshisha",
+      "source_links_to_other_study_catchments": 1
+    },
+    "SCMP-C02": {
+      "name": "Benue-Mada",
+      "source_links_to_other_study_catchments": 2
+    },
+    "SCMP-C03": {
+      "name": "Gaji-Lamurde",
+      "source_links_to_other_study_catchments": 4
+    },
+    "SCMP-C04": {
+      "name": "Gulbin-Ka",
+      "source_links_to_other_study_catchments": 2
+    },
+    "SCMP-C05": {
+      "name": "Gurara-Gbako",
+      "source_links_to_other_study_catchments": 5
+    },
+    "SCMP-C06": {
+      "name": "Hadejia Jama'are",
+      "source_links_to_other_study_catchments": 8
+    },
+    "SCMP-C07": {
+      "name": "Hawul-Kilange",
+      "source_links_to_other_study_catchments": 2
+    },
+    "SCMP-C08": {
+      "name": "Kaduna-Mariga",
+      "source_links_to_other_study_catchments": 3
+    },
+    "SCMP-C09": {
+      "name": "Lokoja-Niger",
+      "source_links_to_other_study_catchments": 0
+    },
+    "SCMP-C10": {
+      "name": "Malenda",
+      "source_links_to_other_study_catchments": 1
+    },
+    "SCMP-C11": {
+      "name": "Misau-Komadugu Gana",
+      "source_links_to_other_study_catchments": 12
+    },
+    "SCMP-C12": {
+      "name": "Ngada",
+      "source_links_to_other_study_catchments": 19
+    },
+    "SCMP-C13": {
+      "name": "Oshin-Oyi",
+      "source_links_to_other_study_catchments": 2
+    },
+    "SCMP-C14": {
+      "name": "Rima",
+      "source_links_to_other_study_catchments": 2
+    },
+    "SCMP-C15": {
+      "name": "Sarkin Pawa-Kaduna",
+      "source_links_to_other_study_catchments": 1
+    },
+    "SCMP-C16": {
+      "name": "Shemankar-Katsina Ala",
+      "source_links_to_other_study_catchments": 4
+    },
+    "SCMP-C17": {
+      "name": "Sokoto-Zamfara",
+      "source_links_to_other_study_catchments": 4
+    },
+    "SCMP-C18": {
+      "name": "Wase-Taraba",
+      "source_links_to_other_study_catchments": 2
+    },
+    "SCMP-C19": {
+      "name": "Yedseram",
+      "source_links_to_other_study_catchments": 12
+    },
+    "SCMP-C20": {
+      "name": "Zungur-Gongola",
+      "source_links_to_other_study_catchments": 3
+    }
+  },
+  "pair_aggregates": [
+    {
+      "from": "SCMP-C01",
+      "to": "SCMP-C16",
+      "source_reference_count": 1,
+      "from_name": "Aloma-Konshisha",
+      "to_name": "Shemankar-Katsina Ala",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C02",
+      "to": "SCMP-C05",
+      "source_reference_count": 1,
+      "from_name": "Benue-Mada",
+      "to_name": "Gurara-Gbako",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C02",
+      "to": "SCMP-C16",
+      "source_reference_count": 1,
+      "from_name": "Benue-Mada",
+      "to_name": "Shemankar-Katsina Ala",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C03",
+      "to": "SCMP-C07",
+      "source_reference_count": 3,
+      "from_name": "Gaji-Lamurde",
+      "to_name": "Hawul-Kilange",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C03",
+      "to": "SCMP-C18",
+      "source_reference_count": 1,
+      "from_name": "Gaji-Lamurde",
+      "to_name": "Wase-Taraba",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C04",
+      "to": "SCMP-C10",
+      "source_reference_count": 1,
+      "from_name": "Gulbin-Ka",
+      "to_name": "Malenda",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C04",
+      "to": "SCMP-C17",
+      "source_reference_count": 1,
+      "from_name": "Gulbin-Ka",
+      "to_name": "Sokoto-Zamfara",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C02",
+      "source_reference_count": 1,
+      "from_name": "Gurara-Gbako",
+      "to_name": "Benue-Mada",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C08",
+      "source_reference_count": 3,
+      "from_name": "Gurara-Gbako",
+      "to_name": "Kaduna-Mariga",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C05",
+      "to": "SCMP-C09",
+      "source_reference_count": 1,
+      "from_name": "Gurara-Gbako",
+      "to_name": "Lokoja-Niger",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C06",
+      "to": "SCMP-C11",
+      "source_reference_count": 8,
+      "from_name": "Hadejia Jama'are",
+      "to_name": "Misau-Komadugu Gana",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C07",
+      "to": "SCMP-C03",
+      "source_reference_count": 2,
+      "from_name": "Hawul-Kilange",
+      "to_name": "Gaji-Lamurde",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C08",
+      "to": "SCMP-C05",
+      "source_reference_count": 3,
+      "from_name": "Kaduna-Mariga",
+      "to_name": "Gurara-Gbako",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C10",
+      "to": "SCMP-C13",
+      "source_reference_count": 1,
+      "from_name": "Malenda",
+      "to_name": "Oshin-Oyi",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C06",
+      "source_reference_count": 2,
+      "from_name": "Misau-Komadugu Gana",
+      "to_name": "Hadejia Jama'are",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C12",
+      "source_reference_count": 7,
+      "from_name": "Misau-Komadugu Gana",
+      "to_name": "Ngada",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C19",
+      "source_reference_count": 2,
+      "from_name": "Misau-Komadugu Gana",
+      "to_name": "Yedseram",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C11",
+      "to": "SCMP-C20",
+      "source_reference_count": 1,
+      "from_name": "Misau-Komadugu Gana",
+      "to_name": "Zungur-Gongola",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C12",
+      "to": "SCMP-C11",
+      "source_reference_count": 11,
+      "from_name": "Ngada",
+      "to_name": "Misau-Komadugu Gana",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C12",
+      "to": "SCMP-C19",
+      "source_reference_count": 9,
+      "from_name": "Ngada",
+      "to_name": "Yedseram",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C13",
+      "to": "SCMP-C05",
+      "source_reference_count": 1,
+      "from_name": "Oshin-Oyi",
+      "to_name": "Gurara-Gbako",
+      "study_polygon_relationship": "boundaries_touch_or_intersect",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C13",
+      "to": "SCMP-C08",
+      "source_reference_count": 2,
+      "from_name": "Oshin-Oyi",
+      "to_name": "Kaduna-Mariga",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C14",
+      "to": "SCMP-C17",
+      "source_reference_count": 2,
+      "from_name": "Rima",
+      "to_name": "Sokoto-Zamfara",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C15",
+      "to": "SCMP-C08",
+      "source_reference_count": 1,
+      "from_name": "Sarkin Pawa-Kaduna",
+      "to_name": "Kaduna-Mariga",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C16",
+      "to": "SCMP-C02",
+      "source_reference_count": 2,
+      "from_name": "Shemankar-Katsina Ala",
+      "to_name": "Benue-Mada",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C16",
+      "to": "SCMP-C18",
+      "source_reference_count": 2,
+      "from_name": "Shemankar-Katsina Ala",
+      "to_name": "Wase-Taraba",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C17",
+      "to": "SCMP-C04",
+      "source_reference_count": 4,
+      "from_name": "Sokoto-Zamfara",
+      "to_name": "Gulbin-Ka",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C18",
+      "to": "SCMP-C03",
+      "source_reference_count": 1,
+      "from_name": "Wase-Taraba",
+      "to_name": "Gaji-Lamurde",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C18",
+      "to": "SCMP-C16",
+      "source_reference_count": 1,
+      "from_name": "Wase-Taraba",
+      "to_name": "Shemankar-Katsina Ala",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C07",
+      "source_reference_count": 2,
+      "from_name": "Yedseram",
+      "to_name": "Hawul-Kilange",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C11",
+      "source_reference_count": 1,
+      "from_name": "Yedseram",
+      "to_name": "Misau-Komadugu Gana",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C19",
+      "to": "SCMP-C12",
+      "source_reference_count": 10,
+      "from_name": "Yedseram",
+      "to_name": "Ngada",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    },
+    {
+      "from": "SCMP-C20",
+      "to": "SCMP-C07",
+      "source_reference_count": 3,
+      "from_name": "Zungur-Gongola",
+      "to_name": "Hawul-Kilange",
+      "study_polygon_relationship": "overlapping_study_polygons",
+      "not_independent_flow_confirmation": true
+    }
+  ],
+  "source_references": [
+    {
+      "from_catchment_id": "SCMP-C01",
+      "from_catchment_name": "Aloma-Konshisha",
+      "source_hyriv_id": 10748497,
+      "original_next_down_id": 10747532,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C16"
+      ],
+      "closest_destination_catchment_id": "SCMP-C16",
+      "closest_clipped_line_gap_m": 5897.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C16",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 5897.4
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C02",
+      "from_catchment_name": "Benue-Mada",
+      "source_hyriv_id": 10726600,
+      "original_next_down_id": 10726599,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C16"
+      ],
+      "closest_destination_catchment_id": "SCMP-C16",
+      "closest_clipped_line_gap_m": 1127.0,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C16",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1127.0
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C02",
+      "from_catchment_name": "Benue-Mada",
+      "source_hyriv_id": 10728350,
+      "original_next_down_id": 10730012,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C05"
+      ],
+      "closest_destination_catchment_id": "SCMP-C05",
+      "closest_clipped_line_gap_m": 648.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C05",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 648.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C03",
+      "from_catchment_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10651584,
+      "original_next_down_id": 10651951,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 478.0,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 478.0
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C03",
+      "from_catchment_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10651950,
+      "original_next_down_id": 10651949,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 1245.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1245.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C03",
+      "from_catchment_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10652672,
+      "original_next_down_id": 10653041,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 1903.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1903.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C03",
+      "from_catchment_name": "Gaji-Lamurde",
+      "source_hyriv_id": 10685263,
+      "original_next_down_id": 10685629,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C18"
+      ],
+      "closest_destination_catchment_id": "SCMP-C18",
+      "closest_clipped_line_gap_m": 1796.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C18",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1796.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C04",
+      "from_catchment_name": "Gulbin-Ka",
+      "source_hyriv_id": 10570001,
+      "original_next_down_id": 10567942,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C17"
+      ],
+      "closest_destination_catchment_id": "SCMP-C17",
+      "closest_clipped_line_gap_m": 6630.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C17",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 6630.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C04",
+      "from_catchment_name": "Gulbin-Ka",
+      "source_hyriv_id": 10602519,
+      "original_next_down_id": 10603035,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C10"
+      ],
+      "closest_destination_catchment_id": "SCMP-C10",
+      "closest_clipped_line_gap_m": 4211.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C10",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4211.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C05",
+      "from_catchment_name": "Gurara-Gbako",
+      "source_hyriv_id": 10677745,
+      "original_next_down_id": 10677744,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C08"
+      ],
+      "closest_destination_catchment_id": "SCMP-C08",
+      "closest_clipped_line_gap_m": 3587.0,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C08",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3587.0
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C05",
+      "from_catchment_name": "Gurara-Gbako",
+      "source_hyriv_id": 10681569,
+      "original_next_down_id": 10682494,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C08"
+      ],
+      "closest_destination_catchment_id": "SCMP-C08",
+      "closest_clipped_line_gap_m": 2706.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C08",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2706.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C05",
+      "from_catchment_name": "Gurara-Gbako",
+      "source_hyriv_id": 10682670,
+      "original_next_down_id": 10684687,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C08"
+      ],
+      "closest_destination_catchment_id": "SCMP-C08",
+      "closest_clipped_line_gap_m": 1671.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C08",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1671.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C05",
+      "from_catchment_name": "Gurara-Gbako",
+      "source_hyriv_id": 10725097,
+      "original_next_down_id": 10726017,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C02"
+      ],
+      "closest_destination_catchment_id": "SCMP-C02",
+      "closest_clipped_line_gap_m": 693.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C02",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 693.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C05",
+      "from_catchment_name": "Gurara-Gbako",
+      "source_hyriv_id": 10730586,
+      "original_next_down_id": 10731328,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C09"
+      ],
+      "closest_destination_catchment_id": "SCMP-C09",
+      "closest_clipped_line_gap_m": 1025.0,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C09",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1025.0
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10529588,
+      "original_next_down_id": 10529164,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 7188.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 7188.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10532933,
+      "original_next_down_id": 10532550,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 2829.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2829.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10535178,
+      "original_next_down_id": 10535446,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 2675.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2675.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10536534,
+      "original_next_down_id": 10535445,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 1011.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1011.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10543347,
+      "original_next_down_id": 10543348,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 3359.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3359.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10547750,
+      "original_next_down_id": 10544704,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 7055.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 7055.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10552338,
+      "original_next_down_id": 10550868,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 6704.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 6704.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C06",
+      "from_catchment_name": "Hadejia Jama'are",
+      "source_hyriv_id": 10570580,
+      "original_next_down_id": 10568439,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 256.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 256.4
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C07",
+      "from_catchment_name": "Hawul-Kilange",
+      "source_hyriv_id": 10651392,
+      "original_next_down_id": 10651391,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C03"
+      ],
+      "closest_destination_catchment_id": "SCMP-C03",
+      "closest_clipped_line_gap_m": 8678.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C03",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 8678.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C07",
+      "from_catchment_name": "Hawul-Kilange",
+      "source_hyriv_id": 10651947,
+      "original_next_down_id": 10651946,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C03"
+      ],
+      "closest_destination_catchment_id": "SCMP-C03",
+      "closest_clipped_line_gap_m": 2055.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C03",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2055.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C08",
+      "from_catchment_name": "Kaduna-Mariga",
+      "source_hyriv_id": 10679697,
+      "original_next_down_id": 10680654,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C05"
+      ],
+      "closest_destination_catchment_id": "SCMP-C05",
+      "closest_clipped_line_gap_m": 3141.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C05",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3141.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C08",
+      "from_catchment_name": "Kaduna-Mariga",
+      "source_hyriv_id": 10684889,
+      "original_next_down_id": 10684890,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C05"
+      ],
+      "closest_destination_catchment_id": "SCMP-C05",
+      "closest_clipped_line_gap_m": 335.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C05",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 335.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C08",
+      "from_catchment_name": "Kaduna-Mariga",
+      "source_hyriv_id": 10688245,
+      "original_next_down_id": 10684890,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C05"
+      ],
+      "closest_destination_catchment_id": "SCMP-C05",
+      "closest_clipped_line_gap_m": 355.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C05",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 355.4
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C10",
+      "from_catchment_name": "Malenda",
+      "source_hyriv_id": 10640974,
+      "original_next_down_id": 10641297,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C13"
+      ],
+      "closest_destination_catchment_id": "SCMP-C13",
+      "closest_clipped_line_gap_m": 6376.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C13",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 6376.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10522476,
+      "original_next_down_id": 10523044,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 3888.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3888.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10525251,
+      "original_next_down_id": 10523888,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 6790.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 6790.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10526006,
+      "original_next_down_id": 10524299,
+      "source_id_memberships": 3,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 2964.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2964.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10528160,
+      "original_next_down_id": 10527757,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 16635.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 16635.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10531961,
+      "original_next_down_id": 10532241,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 5565.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 5565.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10532238,
+      "original_next_down_id": 10532694,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 5758.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 5758.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10532557,
+      "original_next_down_id": 10532697,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 2309.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2309.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10532807,
+      "original_next_down_id": 10532935,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 984.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 984.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10535316,
+      "original_next_down_id": 10533645,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C06"
+      ],
+      "closest_destination_catchment_id": "SCMP-C06",
+      "closest_clipped_line_gap_m": 7922.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C06",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 7922.4
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10536932,
+      "original_next_down_id": 10536933,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 4889.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4889.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10561254,
+      "original_next_down_id": 10560827,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C06"
+      ],
+      "closest_destination_catchment_id": "SCMP-C06",
+      "closest_clipped_line_gap_m": 2585.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C06",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2585.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C11",
+      "from_catchment_name": "Misau-Komadugu Gana",
+      "source_hyriv_id": 10581401,
+      "original_next_down_id": 10582193,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C20"
+      ],
+      "closest_destination_catchment_id": "SCMP-C20",
+      "closest_clipped_line_gap_m": 3661.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C20",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3661.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10519063,
+      "original_next_down_id": 10518523,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 852.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 852.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10519064,
+      "original_next_down_id": 10517355,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 4805.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4805.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10520379,
+      "original_next_down_id": 10519642,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 8972.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 8972.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10524865,
+      "original_next_down_id": 10520094,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 4658.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4658.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10525377,
+      "original_next_down_id": 10524302,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 3334.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3334.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10526006,
+      "original_next_down_id": 10524299,
+      "source_id_memberships": 3,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 4715.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4715.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10526926,
+      "original_next_down_id": 10525251,
+      "source_id_memberships": 2,
+      "destination_memberships": 2,
+      "next_id_catchments": [
+        "SCMP-C11",
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 1745.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1745.8
+        },
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2300.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10527616,
+      "original_next_down_id": 10527061,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 2133.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2133.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10528747,
+      "original_next_down_id": 10528746,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 4813.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4813.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10539454,
+      "original_next_down_id": 10539453,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 817.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 817.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10540549,
+      "original_next_down_id": 10539452,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 3772.0,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 3772.0
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10540844,
+      "original_next_down_id": 10539453,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 943.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 943.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10541386,
+      "original_next_down_id": 10539609,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 5982.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 5982.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10543352,
+      "original_next_down_id": 10544017,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 5912.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 5912.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10545293,
+      "original_next_down_id": 10543482,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C11"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 1148.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1148.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10545433,
+      "original_next_down_id": 10544018,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 8410.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 8410.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10565250,
+      "original_next_down_id": 10558476,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 23149.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 23149.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10580724,
+      "original_next_down_id": 10580725,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 998.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 998.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C12",
+      "from_catchment_name": "Ngada",
+      "source_hyriv_id": 10581415,
+      "original_next_down_id": 10580725,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C19"
+      ],
+      "closest_destination_catchment_id": "SCMP-C19",
+      "closest_clipped_line_gap_m": 1086.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C19",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1086.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C13",
+      "from_catchment_name": "Oshin-Oyi",
+      "source_hyriv_id": 10677743,
+      "original_next_down_id": 10681568,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C08"
+      ],
+      "closest_destination_catchment_id": "SCMP-C08",
+      "closest_clipped_line_gap_m": 1319.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C08",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1319.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C13",
+      "from_catchment_name": "Oshin-Oyi",
+      "source_hyriv_id": 10684686,
+      "original_next_down_id": 10684889,
+      "source_id_memberships": 2,
+      "destination_memberships": 2,
+      "next_id_catchments": [
+        "SCMP-C05",
+        "SCMP-C08"
+      ],
+      "closest_destination_catchment_id": "SCMP-C08",
+      "closest_clipped_line_gap_m": 1013.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C08",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1013.2
+        },
+        {
+          "target_catchment_id": "SCMP-C05",
+          "study_polygon_relationship": "boundaries_touch_or_intersect",
+          "min_clipped_line_to_line_gap_m": 1711.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C14",
+      "from_catchment_name": "Rima",
+      "source_hyriv_id": 10516468,
+      "original_next_down_id": 10517466,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C17"
+      ],
+      "closest_destination_catchment_id": "SCMP-C17",
+      "closest_clipped_line_gap_m": 937.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C17",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 937.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C14",
+      "from_catchment_name": "Rima",
+      "source_hyriv_id": 10516469,
+      "original_next_down_id": 10517466,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C17"
+      ],
+      "closest_destination_catchment_id": "SCMP-C17",
+      "closest_clipped_line_gap_m": 2082.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C17",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2082.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C15",
+      "from_catchment_name": "Sarkin Pawa-Kaduna",
+      "source_hyriv_id": 10635550,
+      "original_next_down_id": 10636742,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C08"
+      ],
+      "closest_destination_catchment_id": "SCMP-C08",
+      "closest_clipped_line_gap_m": 5632.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C08",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 5632.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C16",
+      "from_catchment_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10706035,
+      "original_next_down_id": 10706661,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C18"
+      ],
+      "closest_destination_catchment_id": "SCMP-C18",
+      "closest_clipped_line_gap_m": 2835.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C18",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2835.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C16",
+      "from_catchment_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10707186,
+      "original_next_down_id": 10706036,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C18"
+      ],
+      "closest_destination_catchment_id": "SCMP-C18",
+      "closest_clipped_line_gap_m": 1195.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C18",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1195.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C16",
+      "from_catchment_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10726598,
+      "original_next_down_id": 10725461,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C02"
+      ],
+      "closest_destination_catchment_id": "SCMP-C02",
+      "closest_clipped_line_gap_m": 4746.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C02",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4746.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C16",
+      "from_catchment_name": "Shemankar-Katsina Ala",
+      "source_hyriv_id": 10730764,
+      "original_next_down_id": 10727748,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C02"
+      ],
+      "closest_destination_catchment_id": "SCMP-C02",
+      "closest_clipped_line_gap_m": 865.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C02",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 865.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C17",
+      "from_catchment_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10562810,
+      "original_next_down_id": 10564123,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C04"
+      ],
+      "closest_destination_catchment_id": "SCMP-C04",
+      "closest_clipped_line_gap_m": 1257.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C04",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1257.4
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C17",
+      "from_catchment_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10562811,
+      "original_next_down_id": 10564123,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C04"
+      ],
+      "closest_destination_catchment_id": "SCMP-C04",
+      "closest_clipped_line_gap_m": 1429.0,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C04",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1429.0
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C17",
+      "from_catchment_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10564790,
+      "original_next_down_id": 10564789,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C04"
+      ],
+      "closest_destination_catchment_id": "SCMP-C04",
+      "closest_clipped_line_gap_m": 791.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C04",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 791.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C17",
+      "from_catchment_name": "Sokoto-Zamfara",
+      "source_hyriv_id": 10565087,
+      "original_next_down_id": 10566203,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C04"
+      ],
+      "closest_destination_catchment_id": "SCMP-C04",
+      "closest_clipped_line_gap_m": 689.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C04",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 689.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C18",
+      "from_catchment_name": "Wase-Taraba",
+      "source_hyriv_id": 10684526,
+      "original_next_down_id": 10684525,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C03"
+      ],
+      "closest_destination_catchment_id": "SCMP-C03",
+      "closest_clipped_line_gap_m": 1502.2,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C03",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1502.2
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C18",
+      "from_catchment_name": "Wase-Taraba",
+      "source_hyriv_id": 10709221,
+      "original_next_down_id": 10709220,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C16"
+      ],
+      "closest_destination_catchment_id": "SCMP-C16",
+      "closest_clipped_line_gap_m": 6176.3,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C16",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 6176.3
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10525119,
+      "original_next_down_id": 10526145,
+      "source_id_memberships": 2,
+      "destination_memberships": 2,
+      "next_id_catchments": [
+        "SCMP-C11",
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C11",
+      "closest_clipped_line_gap_m": 35.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C11",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 35.4
+        },
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4252.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10528745,
+      "original_next_down_id": 10526539,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 6836.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 6836.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10530247,
+      "original_next_down_id": 10529299,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 4787.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4787.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10533229,
+      "original_next_down_id": 10531105,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 2550.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2550.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10535455,
+      "original_next_down_id": 10534093,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 2533.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2533.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10538650,
+      "original_next_down_id": 10537474,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 2993.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 2993.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10540286,
+      "original_next_down_id": 10537474,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 4733.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4733.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10553856,
+      "original_next_down_id": 10549414,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 1806.9,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1806.9
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10554619,
+      "original_next_down_id": 10553127,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 4829.4,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 4829.4
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10571491,
+      "original_next_down_id": 10568267,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C12"
+      ],
+      "closest_destination_catchment_id": "SCMP-C12",
+      "closest_clipped_line_gap_m": 9069.5,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C12",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 9069.5
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10623947,
+      "original_next_down_id": 10623592,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 7267.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 7267.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C19",
+      "from_catchment_name": "Yedseram",
+      "source_hyriv_id": 10625669,
+      "original_next_down_id": 10624635,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 7144.7,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 7144.7
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C20",
+      "from_catchment_name": "Zungur-Gongola",
+      "source_hyriv_id": 10629384,
+      "original_next_down_id": 10630771,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 169.8,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 169.8
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C20",
+      "from_catchment_name": "Zungur-Gongola",
+      "source_hyriv_id": 10629386,
+      "original_next_down_id": 10629385,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 646.6,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 646.6
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    },
+    {
+      "from_catchment_id": "SCMP-C20",
+      "from_catchment_name": "Zungur-Gongola",
+      "source_hyriv_id": 10630107,
+      "original_next_down_id": 10629385,
+      "source_id_memberships": 2,
+      "destination_memberships": 1,
+      "next_id_catchments": [
+        "SCMP-C07"
+      ],
+      "closest_destination_catchment_id": "SCMP-C07",
+      "closest_clipped_line_gap_m": 1386.1,
+      "closest_study_polygon_relationship": "overlapping_study_polygons",
+      "all_target_study_polygon_screens": [
+        {
+          "target_catchment_id": "SCMP-C07",
+          "study_polygon_relationship": "overlapping_study_polygons",
+          "min_clipped_line_to_line_gap_m": 1386.1
+        }
+      ],
+      "original_source_endpoint_gap_m": 0.0,
+      "review_status": "SOURCE_RECORD_AND_CLIPPED_GEOMETRY_SCREEN_ONLY"
+    }
+  ],
+  "scientific_limitations": [
+    "This is a study-area membership analysis of the original FAO NEXT_DOWN graph; it is not whole-catchment downstream order.",
+    "The 89 rows are source-reach copies; source IDs may occur in several study catchments and 33 directed pair types may include reciprocal associations.",
+    "Source IDs pointing to multiple study catchments count once per originating catchment, but contribute multiple target membership records.",
+    "Study polygons may overlap and are simplified; mapped proximity or polygon intersection is not observed hydraulic flow.",
+    "The nearest distance is a screening distance between clipped modeled LINE fragments, not a directed, geodesically optimized travel path or survey uncertainty.",
+    "Uncut publisher geometry was authenticated earlier ONLY for three specific clipped gap pairs, not for all these 89 references.",
+    "No field-verified channel crossings, flood travel time, flow rate, dam site or private stakeholder information is inferred."
+  ]
+}

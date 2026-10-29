@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/fao_downstream_summary.json','data/fao_downstream_index.json','data/fao_endpoint_gap_summary.json','data/fao_endpoint_gap_index.json','data/fao_three_original_gap_resolution.json','data/river_reach_comparison.json','data/river_reach_comparison.csv','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json','data/external_reference_sources.json','data/wa_dams_2026_catchment_reference_counts.json','data/wa_dams_2026_source_quality.json','data/confirmed_dam_sites.json','data/wa_dam_compiled_reference_preview.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/fao_downstream_summary.json','data/fao_downstream_index.json','data/fao_endpoint_gap_summary.json','data/fao_endpoint_gap_index.json','data/fao_three_original_gap_resolution.json','data/fao_89_catchment_source_boundary_audit.json','data/fao_89_catchment_source_boundary_audit.csv','data/river_reach_comparison.json','data/river_reach_comparison.csv','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json','data/external_reference_sources.json','data/wa_dams_2026_catchment_reference_counts.json','data/wa_dams_2026_source_quality.json','data/confirmed_dam_sites.json','data/wa_dam_compiled_reference_preview.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -79,6 +79,15 @@ uncut_three=rebuild_uncut_three(root/'research/source_qa/FAO_2026_SIX_ORIGINAL_M
 assert json.loads((site/'data/fao_three_original_gap_resolution.json').read_text('utf-8'))==uncut_three
 assert uncut_three['all_three_original_model_endpoint_gaps_zero'] is True
 assert uncut_three['independent_hydraulic_continuity_verified'] is False
+from build_stage3d_bg_bh_89_boundary_qa import build as rebuild_crosscatchment_model, to_csv as model_crosscatchment_csv
+crosscatchment_model=rebuild_crosscatchment_model()
+assert json.loads((site/'data/fao_89_catchment_source_boundary_audit.json').read_text('utf-8'))==crosscatchment_model
+assert (site/'data/fao_89_catchment_source_boundary_audit.csv').read_text('utf-8')==model_crosscatchment_csv(crosscatchment_model)
+assert crosscatchment_model['source_reach_copies_crossing_selected_catchment_index']==89
+assert crosscatchment_model['unique_cross_catchment_source_association_pairs']==33
+assert crosscatchment_model['reference_memberships_across_target_catchments']==92
+assert crosscatchment_model['polygon_relationship_reference_counts']=={'boundaries_touch_or_intersect':1,'overlapping_study_polygons':91}
+
 from build_stage3d_aq_river_reach_comparison import verify as verify_reach_comparison
 verify_reach_comparison(details,registry,json.loads((site/'data/river_reach_comparison.json').read_text('utf-8')),(site/'data/river_reach_comparison.csv').read_text('utf-8'))
 assert details['status']=='PROVISIONAL_DETAILED_RIVER_NETWORK' and details['license']=='CC BY 4.0 (FAO AQUASTAT)'
