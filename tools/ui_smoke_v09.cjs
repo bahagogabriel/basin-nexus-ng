@@ -415,6 +415,75 @@ async function pinch(page){
  console.log('tablet real two-finger pinch: PASS '+before.toFixed(1)+' to '+result.view.w.toFixed(1));
 }
 
+
+async function testFaoSourceTopology(browser){
+ const ctx=await browser.newContext({viewport:{width:1320,height:960}});
+ const page=await ctx.newPage();
+ const requested=[];
+ page.on('request',req=>{if(req.url().includes('fao_downstream_index.json'))requested.push(req.url())});
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#faoTopologyRows tr button')&&
+  document.querySelector('#faoTopologyStatus')?.textContent.includes('33 directed'),{timeout:35000});
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#faoTopologyRows tr').count(),20);
+ assert.match(await page.locator('#faoTopology').innerText(),/not verified hydraulic connections/i);
+ assert.equal(requested.length,0,'Global source-ID lookup must load only on user request');
+ await page.locator('#faoTopologyRows button[data-fao-map="SCMP-C14"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C14',null,{timeout:15000});
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailFor==='SCMP-C14'
+   &&window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready',{timeout:45000});
+ const targets=await page.evaluate(async()=>{
+  const data=await(await fetch('data/river_network/SCMP-C14.geojson')).json(),
+    v=window.__BN_MAP_DIAGNOSTICS__.view,canvas=document.getElementById('mapCanvas'),
+    r=canvas.getBoundingClientRect(),scale=Math.min(r.width/v.w,r.height/v.h),
+    ox=(r.width-v.w*scale)/2,oy=(r.height-v.h*scale)/2;
+  const xy=pt=>[48+(pt[0]-2.4)/(15.6-2.4)*922,25+(15.32-pt[1])/(15.32-3.95)*698];
+  const out=[];
+  for(const f of data.features){
+   if(f.properties.upstream_class!=='large_upstream_1000plus')continue;
+   const coords=f.geometry.type==='LineString'?[f.geometry.coordinates]:f.geometry.coordinates;
+   for(const line of coords)for(let i=1;i<line.length;i++){
+    const a=xy(line[i-1]),b=xy(line[i]),world=[(a[0]+b[0])/2,(a[1]+b[1])/2];
+    const px=ox+(world[0]-v.x)*scale,py=oy+(world[1]-v.y)*scale;
+    if(px>60&&px<r.width-60&&py>90&&py<r.height-80){
+     out.push({x:r.left+px,y:r.top+py});
+     if(out.length>=45)return out;
+    }
+   }
+  }
+  return out;
+ });
+ assert(targets.length>0,'No visible source reach to test map tracing');
+ let clicked=false;
+ for(const t of targets){
+  await page.mouse.click(t.x,t.y);
+  if(await page.locator('#traceDownstreamBtn').isVisible().catch(()=>false)){clicked=true;break}
+ }
+ assert(clicked,'Click on a source reach did not expose NEXT_DOWN inspector');
+ await page.locator('#traceDownstreamBtn').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.sourceTraceSteps>0
+   ||window.__BN_MAP_DIAGNOSTICS__?.sourceTraceStatus==='invalid',{timeout:35000});
+ const state=await metric(page);
+ assert(state.sourceTraceSteps>0,'Valid source topology must inspect one or more source reach IDs');
+ assert(state.sourceTraceSteps<=40,'Source chain must be bounded to 40 reaches');
+ assert.match(await page.locator('#sourceTraceResult').innerText(),/not.*hydraulic|No surveyed continuity|no surveyed continuity/i);
+ assert.equal(requested.length,1,'Source graph should be lazy cached');
+ await ctx.close();
+ const invalid=await browser.newContext();
+ await invalid.route('**/data/fao_downstream_summary.json',async route=>{
+  const source=await route.fetch();const data=await source.json();
+  data.source_cycle_members=999;
+  await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(data)});
+ });
+ const bad=await invalid.newPage();
+ await bad.goto(url,{waitUntil:'domcontentloaded'});
+ await bad.waitForFunction(()=>document.querySelector('#faoTopologyStatus')?.textContent.includes('failed integrity'),{timeout:35000});
+ await bad.locator('#navData').click();
+ assert.equal(await bad.locator('#faoTopologyRows button').count(),0);
+ await invalid.close();
+ console.log('FAO SOURCE NEXT_DOWN: source-only 20-catchment audit, lazy graph, <=40 bounded IDs, map highlight and tamper rejection PASS');
+}
+
 async function testReachComparison(browser){
  const ctx=await browser.newContext({viewport:{width:1320,height:940}});
  const page=await ctx.newPage();
@@ -510,6 +579,7 @@ async function testEvidenceCatalogueFixture(browser){
  const desktop=await browser.newPage({viewport:{width:1512,height:950}});
  await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
  await testReachComparison(browser);
+ await testFaoSourceTopology(browser);
 await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
