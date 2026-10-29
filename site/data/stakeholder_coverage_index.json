@@ -1,11 +1,11 @@
 {
-  "version": "SCMP_SOURCE_INDEX_2026-10-22_02",
+  "version": "SCMP_SOURCE_INDEX_2026-10-29_S1S2",
   "publication_status": "PUBLIC_METADATA_ONLY",
   "source_collection": "Institutional SCMP catchment engagement communiqués in user-provided internal Drive",
   "source_documents_reviewed": 20,
   "source_contents_published": false,
   "coordinates_or_observations_published": false,
-  "note": "Topic headings located in original source documents. Their resource claims, coordinates, intervention status and public permissions have not been verified.",
+  "note": "Original communiqué topics and intervention-phrase presence indexed for navigation only. A phrase match is not verified implementation. Stakeholder statements, personal data, source tables and coordinates remain private.",
   "themes": [
     {
       "key": "natural_resources",
@@ -22,6 +22,10 @@
     {
       "key": "policies",
       "label": "Policies"
+    },
+    {
+      "key": "past_present_interventions",
+      "label": "Past & present interventions (source mention)"
     }
   ],
   "catchments": [
@@ -33,7 +37,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -52,7 +57,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -71,7 +77,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -90,7 +97,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -109,7 +117,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -147,7 +156,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -166,7 +176,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -185,7 +196,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -204,7 +216,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -261,7 +274,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -280,7 +294,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -299,7 +314,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -337,7 +353,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
@@ -394,7 +411,8 @@
         "natural_resources",
         "threats_challenges",
         "socioeconomics",
-        "policies"
+        "policies",
+        "past_present_interventions"
       ],
       "verification": "Internal source review",
       "public_release": "Metadata only",
