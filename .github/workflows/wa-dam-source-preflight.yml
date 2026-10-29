@@ -13,6 +13,8 @@ on:
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
       - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
+      - 'tools/build_stage3d_ae_ah_review_desk.py'
+      - 'tools/test_stage3d_ae_ah_review_desk.py'
       - 'tools/test_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
@@ -38,6 +40,8 @@ on:
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
       - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
+      - 'tools/build_stage3d_ae_ah_review_desk.py'
+      - 'tools/test_stage3d_ae_ah_review_desk.py'
       - 'tools/test_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
@@ -75,6 +79,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_stage3d_w_lineage_eo_discovery.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_xy_sentinel_pixel_review.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_aa_ad_evidence_reconciliation.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_ae_ah_review_desk.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -110,6 +115,17 @@ jobs:
         if: github.event_name != 'pull_request'
         timeout-minutes: 6
         run: python tools/build_stage3d_aa_ad_evidence_reconciliation.py --stage-u review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json --stage-v review/stage3d_v_osm_context_NOT_CONFIRMED.json --stage-w review/stage3d_w_lineage_eo_METADATA_NOT_CONFIRMED.json --stage-z review/stage3d_xy_rgb_scl_REVIEW_ONLY/stage3d_xy_pixel_qa_NOT_CONFIRMED.json --output review/stage3d_aa_ad_evidence_REVIEW_ONLY
+      - name: Stages 3D-AE to AH produce compact five-case nonpublic decision desk and validated blank routing form
+        if: github.event_name != 'pull_request'
+        run: python tools/build_stage3d_ae_ah_review_desk.py --source review/stage3d_aa_ad_evidence_REVIEW_ONLY/stage3d_aa_ad_research_receipts_NOT_CONFIRMED.json --output-dir review/stage3d_ae_ah_decision_desk_REVIEW_ONLY
+      - name: Archive Stage AE–AH source-bound next-action dossier, NOT a publication approval
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-stage3dae-ah-review-decision-desk-NOT-CONFIRMED
+          path: review/stage3d_ae_ah_decision_desk_REVIEW_ONLY/
+          if-no-files-found: error
+          retention-days: 60
       - name: Archive separately attributed geospatial and government-document evidence receipts, not confirmed
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
