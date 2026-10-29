@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re
 root=Path(__file__).resolve().parents[1]
 site=root/'site'
-allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json','data/external_reference_sources.json','data/wa_dams_2026_catchment_reference_counts.json','data/wa_dams_2026_source_quality.json','data/confirmed_dam_sites.json','data/wa_dam_compiled_reference_preview.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
+allowed={'index.html','data/catchments.geojson','data/registry.json','data/catchments.csv','data/build_report.json','data/nigeria_boundary.geojson','data/international_context.json','data/admin_crosswalk_provisional.json','data/catchment_states_provisional.csv','data/catchment_lgas_provisional.csv','data/adm1_states_provisional.geojson','data/adm2_lgas_study_provisional.geojson','data/admin_map_layer_QA.json','data/rivers_overview.geojson','data/lakes_overview.geojson','data/hydro_reference_metadata.json','data/detailed_river_manifest.json','data/river_reach_comparison.json','data/river_reach_comparison.csv','data/stakeholder_coverage_index.json','data/public_evidence_catalogue.json','data/external_reference_sources.json','data/wa_dams_2026_catchment_reference_counts.json','data/wa_dams_2026_source_quality.json','data/confirmed_dam_sites.json','data/wa_dam_compiled_reference_preview.json',*{f'data/river_network/SCMP-C{i:02d}.geojson' for i in range(1,21)},'.nojekyll'}
 actual={p.relative_to(site).as_posix() for p in site.rglob('*') if p.is_file()}
 assert actual==allowed, f'Unexpected public files: missing={allowed-actual},extra={actual-allowed}'
 registry=json.loads((site/'data/registry.json').read_text('utf-8'))
@@ -63,6 +63,8 @@ assert all(f['properties']['source_scale']==scale for f in rivers['features']+la
 assert all(f['properties']['precision']=='overview_only' and f['properties']['not_a_dam_inventory'] for f in rivers['features']+lakes['features'])
 import hashlib
 details=json.loads((site/'data/detailed_river_manifest.json').read_text('utf-8'))
+from build_stage3d_aq_river_reach_comparison import verify as verify_reach_comparison
+verify_reach_comparison(details,registry,json.loads((site/'data/river_reach_comparison.json').read_text('utf-8')),(site/'data/river_reach_comparison.csv').read_text('utf-8'))
 assert details['status']=='PROVISIONAL_DETAILED_RIVER_NETWORK' and details['license']=='CC BY 4.0 (FAO AQUASTAT)'
 assert len(details['files'])==20 and set(details['files'])==set(ids)
 assert details['source_intersecting_unique_reaches']==51906
