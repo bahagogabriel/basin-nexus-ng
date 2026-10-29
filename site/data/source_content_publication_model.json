@@ -53,18 +53,18 @@
     }
   ],
   "future_approved_record_schema_fields": [
-    "public_id",
+    "record_id",
     "catchment_ids",
     "theme",
-    "subtheme",
-    "reviewed_public_summary",
-    "approved_source_attribution",
-    "verification_status",
-    "source_date",
-    "rights_clearance_reference",
-    "privacy_review",
-    "spatial_precision",
-    "public_release_decision"
+    "record_type",
+    "statement",
+    "evidence_status",
+    "source_reference",
+    "source_locator",
+    "release_authorization",
+    "location",
+    "public_source_url",
+    "notes"
   ],
   "display_rules": [
     "Only show explicitly approved records from the public evidence catalogue.",
@@ -273,5 +273,26 @@
       "spatial_claims_cleared": false,
       "signed_materials_published": false
     }
-  ]
+  ],
+  "future_evidence_gate_schema_version": "BN_PUBLIC_EVIDENCE_V1",
+  "future_evidence_gate_validator": "tools/evidence_publication_gate.py",
+  "future_public_collection": "site/data/public_evidence_catalogue.json",
+  "future_required_record_fields": [
+    "record_id",
+    "catchment_ids",
+    "theme",
+    "record_type",
+    "statement",
+    "evidence_status",
+    "source_reference",
+    "source_locator",
+    "release_authorization"
+  ],
+  "future_optional_record_fields": [
+    "location",
+    "public_source_url",
+    "notes"
+  ],
+  "future_approved_record_count": 0,
+  "future_release_process_note": "A real documented rights decision, individual editorial/scientific review and private data removal are prerequisites. The validator verifies submitted public-record format but does not independently grant permission or verify facts."
 }
