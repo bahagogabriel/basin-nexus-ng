@@ -67,6 +67,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_stage3d_aq_at_river_comparison.py' -v
       - name: Verify source-only FAO NEXT_DOWN reach relationships and source identity integrity
         run: python -m unittest discover -s tools -p 'test_stage3d_au_av_fao_topology.py' -v
+      - name: Verify original modeled clip endpoint QA and unsurveyed connection disclaimers
+        run: python -m unittest discover -s tools -p 'test_stage3d_ay_az_fao_endpoint_qa.py' -v
       - name: Verify UX-A grouped controls and adaptive layout
         run: python tools/test_ux_a.py
       - name: Set up Node for browser usability checks
