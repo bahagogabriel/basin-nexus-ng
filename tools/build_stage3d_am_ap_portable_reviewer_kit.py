@@ -10,9 +10,9 @@ import hashlib
 import json
 from pathlib import Path
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
-from build_stage3d_ae_ah_review_desk import IDS,validate_desk
+from build_stage3d_ae_ah_review_desk import IDS
 from build_stage3d_al_evidence_request_kit import build_requests
-from stage3d_ai_ak_private_evidence_intake import blank_record,sha
+from stage3d_ai_ak_private_evidence_intake import blank_record,sha,validate_desk
 
 SCHEMA="BN_STAGE3D_AO_PORTABLE_KIT_MANIFEST_V1"
 SCRIPTS=(
