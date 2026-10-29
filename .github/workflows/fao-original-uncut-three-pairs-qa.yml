@@ -5,12 +5,18 @@ on:
     paths:
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'site/data/fao_three_original_gap_resolution.json'
+      - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
       - '.github/workflows/fao-original-uncut-three-pairs-qa.yml'
   push:
     branches: [main]
     paths:
       - 'tools/build_stage3d_bc_original_uncut_fao_review.py'
       - 'tools/test_stage3d_bc_original_uncut_fao_review.py'
+      - 'tools/build_stage3d_bd_bf_uncut_source_resolution.py'
+      - 'site/data/fao_three_original_gap_resolution.json'
+      - 'research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson'
       - '.github/workflows/fao-original-uncut-three-pairs-qa.yml'
   workflow_dispatch:
 permissions:
@@ -28,6 +34,33 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_stage3d_bc_original_uncut_fao_review.py' -v
       - name: Query ONLY six original publisher 2026 WFS reach IDs with strict fail-closed source validation
         run: python tools/build_stage3d_bc_original_uncut_fao_review.py --output-dir review/fao-six-original-reaches
+      - name: Reconcile three original uncut modeled source junctions to existing pinned clipped geometry
+        run: |
+          python tools/build_stage3d_bd_bf_uncut_source_resolution.py --six-original review/fao-six-original-reaches/ORIGINAL_FAO_SIX_REACHES_WFS_SOURCE_ONLY.geojson --output review/fao-six-original-reaches/ORIGINAL_MODEL_THREE_GAP_SOURCE_RECONCILIATION.json
+      - name: Promote only three model-source QA cases and six original public publisher lines to the development branch
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$HEAD_BRANCH" != main
+          git fetch origin "refs/heads/$HEAD_BRANCH:refs/remotes/origin/$HEAD_BRANCH"
+          git checkout -B "$HEAD_BRANCH" "refs/remotes/origin/$HEAD_BRANCH"
+          mkdir -p research/source_qa
+          if test -e research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson || test -e site/data/fao_three_original_gap_resolution.json; then
+            python tools/build_stage3d_bd_bf_uncut_source_resolution.py --check --six-original research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson --output site/data/fao_three_original_gap_resolution.json
+            echo "Previously verified six publisher records and three modeled gap resolutions stable"
+          else
+            cp review/fao-six-original-reaches/ORIGINAL_FAO_SIX_REACHES_WFS_SOURCE_ONLY.geojson research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson
+            cp review/fao-six-original-reaches/ORIGINAL_MODEL_THREE_GAP_SOURCE_RECONCILIATION.json site/data/fao_three_original_gap_resolution.json
+            python tools/build_stage3d_bd_bf_uncut_source_resolution.py --check --six-original research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson --output site/data/fao_three_original_gap_resolution.json
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add research/source_qa/FAO_2026_SIX_ORIGINAL_MODELED_REACHES_NOT_SURVEYED.geojson site/data/fao_three_original_gap_resolution.json
+            git commit -m "Add source-authenticated original FAO model endpoint junction checks for three clipped gaps"
+            git push origin "HEAD:refs/heads/$HEAD_BRANCH"
+          fi
       - name: Archive source-only uncut comparison and six publisher geometries for non-public technical QA
         if: always()
         uses: actions/upload-artifact@v4
