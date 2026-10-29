@@ -12,6 +12,8 @@ on:
       - 'tools/build_stage3d_v_osm_context_review.py'
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
       - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
+      - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
+      - 'tools/test_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
       - 'tools/test_stage3d_v_osm_context_review.py'
@@ -35,6 +37,8 @@ on:
       - 'tools/build_stage3d_v_osm_context_review.py'
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
       - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
+      - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
+      - 'tools/test_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
       - 'tools/test_stage3d_v_osm_context_review.py'
@@ -70,6 +74,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_stage3d_v_osm_context_review.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_w_lineage_eo_discovery.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_xy_sentinel_pixel_review.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_aa_ad_evidence_reconciliation.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -101,6 +106,18 @@ jobs:
         if: github.event_name != 'pull_request'
         timeout-minutes: 18
         run: python tools/build_stage3d_xy_sentinel_pixel_review.py --stage-w review/stage3d_w_lineage_eo_METADATA_NOT_CONFIRMED.json --output-dir review/stage3d_xy_rgb_scl_REVIEW_ONLY
+      - name: Stages 3D-AA to AD reconcile OSM polyline geometry, documentary source positions and optical review receipts
+        if: github.event_name != 'pull_request'
+        timeout-minutes: 6
+        run: python tools/build_stage3d_aa_ad_evidence_reconciliation.py --stage-u review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json --stage-v review/stage3d_v_osm_context_NOT_CONFIRMED.json --stage-w review/stage3d_w_lineage_eo_METADATA_NOT_CONFIRMED.json --stage-z review/stage3d_xy_rgb_scl_REVIEW_ONLY/stage3d_xy_pixel_qa_NOT_CONFIRMED.json --output review/stage3d_aa_ad_evidence_REVIEW_ONLY
+      - name: Archive separately attributed geospatial and government-document evidence receipts, not confirmed
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-stage3daa-ad-geometry-government-SCL-evidence-REVIEW-ONLY
+          path: review/stage3d_aa_ad_evidence_REVIEW_ONLY/
+          if-no-files-found: error
+          retention-days: 60
       - name: Archive Stage 3D-X/Y review-only RGB/SCL chip QA and human reviewer board
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
