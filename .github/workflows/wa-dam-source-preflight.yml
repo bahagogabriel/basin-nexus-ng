@@ -15,6 +15,10 @@ on:
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/build_stage3d_ae_ah_review_desk.py'
       - 'tools/stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/stage3d_an_offline_batch_audit.py'
+      - 'tools/stage3d_ao_verify_portable_kit.py'
+      - 'tools/build_stage3d_am_ap_portable_reviewer_kit.py'
+      - 'tools/test_stage3d_am_ap_portable_reviewer_kit.py'
       - 'tools/build_stage3d_al_evidence_request_kit.py'
       - 'tools/test_stage3d_ai_ak_private_evidence_intake.py'
       - 'tools/test_stage3d_al_evidence_request_kit.py'
@@ -46,6 +50,10 @@ on:
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/build_stage3d_ae_ah_review_desk.py'
       - 'tools/stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/stage3d_an_offline_batch_audit.py'
+      - 'tools/stage3d_ao_verify_portable_kit.py'
+      - 'tools/build_stage3d_am_ap_portable_reviewer_kit.py'
+      - 'tools/test_stage3d_am_ap_portable_reviewer_kit.py'
       - 'tools/build_stage3d_al_evidence_request_kit.py'
       - 'tools/test_stage3d_ai_ak_private_evidence_intake.py'
       - 'tools/test_stage3d_al_evidence_request_kit.py'
@@ -90,6 +98,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_stage3d_ae_ah_review_desk.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_ai_ak_private_evidence_intake.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_al_evidence_request_kit.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_am_ap_portable_reviewer_kit.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -131,6 +140,17 @@ jobs:
       - name: Stage 3D-AL generate five case-bound unsent source requests and empty private intake templates
         if: github.event_name != 'pull_request'
         run: python tools/build_stage3d_al_evidence_request_kit.py --desk review/stage3d_ae_ah_decision_desk_REVIEW_ONLY/STAGE3D_AE_AH_REVIEW_CASES_NOT_CONFIRMED.json --outdir review/stage3d_al_unsent_evidence_request_kit
+      - name: Stage 3D-AM to AP assemble ZIP with offline validator, source-bound desk and unsent requests
+        if: github.event_name != 'pull_request'
+        run: python tools/build_stage3d_am_ap_portable_reviewer_kit.py --desk review/stage3d_ae_ah_decision_desk_REVIEW_ONLY/STAGE3D_AE_AH_REVIEW_CASES_NOT_CONFIRMED.json --output review/stage3d_am_ap_offline_reviewer_kit_REVIEW_ONLY.zip
+      - name: Archive standalone OFFLINE source-safe reviewer kit, never confidential evidence
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-stage3dam-ap-standalone-offline-reviewer-kit
+          path: review/stage3d_am_ap_offline_reviewer_kit_REVIEW_ONLY.zip
+          if-no-files-found: error
+          retention-days: 60
       - name: Archive unsent requests and blank reviewer template files; no private evidence
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
