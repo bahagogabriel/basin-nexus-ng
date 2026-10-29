@@ -36,6 +36,14 @@ assert set(mod["future_optional_record_fields"])==ALLOWED_FIELDS-set(mod["future
 assert mod["future_approved_record_count"]==0
 assert mod["future_evidence_gate_validator"]=="tools/evidence_publication_gate.py"
 assert "data/source_content_publication_model.json" in html
+assert "officialSCMPEntries" in html and "renderOfficialSCMPReports(result)" in html
+assert mod["official_scmp_publication_links"]["listed_pages"]==9
+assert mod["official_scmp_publication_links"]["indexed_direct_pdfs"]==8
+assert sum(bool(r["official_publication_page"]) for r in records)==9
+assert sum(bool(r["official_public_pdf"]) for r in records)==8
+assert all(r["official_report_link_status"]==("ACRESAL_PUBLICATION_ENTRY_INDEXED" if r["official_publication_page"] else "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED") for r in records)
+assert all((r["official_publication_page"] is None or r["official_publication_page"].startswith("https://acresal.gov.ng/publications/")) and (r["official_public_pdf"] is None or r["official_public_pdf"].startswith("https://acresal.gov.ng/wp-content/uploads/2025/11/")) for r in records)
+assert mod["individual_public_claims_approved"]==0
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
     assert bad.lower() not in (json.dumps(mod)+json.dumps(idx)+html).lower(),bad

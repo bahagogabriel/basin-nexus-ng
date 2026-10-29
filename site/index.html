@@ -278,7 +278,7 @@ header .nav button{padding:8px 12px}
 .faoLinks button{border:0;background:none;color:#006b68;text-decoration:underline;font-weight:750}
 .traceBtn{background:#eaf5ee;border:1px solid #93bca9;border-radius:7px;padding:7px 9px;font-weight:700;color:#174a3e}
 .traceStatus{margin:7px 0;font-size:11px;line-height:1.45;color:#325958}
-</style><script src="climate.js" defer></script></head><body>
+.officialSCMPEntries{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px;margin:12px 0}.officialSCMPEntry{padding:13px 15px;border:1px solid #9aa9a9;border-radius:12px;background:rgba(255,255,255,.66)}.officialSCMPEntry strong{display:block}.officialSCMPEntry p{margin:7px 0}.officialSCMPEntry small{color:#526266} </style><script src="climate.js" defer></script></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navKnowledge">Knowledge index</button><button id="navAbout">About the atlas</button><button id="navData">Data & downloads</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria.</p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
 <div class="columns" id="columns"><section class="panel directory" aria-label="Catchment directory"><div class="panelhead"><h2>Catchment directory</h2><p>Search catchment, state or LGA</p><input class="search" id="catchmentSearch" aria-label="Find catchment, state or LGA" placeholder="Find catchment, state or LGA..."></div><div class="list" id="catchmentList" aria-live="polite"><div class="spinner">Loading catchments…</div></div><div class="count" id="catchmentCount">20 catchments</div></section>
@@ -317,6 +317,13 @@ header .nav button{padding:8px 12px}
 <section id="knowledgeThemePanel" class="knowledgeThemePanel" aria-live="polite" aria-label="Thematic summary"></section>
 <p id="knowledgeCount" aria-live="polite">Loading source coverage…</p>
 <div class="knowledgeCards" id="knowledgeCards"></div>
+<section id="officialSCMP" class="evidenceCatalogue" aria-label="Government-published original catchment plans">
+<h3>Read official Strategic Catchment Management Plans</h3>
+<p>ACReSAL reports that all 20 plans have been developed and validated. We have verified nine individually listed publication pages on the official ACReSAL website, with direct PDFs for eight. Follow the publisher's links to read these plans; the source report is not proof that every proposed intervention has been completed. The restricted workshop communiqués are not published here.</p>
+<p id="officialSCMPCount" aria-live="polite">Loading ACReSAL source links…</p>
+<div id="officialSCMPEntries" class="officialSCMPEntries"></div>
+<p><a href="https://acresal.gov.ng/publications/" target="_blank" rel="noopener noreferrer">View ACReSAL's official publication index</a> · <a href="https://acresal.gov.ng/nigeria-endorses-20-historic-strategic-blueprints-to-restore-degraded-landscapes-and-water-bodies/" target="_blank" rel="noopener noreferrer">Source: validation of 20 plans</a></p>
+</section>
 <section id="evidenceCataloguePanel" class="evidenceCatalogue" aria-label="Approved public evidence catalogue">
 <h3>Approved evidence catalogue</h3>
 <p>Browse individually approved public source statements by topic and verification level. Records appear here only after review of their publication rights, source context and privacy; mapped positions require a separate location check. These records are distinct from the workshop source-heading index.</p>
@@ -1632,6 +1639,20 @@ function filteredKnowledge(){
  });
  return result;
 }
+function renderOfficialSCMPReports(scope){
+ const count=el('officialSCMPCount'),out=el('officialSCMPEntries');
+ const meta=sourceContentModel?.official_scmp_publication_links;
+ if(!meta||meta.listed_pages!==9||meta.indexed_direct_pdfs!==8){count.textContent='Official report link index unavailable';out.textContent='See ACReSAL\'s official publication index for source materials.';return}
+ const ids=new Set(scope.map(r=>r.id));
+ const rows=sourceContentModel.catchments.filter(r=>ids.has(r.id)&&r.official_report_link_status==='ACRESAL_PUBLICATION_ENTRY_INDEXED');
+ count.textContent=rows.length+' official report publication entries for the current '+scope.length+' catchment selection · 9 indexed across all 20';
+ out.innerHTML=rows.length?rows.map(r=>{
+ const name=catchments.find(c=>c.id===r.id)?.name||r.id;
+ const valid=url=>typeof url==='string'&&url.startsWith('https://acresal.gov.ng/');
+ if(!valid(r.official_publication_page))return '';
+ return '<article class="officialSCMPEntry"><strong>'+esc(name)+'</strong><p><a href="'+esc(r.official_publication_page)+'" target="_blank" rel="noopener noreferrer">ACReSAL publication page</a>'+(valid(r.official_public_pdf)?' · <a href="'+esc(r.official_public_pdf)+'" target="_blank" rel="noopener noreferrer">Government-hosted PDF</a>':'')+'</p><small>Official external report · proposals are not completed projects by default</small></article>';
+ }).join(''):'<p>No individually verified official report link for the current selection. This does not imply that no report exists.</p>';
+}
 function renderKnowledge(){
  if(!knowledgeIndex)return;
  const result=filteredKnowledge();
@@ -1641,6 +1662,7 @@ function renderKnowledge(){
  el('knowledgeCount').textContent=result.length+' of '+knowledgeIndex.catchments.length+' catchments · public geography and institutional source metadata';
  el('knowledgeExport').disabled=result.length===0;
  renderEvidenceCatalogue(result);
+ renderOfficialSCMPReports(result);
  el('knowledgeCards').innerHTML=result.length?result.map(c=>{
   const row=catchments.find(x=>x.id===c.id), admin=administrative?.byCatchment?.[c.id];
   const river=detailedManifest?.files?.[c.id], stateRecord=(admin?.states||[]).find(s=>s.name===state),

@@ -81,7 +81,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C02",
@@ -91,7 +94,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C03",
@@ -101,7 +107,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C04",
@@ -111,7 +120,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/gulbin-ka-strategic-catchment-management-plan-report/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/GULBIN-KA-STRATEGIC-CATCHMENT-MANAGEMENT-PLAN1.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C05",
@@ -121,7 +133,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C06",
@@ -131,7 +146,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/hadejia-jamaare-strategic-catchment-management-plan-report/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/HADEJIA-JAMARE-CATCHMENT-MANAGEMENT-PLAN-REPORT.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C07",
@@ -141,7 +159,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C08",
@@ -151,7 +172,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C09",
@@ -161,7 +185,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C10",
@@ -171,7 +198,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C11",
@@ -181,7 +211,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/misau-komadugu-gana-strategic-catchment-management-plan-report/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/MISAU-KOMADUGU-GANA__STRATEGIC_CATCHMENT_MANAGEMENT_PLAN-REPORT1.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C12",
@@ -191,7 +224,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/ngada-west-chad-strategic-catchment-management-plan/",
+      "official_public_pdf": null,
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C13",
@@ -201,7 +237,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C14",
@@ -211,7 +250,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/rima-strategic-catchment-management-plan/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/RIMA_STRATEGIC_CATCHMENT_MANAGEMENT_PLAN-READY1.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C15",
@@ -221,7 +263,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     },
     {
       "id": "SCMP-C16",
@@ -231,7 +276,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/shemankar-katsina-ala-strategic-catchment-management-plan-baseline-report-annex/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/Shemankar-Katsina-Ala_-Catchment-Management-Plan-Baseline-Report-Annex-I1.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C17",
@@ -241,7 +289,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/sokoto-zamfara-strategic-catchment-management-plan-report/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/Sokoto-Zamfara_Strategic_Catchment_Management_Plan-ready-11.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C18",
@@ -251,7 +302,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/wase-taraba-strategic-catchment-management-plan-report-march/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/Wase-taraba-Catchment-management-plan1-Ready-copy1.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C19",
@@ -261,7 +315,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": "https://acresal.gov.ng/publications/yedseram-strategic-catchment-management-plan-report/",
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/YEDSERAM_STRATEGIC_CATCHMENT_MANAGEMENT_PLAN_2025-ready1.pdf",
+      "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
       "id": "SCMP-C20",
@@ -271,7 +328,10 @@
       "public_approved_claims": 0,
       "review_release_status": "HOLD",
       "spatial_claims_cleared": false,
-      "signed_materials_published": false
+      "signed_materials_published": false,
+      "official_publication_page": null,
+      "official_public_pdf": null,
+      "official_report_link_status": "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED"
     }
   ],
   "future_evidence_gate_schema_version": "BN_PUBLIC_EVIDENCE_V1",
@@ -294,5 +354,14 @@
     "notes"
   ],
   "future_approved_record_count": 0,
-  "future_release_process_note": "A real documented rights decision, individual editorial/scientific review and private data removal are prerequisites. The validator verifies submitted public-record format but does not independently grant permission or verify facts."
+  "future_release_process_note": "A real documented rights decision, individual editorial/scientific review and private data removal are prerequisites. The validator verifies submitted public-record format but does not independently grant permission or verify facts.",
+  "official_scmp_publication_links": {
+    "publisher": "ACReSAL — Federal Government of Nigeria",
+    "listed_pages": 9,
+    "indexed_direct_pdfs": 8,
+    "validation_announcement": "https://acresal.gov.ng/nigeria-endorses-20-historic-strategic-blueprints-to-restore-degraded-landscapes-and-water-bodies/",
+    "publication_index": "https://acresal.gov.ng/publications/",
+    "checked_date": "2026-10-29",
+    "scope": "External government-hosted links only. All 20 plans reported validated, but individual public report links independently located for nine. No private-source claims released, and a linked document is not independently verified evidence of individual reported facilities or completed proposals."
+  }
 }
