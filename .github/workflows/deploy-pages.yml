@@ -51,6 +51,9 @@ jobs:
         run: python tools/test_public_admin_catalogue.py
       - name: Check browser JavaScript syntax
         run: python tools/check_browser_js.py
+      - name: Check independent NASA climate Javascript and original 20-point sources
+        run: |
+          python -m unittest discover -s tools -p 'test_stage3d_bo_br_power_climate.py' -v
       - name: Verify Canvas map and gesture regression
         run: python tools/test_canvas_map_v09.py
       - name: Guard Canvas position and idle-render regression
@@ -85,6 +88,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Check climate explorer syntax
+        run: node --check site/climate.js
       - name: Install browser test runtime
         run: |
           npm install --no-save playwright@1.56.1

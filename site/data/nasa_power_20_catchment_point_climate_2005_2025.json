@@ -1,0 +1,3743 @@
+{
+  "schema_version": "BN_STAGE3D_BO_POWER_LABEL_POINT_CLIMATE_2005_2025_V1",
+  "data_status": "NASA_POWER_MODELED_POINT_SAMPLE_NOT_CATCHMENT_MEAN",
+  "dataset": "NASA POWER monthly/annual point API, Agroclimatology community",
+  "source": "https://power.larc.nasa.gov/docs/services/api/temporal/monthly/",
+  "precipitation_variable": "PRECTOTCORR",
+  "precipitation_method": "Monthly NASA POWER modeled daily precipitation rate (mm/day) multiplied by calendar days and summed for year; not catchment zonal precipitation",
+  "temperature_variable": "T2M",
+  "temperature_method": "Day-count weighted mean of NASA POWER monthly modeled two-meter air temperatures, degrees Celsius",
+  "sample_basis": "Existing SCMP catchment registry map-label longitude/latitude; sample grid values are NOT catchment-averaged raster statistics",
+  "period_start": 2005,
+  "period_end": 2025,
+  "catchment_point_count": 20,
+  "records": [
+    {
+      "catchment_id": "SCMP-C01",
+      "catchment_name": "Aloma-Konshisha",
+      "sample_lon": 8.467965,
+      "sample_lat": 6.813208,
+      "nasa_power_snapshot_sha256": "04e121e33591fe7343c554f01e2698169017fd2334417123d9e35ba211fd91fe",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=6.813208&longitude=8.467965&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1195.8,
+      "mean_t2m_c_2005_2025": 26.06,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 560.3,
+        "mean_t2m_c": 28.52
+      },
+      "wettest_mean_precip_month": 9,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 4.7,
+          "mean_t2m_c": 24.84
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 14.9,
+          "mean_t2m_c": 27.04
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 44.1,
+          "mean_t2m_c": 27.88
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 90.6,
+          "mean_t2m_c": 27.69
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 115.6,
+          "mean_t2m_c": 27.0
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 153.1,
+          "mean_t2m_c": 25.98
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 168.1,
+          "mean_t2m_c": 25.26
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 198.2,
+          "mean_t2m_c": 25.08
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 208.0,
+          "mean_t2m_c": 25.3
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 154.2,
+          "mean_t2m_c": 25.63
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 40.1,
+          "mean_t2m_c": 26.2
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 4.3,
+          "mean_t2m_c": 24.96
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 1363.0,
+          "mean_t2m_c": 25.47
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1572.9,
+          "mean_t2m_c": 25.3
+        },
+        {
+          "year": 2007,
+          "precip_mm": 2101.5,
+          "mean_t2m_c": 24.91
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1375.8,
+          "mean_t2m_c": 25.03
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1154.4,
+          "mean_t2m_c": 25.59
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1655.0,
+          "mean_t2m_c": 25.63
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1566.9,
+          "mean_t2m_c": 25.01
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1588.2,
+          "mean_t2m_c": 25.08
+        },
+        {
+          "year": 2013,
+          "precip_mm": 1219.7,
+          "mean_t2m_c": 25.43
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1047.9,
+          "mean_t2m_c": 25.67
+        },
+        {
+          "year": 2015,
+          "precip_mm": 1073.8,
+          "mean_t2m_c": 25.8
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1357.2,
+          "mean_t2m_c": 26.14
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1306.9,
+          "mean_t2m_c": 25.97
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1071.6,
+          "mean_t2m_c": 25.92
+        },
+        {
+          "year": 2019,
+          "precip_mm": 967.1,
+          "mean_t2m_c": 26.65
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1019.8,
+          "mean_t2m_c": 26.55
+        },
+        {
+          "year": 2021,
+          "precip_mm": 730.0,
+          "mean_t2m_c": 26.91
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1044.3,
+          "mean_t2m_c": 26.34
+        },
+        {
+          "year": 2023,
+          "precip_mm": 590.0,
+          "mean_t2m_c": 27.5
+        },
+        {
+          "year": 2024,
+          "precip_mm": 746.4,
+          "mean_t2m_c": 27.91
+        },
+        {
+          "year": 2025,
+          "precip_mm": 560.3,
+          "mean_t2m_c": 28.52
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C02",
+      "catchment_name": "Benue-Mada",
+      "sample_lon": 7.984394,
+      "sample_lat": 8.575243,
+      "nasa_power_snapshot_sha256": "914530f119d3f6d3ff6de202588cf38fe6454cda94107db7cc0dd64e08a2f160",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=8.575243&longitude=7.984394&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1147.0,
+      "mean_t2m_c_2005_2025": 26.8,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 807.0,
+        "mean_t2m_c": 28.35
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 4.9,
+          "mean_t2m_c": 26.19
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 4.6,
+          "mean_t2m_c": 28.63
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 21.6,
+          "mean_t2m_c": 29.92
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 80.5,
+          "mean_t2m_c": 29.41
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 141.4,
+          "mean_t2m_c": 27.89
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 158.6,
+          "mean_t2m_c": 26.5
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 200.4,
+          "mean_t2m_c": 25.46
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 225.0,
+          "mean_t2m_c": 25.02
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 178.5,
+          "mean_t2m_c": 25.37
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 115.2,
+          "mean_t2m_c": 25.93
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 14.5,
+          "mean_t2m_c": 26.1
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 1.7,
+          "mean_t2m_c": 25.36
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 913.5,
+          "mean_t2m_c": 27.47
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1115.3,
+          "mean_t2m_c": 26.73
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1640.1,
+          "mean_t2m_c": 25.99
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1188.3,
+          "mean_t2m_c": 25.61
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1145.2,
+          "mean_t2m_c": 26.45
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1279.9,
+          "mean_t2m_c": 26.56
+        },
+        {
+          "year": 2011,
+          "precip_mm": 961.5,
+          "mean_t2m_c": 26.25
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1378.9,
+          "mean_t2m_c": 26.44
+        },
+        {
+          "year": 2013,
+          "precip_mm": 680.6,
+          "mean_t2m_c": 26.81
+        },
+        {
+          "year": 2014,
+          "precip_mm": 998.4,
+          "mean_t2m_c": 27.23
+        },
+        {
+          "year": 2015,
+          "precip_mm": 748.1,
+          "mean_t2m_c": 27.46
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1331.1,
+          "mean_t2m_c": 26.88
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1072.4,
+          "mean_t2m_c": 26.83
+        },
+        {
+          "year": 2018,
+          "precip_mm": 885.6,
+          "mean_t2m_c": 27.18
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1043.2,
+          "mean_t2m_c": 27.51
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1193.8,
+          "mean_t2m_c": 26.73
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1506.0,
+          "mean_t2m_c": 26.73
+        },
+        {
+          "year": 2022,
+          "precip_mm": 2019.1,
+          "mean_t2m_c": 25.22
+        },
+        {
+          "year": 2023,
+          "precip_mm": 885.9,
+          "mean_t2m_c": 26.99
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1293.4,
+          "mean_t2m_c": 27.42
+        },
+        {
+          "year": 2025,
+          "precip_mm": 807.0,
+          "mean_t2m_c": 28.35
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C03",
+      "catchment_name": "Gaji-Lamurde",
+      "sample_lon": 11.024997,
+      "sample_lat": 9.575337,
+      "nasa_power_snapshot_sha256": "985c6107cb22056234f87634eb67a851ed3cc23bd284aa98aab2c018fc499914",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=9.575337&longitude=11.024997&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 920.6,
+      "mean_t2m_c_2005_2025": 26.85,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 617.3,
+        "mean_t2m_c": 28.32
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.2,
+          "mean_t2m_c": 24.73
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.6,
+          "mean_t2m_c": 28.2
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 4.7,
+          "mean_t2m_c": 30.82
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 44.0,
+          "mean_t2m_c": 30.75
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 90.4,
+          "mean_t2m_c": 28.93
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 122.8,
+          "mean_t2m_c": 27.23
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 191.9,
+          "mean_t2m_c": 25.77
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 209.3,
+          "mean_t2m_c": 24.95
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 167.3,
+          "mean_t2m_c": 25.4
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 83.6,
+          "mean_t2m_c": 26.26
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 5.3,
+          "mean_t2m_c": 25.47
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.6,
+          "mean_t2m_c": 23.91
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 842.3,
+          "mean_t2m_c": 27.35
+        },
+        {
+          "year": 2006,
+          "precip_mm": 849.5,
+          "mean_t2m_c": 27.15
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1163.1,
+          "mean_t2m_c": 26.21
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1123.6,
+          "mean_t2m_c": 25.89
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1148.0,
+          "mean_t2m_c": 26.24
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1113.6,
+          "mean_t2m_c": 26.36
+        },
+        {
+          "year": 2011,
+          "precip_mm": 888.2,
+          "mean_t2m_c": 26.26
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1298.8,
+          "mean_t2m_c": 26.15
+        },
+        {
+          "year": 2013,
+          "precip_mm": 844.5,
+          "mean_t2m_c": 26.57
+        },
+        {
+          "year": 2014,
+          "precip_mm": 984.8,
+          "mean_t2m_c": 26.83
+        },
+        {
+          "year": 2015,
+          "precip_mm": 714.5,
+          "mean_t2m_c": 27.0
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1006.5,
+          "mean_t2m_c": 26.73
+        },
+        {
+          "year": 2017,
+          "precip_mm": 758.6,
+          "mean_t2m_c": 27.05
+        },
+        {
+          "year": 2018,
+          "precip_mm": 842.1,
+          "mean_t2m_c": 26.95
+        },
+        {
+          "year": 2019,
+          "precip_mm": 980.5,
+          "mean_t2m_c": 27.08
+        },
+        {
+          "year": 2020,
+          "precip_mm": 826.2,
+          "mean_t2m_c": 26.35
+        },
+        {
+          "year": 2021,
+          "precip_mm": 870.3,
+          "mean_t2m_c": 26.96
+        },
+        {
+          "year": 2022,
+          "precip_mm": 973.3,
+          "mean_t2m_c": 25.99
+        },
+        {
+          "year": 2023,
+          "precip_mm": 354.2,
+          "mean_t2m_c": 28.81
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1133.6,
+          "mean_t2m_c": 27.7
+        },
+        {
+          "year": 2025,
+          "precip_mm": 617.3,
+          "mean_t2m_c": 28.32
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C04",
+      "catchment_name": "Gulbin-Ka",
+      "sample_lon": 4.350435,
+      "sample_lat": 11.400628,
+      "nasa_power_snapshot_sha256": "14ea8f2a1d855ef015e2643bd681076a4193be879d348067f965665014a146ae",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=11.400628&longitude=4.350435&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 990.6,
+      "mean_t2m_c_2005_2025": 27.52,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 837.8,
+        "mean_t2m_c": 28.21
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.1,
+          "mean_t2m_c": 23.97
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.5,
+          "mean_t2m_c": 27.47
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 11.1,
+          "mean_t2m_c": 31.0
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 24.8,
+          "mean_t2m_c": 32.41
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 81.5,
+          "mean_t2m_c": 31.04
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 148.3,
+          "mean_t2m_c": 28.7
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 191.8,
+          "mean_t2m_c": 27.07
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 274.1,
+          "mean_t2m_c": 26.03
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 193.9,
+          "mean_t2m_c": 26.37
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 63.5,
+          "mean_t2m_c": 26.96
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 0.8,
+          "mean_t2m_c": 25.65
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.1,
+          "mean_t2m_c": 23.67
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 933.1,
+          "mean_t2m_c": 28.13
+        },
+        {
+          "year": 2006,
+          "precip_mm": 926.4,
+          "mean_t2m_c": 27.81
+        },
+        {
+          "year": 2007,
+          "precip_mm": 985.2,
+          "mean_t2m_c": 27.08
+        },
+        {
+          "year": 2008,
+          "precip_mm": 812.8,
+          "mean_t2m_c": 27.27
+        },
+        {
+          "year": 2009,
+          "precip_mm": 959.1,
+          "mean_t2m_c": 27.83
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1054.0,
+          "mean_t2m_c": 27.38
+        },
+        {
+          "year": 2011,
+          "precip_mm": 764.4,
+          "mean_t2m_c": 27.45
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1006.6,
+          "mean_t2m_c": 27.38
+        },
+        {
+          "year": 2013,
+          "precip_mm": 724.4,
+          "mean_t2m_c": 28.16
+        },
+        {
+          "year": 2014,
+          "precip_mm": 795.1,
+          "mean_t2m_c": 28.41
+        },
+        {
+          "year": 2015,
+          "precip_mm": 835.2,
+          "mean_t2m_c": 27.9
+        },
+        {
+          "year": 2016,
+          "precip_mm": 810.4,
+          "mean_t2m_c": 28.23
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1049.8,
+          "mean_t2m_c": 27.67
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1026.8,
+          "mean_t2m_c": 27.14
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1042.3,
+          "mean_t2m_c": 27.2
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1407.7,
+          "mean_t2m_c": 26.51
+        },
+        {
+          "year": 2021,
+          "precip_mm": 976.7,
+          "mean_t2m_c": 26.98
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1426.5,
+          "mean_t2m_c": 26.31
+        },
+        {
+          "year": 2023,
+          "precip_mm": 881.0,
+          "mean_t2m_c": 27.57
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1546.5,
+          "mean_t2m_c": 27.28
+        },
+        {
+          "year": 2025,
+          "precip_mm": 837.8,
+          "mean_t2m_c": 28.21
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C05",
+      "catchment_name": "Gurara-Gbako",
+      "sample_lon": 6.713515,
+      "sample_lat": 8.886097,
+      "nasa_power_snapshot_sha256": "80af3ea22eedf969cac1b2a0d28310a5fa94f086b560bc09fcde2622c71b111c",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=8.886097&longitude=6.713515&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1166.5,
+      "mean_t2m_c_2005_2025": 26.45,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 863.2,
+        "mean_t2m_c": 27.98
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 2.2,
+          "mean_t2m_c": 25.29
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 4.7,
+          "mean_t2m_c": 27.55
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 15.0,
+          "mean_t2m_c": 29.26
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 57.2,
+          "mean_t2m_c": 29.13
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 113.8,
+          "mean_t2m_c": 27.65
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 160.7,
+          "mean_t2m_c": 26.17
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 196.0,
+          "mean_t2m_c": 25.26
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 259.1,
+          "mean_t2m_c": 24.85
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 224.3,
+          "mean_t2m_c": 25.32
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 121.8,
+          "mean_t2m_c": 25.92
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 10.5,
+          "mean_t2m_c": 26.09
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 1.2,
+          "mean_t2m_c": 25.04
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 785.9,
+          "mean_t2m_c": 27.49
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1010.1,
+          "mean_t2m_c": 27.08
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1491.0,
+          "mean_t2m_c": 26.26
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1399.7,
+          "mean_t2m_c": 25.51
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1407.5,
+          "mean_t2m_c": 25.83
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1353.3,
+          "mean_t2m_c": 25.9
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1091.2,
+          "mean_t2m_c": 25.33
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1477.2,
+          "mean_t2m_c": 25.62
+        },
+        {
+          "year": 2013,
+          "precip_mm": 810.1,
+          "mean_t2m_c": 26.05
+        },
+        {
+          "year": 2014,
+          "precip_mm": 971.9,
+          "mean_t2m_c": 26.95
+        },
+        {
+          "year": 2015,
+          "precip_mm": 823.9,
+          "mean_t2m_c": 27.19
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1347.6,
+          "mean_t2m_c": 26.9
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1126.2,
+          "mean_t2m_c": 26.7
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1073.2,
+          "mean_t2m_c": 26.47
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1337.5,
+          "mean_t2m_c": 26.81
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1325.9,
+          "mean_t2m_c": 25.97
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1348.0,
+          "mean_t2m_c": 26.31
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1299.5,
+          "mean_t2m_c": 25.51
+        },
+        {
+          "year": 2023,
+          "precip_mm": 1181.5,
+          "mean_t2m_c": 26.55
+        },
+        {
+          "year": 2024,
+          "precip_mm": 971.1,
+          "mean_t2m_c": 27.04
+        },
+        {
+          "year": 2025,
+          "precip_mm": 863.2,
+          "mean_t2m_c": 27.98
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C06",
+      "catchment_name": "Hadejia Jama'are",
+      "sample_lon": 9.357687,
+      "sample_lat": 12.238899,
+      "nasa_power_snapshot_sha256": "4cb757c4e05a6742c15cd2d8cf48c65b1f8ffb4ca2b9fcab45c3f1def019145f",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=12.238899&longitude=9.357687&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 669.9,
+      "mean_t2m_c_2005_2025": 27.12,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 278.3,
+        "mean_t2m_c": 28.13
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 1.0,
+          "mean_t2m_c": 21.34
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.3,
+          "mean_t2m_c": 24.82
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 14.0,
+          "mean_t2m_c": 28.9
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 13.2,
+          "mean_t2m_c": 31.59
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 35.6,
+          "mean_t2m_c": 32.32
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 77.9,
+          "mean_t2m_c": 30.9
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 169.1,
+          "mean_t2m_c": 28.62
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 210.7,
+          "mean_t2m_c": 26.58
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 117.3,
+          "mean_t2m_c": 27.06
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 22.6,
+          "mean_t2m_c": 27.19
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 8.2,
+          "mean_t2m_c": 24.46
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 21.61
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 469.1,
+          "mean_t2m_c": 27.93
+        },
+        {
+          "year": 2006,
+          "precip_mm": 443.3,
+          "mean_t2m_c": 27.97
+        },
+        {
+          "year": 2007,
+          "precip_mm": 834.5,
+          "mean_t2m_c": 26.41
+        },
+        {
+          "year": 2008,
+          "precip_mm": 726.7,
+          "mean_t2m_c": 26.35
+        },
+        {
+          "year": 2009,
+          "precip_mm": 529.2,
+          "mean_t2m_c": 27.71
+        },
+        {
+          "year": 2010,
+          "precip_mm": 776.1,
+          "mean_t2m_c": 27.08
+        },
+        {
+          "year": 2011,
+          "precip_mm": 524.7,
+          "mean_t2m_c": 26.93
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1020.3,
+          "mean_t2m_c": 26.08
+        },
+        {
+          "year": 2013,
+          "precip_mm": 433.0,
+          "mean_t2m_c": 27.68
+        },
+        {
+          "year": 2014,
+          "precip_mm": 576.2,
+          "mean_t2m_c": 27.55
+        },
+        {
+          "year": 2015,
+          "precip_mm": 381.3,
+          "mean_t2m_c": 27.26
+        },
+        {
+          "year": 2016,
+          "precip_mm": 402.8,
+          "mean_t2m_c": 27.81
+        },
+        {
+          "year": 2017,
+          "precip_mm": 547.2,
+          "mean_t2m_c": 27.29
+        },
+        {
+          "year": 2018,
+          "precip_mm": 383.6,
+          "mean_t2m_c": 27.57
+        },
+        {
+          "year": 2019,
+          "precip_mm": 485.8,
+          "mean_t2m_c": 27.58
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1348.3,
+          "mean_t2m_c": 26.04
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1693.8,
+          "mean_t2m_c": 25.93
+        },
+        {
+          "year": 2022,
+          "precip_mm": 765.0,
+          "mean_t2m_c": 25.49
+        },
+        {
+          "year": 2023,
+          "precip_mm": 423.8,
+          "mean_t2m_c": 28.08
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1025.9,
+          "mean_t2m_c": 26.63
+        },
+        {
+          "year": 2025,
+          "precip_mm": 278.3,
+          "mean_t2m_c": 28.13
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C07",
+      "catchment_name": "Hawul-Kilange",
+      "sample_lon": 13.427947,
+      "sample_lat": 8.850083,
+      "nasa_power_snapshot_sha256": "0443e74a676cc26e788f9538319fd8ff93c02338d6a5fd8c8dae8c7e6cbf3c5d",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=8.850083&longitude=13.427947&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 932.3,
+      "mean_t2m_c_2005_2025": 28.26,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 787.7,
+        "mean_t2m_c": 29.38
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 26.83
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.3,
+          "mean_t2m_c": 29.87
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 2.0,
+          "mean_t2m_c": 32.4
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 42.7,
+          "mean_t2m_c": 32.53
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 98.5,
+          "mean_t2m_c": 30.38
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 137.2,
+          "mean_t2m_c": 28.43
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 176.3,
+          "mean_t2m_c": 26.45
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 215.1,
+          "mean_t2m_c": 25.5
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 182.4,
+          "mean_t2m_c": 26.02
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 73.6,
+          "mean_t2m_c": 27.07
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 3.6,
+          "mean_t2m_c": 27.44
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.7,
+          "mean_t2m_c": 26.44
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 853.2,
+          "mean_t2m_c": 28.77
+        },
+        {
+          "year": 2006,
+          "precip_mm": 809.3,
+          "mean_t2m_c": 28.76
+        },
+        {
+          "year": 2007,
+          "precip_mm": 754.1,
+          "mean_t2m_c": 28.19
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1215.8,
+          "mean_t2m_c": 27.54
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1078.8,
+          "mean_t2m_c": 27.94
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1136.2,
+          "mean_t2m_c": 27.89
+        },
+        {
+          "year": 2011,
+          "precip_mm": 788.2,
+          "mean_t2m_c": 27.99
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1189.2,
+          "mean_t2m_c": 27.53
+        },
+        {
+          "year": 2013,
+          "precip_mm": 999.7,
+          "mean_t2m_c": 28.1
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1029.9,
+          "mean_t2m_c": 27.99
+        },
+        {
+          "year": 2015,
+          "precip_mm": 757.2,
+          "mean_t2m_c": 28.41
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1021.2,
+          "mean_t2m_c": 28.03
+        },
+        {
+          "year": 2017,
+          "precip_mm": 907.8,
+          "mean_t2m_c": 28.36
+        },
+        {
+          "year": 2018,
+          "precip_mm": 937.6,
+          "mean_t2m_c": 28.15
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1068.3,
+          "mean_t2m_c": 28.26
+        },
+        {
+          "year": 2020,
+          "precip_mm": 834.7,
+          "mean_t2m_c": 28.04
+        },
+        {
+          "year": 2021,
+          "precip_mm": 890.4,
+          "mean_t2m_c": 28.39
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1226.5,
+          "mean_t2m_c": 27.14
+        },
+        {
+          "year": 2023,
+          "precip_mm": 759.5,
+          "mean_t2m_c": 29.21
+        },
+        {
+          "year": 2024,
+          "precip_mm": 533.2,
+          "mean_t2m_c": 29.48
+        },
+        {
+          "year": 2025,
+          "precip_mm": 787.7,
+          "mean_t2m_c": 29.38
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C08",
+      "catchment_name": "Kaduna-Mariga",
+      "sample_lon": 5.914758,
+      "sample_lat": 10.089377,
+      "nasa_power_snapshot_sha256": "564453583a0063e893f6dda2dcb06cd4b30df850411c45aae53490399a4afd9b",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=10.089377&longitude=5.914758&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1273.0,
+      "mean_t2m_c_2005_2025": 26.25,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 1020.0,
+        "mean_t2m_c": 27.27
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 4.0,
+          "mean_t2m_c": 23.76
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 5.4,
+          "mean_t2m_c": 26.67
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 28.4,
+          "mean_t2m_c": 29.3
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 70.0,
+          "mean_t2m_c": 29.71
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 136.5,
+          "mean_t2m_c": 28.21
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 183.1,
+          "mean_t2m_c": 26.62
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 205.7,
+          "mean_t2m_c": 25.65
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 260.0,
+          "mean_t2m_c": 25.16
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 237.5,
+          "mean_t2m_c": 25.6
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 110.0,
+          "mean_t2m_c": 26.09
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 32.0,
+          "mean_t2m_c": 25.02
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.5,
+          "mean_t2m_c": 23.33
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 785.6,
+          "mean_t2m_c": 27.81
+        },
+        {
+          "year": 2006,
+          "precip_mm": 942.5,
+          "mean_t2m_c": 27.48
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1403.8,
+          "mean_t2m_c": 26.2
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1266.3,
+          "mean_t2m_c": 25.58
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1171.8,
+          "mean_t2m_c": 25.93
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1166.5,
+          "mean_t2m_c": 26.27
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1009.9,
+          "mean_t2m_c": 25.82
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1456.4,
+          "mean_t2m_c": 26.0
+        },
+        {
+          "year": 2013,
+          "precip_mm": 669.6,
+          "mean_t2m_c": 26.48
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1068.5,
+          "mean_t2m_c": 27.1
+        },
+        {
+          "year": 2015,
+          "precip_mm": 919.9,
+          "mean_t2m_c": 26.88
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1210.1,
+          "mean_t2m_c": 26.58
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1441.8,
+          "mean_t2m_c": 26.33
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1445.8,
+          "mean_t2m_c": 25.64
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1302.4,
+          "mean_t2m_c": 25.95
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1771.4,
+          "mean_t2m_c": 25.24
+        },
+        {
+          "year": 2021,
+          "precip_mm": 2212.6,
+          "mean_t2m_c": 25.6
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1738.6,
+          "mean_t2m_c": 24.58
+        },
+        {
+          "year": 2023,
+          "precip_mm": 1151.6,
+          "mean_t2m_c": 26.01
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1578.7,
+          "mean_t2m_c": 26.54
+        },
+        {
+          "year": 2025,
+          "precip_mm": 1020.0,
+          "mean_t2m_c": 27.27
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C09",
+      "catchment_name": "Lokoja-Niger",
+      "sample_lon": 6.810705,
+      "sample_lat": 6.961756,
+      "nasa_power_snapshot_sha256": "2810d3d8535b47c79bd235f2dfffe847ac0b381b09a554b32f71d9d93521bcc5",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=6.961756&longitude=6.810705&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1394.9,
+      "mean_t2m_c_2005_2025": 25.96,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 1143.9,
+        "mean_t2m_c": 27.22
+      },
+      "wettest_mean_precip_month": 9,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 7.5,
+          "mean_t2m_c": 25.01
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 21.2,
+          "mean_t2m_c": 26.85
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 45.8,
+          "mean_t2m_c": 27.46
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 81.5,
+          "mean_t2m_c": 27.36
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 118.1,
+          "mean_t2m_c": 26.8
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 179.5,
+          "mean_t2m_c": 25.82
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 211.6,
+          "mean_t2m_c": 25.21
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 247.4,
+          "mean_t2m_c": 25.06
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 264.6,
+          "mean_t2m_c": 25.25
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 155.0,
+          "mean_t2m_c": 25.66
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 47.3,
+          "mean_t2m_c": 26.1
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 15.4,
+          "mean_t2m_c": 25.04
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 883.2,
+          "mean_t2m_c": 26.59
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1328.3,
+          "mean_t2m_c": 26.27
+        },
+        {
+          "year": 2007,
+          "precip_mm": 2308.4,
+          "mean_t2m_c": 25.46
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1136.9,
+          "mean_t2m_c": 25.28
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1322.0,
+          "mean_t2m_c": 25.77
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1646.7,
+          "mean_t2m_c": 25.9
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1372.0,
+          "mean_t2m_c": 25.24
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1357.0,
+          "mean_t2m_c": 25.36
+        },
+        {
+          "year": 2013,
+          "precip_mm": 1509.3,
+          "mean_t2m_c": 25.56
+        },
+        {
+          "year": 2014,
+          "precip_mm": 917.7,
+          "mean_t2m_c": 25.91
+        },
+        {
+          "year": 2015,
+          "precip_mm": 934.1,
+          "mean_t2m_c": 26.31
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1314.1,
+          "mean_t2m_c": 26.65
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1574.1,
+          "mean_t2m_c": 26.2
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1691.4,
+          "mean_t2m_c": 25.73
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1712.8,
+          "mean_t2m_c": 25.95
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1726.9,
+          "mean_t2m_c": 25.72
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1867.3,
+          "mean_t2m_c": 25.79
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1327.5,
+          "mean_t2m_c": 25.33
+        },
+        {
+          "year": 2023,
+          "precip_mm": 1286.0,
+          "mean_t2m_c": 26.09
+        },
+        {
+          "year": 2024,
+          "precip_mm": 932.9,
+          "mean_t2m_c": 26.83
+        },
+        {
+          "year": 2025,
+          "precip_mm": 1143.9,
+          "mean_t2m_c": 27.22
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C10",
+      "catchment_name": "Malenda",
+      "sample_lon": 4.862605,
+      "sample_lat": 10.658553,
+      "nasa_power_snapshot_sha256": "219587bbe7d2c95dea4838877588df97541acd5f731b10ea3bc0b2675f209df3",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=10.658553&longitude=4.862605&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1321.6,
+      "mean_t2m_c_2005_2025": 26.46,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 1006.8,
+        "mean_t2m_c": 27.58
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 1.8,
+          "mean_t2m_c": 23.72
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 2.3,
+          "mean_t2m_c": 26.87
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 22.6,
+          "mean_t2m_c": 29.69
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 66.0,
+          "mean_t2m_c": 30.28
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 147.1,
+          "mean_t2m_c": 28.7
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 200.7,
+          "mean_t2m_c": 27.01
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 232.6,
+          "mean_t2m_c": 25.9
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 288.2,
+          "mean_t2m_c": 25.28
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 245.2,
+          "mean_t2m_c": 25.74
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 100.8,
+          "mean_t2m_c": 26.31
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 14.0,
+          "mean_t2m_c": 24.95
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.3,
+          "mean_t2m_c": 23.22
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 1050.1,
+          "mean_t2m_c": 27.42
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1044.4,
+          "mean_t2m_c": 27.2
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1304.5,
+          "mean_t2m_c": 26.23
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1030.3,
+          "mean_t2m_c": 26.13
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1127.5,
+          "mean_t2m_c": 26.78
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1277.0,
+          "mean_t2m_c": 26.64
+        },
+        {
+          "year": 2011,
+          "precip_mm": 992.6,
+          "mean_t2m_c": 26.21
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1339.6,
+          "mean_t2m_c": 26.35
+        },
+        {
+          "year": 2013,
+          "precip_mm": 748.5,
+          "mean_t2m_c": 27.01
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1099.5,
+          "mean_t2m_c": 27.31
+        },
+        {
+          "year": 2015,
+          "precip_mm": 1141.7,
+          "mean_t2m_c": 26.77
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1236.3,
+          "mean_t2m_c": 26.63
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1577.5,
+          "mean_t2m_c": 26.47
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1628.5,
+          "mean_t2m_c": 25.75
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1299.7,
+          "mean_t2m_c": 26.0
+        },
+        {
+          "year": 2020,
+          "precip_mm": 2043.8,
+          "mean_t2m_c": 25.38
+        },
+        {
+          "year": 2021,
+          "precip_mm": 2173.2,
+          "mean_t2m_c": 25.75
+        },
+        {
+          "year": 2022,
+          "precip_mm": 2053.3,
+          "mean_t2m_c": 24.75
+        },
+        {
+          "year": 2023,
+          "precip_mm": 1040.3,
+          "mean_t2m_c": 26.51
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1537.5,
+          "mean_t2m_c": 26.88
+        },
+        {
+          "year": 2025,
+          "precip_mm": 1006.8,
+          "mean_t2m_c": 27.58
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C11",
+      "catchment_name": "Misau-Komadugu Gana",
+      "sample_lon": 10.809432,
+      "sample_lat": 11.961011,
+      "nasa_power_snapshot_sha256": "5f674ae54d88ff82fcced4aa36895bd5859652a10323cf6e5e2812e17236e923",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=11.961011&longitude=10.809432&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 609.3,
+      "mean_t2m_c_2005_2025": 27.44,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 394.1,
+        "mean_t2m_c": 28.12
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.9,
+          "mean_t2m_c": 21.94
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.1,
+          "mean_t2m_c": 25.41
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 1.0,
+          "mean_t2m_c": 29.39
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 4.5,
+          "mean_t2m_c": 32.07
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 22.7,
+          "mean_t2m_c": 32.75
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 73.4,
+          "mean_t2m_c": 31.14
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 161.1,
+          "mean_t2m_c": 28.72
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 209.4,
+          "mean_t2m_c": 26.52
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 113.3,
+          "mean_t2m_c": 26.99
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 19.8,
+          "mean_t2m_c": 27.29
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 3.1,
+          "mean_t2m_c": 24.87
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 22.21
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 496.4,
+          "mean_t2m_c": 28.13
+        },
+        {
+          "year": 2006,
+          "precip_mm": 404.1,
+          "mean_t2m_c": 28.42
+        },
+        {
+          "year": 2007,
+          "precip_mm": 811.6,
+          "mean_t2m_c": 26.9
+        },
+        {
+          "year": 2008,
+          "precip_mm": 609.0,
+          "mean_t2m_c": 26.84
+        },
+        {
+          "year": 2009,
+          "precip_mm": 546.7,
+          "mean_t2m_c": 27.99
+        },
+        {
+          "year": 2010,
+          "precip_mm": 772.0,
+          "mean_t2m_c": 27.38
+        },
+        {
+          "year": 2011,
+          "precip_mm": 560.0,
+          "mean_t2m_c": 27.24
+        },
+        {
+          "year": 2012,
+          "precip_mm": 937.4,
+          "mean_t2m_c": 26.48
+        },
+        {
+          "year": 2013,
+          "precip_mm": 557.2,
+          "mean_t2m_c": 27.78
+        },
+        {
+          "year": 2014,
+          "precip_mm": 540.6,
+          "mean_t2m_c": 27.67
+        },
+        {
+          "year": 2015,
+          "precip_mm": 365.2,
+          "mean_t2m_c": 27.51
+        },
+        {
+          "year": 2016,
+          "precip_mm": 466.8,
+          "mean_t2m_c": 27.86
+        },
+        {
+          "year": 2017,
+          "precip_mm": 483.4,
+          "mean_t2m_c": 27.6
+        },
+        {
+          "year": 2018,
+          "precip_mm": 423.6,
+          "mean_t2m_c": 27.73
+        },
+        {
+          "year": 2019,
+          "precip_mm": 512.5,
+          "mean_t2m_c": 27.72
+        },
+        {
+          "year": 2020,
+          "precip_mm": 707.8,
+          "mean_t2m_c": 26.77
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1164.1,
+          "mean_t2m_c": 26.53
+        },
+        {
+          "year": 2022,
+          "precip_mm": 765.9,
+          "mean_t2m_c": 26.04
+        },
+        {
+          "year": 2023,
+          "precip_mm": 258.3,
+          "mean_t2m_c": 28.63
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1018.1,
+          "mean_t2m_c": 26.94
+        },
+        {
+          "year": 2025,
+          "precip_mm": 394.1,
+          "mean_t2m_c": 28.12
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C12",
+      "catchment_name": "Ngada",
+      "sample_lon": 12.251981,
+      "sample_lat": 11.815593,
+      "nasa_power_snapshot_sha256": "d88a7969a8ab12ff2010ea7621c7805ff7ce3442ba8a3e8b0a68a20286166f45",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=11.815593&longitude=12.251981&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 587.0,
+      "mean_t2m_c_2005_2025": 28.06,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 405.4,
+        "mean_t2m_c": 28.93
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 22.73
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 26.2
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 0.5,
+          "mean_t2m_c": 30.19
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 5.3,
+          "mean_t2m_c": 32.98
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 22.7,
+          "mean_t2m_c": 33.5
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 69.2,
+          "mean_t2m_c": 31.6
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 162.1,
+          "mean_t2m_c": 28.72
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 199.6,
+          "mean_t2m_c": 26.52
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 105.7,
+          "mean_t2m_c": 27.13
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 21.7,
+          "mean_t2m_c": 28.03
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 0.2,
+          "mean_t2m_c": 25.98
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 23.18
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 558.4,
+          "mean_t2m_c": 28.65
+        },
+        {
+          "year": 2006,
+          "precip_mm": 410.5,
+          "mean_t2m_c": 29.0
+        },
+        {
+          "year": 2007,
+          "precip_mm": 641.5,
+          "mean_t2m_c": 27.93
+        },
+        {
+          "year": 2008,
+          "precip_mm": 675.8,
+          "mean_t2m_c": 27.36
+        },
+        {
+          "year": 2009,
+          "precip_mm": 513.1,
+          "mean_t2m_c": 28.48
+        },
+        {
+          "year": 2010,
+          "precip_mm": 724.6,
+          "mean_t2m_c": 28.0
+        },
+        {
+          "year": 2011,
+          "precip_mm": 583.8,
+          "mean_t2m_c": 27.83
+        },
+        {
+          "year": 2012,
+          "precip_mm": 833.5,
+          "mean_t2m_c": 27.15
+        },
+        {
+          "year": 2013,
+          "precip_mm": 590.7,
+          "mean_t2m_c": 28.27
+        },
+        {
+          "year": 2014,
+          "precip_mm": 592.3,
+          "mean_t2m_c": 27.98
+        },
+        {
+          "year": 2015,
+          "precip_mm": 476.8,
+          "mean_t2m_c": 27.97
+        },
+        {
+          "year": 2016,
+          "precip_mm": 552.7,
+          "mean_t2m_c": 28.21
+        },
+        {
+          "year": 2017,
+          "precip_mm": 530.7,
+          "mean_t2m_c": 28.12
+        },
+        {
+          "year": 2018,
+          "precip_mm": 431.3,
+          "mean_t2m_c": 28.2
+        },
+        {
+          "year": 2019,
+          "precip_mm": 585.3,
+          "mean_t2m_c": 28.17
+        },
+        {
+          "year": 2020,
+          "precip_mm": 590.0,
+          "mean_t2m_c": 27.55
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1053.3,
+          "mean_t2m_c": 27.16
+        },
+        {
+          "year": 2022,
+          "precip_mm": 621.2,
+          "mean_t2m_c": 26.96
+        },
+        {
+          "year": 2023,
+          "precip_mm": 298.8,
+          "mean_t2m_c": 29.28
+        },
+        {
+          "year": 2024,
+          "precip_mm": 657.5,
+          "mean_t2m_c": 28.12
+        },
+        {
+          "year": 2025,
+          "precip_mm": 405.4,
+          "mean_t2m_c": 28.93
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C13",
+      "catchment_name": "Oshin-Oyi",
+      "sample_lon": 4.344526,
+      "sample_lat": 9.207065,
+      "nasa_power_snapshot_sha256": "e91f3c8aff7c1c61b9945137caef34763a12998cdea3f1b20013ad09e0a6c05c",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=9.207065&longitude=4.344526&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1019.4,
+      "mean_t2m_c_2005_2025": 26.61,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 776.9,
+        "mean_t2m_c": 27.87
+      },
+      "wettest_mean_precip_month": 9,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 4.7,
+          "mean_t2m_c": 25.26
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 9.0,
+          "mean_t2m_c": 28.0
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 31.2,
+          "mean_t2m_c": 29.4
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 56.2,
+          "mean_t2m_c": 28.94
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 100.7,
+          "mean_t2m_c": 27.96
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 143.9,
+          "mean_t2m_c": 26.45
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 156.4,
+          "mean_t2m_c": 25.52
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 164.8,
+          "mean_t2m_c": 25.12
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 207.5,
+          "mean_t2m_c": 25.33
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 122.9,
+          "mean_t2m_c": 26.04
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 16.6,
+          "mean_t2m_c": 26.3
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 5.5,
+          "mean_t2m_c": 25.12
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 674.8,
+          "mean_t2m_c": 27.18
+        },
+        {
+          "year": 2006,
+          "precip_mm": 922.8,
+          "mean_t2m_c": 27.08
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1227.9,
+          "mean_t2m_c": 25.91
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1013.7,
+          "mean_t2m_c": 25.93
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1042.8,
+          "mean_t2m_c": 26.56
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1269.9,
+          "mean_t2m_c": 26.46
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1042.6,
+          "mean_t2m_c": 25.79
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1299.2,
+          "mean_t2m_c": 25.95
+        },
+        {
+          "year": 2013,
+          "precip_mm": 798.7,
+          "mean_t2m_c": 26.5
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1095.8,
+          "mean_t2m_c": 26.87
+        },
+        {
+          "year": 2015,
+          "precip_mm": 684.0,
+          "mean_t2m_c": 27.03
+        },
+        {
+          "year": 2016,
+          "precip_mm": 961.3,
+          "mean_t2m_c": 27.2
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1020.9,
+          "mean_t2m_c": 26.83
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1195.8,
+          "mean_t2m_c": 26.33
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1152.7,
+          "mean_t2m_c": 26.4
+        },
+        {
+          "year": 2020,
+          "precip_mm": 913.6,
+          "mean_t2m_c": 26.42
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1171.8,
+          "mean_t2m_c": 26.69
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1047.4,
+          "mean_t2m_c": 25.84
+        },
+        {
+          "year": 2023,
+          "precip_mm": 1104.2,
+          "mean_t2m_c": 26.81
+        },
+        {
+          "year": 2024,
+          "precip_mm": 990.5,
+          "mean_t2m_c": 27.1
+        },
+        {
+          "year": 2025,
+          "precip_mm": 776.9,
+          "mean_t2m_c": 27.87
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C14",
+      "catchment_name": "Rima",
+      "sample_lon": 7.138068,
+      "sample_lat": 13.355231,
+      "nasa_power_snapshot_sha256": "5fc0ad940bb68650d562820210dc67088438faade4ee83d2c1270e548f2a5c30",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=13.355231&longitude=7.138068&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 621.4,
+      "mean_t2m_c_2005_2025": 27.56,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 561.1,
+        "mean_t2m_c": 28.29
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 21.88
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 25.44
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 0.7,
+          "mean_t2m_c": 29.67
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 4.3,
+          "mean_t2m_c": 32.52
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 29.4,
+          "mean_t2m_c": 33.25
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 73.8,
+          "mean_t2m_c": 31.38
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 164.2,
+          "mean_t2m_c": 28.52
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 209.0,
+          "mean_t2m_c": 26.58
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 122.3,
+          "mean_t2m_c": 27.04
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 17.1,
+          "mean_t2m_c": 27.31
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 0.5,
+          "mean_t2m_c": 25.01
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 22.15
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 631.8,
+          "mean_t2m_c": 28.07
+        },
+        {
+          "year": 2006,
+          "precip_mm": 466.7,
+          "mean_t2m_c": 28.16
+        },
+        {
+          "year": 2007,
+          "precip_mm": 513.9,
+          "mean_t2m_c": 27.5
+        },
+        {
+          "year": 2008,
+          "precip_mm": 562.9,
+          "mean_t2m_c": 27.04
+        },
+        {
+          "year": 2009,
+          "precip_mm": 451.8,
+          "mean_t2m_c": 28.37
+        },
+        {
+          "year": 2010,
+          "precip_mm": 622.5,
+          "mean_t2m_c": 27.65
+        },
+        {
+          "year": 2011,
+          "precip_mm": 485.0,
+          "mean_t2m_c": 27.68
+        },
+        {
+          "year": 2012,
+          "precip_mm": 623.8,
+          "mean_t2m_c": 27.27
+        },
+        {
+          "year": 2013,
+          "precip_mm": 506.4,
+          "mean_t2m_c": 28.27
+        },
+        {
+          "year": 2014,
+          "precip_mm": 465.5,
+          "mean_t2m_c": 28.31
+        },
+        {
+          "year": 2015,
+          "precip_mm": 584.8,
+          "mean_t2m_c": 27.32
+        },
+        {
+          "year": 2016,
+          "precip_mm": 521.6,
+          "mean_t2m_c": 27.98
+        },
+        {
+          "year": 2017,
+          "precip_mm": 513.6,
+          "mean_t2m_c": 27.61
+        },
+        {
+          "year": 2018,
+          "precip_mm": 664.7,
+          "mean_t2m_c": 27.25
+        },
+        {
+          "year": 2019,
+          "precip_mm": 539.7,
+          "mean_t2m_c": 27.81
+        },
+        {
+          "year": 2020,
+          "precip_mm": 870.8,
+          "mean_t2m_c": 26.69
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1064.0,
+          "mean_t2m_c": 26.71
+        },
+        {
+          "year": 2022,
+          "precip_mm": 966.0,
+          "mean_t2m_c": 25.76
+        },
+        {
+          "year": 2023,
+          "precip_mm": 527.4,
+          "mean_t2m_c": 28.06
+        },
+        {
+          "year": 2024,
+          "precip_mm": 904.6,
+          "mean_t2m_c": 27.0
+        },
+        {
+          "year": 2025,
+          "precip_mm": 561.1,
+          "mean_t2m_c": 28.29
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C15",
+      "catchment_name": "Sarkin Pawa-Kaduna",
+      "sample_lon": 7.695019,
+      "sample_lat": 10.514162,
+      "nasa_power_snapshot_sha256": "2e0d515b19c51e2fd6dbd6975a145b467db6452af19e48684c1bbfa778cc8f0c",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=10.514162&longitude=7.695019&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1884.6,
+      "mean_t2m_c_2005_2025": 24.36,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 1183.3,
+        "mean_t2m_c": 25.47
+      },
+      "wettest_mean_precip_month": 7,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 1.3,
+          "mean_t2m_c": 21.53
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 3.1,
+          "mean_t2m_c": 24.83
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 69.4,
+          "mean_t2m_c": 27.52
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 170.8,
+          "mean_t2m_c": 27.87
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 242.7,
+          "mean_t2m_c": 26.74
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 247.8,
+          "mean_t2m_c": 25.18
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 368.5,
+          "mean_t2m_c": 23.99
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 358.8,
+          "mean_t2m_c": 23.4
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 286.4,
+          "mean_t2m_c": 23.96
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 105.4,
+          "mean_t2m_c": 24.24
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 19.2,
+          "mean_t2m_c": 22.45
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 11.3,
+          "mean_t2m_c": 20.76
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 912.9,
+          "mean_t2m_c": 25.79
+        },
+        {
+          "year": 2006,
+          "precip_mm": 850.0,
+          "mean_t2m_c": 25.61
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1577.2,
+          "mean_t2m_c": 24.2
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1224.1,
+          "mean_t2m_c": 23.85
+        },
+        {
+          "year": 2009,
+          "precip_mm": 913.0,
+          "mean_t2m_c": 24.96
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1231.5,
+          "mean_t2m_c": 24.87
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1080.8,
+          "mean_t2m_c": 24.38
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1679.8,
+          "mean_t2m_c": 24.06
+        },
+        {
+          "year": 2013,
+          "precip_mm": 734.9,
+          "mean_t2m_c": 24.8
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1210.1,
+          "mean_t2m_c": 25.11
+        },
+        {
+          "year": 2015,
+          "precip_mm": 1535.4,
+          "mean_t2m_c": 24.53
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1625.1,
+          "mean_t2m_c": 24.05
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1649.2,
+          "mean_t2m_c": 24.16
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1441.8,
+          "mean_t2m_c": 24.13
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1622.9,
+          "mean_t2m_c": 24.48
+        },
+        {
+          "year": 2020,
+          "precip_mm": 3398.1,
+          "mean_t2m_c": 23.14
+        },
+        {
+          "year": 2021,
+          "precip_mm": 6360.8,
+          "mean_t2m_c": 23.36
+        },
+        {
+          "year": 2022,
+          "precip_mm": 4954.4,
+          "mean_t2m_c": 22.45
+        },
+        {
+          "year": 2023,
+          "precip_mm": 2465.6,
+          "mean_t2m_c": 24.0
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1924.8,
+          "mean_t2m_c": 24.21
+        },
+        {
+          "year": 2025,
+          "precip_mm": 1183.3,
+          "mean_t2m_c": 25.47
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C16",
+      "catchment_name": "Shemankar-Katsina Ala",
+      "sample_lon": 9.059793,
+      "sample_lat": 7.721008,
+      "nasa_power_snapshot_sha256": "d2425b29b110bdf4101a275bcbf5610b33c8afaf8bac069af1a7ba285acb338d",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=7.721008&longitude=9.059793&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1196.5,
+      "mean_t2m_c_2005_2025": 26.24,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 707.9,
+        "mean_t2m_c": 28.34
+      },
+      "wettest_mean_precip_month": 9,
+      "driest_mean_precip_month": 12,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 6.5,
+          "mean_t2m_c": 24.76
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 16.3,
+          "mean_t2m_c": 27.26
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 39.3,
+          "mean_t2m_c": 28.47
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 97.9,
+          "mean_t2m_c": 28.27
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 132.2,
+          "mean_t2m_c": 27.4
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 154.5,
+          "mean_t2m_c": 26.33
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 166.9,
+          "mean_t2m_c": 25.51
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 191.1,
+          "mean_t2m_c": 25.26
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 199.0,
+          "mean_t2m_c": 25.46
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 145.5,
+          "mean_t2m_c": 25.84
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 42.1,
+          "mean_t2m_c": 25.92
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 5.3,
+          "mean_t2m_c": 24.49
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 1133.7,
+          "mean_t2m_c": 26.15
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1309.9,
+          "mean_t2m_c": 25.86
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1818.0,
+          "mean_t2m_c": 25.34
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1195.9,
+          "mean_t2m_c": 25.25
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1100.7,
+          "mean_t2m_c": 25.92
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1402.3,
+          "mean_t2m_c": 26.06
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1191.3,
+          "mean_t2m_c": 25.49
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1344.7,
+          "mean_t2m_c": 25.64
+        },
+        {
+          "year": 2013,
+          "precip_mm": 878.8,
+          "mean_t2m_c": 26.05
+        },
+        {
+          "year": 2014,
+          "precip_mm": 950.9,
+          "mean_t2m_c": 26.57
+        },
+        {
+          "year": 2015,
+          "precip_mm": 894.3,
+          "mean_t2m_c": 26.55
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1297.6,
+          "mean_t2m_c": 26.5
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1324.6,
+          "mean_t2m_c": 26.22
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1005.9,
+          "mean_t2m_c": 26.25
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1023.4,
+          "mean_t2m_c": 26.98
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1209.8,
+          "mean_t2m_c": 26.41
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1525.1,
+          "mean_t2m_c": 26.51
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1847.2,
+          "mean_t2m_c": 25.08
+        },
+        {
+          "year": 2023,
+          "precip_mm": 944.1,
+          "mean_t2m_c": 26.63
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1021.1,
+          "mean_t2m_c": 27.15
+        },
+        {
+          "year": 2025,
+          "precip_mm": 707.9,
+          "mean_t2m_c": 28.34
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C17",
+      "catchment_name": "Sokoto-Zamfara",
+      "sample_lon": 5.183716,
+      "sample_lat": 12.396346,
+      "nasa_power_snapshot_sha256": "9d459331e6901b6aa708c55cd2fc9388044968e623b81f15345d0cddaff92348",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=12.396346&longitude=5.183716&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 925.4,
+      "mean_t2m_c_2005_2025": 27.37,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 1097.4,
+        "mean_t2m_c": 27.74
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 22.82
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.3,
+          "mean_t2m_c": 26.36
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 2.6,
+          "mean_t2m_c": 30.35
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 15.7,
+          "mean_t2m_c": 32.6
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 83.6,
+          "mean_t2m_c": 32.24
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 127.3,
+          "mean_t2m_c": 29.75
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 199.2,
+          "mean_t2m_c": 27.65
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 265.5,
+          "mean_t2m_c": 26.15
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 188.2,
+          "mean_t2m_c": 26.43
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 42.8,
+          "mean_t2m_c": 26.67
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 0.4,
+          "mean_t2m_c": 24.86
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.1,
+          "mean_t2m_c": 22.63
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 839.4,
+          "mean_t2m_c": 28.09
+        },
+        {
+          "year": 2006,
+          "precip_mm": 695.1,
+          "mean_t2m_c": 27.9
+        },
+        {
+          "year": 2007,
+          "precip_mm": 880.6,
+          "mean_t2m_c": 27.11
+        },
+        {
+          "year": 2008,
+          "precip_mm": 738.4,
+          "mean_t2m_c": 27.1
+        },
+        {
+          "year": 2009,
+          "precip_mm": 746.4,
+          "mean_t2m_c": 27.98
+        },
+        {
+          "year": 2010,
+          "precip_mm": 837.2,
+          "mean_t2m_c": 27.5
+        },
+        {
+          "year": 2011,
+          "precip_mm": 634.7,
+          "mean_t2m_c": 27.7
+        },
+        {
+          "year": 2012,
+          "precip_mm": 885.5,
+          "mean_t2m_c": 27.32
+        },
+        {
+          "year": 2013,
+          "precip_mm": 670.7,
+          "mean_t2m_c": 28.16
+        },
+        {
+          "year": 2014,
+          "precip_mm": 671.9,
+          "mean_t2m_c": 28.33
+        },
+        {
+          "year": 2015,
+          "precip_mm": 782.3,
+          "mean_t2m_c": 27.57
+        },
+        {
+          "year": 2016,
+          "precip_mm": 953.8,
+          "mean_t2m_c": 27.58
+        },
+        {
+          "year": 2017,
+          "precip_mm": 813.1,
+          "mean_t2m_c": 27.5
+        },
+        {
+          "year": 2018,
+          "precip_mm": 768.5,
+          "mean_t2m_c": 27.34
+        },
+        {
+          "year": 2019,
+          "precip_mm": 898.9,
+          "mean_t2m_c": 27.49
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1404.6,
+          "mean_t2m_c": 26.13
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1670.5,
+          "mean_t2m_c": 26.17
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1406.7,
+          "mean_t2m_c": 25.43
+        },
+        {
+          "year": 2023,
+          "precip_mm": 784.6,
+          "mean_t2m_c": 27.55
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1252.3,
+          "mean_t2m_c": 27.11
+        },
+        {
+          "year": 2025,
+          "precip_mm": 1097.4,
+          "mean_t2m_c": 27.74
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C18",
+      "catchment_name": "Wase-Taraba",
+      "sample_lon": 10.920173,
+      "sample_lat": 7.991743,
+      "nasa_power_snapshot_sha256": "7de9f1db6db2a10b38dcd498dc504b555b0f455339c38355daef726e3a1f7150",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=7.991743&longitude=10.920173&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1408.2,
+      "mean_t2m_c_2005_2025": 26.72,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 983.5,
+        "mean_t2m_c": 28.54
+      },
+      "wettest_mean_precip_month": 9,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 1.3,
+          "mean_t2m_c": 25.72
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 3.7,
+          "mean_t2m_c": 28.76
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 28.8,
+          "mean_t2m_c": 30.37
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 94.3,
+          "mean_t2m_c": 29.65
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 173.4,
+          "mean_t2m_c": 27.84
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 203.5,
+          "mean_t2m_c": 26.42
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 243.8,
+          "mean_t2m_c": 25.33
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 243.4,
+          "mean_t2m_c": 24.93
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 249.3,
+          "mean_t2m_c": 25.36
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 146.6,
+          "mean_t2m_c": 26.06
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 17.6,
+          "mean_t2m_c": 25.78
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 2.4,
+          "mean_t2m_c": 24.63
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 1364.3,
+          "mean_t2m_c": 26.71
+        },
+        {
+          "year": 2006,
+          "precip_mm": 1382.0,
+          "mean_t2m_c": 26.49
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1692.0,
+          "mean_t2m_c": 26.0
+        },
+        {
+          "year": 2008,
+          "precip_mm": 1418.7,
+          "mean_t2m_c": 25.94
+        },
+        {
+          "year": 2009,
+          "precip_mm": 1621.8,
+          "mean_t2m_c": 26.42
+        },
+        {
+          "year": 2010,
+          "precip_mm": 1543.8,
+          "mean_t2m_c": 26.39
+        },
+        {
+          "year": 2011,
+          "precip_mm": 1233.3,
+          "mean_t2m_c": 26.27
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1692.6,
+          "mean_t2m_c": 26.19
+        },
+        {
+          "year": 2013,
+          "precip_mm": 1346.8,
+          "mean_t2m_c": 26.35
+        },
+        {
+          "year": 2014,
+          "precip_mm": 1405.6,
+          "mean_t2m_c": 26.74
+        },
+        {
+          "year": 2015,
+          "precip_mm": 1143.3,
+          "mean_t2m_c": 26.83
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1610.9,
+          "mean_t2m_c": 26.57
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1582.7,
+          "mean_t2m_c": 26.68
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1269.7,
+          "mean_t2m_c": 26.75
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1195.9,
+          "mean_t2m_c": 27.28
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1699.4,
+          "mean_t2m_c": 26.41
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1511.5,
+          "mean_t2m_c": 26.74
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1719.6,
+          "mean_t2m_c": 25.68
+        },
+        {
+          "year": 2023,
+          "precip_mm": 735.6,
+          "mean_t2m_c": 28.31
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1420.2,
+          "mean_t2m_c": 27.89
+        },
+        {
+          "year": 2025,
+          "precip_mm": 983.5,
+          "mean_t2m_c": 28.54
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C19",
+      "catchment_name": "Yedseram",
+      "sample_lon": 14.386427,
+      "sample_lat": 11.836798,
+      "nasa_power_snapshot_sha256": "44e8d0be61c806d2bc0d2aa326b02213d56eae56bff912c6a8ccefa9b0b3fdb8",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=11.836798&longitude=14.386427&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 559.0,
+      "mean_t2m_c_2005_2025": 29.11,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 575.6,
+        "mean_t2m_c": 29.64
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 24.44
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 27.77
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 0.5,
+          "mean_t2m_c": 31.5
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 5.9,
+          "mean_t2m_c": 34.29
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 20.0,
+          "mean_t2m_c": 34.74
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 68.5,
+          "mean_t2m_c": 32.36
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 140.4,
+          "mean_t2m_c": 29.23
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 198.9,
+          "mean_t2m_c": 26.91
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 98.7,
+          "mean_t2m_c": 27.29
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 25.8,
+          "mean_t2m_c": 28.45
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 0.2,
+          "mean_t2m_c": 27.41
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.0,
+          "mean_t2m_c": 24.98
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 524.0,
+          "mean_t2m_c": 29.74
+        },
+        {
+          "year": 2006,
+          "precip_mm": 322.5,
+          "mean_t2m_c": 30.17
+        },
+        {
+          "year": 2007,
+          "precip_mm": 464.6,
+          "mean_t2m_c": 29.26
+        },
+        {
+          "year": 2008,
+          "precip_mm": 831.2,
+          "mean_t2m_c": 28.05
+        },
+        {
+          "year": 2009,
+          "precip_mm": 474.4,
+          "mean_t2m_c": 29.66
+        },
+        {
+          "year": 2010,
+          "precip_mm": 661.9,
+          "mean_t2m_c": 28.86
+        },
+        {
+          "year": 2011,
+          "precip_mm": 560.3,
+          "mean_t2m_c": 28.7
+        },
+        {
+          "year": 2012,
+          "precip_mm": 782.2,
+          "mean_t2m_c": 28.15
+        },
+        {
+          "year": 2013,
+          "precip_mm": 575.9,
+          "mean_t2m_c": 29.3
+        },
+        {
+          "year": 2014,
+          "precip_mm": 587.5,
+          "mean_t2m_c": 28.88
+        },
+        {
+          "year": 2015,
+          "precip_mm": 553.3,
+          "mean_t2m_c": 28.88
+        },
+        {
+          "year": 2016,
+          "precip_mm": 628.2,
+          "mean_t2m_c": 29.11
+        },
+        {
+          "year": 2017,
+          "precip_mm": 483.1,
+          "mean_t2m_c": 29.23
+        },
+        {
+          "year": 2018,
+          "precip_mm": 654.9,
+          "mean_t2m_c": 28.82
+        },
+        {
+          "year": 2019,
+          "precip_mm": 489.9,
+          "mean_t2m_c": 29.16
+        },
+        {
+          "year": 2020,
+          "precip_mm": 522.6,
+          "mean_t2m_c": 28.89
+        },
+        {
+          "year": 2021,
+          "precip_mm": 364.7,
+          "mean_t2m_c": 29.56
+        },
+        {
+          "year": 2022,
+          "precip_mm": 577.0,
+          "mean_t2m_c": 28.29
+        },
+        {
+          "year": 2023,
+          "precip_mm": 465.1,
+          "mean_t2m_c": 29.98
+        },
+        {
+          "year": 2024,
+          "precip_mm": 639.2,
+          "mean_t2m_c": 28.99
+        },
+        {
+          "year": 2025,
+          "precip_mm": 575.6,
+          "mean_t2m_c": 29.64
+        }
+      ]
+    },
+    {
+      "catchment_id": "SCMP-C20",
+      "catchment_name": "Zungur-Gongola",
+      "sample_lon": 12.099846,
+      "sample_lat": 10.475106,
+      "nasa_power_snapshot_sha256": "bb7925f49c58dff26c8b09d3c721c3bd7a9f820abe6d2487e2c345fdd5836227",
+      "source_api_url": "https://power.larc.nasa.gov/api/temporal/monthly/point?parameters=PRECTOTCORR%2CT2M&community=AG&latitude=10.475106&longitude=12.099846&start=2005&end=2025&format=JSON",
+      "mean_annual_precip_mm_2005_2025": 1109.5,
+      "mean_t2m_c_2005_2025": 26.89,
+      "recent_2025": {
+        "year": 2025,
+        "precip_mm": 1042.4,
+        "mean_t2m_c": 27.87
+      },
+      "wettest_mean_precip_month": 8,
+      "driest_mean_precip_month": 1,
+      "monthly_climatology": [
+        {
+          "month": 1,
+          "mean_monthly_precip_mm": 0.1,
+          "mean_t2m_c": 24.95
+        },
+        {
+          "month": 2,
+          "mean_monthly_precip_mm": 0.4,
+          "mean_t2m_c": 28.28
+        },
+        {
+          "month": 3,
+          "mean_monthly_precip_mm": 3.4,
+          "mean_t2m_c": 31.11
+        },
+        {
+          "month": 4,
+          "mean_monthly_precip_mm": 45.4,
+          "mean_t2m_c": 31.58
+        },
+        {
+          "month": 5,
+          "mean_monthly_precip_mm": 100.7,
+          "mean_t2m_c": 29.81
+        },
+        {
+          "month": 6,
+          "mean_monthly_precip_mm": 156.7,
+          "mean_t2m_c": 27.4
+        },
+        {
+          "month": 7,
+          "mean_monthly_precip_mm": 243.1,
+          "mean_t2m_c": 25.59
+        },
+        {
+          "month": 8,
+          "mean_monthly_precip_mm": 298.4,
+          "mean_t2m_c": 24.48
+        },
+        {
+          "month": 9,
+          "mean_monthly_precip_mm": 202.1,
+          "mean_t2m_c": 24.94
+        },
+        {
+          "month": 10,
+          "mean_monthly_precip_mm": 52.9,
+          "mean_t2m_c": 25.56
+        },
+        {
+          "month": 11,
+          "mean_monthly_precip_mm": 6.3,
+          "mean_t2m_c": 24.94
+        },
+        {
+          "month": 12,
+          "mean_monthly_precip_mm": 0.1,
+          "mean_t2m_c": 24.16
+        }
+      ],
+      "annual": [
+        {
+          "year": 2005,
+          "precip_mm": 814.9,
+          "mean_t2m_c": 27.52
+        },
+        {
+          "year": 2006,
+          "precip_mm": 629.4,
+          "mean_t2m_c": 27.8
+        },
+        {
+          "year": 2007,
+          "precip_mm": 1063.9,
+          "mean_t2m_c": 26.7
+        },
+        {
+          "year": 2008,
+          "precip_mm": 784.2,
+          "mean_t2m_c": 26.69
+        },
+        {
+          "year": 2009,
+          "precip_mm": 675.1,
+          "mean_t2m_c": 27.48
+        },
+        {
+          "year": 2010,
+          "precip_mm": 949.8,
+          "mean_t2m_c": 27.02
+        },
+        {
+          "year": 2011,
+          "precip_mm": 726.8,
+          "mean_t2m_c": 27.04
+        },
+        {
+          "year": 2012,
+          "precip_mm": 1151.4,
+          "mean_t2m_c": 26.43
+        },
+        {
+          "year": 2013,
+          "precip_mm": 777.8,
+          "mean_t2m_c": 27.33
+        },
+        {
+          "year": 2014,
+          "precip_mm": 737.2,
+          "mean_t2m_c": 27.28
+        },
+        {
+          "year": 2015,
+          "precip_mm": 1054.4,
+          "mean_t2m_c": 26.71
+        },
+        {
+          "year": 2016,
+          "precip_mm": 1285.4,
+          "mean_t2m_c": 26.63
+        },
+        {
+          "year": 2017,
+          "precip_mm": 1360.4,
+          "mean_t2m_c": 26.61
+        },
+        {
+          "year": 2018,
+          "precip_mm": 1413.7,
+          "mean_t2m_c": 26.41
+        },
+        {
+          "year": 2019,
+          "precip_mm": 1432.6,
+          "mean_t2m_c": 26.8
+        },
+        {
+          "year": 2020,
+          "precip_mm": 1269.3,
+          "mean_t2m_c": 26.11
+        },
+        {
+          "year": 2021,
+          "precip_mm": 1878.1,
+          "mean_t2m_c": 26.24
+        },
+        {
+          "year": 2022,
+          "precip_mm": 1709.9,
+          "mean_t2m_c": 25.43
+        },
+        {
+          "year": 2023,
+          "precip_mm": 981.6,
+          "mean_t2m_c": 27.39
+        },
+        {
+          "year": 2024,
+          "precip_mm": 1562.0,
+          "mean_t2m_c": 27.1
+        },
+        {
+          "year": 2025,
+          "precip_mm": 1042.4,
+          "mean_t2m_c": 27.87
+        }
+      ]
+    }
+  ],
+  "source_limits": [
+    "Point climate samples at SCMP map-label locations are not spatially representative averages of whole watersheds, particularly for large and transboundary catchments.",
+    "NASA POWER uses modeled/reanalysis meteorological grids and must not be described as measured gauge rainfall or a station temperature observation.",
+    "Monthly precipitation source units are a daily mean rate; multiplying by calendar days creates an approximate annual mm total at the selected point.",
+    "Climate values must not be used to estimate river discharge, flood risk, dam safety or irrigation demand without independent, scale-appropriate analysis.",
+    "Original NASA responses for 20 source points are preserved under research/nasa_power_monthly_2005_2025 and source hashes are in each record."
+  ]
+}

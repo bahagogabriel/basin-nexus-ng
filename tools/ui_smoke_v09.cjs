@@ -310,7 +310,7 @@ async function test(page,name){
   return row.top>=box.top-1&&row.bottom<=box.bottom+1;
  });
  assert(visibleRow,name+': active catchment should remain visible in the directory');
- assert.equal(await page.locator('.profileJumps button').count(),4);
+ assert.equal(await page.locator('.profileJumps button').count(),5);
  await page.locator('button[data-profile-target="profileAdmin"]').click();
  await page.waitForFunction(()=>{
   const panel=document.querySelector('#details'),target=document.querySelector('#profileAdmin');
@@ -550,6 +550,38 @@ async function testFaoStudyOverlapAndOutletPreflight(browser){
  console.log('FAO OUTLET PREFLIGHT: 20 polygons, 190 pairs, 125 modeled leads, source-type filtering, 0 real outlets, map navigation, source corruption lockout PASS');
 }
 
+
+async function testNewNasaPowerClimateIntegration(browser){
+ const ctx=await browser.newContext({viewport:{width:1280,height:900}});
+ const page=await ctx.newPage();
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#climateStatus')?.textContent.includes('20 of 20 modeled NASA POWER'),{timeout:35000});
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#climateRows tr').count(),20,'The real 20-point NASA POWER integration must load');
+ assert.match(await page.locator('#climateComparison').innerText(),/NOT catchment-wide averages or measured gauges/i);
+ await page.locator('#climateRows button[data-climate-open="SCMP-C07"]').click();
+ assert.match(await page.locator('#climateDetail').innerText(),/Hawul-Kilange/);
+ assert.equal(await page.locator('#climateDetail tbody').first().locator('tr').count(),12);
+ assert.equal(await page.locator('#climateDetail tbody').nth(1).locator('tr').count(),21);
+ await page.locator('#climateSearch').fill('Sokoto-Zamfara');
+ assert.equal(await page.locator('#climateRows tr').count(),1);
+ await page.locator('#climateSearch').fill('');
+ await ctx.close();
+ const spoofed=await browser.newContext();
+ await spoofed.route('**/data/integrated_catchment_indicator_register.json',async route=>{
+  const response=await route.fetch();const bad=await response.json();
+  bad.rows[0].nasa_power_mean_annual_precip_mm_2005_2025=999999;
+  await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(bad)});
+ });
+ const rejected=await spoofed.newPage();
+ await rejected.goto(url,{waitUntil:'domcontentloaded'});
+ await rejected.waitForFunction(()=>document.querySelector('#climateStatus')?.textContent.includes('failed'),{timeout:35000});
+ await rejected.locator('#navData').click();
+ assert.equal(await rejected.locator('#climateRows button').count(),0);
+ await spoofed.close();
+ console.log('NASA POWER INTEGRATION: 20 point records, 21-year annual, 12-month series, search and tamper fail-closed PASS');
+}
+
 async function testFao89CrossCatchmentSourceReview(browser){
  const ctx=await browser.newContext({viewport:{width:1280,height:920}});
  const page=await ctx.newPage();
@@ -720,6 +752,7 @@ async function testEvidenceCatalogueFixture(browser){
  await testFaoSourceTopology(browser);
  await testOriginalPublisherGapReview(browser);
  await testFao89CrossCatchmentSourceReview(browser);
+ await testNewNasaPowerClimateIntegration(browser);
  await testFaoStudyOverlapAndOutletPreflight(browser);
 await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
