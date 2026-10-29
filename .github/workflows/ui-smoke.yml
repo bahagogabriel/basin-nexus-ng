@@ -4,6 +4,12 @@ on:
     branches: [main]
     paths:
       - 'site/index.html'
+      - 'site/climate.js'
+      - 'site/data/nasa_power_20_catchment_point_climate_2005_2025.json'
+      - 'site/data/integrated_catchment_indicator_register.json'
+      - 'site/data/integrated_catchment_indicator_register.csv'
+      - 'tools/build_stage3d_bo_bq_nasa_power_climate.py'
+      - 'tools/test_stage3d_bo_br_power_climate.py'
       - 'tools/ui_smoke_v09.cjs'
       - 'tools/build_stage3d_aq_river_reach_comparison.py'
       - 'tools/test_stage3d_aq_at_river_comparison.py'
@@ -118,6 +124,12 @@ on:
     branches: [main]
     paths:
       - 'site/index.html'
+      - 'site/climate.js'
+      - 'site/data/nasa_power_20_catchment_point_climate_2005_2025.json'
+      - 'site/data/integrated_catchment_indicator_register.json'
+      - 'site/data/integrated_catchment_indicator_register.csv'
+      - 'tools/build_stage3d_bo_bq_nasa_power_climate.py'
+      - 'tools/test_stage3d_bo_br_power_climate.py'
       - 'site/data/adm1_states_provisional.geojson'
       - 'site/data/adm2_lgas_study_provisional.geojson'
       - 'site/data/admin_crosswalk_provisional.json'
@@ -231,6 +243,10 @@ jobs:
         run: |
           python3 -m unittest discover -s tools -p 'test_stage3d_bc_original_uncut_fao_review.py' -v
           python3 -m unittest discover -s tools -p 'test_stage3d_bd_bf_uncut_source_resolution.py' -v
+      - name: Check NASA POWER 20-point original climate data integrity and separate explorer syntax
+        run: |
+          python3 -m unittest discover -s tools -p 'test_stage3d_bo_br_power_climate.py' -v
+          node --check site/climate.js
       - name: Verify 89 source-only modeled catchment links, polygon adjacency and count audit
         run: python3 -m unittest discover -s tools -p 'test_stage3d_bg_bj_89_boundary_qa.py' -v
       - name: Verify 20 study-area overlaps and source-model boundary screening without confirmed outlets
