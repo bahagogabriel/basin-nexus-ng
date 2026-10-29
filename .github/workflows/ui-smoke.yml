@@ -33,6 +33,10 @@ on:
       - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/build_stage3d_ae_ah_review_desk.py'
+      - 'tools/stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/build_stage3d_al_evidence_request_kit.py'
+      - 'tools/test_stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/test_stage3d_al_evidence_request_kit.py'
       - 'tools/test_stage3d_ae_ah_review_desk.py'
       - 'tools/test_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
@@ -72,6 +76,10 @@ on:
       - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/build_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/build_stage3d_ae_ah_review_desk.py'
+      - 'tools/stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/build_stage3d_al_evidence_request_kit.py'
+      - 'tools/test_stage3d_ai_ak_private_evidence_intake.py'
+      - 'tools/test_stage3d_al_evidence_request_kit.py'
       - 'tools/test_stage3d_ae_ah_review_desk.py'
       - 'tools/test_stage3d_aa_ad_evidence_reconciliation.py'
       - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
@@ -145,6 +153,10 @@ jobs:
         run: python3 -m unittest discover -s tools -p 'test_stage3d_aa_ad_evidence_reconciliation.py' -v
       - name: Guard Stage 3D-AE to AH fail-closed human review routing and source integrity (synthetic)
         run: python3 -m unittest discover -s tools -p 'test_stage3d_ae_ah_review_desk.py' -v
+      - name: Guard Stage 3D-AI to AL private offline evidence receipt validation and unsent requests (synthetic)
+        run: |
+          python3 -m unittest discover -s tools -p 'test_stage3d_ai_ak_private_evidence_intake.py' -v
+          python3 -m unittest discover -s tools -p 'test_stage3d_al_evidence_request_kit.py' -v
       - name: Run desktop and tablet map interaction and pinch QA
         run: node tools/ui_smoke_v09.cjs
       - name: Upload browser QA screenshots
