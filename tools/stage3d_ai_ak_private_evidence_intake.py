@@ -25,7 +25,7 @@ DOCUMENT_KEYS={"source_id","source_family","evidence_kind","evidence_locator",
                "observed_on","provenance_note","rights_state"}
 PHYSICAL_KINDS=set(EXISTENCE)
 POSITION_KINDS=set(METHODS)
-DOC_KINDS=PHYSICAL_KIN | POSITION_KIN | {"facility_identity_authority","context_only"}
+DOC_KINDS=PHYSICAL_KINDS | POSITION_KINDS | {"facility_identity_authority","context_only"}
 SOURCE_ID=re.compile(r"[A-Z0-9][A-Z0-9-]{2,59}$")
 SOURCE_FAMILY=re.compile(r"[a-z][a-z0-9_-]{2,59}$")
 PRIVATE_LETTER_KEYS={"schema_version","case_id","desk_sha256","documents",
