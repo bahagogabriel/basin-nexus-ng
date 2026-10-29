@@ -42,6 +42,6 @@ class ClimateTests(unittest.TestCase):
   self.assertEqual(len(cl["records"][0]["annual"]),21)
   self.assertEqual(len(cl["records"][0]["monthly_climatology"]),12)
   self.assertEqual(len(csv_text(reg).splitlines()),21)
-  self.assertTrue(all(z["mean_annual_precip_mm_2005_2025"]>0 for z in reg["rows"]))
+  self.assertTrue(all(z["nasa_power_mean_annual_precip_mm_2005_2025"]>0 for z in reg["rows"]))
   self.assertTrue(all(z["climate_spatial_basis"]=="NASA_POWER_MAP_LABEL_POINT_NOT_CATCHMENT_MEAN" for z in reg["rows"]))
 if __name__=="__main__":unittest.main()
