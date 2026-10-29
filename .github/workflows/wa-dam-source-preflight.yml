@@ -11,6 +11,8 @@ on:
       - 'tools/build_stage3d_u_evidence_workbench.py'
       - 'tools/build_stage3d_v_osm_context_review.py'
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
+      - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
+      - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
       - 'tools/test_stage3d_v_osm_context_review.py'
       - 'tools/test_stage3d_u_evidence_workbench.py'
@@ -32,6 +34,8 @@ on:
       - 'tools/build_stage3d_u_evidence_workbench.py'
       - 'tools/build_stage3d_v_osm_context_review.py'
       - 'tools/build_stage3d_w_lineage_eo_discovery.py'
+      - 'tools/build_stage3d_xy_sentinel_pixel_review.py'
+      - 'tools/test_stage3d_xy_sentinel_pixel_review.py'
       - 'tools/test_stage3d_w_lineage_eo_discovery.py'
       - 'tools/test_stage3d_v_osm_context_review.py'
       - 'tools/test_stage3d_u_evidence_workbench.py'
@@ -65,6 +69,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_stage3d_u_evidence_workbench.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_v_osm_context_review.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_w_lineage_eo_discovery.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_xy_sentinel_pixel_review.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -89,6 +94,21 @@ jobs:
       - name: Stage 3D-W check five OSM way histories and discover dated Sentinel-2 scene metadata
         if: github.event_name != 'pull_request'
         run: python tools/build_stage3d_w_lineage_eo_discovery.py --stage-u review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json --stage-v review/stage3d_v_osm_context_NOT_CONFIRMED.json --output review/stage3d_w_lineage_eo_METADATA_NOT_CONFIRMED.json
+      - name: Install pinned windowed raster, image and numeric runtime for main-only imagery
+        if: github.event_name != 'pull_request'
+        run: python -m pip install --disable-pip-version-check rasterio==1.4.3 numpy==2.2.6 Pillow==11.3.0
+      - name: Stage 3D-X/Y sample bounded Sentinel-2 RGB + SCL pixels and generate reviewer board
+        if: github.event_name != 'pull_request'
+        timeout-minutes: 18
+        run: python tools/build_stage3d_xy_sentinel_pixel_review.py --stage-w review/stage3d_w_lineage_eo_METADATA_NOT_CONFIRMED.json --output-dir review/stage3d_xy_rgb_scl_REVIEW_ONLY
+      - name: Archive Stage 3D-X/Y review-only RGB/SCL chip QA and human reviewer board
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-stage3dx-y-sentinel-pixels-REVIEW-ONLY
+          path: review/stage3d_xy_rgb_scl_REVIEW_ONLY/
+          if-no-files-found: error
+          retention-days: 30
       - name: Archive source-separated history and EO metadata candidates; no facility verification
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
