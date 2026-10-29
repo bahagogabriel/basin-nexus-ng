@@ -505,6 +505,40 @@ async function testFaoSourceTopology(browser){
  console.log('FAO SOURCE NEXT_DOWN: source-only 20-catchment audit, lazy graph, <=40 bounded IDs, map highlight and tamper rejection PASS');
 }
 
+
+async function testOriginalPublisherGapReview(browser){
+ const ctx=await browser.newContext({viewport:{width:1280,height:900}});
+ const page=await ctx.newPage();
+ await page.goto(url,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>document.querySelector('#faoThreeUncutStatus')?.textContent.includes('Three of three original FAO modeled reach pairs'),{timeout:35000});
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#faoThreeUncutRows tr').count(),3);
+ assert.match(await page.locator('#faoThreeUncutReview').innerText(),/0 metres/);
+ assert.match(await page.locator('#faoThreeUncutReview').innerText(),/does not.*independently verify/i);
+ const all=await page.locator('#faoThreeUncutRows').innerText();
+ for(const pair of ['10505946','10506074','10566530','10567236','10568272','10568127']) assert(all.includes(pair));
+ assert.match(all,/10\.98 km/);
+ assert.match(all,/4\.81 km/);
+ assert.match(all,/4\.89 km/);
+ await page.locator('#faoThreeUncutRows button[data-original-fao-map="SCMP-C04"]').click();
+ await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C04',{timeout:6000});
+ assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ await ctx.close();
+ const invalid=await browser.newContext();
+ await invalid.route('**/data/fao_three_original_gap_resolution.json',async route=>{
+  const resp=await route.fetch();const copy=await resp.json();
+  copy.cases[0].original_uncut_model_min_endpoint_gap_m=1200;
+  await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(copy)});
+ });
+ const bad=await invalid.newPage();
+ await bad.goto(url,{waitUntil:'domcontentloaded'});
+ await bad.waitForFunction(()=>document.querySelector('#faoThreeUncutStatus')?.textContent.includes('failed source-integrity'),{timeout:35000});
+ await bad.locator('#navData').click();
+ assert.equal(await bad.locator('#faoThreeUncutRows button').count(),0);
+ await invalid.close();
+ console.log('FAO SIX ORIGINAL WFS MODEL REACHES: 3 source pairs, 0m original endpoints, map link and corruption lockout PASS');
+}
+
 async function testReachComparison(browser){
  const ctx=await browser.newContext({viewport:{width:1320,height:940}});
  const page=await ctx.newPage();
@@ -601,6 +635,7 @@ async function testEvidenceCatalogueFixture(browser){
  await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
  await testReachComparison(browser);
  await testFaoSourceTopology(browser);
+ await testOriginalPublisherGapReview(browser);
 await testEvidenceCatalogueFixture(browser);
  const phoneContext=await browser.newContext({viewport:{width:390,height:844},deviceScaleFactor:2,isMobile:true,hasTouch:true});
  const phone=await phoneContext.newPage();phone.on('pageerror',e=>errors.push('phone: '+e.message));
