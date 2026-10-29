@@ -9,6 +9,8 @@ on:
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/triage_wa_dam_compiled_references.py'
       - 'tools/build_stage3d_u_evidence_workbench.py'
+      - 'tools/build_stage3d_v_osm_context_review.py'
+      - 'tools/test_stage3d_v_osm_context_review.py'
       - 'tools/test_stage3d_u_evidence_workbench.py'
       - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
@@ -26,6 +28,8 @@ on:
       - 'tools/build_wa_2026_dam_candidate_review.py'
       - 'tools/triage_wa_dam_compiled_references.py'
       - 'tools/build_stage3d_u_evidence_workbench.py'
+      - 'tools/build_stage3d_v_osm_context_review.py'
+      - 'tools/test_stage3d_v_osm_context_review.py'
       - 'tools/test_stage3d_u_evidence_workbench.py'
       - 'tools/test_triage_wa_dam_compiled_references.py'
       - 'tools/test_build_wa_2026_dam_candidate_review.py'
@@ -55,6 +59,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_build_wa_2026_dam_candidate_review.py' -v
           python -m unittest discover -s tools -p 'test_triage_wa_dam_compiled_references.py' -v
           python -m unittest discover -s tools -p 'test_stage3d_u_evidence_workbench.py' -v
+          python -m unittest discover -s tools -p 'test_stage3d_v_osm_context_review.py' -v
       - name: Fetch pinned 2026 bonndata dam CSV and report aggregate QA only
         if: github.event_name != 'pull_request'
         run: python tools/preflight_wa_dams_2026.py --fetch --report review/wa_dams_2026_preflight.json
@@ -73,6 +78,16 @@ jobs:
       - name: Stage 3D-U generate high-priority reviewer-only evidence workbench
         if: github.event_name != 'pull_request'
         run: python tools/build_stage3d_u_evidence_workbench.py --triage review/wa_dam_reference_triage_NOT_CONFIRMED.json --review-output review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json
+      - name: Stage 3D-V compare 19 research-only compiled reference locations to OSM tags
+        if: github.event_name != 'pull_request'
+        run: python tools/build_stage3d_v_osm_context_review.py --workbench review/wa_dam_stage3d_u_19_case_NOT_VERIFIED.json --fetch-osm --report review/stage3d_v_osm_context_NOT_CONFIRMED.json
+      - name: Archive separately attributed OSM research leads, never public map features
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: west-africa-2026-osm-context-NOT-CONFIRMED
+          path: review/stage3d_v_osm_context_NOT_CONFIRMED.json
+          if-no-files-found: error
       - name: Archive non-public 19-case contextual evidence review packet
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
