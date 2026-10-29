@@ -310,7 +310,7 @@ async function test(page,name){
   return row.top>=box.top-1&&row.bottom<=box.bottom+1;
  });
  assert(visibleRow,name+': active catchment should remain visible in the directory');
- assert.equal(await page.locator('.profileJumps button').count(),4);
+ assert.equal(await page.locator('.profileJumps button').count(),5);
  await page.locator('button[data-profile-target="profileAdmin"]').click();
  await page.waitForFunction(()=>{
   const panel=document.querySelector('#details'),target=document.querySelector('#profileAdmin');
