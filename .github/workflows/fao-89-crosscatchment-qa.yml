@@ -1,0 +1,65 @@
+name: Validate FAO 89 modeled cross-catchment source links and geometry
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bg_bh_89_boundary_qa.py'
+      - 'tools/test_stage3d_bg_bj_89_boundary_qa.py'
+      - '.github/workflows/fao-89-crosscatchment-qa.yml'
+      - 'site/data/fao_89_catchment_source_boundary_audit.json'
+      - 'site/data/fao_89_catchment_source_boundary_audit.csv'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/build_stage3d_bg_bh_89_boundary_qa.py'
+      - 'tools/test_stage3d_bg_bj_89_boundary_qa.py'
+      - '.github/workflows/fao-89-crosscatchment-qa.yml'
+      - 'site/data/fao_89_catchment_source_boundary_audit.json'
+      - 'site/data/fao_89_catchment_source_boundary_audit.csv'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  model-geometry-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source geometry screening dependency
+        run: python -m pip install 'shapely>=2.0,<3'
+      - name: Audit 89 original FAO NEXT_DOWN study-area associations without inferring physical flow
+        run: |
+          python -m unittest discover -s tools -p 'test_stage3d_bg_bj_89_boundary_qa.py' -v
+          python tools/build_stage3d_bg_bh_89_boundary_qa.py --out review/fao-89-source-links
+      - name: Commit validated source-only comparison for PR review, never unreviewed source geometry
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HEAD_BRANCH: ${{ github.event.pull_request.head.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$HEAD_BRANCH" != main
+          git fetch origin "refs/heads/$HEAD_BRANCH:refs/remotes/origin/$HEAD_BRANCH"
+          git checkout -B "$HEAD_BRANCH" "refs/remotes/origin/$HEAD_BRANCH"
+          if test -e site/data/fao_89_catchment_source_boundary_audit.json || test -e site/data/fao_89_catchment_source_boundary_audit.csv; then
+            python tools/build_stage3d_bg_bh_89_boundary_qa.py --check --out site/data
+          else
+            cp review/fao-89-source-links/fao_89_catchment_source_boundary_audit.json site/data/
+            cp review/fao-89-source-links/fao_89_catchment_source_boundary_audit.csv site/data/
+            python tools/build_stage3d_bg_bh_89_boundary_qa.py --check --out site/data
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add site/data/fao_89_catchment_source_boundary_audit.json site/data/fao_89_catchment_source_boundary_audit.csv
+            git commit -m "Publish validated modeled FAO 89 source-link geometry screening outputs"
+            git push origin "HEAD:refs/heads/$HEAD_BRANCH"
+          fi
+      - name: Archive research-only source association QA
+        uses: actions/upload-artifact@v4
+        with:
+          name: basin-nexus-89-fao-source-associations-NOT-FIELD-VERIFIED
+          path: review/fao-89-source-links/
+          if-no-files-found: error
+          retention-days: 60
