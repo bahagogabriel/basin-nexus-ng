@@ -15,6 +15,8 @@ SAFE_SOURCE_FIELDS = {
     "engagement_period","engagement_city","evidence_status"
 }
 EVENT_CITIES={"Kano","Sokoto","Ilorin","Lokoja","Gombe"}
+BASE_THEMES={"natural_resources","threats_challenges","socioeconomics","policies"}
+INTERVENTION_CATCHMENTS={"SCMP-C01","SCMP-C02","SCMP-C03","SCMP-C04","SCMP-C05","SCMP-C07","SCMP-C08","SCMP-C09","SCMP-C10","SCMP-C13","SCMP-C14","SCMP-C15","SCMP-C17","SCMP-C20"}
 
 def validate_safe_source_index(d):
     if not isinstance(d, dict) or d.get("publication_status")!="PUBLIC_METADATA_ONLY":
@@ -34,6 +36,8 @@ def validate_safe_source_index(d):
         if c["id"] in seen or not re.fullmatch(r"SCMP-C(?:0[1-9]|1[0-9]|20)", c["id"]):
             raise ValueError("Unexpected or duplicate catchment ID")
         seen.add(c["id"])
+        expected=BASE_THEMES|({"past_present_interventions"} if c["id"] in INTERVENTION_CATCHMENTS else set())
+        if set(c["source_section_keys"])!=expected: raise ValueError("Unexpected source-theme indicator or catchment assignment")
         if c["source_documents_located"]!=1 or c["public_release"]!="Metadata only":
             raise ValueError("Source index is not clearance")
         if c["source_type"]!="SCMP institutional stakeholder engagement communiqué":

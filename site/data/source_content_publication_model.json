@@ -1,0 +1,277 @@
+{
+  "schema_version": "BN_SOURCE_CONTENT_PUBLIC_V1",
+  "publication_status": "PUBLIC_METADATA_ONLY",
+  "source_material_publicly_released": false,
+  "individual_public_claims_approved": 0,
+  "preparation_date": "2026-10-29",
+  "purpose": "Metadata-only interface for future rights-cleared stakeholder submissions, not a factual claims database.",
+  "thematic_sections": [
+    {
+      "key": "natural_resources",
+      "label": "Natural resources",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "threats_challenges",
+      "label": "Threats and challenges",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "socioeconomics",
+      "label": "Socioeconomics and livelihoods",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "policies",
+      "label": "Policies and governance",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "past_present_interventions",
+      "label": "Past and present interventions",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "water_infrastructure",
+      "label": "Water resources and infrastructure",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "shared_vision_priorities",
+      "label": "Shared Vision and priorities",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "resolutions_agreed_actions",
+      "label": "Resolutions and agreed actions",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    },
+    {
+      "key": "supplementary_state_inputs",
+      "label": "Supporting state and thematic documents",
+      "release_state": "WITHHELD_PENDING_REVIEW"
+    }
+  ],
+  "future_approved_record_schema_fields": [
+    "public_id",
+    "catchment_ids",
+    "theme",
+    "subtheme",
+    "reviewed_public_summary",
+    "approved_source_attribution",
+    "verification_status",
+    "source_date",
+    "rights_clearance_reference",
+    "privacy_review",
+    "spatial_precision",
+    "public_release_decision"
+  ],
+  "display_rules": [
+    "Only show explicitly approved records from the public evidence catalogue.",
+    "Source-file presence, an exact phrase or workshop event is not proof of a facility, intervention or policy endorsement.",
+    "Missing linked sources do not establish that no activity exists.",
+    "Never publish original private text, signed materials, names, private Drive links or unvalidated coordinates."
+  ],
+  "catchments": [
+    {
+      "id": "SCMP-C01",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C02",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C03",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C04",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C05",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C06",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": false,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C07",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C08",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C09",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C10",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": false,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C11",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": false,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C12",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": false,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C13",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C14",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C15",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C16",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": false,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C17",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C18",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": false,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C19",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": false,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    },
+    {
+      "id": "SCMP-C20",
+      "principal_communique_indexed": true,
+      "original_intervention_phrase_indexed": true,
+      "linked_shared_vision_source_in_restricted_set": true,
+      "public_approved_claims": 0,
+      "review_release_status": "HOLD",
+      "spatial_claims_cleared": false,
+      "signed_materials_published": false
+    }
+  ]
+}

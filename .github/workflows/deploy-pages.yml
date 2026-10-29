@@ -111,6 +111,8 @@ jobs:
         run: python tools/test_profile_discovery.py
       - name: Validate knowledge source coverage and publishing policy
         run: python tools/test_public_knowledge_index.py
+      - name: Validate metadata-only original-source content model
+        run: python tools/test_stage_s2_source_content_model.py
       - name: Reject unsanctioned institutional claims and confidential fields in public source index
         run: python -m unittest discover -s tools -p 'test_engagement_source_contract.py' -v
       - name: Validate public geographic and modeled-water reference counts
