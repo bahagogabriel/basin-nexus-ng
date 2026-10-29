@@ -146,6 +146,19 @@ def center_cloud_qa(scl, visual_valid):
        "center_is_compiled_reference_not_a_verified_wall":True}
 
 
+def rank_by_local_clarity(metrics, scene_cloud_pct):
+    """Score sampled context, not a dam/facility. Null local clarity ranks last."""
+    local=metrics.get("center_clear_fraction_of_valid")
+    valid=metrics.get("center_valid_pixels")
+    cover=metrics.get("valid_coverage_fraction")
+    if (local is not None and (type(local) not in (int,float) or not 0<=local<=1)
+        or type(valid) is not int or valid<0 or valid>625
+        or type(cover) not in (int,float) or not 0<=cover<=1
+        or type(scene_cloud_pct) not in (int,float) or not 0<=scene_cloud_pct<=100):
+        raise ValueError("Invalid cloud/coverage QA; refuse image selection")
+    return (local if local is not None else -1,valid,cover,-scene_cloud_pct)
+
+
 def fetch_item(url, expected_id):
     if url!=CATALOG_PREFIX+expected_id:raise ValueError("Unapproved STAC item request")
     with urllib.request.urlopen(urllib.request.Request(url,headers={
@@ -200,7 +213,7 @@ def _pixel_chip(assets,position):
     return im,report
 
 
-def run(w, output, *, pixel_reader=None, item_fetcher=None, attempts=SCENE_LIMIT):
+def run(w, output, *, pixel_reader=None, item_fetcher=None, attempts=3):
     rows=validate_source(w)
     if attempts not in (1,2,3):raise ValueError("Review fetch attempts must be bounded")
     reader=pixel_reader or _pixel_chip
@@ -215,32 +228,50 @@ def run(w, output, *, pixel_reader=None, item_fetcher=None, attempts=SCENE_LIMIT
         for epoch in EPOCHS:
             shots=row["sentinel2_scene_metadata"][epoch]["shortlist"]
             errors=[];successful=None
+            scored=[]
+            attempted_ids=[]
             for shot in shots[:attempts]:
+                attempted_ids.append(shot["item_id"])
                 try:
                     item=fetcher(shot["stac_item"],shot["item_id"])
                     links=parse_assets(item,shot["item_id"])
                     picture,metrics=reader(links,row["source_position_WGS84_UNVERIFIED"])
                     if picture.size!=(PIXELS,PIXELS):raise ValueError("Unexpected pixel-chip dimensions")
                     if metrics.get("pixels_total")!=PIXELS*PIXELS:raise ValueError("Pixel audit dimensions wrong")
-                    im_file=f"{ref}_{epoch}_RGB_REVIEW_ONLY.png"
-                    picture.save(out/im_file)
-                    img_map[(ref,epoch)]=picture
-                    successful={"pixel_state":"RGB_SCL_PIXELS_SAMPLED_REVIEW_ONLY",
-                         "acquired_utc":shot["acquired_utc"],
-                         "scene_cloud_pct_metadata":shot["scene_cloud_pct"],
-                         "item_id":shot["item_id"],"stac_item":shot["stac_item"],
-                         "RGB_chip":im_file,"pixel_qa":metrics,
-                         "structure_visually_verified":False,
-                         "site_coordinate_verified":False,
-                         "image_interpretation_performed":False}
-                    break
+                    score=rank_by_local_clarity(metrics,shot["scene_cloud_pct"])
+                    scored.append((score,shot,picture,metrics))
+                    # One strong local observation is sufficient; no reason to fetch more.
+                    if score[0]>=0.85 and metrics["center_valid_pixels"]>=500:
+                        break
                 except (OSError,TimeoutError,ValueError,RuntimeError,KeyError,IndexError,
                         json.JSONDecodeError) as e:
                     errors.append(type(e).__name__)
+            if scored:
+                _,shot,picture,metrics=max(scored,key=lambda z:z[0])
+                im_file=f"{ref}_{epoch}_RGB_REVIEW_ONLY.png"
+                picture.save(out/im_file)
+                img_map[(ref,epoch)]=picture
+                successful={"pixel_state":"RGB_SCL_PIXELS_SAMPLED_REVIEW_ONLY",
+                    "acquired_utc":shot["acquired_utc"],
+                    "scene_cloud_pct_metadata":shot["scene_cloud_pct"],
+                    "item_id":shot["item_id"],"stac_item":shot["stac_item"],
+                    "RGB_chip":im_file,"pixel_qa":metrics,
+                    "scene_selection_rule":"BEST_SAMPLED_CENTER_CLEAR_FRACTION_NOT_SCENE_CLOUD",
+                    "scene_attempts":len(attempted_ids),
+                    "pixel_scene_options_evaluated":len(scored),
+                    "alternative_scene_ids_checked":attempted_ids,
+                    "center_clear_target_fraction":0.85,
+                    "center_clear_target_met":bool(metrics["center_clear_fraction_of_valid"] is not None
+                        and metrics["center_clear_fraction_of_valid"]>=0.85
+                        and metrics["center_valid_pixels"]>=500),
+                    "structure_visually_verified":False,
+                    "site_coordinate_verified":False,
+                    "image_interpretation_performed":False}
             period_info[epoch]=successful if successful else {
                 "pixel_state":"PIXELS_UNAVAILABLE_NOT_NO_IMAGERY",
-                "attempted_scene_count":min(len(shots),attempts),
+                "attempted_scene_count":len(attempted_ids),
                 "failure_categories":errors,"RGB_chip":None,"pixel_qa":None,
+                "center_clear_target_met":False,
                 "structure_visually_verified":False,
                 "site_coordinate_verified":False,
                 "image_interpretation_performed":False}
@@ -288,6 +319,7 @@ def run(w, output, *, pixel_reader=None, item_fetcher=None, attempts=SCENE_LIMIT
       "RGB_SCL_samples_successful":sum(v["pixel_state"]=="RGB_SCL_PIXELS_SAMPLED_REVIEW_ONLY"
           for r in records for v in r["epochs"].values()),
       "SCL_not_independent_engineering_evidence":True,
+      "local_scene_optimization":"sample up to 3 nominated scenes until local clear >=0.85 with >=500 center valid pixels; otherwise retain highest local clarity",
       "none_of_the_pixel_metrics_estimate_dam_position_accuracy":True,
       "historical_comparison_not_construction_or_operational_proof":True,
       "independently_confirmed_dams":0,"public_map_changes":False,

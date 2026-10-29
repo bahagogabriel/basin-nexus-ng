@@ -3,7 +3,7 @@
 import copy
 import unittest
 from build_stage3d_xy_sentinel_pixel_review import (
-    EXPECTED,SCL_CLEAR,SCL_OBSCURED,validate_source,parse_assets,center_cloud_qa,run)
+    EXPECTED,SCL_CLEAR,SCL_OBSCURED,validate_source,parse_assets,center_cloud_qa,rank_by_local_clarity,run)
 from test_stage3d_w_lineage_eo_discovery import cases,fake_history,fake_stac
 from build_stage3d_w_lineage_eo_discovery import assemble
 
@@ -74,6 +74,28 @@ class PixelQATests(unittest.TestCase):
     def test_alignment_rejected(self):
         with self.assertRaises(ValueError):
             center_cloud_qa([[4,5],[6]],[[True,True],[True,True]])
+    def test_stage_z_local_clear_scene_priority_over_tile_cloud(self):
+        low={"center_clear_fraction_of_valid":0.056,"center_valid_pixels":625,
+             "valid_coverage_fraction":1.0}
+        high={"center_clear_fraction_of_valid":0.92,"center_valid_pixels":625,
+              "valid_coverage_fraction":1.0}
+        self.assertGreater(rank_by_local_clarity(high,30),
+                           rank_by_local_clarity(low,1))
+    def test_stage_z_no_usable_local_scene_ranks_last(self):
+        absent={"center_clear_fraction_of_valid":None,"center_valid_pixels":0,
+                "valid_coverage_fraction":0}
+        present={"center_clear_fraction_of_valid":0.1,"center_valid_pixels":600,
+                 "valid_coverage_fraction":1.0}
+        self.assertLess(rank_by_local_clarity(absent,0),
+                        rank_by_local_clarity(present,50))
+    def test_stage_z_invalid_cloud_metrics_cannot_be_selected(self):
+        for m in [
+            {"center_clear_fraction_of_valid":1.5,"center_valid_pixels":625,"valid_coverage_fraction":1},
+            {"center_clear_fraction_of_valid":0.8,"center_valid_pixels":626,"valid_coverage_fraction":1},
+            {"center_clear_fraction_of_valid":0.5,"center_valid_pixels":100,"valid_coverage_fraction":-0.1}
+        ]:
+            with self.assertRaises(ValueError):rank_by_local_clarity(m,0)
+
     def test_all_references_have_two_bounded_epochs(self):
         w=stage_w()
         for r in validate_source(w):
