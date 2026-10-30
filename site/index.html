@@ -1413,6 +1413,13 @@ function renderOccurrenceList(c){
  const list=rows.map(r=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(r.id)+'"><span class="occurrenceIcon" style="background:'+resourceStyle(r.category).color+'">'+resourceStyle(r.category).symbol+'</span><span><b>'+esc(r.name)+'</b><small>'+esc(r.lga_name)+' LGA · '+esc(r.state)+' · '+(r.source_locators?'Original communiqué':'Published SCMP plan')+'</small></span></button>').join('');
  return '<details class="profileThemePanel" id="profileOccurrences"><summary><b>Mapped LGA-level reports · '+rows.length+' records</b></summary><div class="eyebrow">Source-attributed map locations</div><h3>Reported resources, water references and pressures</h3><p class="captionline">'+rows.length+' LGA-resource combinations for this catchment and active category. Open Layers → reported LGA occurrences to show representative symbols. An LGA marker is <b>not an exact asset or deposit location.</b></p><div class="occurrenceRows">'+(list||'<p>No location-matched LGA occurrences in this category. More information remains available under Original sources.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></details>';
 }
+function refreshOccurrenceProfile(){
+ const c=catchments.find(x=>x.id===selected),old=el('profileOccurrences');
+ if(!c||!old)return;
+ const wasOpen=old.open===true;
+ old.outerHTML=renderOccurrenceList(c);
+ if(wasOpen&&el('profileOccurrences'))el('profileOccurrences').open=true;
+}
 function showOccurrenceRecord(id){
  const r=allOccurrenceRecords().find(x=>x.id===id);if(!r)return;
  if(selected!==r.catchment_id)choose(r.catchment_id,true);
@@ -2150,7 +2157,7 @@ fetch('data/stakeholder_resource_atlas.json').then(r=>{if(!r.ok)throw Error('sta
  if(!acceptStakeholderAtlas(d))throw Error('invalid stakeholder resource catalogue');
  stakeholderAtlas=d;el('resourceAtlasStatus').textContent=d.resource_records+' resource/catchment names reported across all '+d.catchment_count+' catchments · catchment-level map symbols';if(selected){renderDetails();updateOriginalStatementList()}renderResourceGlobalSearch();schedulePaint();
 }).catch(err=>{el('resourceAtlasStatus').textContent='All-catchment resource catalogue unavailable; existing layers remain usable';console.warn(err)});
-el('occurrenceCategory').addEventListener('change',()=>{if(selected)renderDetails();schedulePaint()});
+el('occurrenceCategory').addEventListener('change',()=>{if(selected)refreshOccurrenceProfile();schedulePaint()});
 el('occurrenceLayerToggle').addEventListener('click',async()=>{
  const btn=el('occurrenceLayerToggle');
  if(!allOccurrenceRecords().length)return;
@@ -2162,12 +2169,12 @@ el('details').addEventListener('click',e=>{const b=e.target.closest('[data-occur
 fetch('data/public_lga_occurrences.json').then(r=>{if(!r.ok)throw Error('source inventory unavailable');return r.json()}).then(d=>{
  if(!acceptOccurrenceCatalogue(d))throw Error('invalid source or map precision');
  occurrenceData=d;updateOccurrenceStatus();
- if(selected)renderDetails();schedulePaint();
+ if(selected)refreshOccurrenceProfile();schedulePaint();
 }).catch(()=>{updateOccurrenceStatus();});
 fetch('data/stakeholder_lga_occurrences.json').then(r=>{if(!r.ok)throw Error('LGA source records not available');return r.json()}).then(d=>{
  if(!acceptStakeholderLGAEvidence(d))throw Error('LGA source integrity check failed');
  stakeholderLGAEvidence=d;updateOccurrenceStatus();
- if(selected)renderDetails();schedulePaint();
+ if(selected)refreshOccurrenceProfile();schedulePaint();
 }).catch(e=>{console.error('LGA source record layer failed',e);updateOccurrenceStatus();});
 el('lgaToggle').addEventListener('click',async()=>{
  const b=el('lgaToggle');
