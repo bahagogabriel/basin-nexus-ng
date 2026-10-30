@@ -17,7 +17,7 @@ assert len(records)==data["records_count"]>=600
 assert data["source_documents_count"]==20
 assert data["catchments_covered"]==20
 assert len({r["id"] for r in records})==len(records)
-assert len({(r["resource_id"],r["lga_id"]) for r in records})==len(records)
+assert len({(r["catchment_id"],r["category"],r["name"].lower(),r["lga_id"]) for r in records})==len(records)
 ids={c["id"] for c in atlas["catchments"]}
 assert set(data["counts_by_catchment"])==ids==set(admin["byCatchment"])
 assert dict(Counter(r["catchment_id"] for r in records))==data["counts_by_catchment"]
