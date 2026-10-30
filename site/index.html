@@ -1408,22 +1408,23 @@ function resourceStyle(category){
  return ({crop:{symbol:'🌾',color:'#3e9150'},mineral:{symbol:'◆',color:'#9b7034'},ecology:{symbol:'♣',color:'#287863'},water:{symbol:'≋',color:'#277fad'},pressure:{symbol:'!',color:'#c65b3b'}})[category]||{symbol:'?',color:'#555'};
 }
 function renderOccurrenceList(c){
- if(c.id!=='SCMP-C17')return '';
  const rows=filteredOccurrenceRecords(c.id);
- if(!occurrenceData)return '<section class="profileThemePanel" id="profileOccurrences"><h3>Reported resources on the map</h3><p class="captionline">Loading the published-source occurrence inventory…</p></section>';
- const list=rows.map(r=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(r.id)+'"><span class="occurrenceIcon" style="background:'+resourceStyle(r.category).color+'">'+resourceStyle(r.category).symbol+'</span><span><b>'+esc(r.name)+'</b><small>'+esc(r.lga_name)+' LGA · '+esc(r.state)+' State · LGA-level report</small></span></button>').join('');
- return '<details class="profileThemePanel" id="profileOccurrences"><summary><b>Additional LGA-level published-plan examples · Sokoto–Zamfara</b></summary><div class="eyebrow">Original source-linked map inventory</div><h3>Reported crops, minerals and environmental resources</h3><p class="captionline">'+rows.length+' entries from a publicly released SCMP plan for the active category. <b>Symbol means reported within the named LGA, not an exact field coordinate.</b> Choose Show reported LGA occurrences under Layers to plot representative locations.</p><div class="occurrenceRows">'+(list||'<p>No public report-backed LGA occurrence records indexed for this selection yet. Other original records remain available in the private source inventory.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></details>';
+ if(!occurrenceData&&!stakeholderLGAEvidence)return '<section class="profileThemePanel" id="profileOccurrences"><h3>Reported LGA resources</h3><p class="captionline">Loading LGA source occurrences…</p></section>';
+ const list=rows.map(r=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(r.id)+'"><span class="occurrenceIcon" style="background:'+resourceStyle(r.category).color+'">'+resourceStyle(r.category).symbol+'</span><span><b>'+esc(r.name)+'</b><small>'+esc(r.lga_name)+' LGA · '+esc(r.state)+' · '+(r.source_locators?'Original communiqué':'Published SCMP plan')+'</small></span></button>').join('');
+ return '<details class="profileThemePanel" id="profileOccurrences"><summary><b>Mapped LGA-level reports · '+rows.length+' records</b></summary><div class="eyebrow">Source-attributed map locations</div><h3>Reported resources, water references and pressures</h3><p class="captionline">'+rows.length+' LGA-resource combinations for this catchment and active category. Open Layers → reported LGA occurrences to show representative symbols. An LGA marker is <b>not an exact asset or deposit location.</b></p><div class="occurrenceRows">'+(list||'<p>No location-matched LGA occurrences in this category. More information remains available under Original sources.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></details>';
 }
 function showOccurrenceRecord(id){
- const r=occurrenceData?.records?.find(x=>x.id===id);
- if(!r)return;
+ const r=allOccurrenceRecords().find(x=>x.id===id);if(!r)return;
  if(selected!==r.catchment_id)choose(r.catchment_id,true);
- selectedOccurrenceId=id;
- const out=el('occurrenceDetail');
- if(!out)return;
- out.innerHTML='<strong>'+esc(r.name)+' · '+esc(r.lga_name)+' LGA, '+esc(r.state)+'</strong><p>Reported in the March 2025 published Sokoto–Zamfara Strategic Catchment Management Plan. Source: Annex 2, Table A-1, supplied PDF page '+Number(r.source_pdf_page)+'.</p><p><b>Map position:</b> representative position within the reported LGA and selected catchment. Not a surveyed site or verified exact resource coordinate.</p><a href="'+esc(r.public_report_url)+'" target="_blank" rel="noopener noreferrer">Open original government publication</a>';
- const row=el('details')?.querySelector('[data-occurrence-select="'+id+'"]');
- if(row)row.scrollIntoView({block:'nearest'});
+ selectedOccurrenceId=id;const out=el('occurrenceDetail');if(!out)return;
+ const provenance=r.source_locators
+  ?'<p><b>Stakeholder-reported; not independently verified.</b> Source: '+r.source_locators.map(x=>esc(x.document)+' · paragraph '+Number(x.paragraph)+' ('+esc(x.theme.replaceAll('_',' '))+')').join('; ')+'. See <b>Original sources</b> above to read each source statement.</p>'
+  :'<p>Government-published Sokoto–Zamfara SCMP, Annex 2 Table A-1, source page '+Number(r.source_pdf_page)+'. <a href="'+esc(r.public_report_url)+'" target="_blank" rel="noopener noreferrer">View government report</a>.</p>';
+ const siblings=allOccurrenceRecords().filter(x=>x.catchment_id===r.catchment_id&&x.lga_id===r.lga_id&&x.category===r.category&&x.id!==r.id);
+ out.innerHTML='<strong>'+esc(r.name)+' · '+esc(r.lga_name)+' LGA, '+esc(r.state)+'</strong>'+provenance
+  +'<p><b>Location precision:</b> representative overlap point inside the named LGA and catchment. Not a surveyed site, a verified resource reserve or proof of constructed infrastructure.</p>'
+  +(siblings.length?'<p><b>Other '+esc(r.category)+' reports at this LGA:</b></p><div class="occurrenceRows">'+siblings.map(x=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(x.id)+'">'+esc(x.name)+'</button>').join('')+'</div>':'');
+ const row=el('details')?.querySelector('[data-occurrence-select="'+id+'"]');if(row)row.scrollIntoView({block:'nearest'});
  schedulePaint();
 }
 function occurrenceRepresentativePoint(lgaId,catchmentId){
