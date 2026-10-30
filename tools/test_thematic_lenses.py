@@ -38,7 +38,8 @@ assert sum(totals)==network['total_display_reaches']==52012
 assert len(outside)==9, outside
 
 for needle in (
-    'approved evidence catalogue preview v1.12',
+    '© 2026 Basin Nexus NG',
+    'id="navGuide"',
     'id="knowledgeLenses"',
     'id="knowledgeCrossborder"',
     'data-knowledge-lens="water"',
