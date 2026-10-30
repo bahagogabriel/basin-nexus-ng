@@ -1443,22 +1443,33 @@ function occurrenceRepresentativePoint(lgaId,catchmentId){
 }
 function drawOccurrenceSymbols(){
  occurrenceMarkerHits=[];
- if(!occurrenceOn||!selected||!occurrenceData||!admLgas)return;
- const items=filteredOccurrenceRecords(),grouped=new Map();
- for(const r of items){if(!grouped.has(r.lga_id))grouped.set(r.lga_id,[]);grouped.get(r.lga_id).push(r)}
+ if(!occurrenceOn||!selected||!admLgas)return;
+ const byGroup=new Map(),byLga=new Map();
+ for(const r of filteredOccurrenceRecords()){
+  const k=r.lga_id+'|'+r.category;
+  if(!byGroup.has(k))byGroup.set(k,{lga:r.lga_id,category:r.category,records:[]});
+  byGroup.get(k).records.push(r);
+ }
+ for(const group of byGroup.values()){
+  if(!byLga.has(group.lga))byLga.set(group.lga,[]);
+  byLga.get(group.lga).push(group);
+ }
  const dpr=Math.min(window.devicePixelRatio||1,1.5),dim=screen();
  ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
- for(const [lgaId,arr] of grouped){
+ for(const [lgaId,arr] of byLga){
   const pt=occurrenceRepresentativePoint(lgaId,selected);if(!pt)continue;
   const p=toScreen(pt.x,pt.y);
-  arr.forEach((r,i)=>{
-   const theta=i*2.399963229728653,rad=arr.length>1?Math.min(22,10+3*Math.sqrt(i)):0;
+  arr.forEach((group,i)=>{
+   const theta=2*Math.PI*i/arr.length-Math.PI/2,rad=arr.length>1?22:0;
    const x=p.x+Math.cos(theta)*rad,y=p.y+Math.sin(theta)*rad;
    if(x<13||y<13||x>dim.w-13||y>dim.h-13)return;
-   const style=resourceStyle(r.category),active=selectedOccurrenceId===r.id;
-   ctx.beginPath();ctx.arc(x,y,active?13:11,0,Math.PI*2);ctx.fillStyle=style.color;ctx.fill();ctx.strokeStyle=active?'#ffffff':'#203f42';ctx.lineWidth=active?3:1.2;ctx.stroke();
-   ctx.font='bold 13px Segoe UI Symbol, Arial, sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';ctx.fillText(style.symbol,x,y+1);
-   occurrenceMarkerHits.push({id:r.id,x,y});
+   const first=group.records[0],style=resourceStyle(first.category),active=group.records.some(r=>r.id===selectedOccurrenceId);
+   ctx.beginPath();ctx.arc(x,y,active?14:12,0,Math.PI*2);ctx.fillStyle=style.color;ctx.fill();
+   ctx.strokeStyle=active?'#fff':'#234446';ctx.lineWidth=active?3:1.2;ctx.stroke();
+   ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';
+   ctx.font=group.records.length>1?'bold 11px Arial':'bold 13px Segoe UI Symbol, Arial, sans-serif';
+   ctx.fillText(group.records.length>1?String(group.records.length):style.symbol,x,y+1);
+   occurrenceMarkerHits.push({id:first.id,x,y});
   });
  }
  ctx.restore();
