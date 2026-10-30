@@ -13,7 +13,7 @@ sources=read("stakeholder_source_detail.json")
 assert data["schema_version"]=="BN_STAKEHOLDER_LGA_OCCURRENCES_V1"
 assert data["publication_scope"]=="OWNER_AUTHORIZED_ANONYMIZED_SOURCE_STATEMENTS_ALREADY_PUBLIC_IN_S18"
 records=data["records"]
-assert len(records)==data["records_count"]>=400
+assert len(records)==data["records_count"]>=600
 assert data["source_documents_count"]==20
 assert data["catchments_covered"]==20
 assert len({r["id"] for r in records})==len(records)
@@ -27,8 +27,12 @@ for r in records:
  assert r["catchment_id"] in ids
  assert r["source_locators"] and all((r["catchment_id"],x["document"],x["paragraph"],x["theme"]) in source_keys for x in r["source_locators"])
  assert all(x["document"].lower().startswith("communiqu") for x in r["source_locators"])
- a=resources[r["resource_id"]]
- assert (r["catchment_id"],r["category"],r["name"])==(a["catchment_id"],a["category"],a["reported_resource"])
+ if r["resource_id"] is not None:
+  a=resources[r["resource_id"]]
+  assert (r["catchment_id"],r["category"],r["name"])==(a["catchment_id"],a["category"],a["reported_resource"])
+ else:
+  assert r["category"] in ("crop","mineral","ecology","pressure")
+  assert r["name"] and all(x["document"].lower().startswith("communiqu") for x in r["source_locators"])
  assert r["evidence_status"]=="OWNER_AUTHORIZED_STAKEHOLDER_REPORTED_NOT_INDEPENDENTLY_VERIFIED"
  assert r["spatial_scope"]=="LGA_REPRESENTATIVE_POSITION_NOT_EXACT_ASSET"
  assert all(k not in r for k in ("coordinates","latitude","longitude","geometry","source_file_id","private_drive_url"))
@@ -39,6 +43,9 @@ for r in records:
  assert abs(r["intersection_km2"]-matched["km2"])<0.015
  assert r["intersection_km2"]>=.5
 assert any(r["catchment_id"]=="SCMP-C04" and r["lga_name"]=="Ngaski" and r["name"]=="Lithium" for r in records)
+assert any(r["catchment_id"]=="SCMP-C04" and r["lga_name"]=="Wasagu-Danko" and r["name"]=="Soybeans" for r in records)
+assert any(r["catchment_id"]=="SCMP-C04" and r["lga_name"]=="Agwara" and r["name"]=="Manganese" for r in records)
+assert any(r["catchment_id"]=="SCMP-C04" and r["lga_name"]=="Rijau" and r["name"]=="Mica" for r in records)
 assert any(r["catchment_id"]=="SCMP-C03" and r["lga_name"]=="Kanam" and r["name"]=="Gold" for r in records)
 assert not any(x in (site/"data/stakeholder_lga_occurrences.json").read_text().lower() for x in ("drive.google.com","@gmail.com","signature/date"))
 html=(site/"index.html").read_text(encoding="utf-8")
