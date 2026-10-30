@@ -768,5 +768,78 @@
       }
     ],
     "release_policy": "Public publisher event links only; publication dates do not necessarily equal workshop dates. No private statement, facility claim or implementation status is approved."
+  },
+  "public_report_profile_pilot": {
+    "version": "BN_PUBLIC_SCMP_REPORT_PROFILES_V1",
+    "status": "PUBLISHER_PLAN_PARAPHRASE_ONLY",
+    "publication_basis": "Two March 2025 Strategic Catchment Management Plan reports, supplied by the owner and linked to ACReSAL publication pages. No private communiqué text or unverified asset locations/capacities published.",
+    "profiles": [
+      {
+        "id": "SCMP-C14",
+        "name": "Rima",
+        "report_date": "2025-03",
+        "report_sections": "Executive Summary, Chapters 2 and 5",
+        "topics": [
+          {
+            "theme": "natural_resources",
+            "summary": "The plan describes river drainage, groundwater, natural vegetation, wetlands and catchment land-use resources.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "threats_challenges",
+            "summary": "The plan examines water scarcity, flood and drought vulnerability, land degradation and water quality pressures.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "socioeconomics",
+            "summary": "The plan assesses irrigation, livestock and aquaculture demand alongside livelihood and population pressures.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "policies",
+            "summary": "The plan identifies governance, coordination, enforcement and community participation issues in managing land and water.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "past_present_interventions",
+            "summary": "Chapter 5 sets out proposed ecosystem restoration, climate resilience, livelihood and monitoring measures. These are proposals, not a register of completed projects.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          }
+        ]
+      },
+      {
+        "id": "SCMP-C17",
+        "name": "Sokoto–Zamfara",
+        "report_date": "2025-03",
+        "report_sections": "Executive Summary, Chapters 2 and 5",
+        "topics": [
+          {
+            "theme": "natural_resources",
+            "summary": "The plan describes the Sokoto and Zamfara river systems, floodplains, groundwater resources, vegetation and farmland.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "threats_challenges",
+            "summary": "The plan examines seasonal floods, drought, water scarcity, erosion, degradation and water quality pressures associated with land use.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "socioeconomics",
+            "summary": "The plan considers irrigation schemes, livestock, aquaculture, community water demand and demographic trends.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "policies",
+            "summary": "The plan discusses regulatory enforcement gaps and fragmented institutional coordination for land and water management.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          },
+          {
+            "theme": "past_present_interventions",
+            "summary": "Chapter 5 proposes conservation, restoration, climate-risk management and institutional measures, without establishing that planned works have been constructed.",
+            "status": "PUBLISHED_PLAN_REPORTS_NOT_INDEPENDENTLY_VERIFIED"
+          }
+        ]
+      }
+    ]
   }
 }
