@@ -73,6 +73,15 @@ assert all(set(e["catchment_ids"])<=ids for e in archive["events"])
 assert "SCMP-C20" not in {cid for e in archive["events"] for cid in e["catchment_ids"]}
 assert "renderOfficial2025Events(result)" in html and "official2025Archive" in html
 assert next(r for r in records if r["id"]=="SCMP-C12")["official_public_pdf"].endswith("NGADA-WEST-CHAD-STRATEGICCATCHMENTMANAGEMENTPLAN-Ready1.pdf")
+pilot=mod["public_report_profile_pilot"]
+assert pilot["version"]=="BN_PUBLIC_SCMP_REPORT_PROFILES_V1"
+assert pilot["status"]=="PUBLISHER_PLAN_PARAPHRASE_ONLY"
+assert {p["id"] for p in pilot["profiles"]}=={"SCMP-C14","SCMP-C17"}
+assert all(len(p["topics"])==5 for p in pilot["profiles"])
+assert all({t["theme"] for t in p["topics"]}=={"natural_resources","threats_challenges","socioeconomics","policies","past_present_interventions"} for p in pilot["profiles"])
+assert all(25<=len(t["summary"])<=350 for p in pilot["profiles"] for t in p["topics"])
+assert "catchmentInsightsPanel" in html and "renderCatchmentInsights(result)" in html
+assert "data-insight-map" in html and "insightTheme" in html
 assert mod["individual_public_claims_approved"]==0
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
