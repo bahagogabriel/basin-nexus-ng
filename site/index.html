@@ -317,6 +317,12 @@ header .nav button{padding:8px 12px}
 <section id="knowledgeThemePanel" class="knowledgeThemePanel" aria-live="polite" aria-label="Thematic summary"></section>
 <p id="knowledgeCount" aria-live="polite">Loading source coverage…</p>
 <div class="knowledgeCards" id="knowledgeCards"></div>
+<section id="official2025Archive" class="evidenceCatalogue" aria-label="Original ACReSAL 2025 planning reports">
+<h3>2025 official planning and consultation sources</h3>
+<p>Original ACReSAL articles documenting engagement, draft-plan presentation or validation. Each event is linked to the catchments the publisher specifically named. These are not independently confirmed physical investments or evidence that proposed works have been built.</p>
+<p id="official2025Count" aria-live="polite">Loading 2025 source archive…</p>
+<div id="official2025Events" class="officialSCMPEntries"></div>
+</section>
 <section id="official2026Updates" class="evidenceCatalogue" aria-label="Official ACReSAL planning and consultation milestones">
 <h3>2026 catchment planning and consultation updates</h3>
 <p>ACReSAL reported validation of all 20 Strategic Catchment Management Plans on 22 March 2026. Its 15 October article names ten catchments in a final round of implementation-focused consultations. <strong>Consultation, prioritisation and validation are not evidence that proposed projects are constructed or funded.</strong></p>
@@ -326,7 +332,7 @@ header .nav button{padding:8px 12px}
 </section>
 <section id="officialSCMP" class="evidenceCatalogue" aria-label="Government-published original catchment plans">
 <h3>Read official Strategic Catchment Management Plans</h3>
-<p>ACReSAL reports that all 20 plans have been developed and validated. We have verified nine individually listed publication pages on the official ACReSAL website, with direct PDFs for eight. Follow the publisher's links to read these plans; the source report is not proof that every proposed intervention has been completed. The restricted workshop communiqués are not published here.</p>
+<p>ACReSAL reports that all 20 plans have been developed and validated. We have verified nine individually listed publication pages on the official ACReSAL website, with direct PDFs for all nine. Follow the publisher's links to read these plans; the source report is not proof that every proposed intervention has been completed. The restricted workshop communiqués are not published here.</p>
 <p id="officialSCMPCount" aria-live="polite">Loading ACReSAL source links…</p>
 <div id="officialSCMPEntries" class="officialSCMPEntries"></div>
 <p><a href="https://acresal.gov.ng/publications/" target="_blank" rel="noopener noreferrer">View ACReSAL's official publication index</a> · <a href="https://acresal.gov.ng/nigeria-endorses-20-historic-strategic-blueprints-to-restore-degraded-landscapes-and-water-bodies/" target="_blank" rel="noopener noreferrer">Source: validation of 20 plans</a></p>
@@ -1646,6 +1652,19 @@ function filteredKnowledge(){
  });
  return result;
 }
+function renderOfficial2025Events(scope){
+ const elCount=el('official2025Count'),list=el('official2025Events');
+ const data=sourceContentModel?.official_2025_event_archive;
+ if(!data||data.version!=='BN_2025_OFFICIAL_EVENTS_V1'||data.articles!==5||data.distinct_linked_catchments!==11){elCount.textContent='Publisher archive unavailable';list.textContent='Consult the official ACReSAL news website.';return}
+ const scopeIds=new Set(scope.map(x=>x.id));
+ const sources=data.events.map(e=>({...e,matches:e.catchment_ids.filter(id=>scopeIds.has(id))})).filter(e=>e.matches.length);
+ elCount.textContent=sources.length+' matching official 2025 articles across '+scope.length+' selected catchments';
+ list.innerHTML=sources.length?sources.map(e=>{
+  if(!e.url.startsWith('https://acresal.gov.ng/'))return '';
+  const places=e.matches.map(id=>catchments.find(c=>c.id===id)?.name||id).map(esc).join(' · ');
+  return '<article class="officialSCMPEntry"><strong>'+esc(e.title)+'</strong><small>'+esc(e.date)+' · '+places+'</small><p><a target="_blank" rel="noopener noreferrer" href="'+esc(e.url)+'">Read original ACReSAL article</a></p><small>'+esc(e.scope_note)+'</small></article>';
+ }).join(''):'<p>No separately indexed 2025 institutional story for this selection; that does not mean planning activity did not occur.</p>';
+}
 function renderOfficial2026Updates(scope){
  const counter=el('official2026Count'),panel=el('official2026Entries');
  const meta=sourceContentModel?.official_2026_consultations;
@@ -1663,7 +1682,7 @@ function renderOfficial2026Updates(scope){
 function renderOfficialSCMPReports(scope){
  const count=el('officialSCMPCount'),out=el('officialSCMPEntries');
  const meta=sourceContentModel?.official_scmp_publication_links;
- if(!meta||meta.listed_pages!==9||meta.indexed_direct_pdfs!==8){count.textContent='Official report link index unavailable';out.textContent='See ACReSAL\'s official publication index for source materials.';return}
+ if(!meta||meta.listed_pages!==9||meta.indexed_direct_pdfs!==9){count.textContent='Official report link index unavailable';out.textContent='See ACReSAL\'s official publication index for source materials.';return}
  const ids=new Set(scope.map(r=>r.id));
  const rows=sourceContentModel.catchments.filter(r=>ids.has(r.id)&&r.official_report_link_status==='ACRESAL_PUBLICATION_ENTRY_INDEXED');
  count.textContent=rows.length+' official report publication entries for the current '+scope.length+' catchment selection · 9 indexed across all 20';
@@ -1690,6 +1709,7 @@ function renderKnowledge(){
  renderEvidenceCatalogue(result);
  renderOfficialSCMPReports(result);
  renderOfficial2026Updates(result);
+ renderOfficial2025Events(result);
  el('knowledgeCards').innerHTML=result.length?result.map(c=>{
   const row=catchments.find(x=>x.id===c.id), admin=administrative?.byCatchment?.[c.id];
   const river=detailedManifest?.files?.[c.id], stateRecord=(admin?.states||[]).find(s=>s.name===state),
