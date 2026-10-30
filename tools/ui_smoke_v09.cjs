@@ -101,6 +101,29 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ // Stage S17: complete institutional resource names are available for all 20 catchments.
+ if(name==='desktop'){
+  await page.waitForFunction(()=>document.querySelector('#resourceAtlasStatus')?.textContent.includes('375 resource/catchment names'),{timeout:30000});
+  assert.equal(await page.locator('#resourceAtlasToggle').getAttribute('aria-pressed'),'true','full resource source symbols visible');
+  await page.locator('#catchmentList button[data-id="SCMP-C01"]').click();
+  await page.waitForFunction(()=>document.querySelector('#profileResourcePanel .stakeResourceRow')?.textContent.includes('Cassava'));
+  assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),24,'Aloma–Konshisha source terms populated');
+  await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
+  await page.waitForFunction(()=>[...document.querySelectorAll('#profileResourcePanel .stakeResourceRow')].some(x=>x.textContent.includes('Rice')));
+  assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),27,'Benue–Mada source terms populated');
+  await page.locator('#resourceProfileSearch').fill('gold');
+  assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),1,'Per-catchment resource search filters');
+  await page.locator('#navKnowledge').click();
+  await page.locator('#resourceGlobalSearch').fill('lithium');
+  await page.waitForFunction(()=>document.querySelector('#resourceGlobalCount')?.textContent.includes('matching')||document.querySelector('#resourceGlobalCount')?.textContent.includes('match'));
+  assert(await page.locator('#resourceGlobalList .stakeResourceRow').count()>1,'Global resource search must return matches');
+  await page.locator('#resourceGlobalList .stakeResourceRow').first().click();
+  await page.waitForFunction(()=>document.querySelector('#navExplore').getAttribute('aria-current')==='page');
+  assert(await page.locator('#profileResourcePanel .stakeResourceRow').count()>0,'Resource search can open selected catchment');
+  await page.locator('#overviewBtn').click();
+  await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Explore all 20 catchments');
+  console.log('S17: PASS all-catchment resource catalogue, Aloma/Benue content, search, Knowledge → map navigation');
+ }
  // Stage S15 resource atlas: exercise real source-linked LGA symbols without inventing asset coordinates.
  if(name==='desktop'){
   assert.equal(await page.locator('#guideQuickstart').count(),1,'Visitor quickstart guide visible');
