@@ -506,5 +506,161 @@
         "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
       }
     ]
+  },
+  "official_2026_consultations": {
+    "status": "OFFICIAL_PUBLISHER_REPORTING_ONLY",
+    "indexed_on": "2026-10-30",
+    "all_20_validated_attribution": {
+      "source_date": "2026-03-22",
+      "publisher": "ACReSAL",
+      "source_url": "https://acresal.gov.ng/nigeria-endorses-20-historic-strategic-blueprints-to-restore-degraded-landscapes-and-water-bodies/",
+      "interpretation": "Publisher reports 20 plans developed and validated by institutional stakeholders, not 20 publicly downloadable PDFs or 20 constructed interventions."
+    },
+    "final_10_consultation_phase": {
+      "source_date": "2026-10-15",
+      "publisher": "ACReSAL",
+      "source_url": "https://acresal.gov.ng/acresal-world-bank-call-for-urgent-stakeholder-ownership-as-implementation-focused-engagements-for-20-strategic-catchment-management-plans-conclude/",
+      "interpretation": "Publisher names final ten in a phase of implementation-focused stakeholder engagement and investment prioritization. It does not independently certify completed construction or investment disbursement.",
+      "original_name_variants": {
+        "Malenda": "Melinda",
+        "Gulbin-Ka": "Golbin-Ka",
+        "Kaduna-Mariga": "Kaduna-Mairiga",
+        "Sarkin Pawa-Kaduna": "Sarkin-Pawa-Kaduna"
+      }
+    },
+    "count_catchments_in_final_10": 10,
+    "count_individual_activity_articles": 5,
+    "individual_story_source_types": {
+      "ACReSAL": 4,
+      "FCT ACReSAL": 1
+    },
+    "catchments": [
+      {
+        "id": "SCMP-C01",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C02",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C03",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C04",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C05",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": {
+          "published": "2026-10-16",
+          "headline": "Implementation-planning workshop and priority choices (Gurara-Gbako)",
+          "publisher": "ACReSAL",
+          "url": "https://acresal.gov.ng/over-43-of-lands-in-nigeria-are-degraded-scmp-is-a-one-stop-solution-for-healing-degraded-landscapes/"
+        }
+      },
+      {
+        "id": "SCMP-C06",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C07",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C08",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": {
+          "published": "2026-10-19",
+          "headline": "Kaduna-Mariga implementation-focused consultation",
+          "publisher": "ACReSAL",
+          "url": "https://acresal.gov.ng/fix-and-go-wont-work-dr-agene-data-driven-restoration-targets-11-million-people-across-2-65-million-hectare-kaduna-mariga-catchment/"
+        }
+      },
+      {
+        "id": "SCMP-C09",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C10",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C11",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C12",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C13",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": {
+          "published": "2026-10-18",
+          "headline": "Oshin-Oyi stakeholder priorities discussed",
+          "publisher": "ACReSAL",
+          "url": "https://acresal.gov.ng/restoring-the-oshin-oyi-catchment-acresal-stakeholders-chart-resilience-roadmap-for-4-9-million-hectares/"
+        }
+      },
+      {
+        "id": "SCMP-C14",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": {
+          "published": "2026-10-22",
+          "headline": "Rima community participation and plan review",
+          "publisher": "ACReSAL",
+          "url": "https://acresal.gov.ng/you-are-no-longer-just-a-gateway-you-are-operational-acresal-ttl-tells-traditional-leaders-as-rima-catchment-stakeholders-brainstorm-sustainable-solutions-in-jos/"
+        }
+      },
+      {
+        "id": "SCMP-C15",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": {
+          "published": "2026-10-21",
+          "headline": "Sarkin Pawa-Kaduna consultation account",
+          "publisher": "FCT ACReSAL",
+          "url": "https://www.acresalfcta.org.ng/news/fct/fct-acresal-technical-committee-okays-work-plan-sets-up-committee-for-kuje-forest-transformation-28"
+        }
+      },
+      {
+        "id": "SCMP-C16",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C17",
+        "mentioned_in_2026_oct15_final_ten": true,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C18",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C19",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      },
+      {
+        "id": "SCMP-C20",
+        "mentioned_in_2026_oct15_final_ten": false,
+        "individual_activity_news": null
+      }
+    ],
+    "limitations": "These records describe documented publisher announcements and workshops. No public workshop source extract, participant data, 80 private editorial claim, dam capacity, project completion status or site coordinates is published. An article naming a catchment does not prove a proposed intervention was approved, funded or implemented."
   }
 }
