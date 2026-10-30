@@ -101,14 +101,40 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ // Stage S21: guide, selected theme and accessible profile navigation.
+ if(name==='desktop'){
+  await page.locator('#navGuide').click();await page.locator('#pageGuide').waitFor({state:'visible'});
+  assert.match(await page.locator('#pageGuide').innerText(),/Choose one topic/);
+  assert.match(await page.locator('footer').innerText(),/Samuel Bahago Gabriel/);
+  await page.locator('#guideGo').click();await page.locator('#pageExplore').waitFor({state:'visible'});
+  await page.locator('#catchmentList button[data-id="SCMP-C04"]').click();
+  await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
+  assert.equal(await page.locator('.profileViews button[aria-selected="true"]').innerText(),'Overview');
+  await page.locator('#themeSwitch [data-theme="mineral"]').click();
+  assert.equal(await page.locator('#occurrenceCategory').inputValue(),'mineral');
+  assert.equal(await page.locator('#themeSwitch [data-theme="crop"]').getAttribute('aria-pressed'),'false');
+  await page.locator('#resourceTypeFilter').selectOption({label:'Lithium'});
+  await page.locator('#details [data-profile-view="resources"]').first().click();
+  assert(await page.locator('#profileOccurrences [data-occurrence-select]').count()>=1);
+  assert((await page.locator('#profileOccurrences .occurrenceRow b').allTextContents()).every(x=>x==='Lithium'));
+  assert.match(await page.locator('#resourceLegendRows').innerText(),/Lithium/);
+  await page.locator('#themeSwitch [data-theme="crop"]').click();
+  assert.equal(await page.locator('#occurrenceCategory').inputValue(),'crop');
+  assert.equal(await page.locator('#resourceTypeFilter').inputValue(),'all');
+  assert((await page.locator('#profileOccurrences .occurrenceRow b').allTextContents()).every(x=>!['Lithium','Gold','Manganese'].includes(x)));
+  await page.locator('#overviewBtn').click();
+  console.log('S21 PASS optional guide, creator credit, exclusive resource filters, named glyphs and tabbed profile');
+ }
  // Stage S17: complete institutional resource names are available for all 20 catchments.
  if(name==='desktop'){
   await page.waitForFunction(()=>document.querySelector('#resourceAtlasStatus')?.textContent.includes('375 resource/catchment names'),{timeout:30000});
   assert.equal(await page.locator('#resourceAtlasToggle').getAttribute('aria-pressed'),'true','full resource source symbols visible');
   await page.locator('#catchmentList button[data-id="SCMP-C01"]').click();
+  await page.locator('#details [data-profile-view="resources"]').first().click();
   await page.waitForFunction(()=>document.querySelector('#profileResourcePanel .stakeResourceRow')?.textContent.includes('Cassava'));
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),24,'Aloma–Konshisha source terms populated');
   await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
+  await page.locator('#details [data-profile-view="resources"]').first().click();
   await page.waitForFunction(()=>[...document.querySelectorAll('#profileResourcePanel .stakeResourceRow')].some(x=>x.textContent.includes('Rice')));
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),27,'Benue–Mada source terms populated');
   await page.locator('#resourceProfileSearch').fill('gold');
@@ -127,6 +153,7 @@ async function test(page,name){
  // S18: the actual original documents must populate every profile, not just the 375-keyword summary.
  if(name==='desktop'){
   await page.locator('#catchmentList button[data-id="SCMP-C04"]').click();
+  await page.locator('#details [data-profile-view="sources"]').first().click();
   await page.waitForFunction(()=>document.querySelector('#originalStatementCount')?.textContent.includes('157 matching original statements'),{timeout:30000});
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),14,'Gulbin-Ka full resource names displayed');
   await page.waitForFunction(()=>document.querySelector('#profileOccurrences .occurrenceRow')?.textContent.includes('LGA'),{timeout:30000});
@@ -145,6 +172,7 @@ async function test(page,name){
   await page.locator('#originalTextSearch').fill('Rijau');
   assert(await page.locator('#originalStatementEntries .sourceStatementItem').count()>0,'Search original text for a named LGA');
   await page.locator('#catchmentList button[data-id="SCMP-C03"]').click();
+  await page.locator('#details [data-profile-view="sources"]').first().click();
   await page.waitForFunction(()=>document.querySelector('#originalStatementCount')?.textContent.includes('259 matching original statements'));
   await page.waitForFunction(()=>document.querySelector('#profileOccurrences .occurrenceRow')?.textContent.includes('LGA'),{timeout:30000});
   assert(await page.locator('#profileOccurrences .occurrenceRow').count()>0,'Gaji-Lamurde reports named LGA occurrences');
@@ -155,6 +183,9 @@ async function test(page,name){
  // S20: supplementary institutional mineral and grazing listings preserve source attribution.
  if(name==='desktop'){
   await page.locator('#catchmentList button[data-id="SCMP-C08"]').click();
+  await page.locator('#layerManager').evaluate(el=>{el.open=true});
+  await page.locator('#occurrenceCategory').selectOption('all');
+  await page.locator('#details [data-profile-view="resources"]').first().click();
   await page.waitForFunction(()=>document.querySelectorAll('#profileOccurrences [data-occurrence-select^="BN-S20-"]').length===59,{timeout:30000});
   await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready',{timeout:45000});
   await page.locator('#profileOccurrences').evaluate(el=>{el.open=true});
@@ -162,6 +193,7 @@ async function test(page,name){
   assert.match(await page.locator('#occurrenceDetail').innerText(),/Supplementary institutional LGA inventory/);
   assert.match(await page.locator('#occurrenceDetail').innerText(),/not field-verified/);
   await page.locator('#catchmentList button[data-id="SCMP-C20"]').click();
+  await page.locator('#details [data-profile-view="resources"]').first().click();
   await page.waitForFunction(()=>document.querySelectorAll('#profileOccurrences [data-occurrence-select^="BN-S20-"]').length===68,{timeout:30000});
   await page.locator('#overviewBtn').click();
   console.log('S20 PASS: 127 supplementary LGA records with distinct source attribution and no exact sites');
@@ -171,6 +203,9 @@ async function test(page,name){
   assert.equal(await page.locator('#guideQuickstart').count(),1,'Visitor quickstart guide visible');
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.disabled===false,{timeout:25000});
   await page.locator('#catchmentList button[data-id="SCMP-C17"]').click();
+  await page.locator('#layerManager').evaluate(el=>{el.open=true});
+  await page.locator('#occurrenceCategory').selectOption('all');
+  await page.locator('#details [data-profile-view="resources"]').first().click();
   await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Sokoto-Zamfara');
   await page.waitForFunction(()=>document.querySelectorAll('#details [data-occurrence-select]').length>15,{timeout:30000});
   assert.equal(await page.locator('#details [data-occurrence-select^="BN-PUB-"]').count(),15,'All 15 original official Sokoto occurrences remain');
@@ -397,6 +432,7 @@ async function test(page,name){
  // Validate the exact catchment shown in the user's screenshots.
  await page.locator('#catchmentList button[data-id="SCMP-C15"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C15'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===2038,{timeout:45000});
+ await page.locator('#details [data-profile-view="technical"]').first().click();
  assert.match(await page.locator('#details').innerText(),/2,038/);
  const activeRow=page.locator('#catchmentList button.active');
  assert.equal(await activeRow.getAttribute('data-id'),'SCMP-C15');
@@ -405,6 +441,7 @@ async function test(page,name){
   return row.top>=box.top-1&&row.bottom<=box.bottom+1;
  });
  assert(visibleRow,name+': active catchment should remain visible in the directory');
+ assert.equal(await page.locator('.profileViews [role="tab"]').count(),4);
  assert.equal(await page.locator('.profileJumps button').count(),7);
  assert.equal(await page.locator('#profileTopics').count(),1,'Map profile must provide content topics');
  assert.equal(await page.locator('#profileTopics button[data-open-catchment-topic]').count(),5);
@@ -415,6 +452,7 @@ async function test(page,name){
  assert.equal(await page.locator('#knowledgeSearch').inputValue(),'Sarkin Pawa-Kaduna');
  await page.locator('#navExplore').click();
  await page.locator('#pageExplore').waitFor({state:'visible'});
+ await page.locator('#details [data-profile-view="technical"]').first().click();
  assert.equal((await metric(page)).selected,'SCMP-C15','Knowledge navigation must preserve selected map catchment');
  await page.locator('button[data-profile-target="profileAdmin"]').click();
  await page.waitForFunction(()=>{
