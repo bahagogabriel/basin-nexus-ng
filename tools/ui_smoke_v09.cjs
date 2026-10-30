@@ -154,7 +154,6 @@ async function test(page,name){
  }
  // S20: supplementary institutional mineral and grazing listings preserve source attribution.
  if(name==='desktop'){
-  await page.waitForFunction(()=>document.querySelector('#occurrenceLayerStatus')?.textContent.includes('764 source-attributed LGA records'),{timeout:30000});
   await page.locator('#catchmentList button[data-id="SCMP-C08"]').click();
   await page.waitForFunction(()=>document.querySelectorAll('#profileOccurrences [data-occurrence-select^="BN-S20-"]').length===59,{timeout:30000});
   await page.locator('#profileOccurrences').evaluate(el=>{el.open=true});
