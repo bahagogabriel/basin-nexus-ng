@@ -7,7 +7,7 @@ for value in ("riverScope='all',riverDensity='medium'","selected=null;riverScope
 "el('overviewBtn').addEventListener('click',showOverview)",
 "showOverview()).catch","disabled>All catchments</button>","id=\"riverDensity\"",
 "Select a catchment to load its FAO 2026 modeled river network",
-"renderList();el('catchmentList').scrollTop=0;renderDetails();el('details').scrollTop=0;setView(full)",
+"renderList();el('catchmentList').scrollTop=0;refreshThemeControls();renderDetails();el('details').scrollTop=0;setView(full)",
 "20 strategic catchments · choose a region to explore its rivers",
 "Click any catchment on the map","public geographic data"):
  if value=="showOverview()).catch":continue
