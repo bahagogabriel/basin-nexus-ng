@@ -176,8 +176,8 @@ async function test(page,name){
   assert.equal(await page.locator('#details [data-occurrence-select^="BN-PUB-"]').count(),15,'All 15 original official Sokoto occurrences remain');
   assert(await page.locator('#details [data-occurrence-select^="BN-S19-"]').count()>0,'S19 original-communique records added');
   const manager=page.locator('#layerManager');await manager.locator('summary').click();
-  await page.locator('#occurrenceLayerToggle').click();
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
+  assert.equal(await page.locator('#resourceAtlasToggle').getAttribute('aria-pressed'),'true','Regional overview category toggle is preserved separately');
   assert.match(await page.locator('#occurrenceLayerStatus').innerText(),/LGA representative markers only/);
   await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceCategory').selectOption('mineral');
