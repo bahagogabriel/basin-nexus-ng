@@ -13,6 +13,9 @@ assert {c["id"] for c in d["catchments"]}=={c["id"] for c in registry}
 assert sum(c["total"] for c in d["catchments"])==3277
 assert sum(c["communique"] for c in d["catchments"])==1654
 assert sum(c["vision"] for c in d["catchments"])==1623
+assert sum(x["s"]=="vision_resources" for x in d["entries"])>=300
+assert sum(x["s"]=="vision_challenges" for x in d["entries"])>=150
+assert sum(x["s"]=="vision_priorities" for x in d["entries"])>=50
 assert all(isinstance(x["p"],int) and x["p"]>0 and 0<=x["d"]<37 and x["t"] for x in d["entries"])
 assert all(not re.search(r"(?i)signature\s*(?:&|and|/)\s*date|\b\w+@\w+\.\w+\b|\+234\d{10}",x["t"]) for x in d["entries"])
 counts=Counter(x["c"] for x in d["entries"])
