@@ -294,7 +294,7 @@ header .nav button{padding:8px 12px}
       <div class="layerSection"><strong>Water layers</strong><div class="layerButtons"><button type="button" class="toggle" id="riversToggle" aria-pressed="true">Hide rivers</button><button type="button" class="toggle" id="lakesToggle" aria-pressed="true">Hide major lakes</button></div></div>
       <div class="layerSection"><strong>Administrative boundaries</strong><div class="layerButtons"><button type="button" class="toggle" id="nationalToggle" aria-pressed="true">Hide Nigeria border</button><button type="button" class="toggle" id="stateToggle" aria-pressed="true">Hide states</button><button type="button" class="toggle" id="lgaToggle" aria-pressed="false" disabled title="Select a catchment to inspect its LGAs">Show LGAs</button></div></div>
       <div class="layerSection"><strong>Research dam references (not confirmed)</strong><div class="layerButtons"><button type="button" class="toggle" id="compiledDamToggle" aria-pressed="false" disabled>Show compiled dam references</button></div><p id="compiledDamStatus" role="status" aria-live="polite">Preparing 2026 published-source reference points. Confirmed individual dams: 0.</p></div>
-      <div class="layerSection"><strong>Stakeholder resources · all 20 catchments (map symbols only)</strong><div class="layerButtons"><button type="button" id="resourceAtlasToggle" class="toggle" aria-pressed="true">Hide resource category symbols</button><label for="resourceAtlasCategory">Category <select id="resourceAtlasCategory"><option value="all">All resources</option><option value="crop">Crops</option><option value="mineral">Minerals</option><option value="ecology">Ecology</option><option value="water">Water resources</option><option value="pressure">Environmental pressures</option></select></label></div><p id="resourceAtlasStatus" role="status" aria-live="polite">Loading reported resources for all 20 catchments…</p><small>Map symbols show catchment-level source coverage, not precise farms, mines or water installations.</small></div>
+      <div class="layerSection"><strong>Stakeholder resource overview · all catchments</strong><div class="layerButtons"><button type="button" id="resourceAtlasToggle" class="toggle" aria-pressed="true">Hide resource category symbols</button><label for="resourceAtlasCategory">Category <select id="resourceAtlasCategory"><option value="all">All resources</option><option value="crop">Crops</option><option value="mineral">Minerals</option><option value="ecology">Ecology</option><option value="water">Water resources</option><option value="pressure">Environmental pressures</option></select></label></div><p id="resourceAtlasStatus" role="status" aria-live="polite">Loading reported resources for all 20 catchments…</p><small>Overview category symbols are only shown on the all-catchment map. Select a catchment to see named LGA reports, not precise farms, mines or water installations.</small></div>
       <div class="layerSection"><strong>Mapped LGA resources · all 20 catchments</strong><div class="layerButtons"><button type="button" class="toggle" id="occurrenceLayerToggle" aria-pressed="false" disabled>Show reported LGA occurrences</button><label for="occurrenceCategory">Category <select id="occurrenceCategory"><option value="all">All categories</option><option value="crop">🌾 Crops</option><option value="mineral">◆ Minerals</option><option value="ecology">♣ Ecology</option><option value="water">≋ Water</option><option value="pressure">! Environmental pressures</option></select></label></div><p id="occurrenceLayerStatus" role="status" aria-live="polite">Loading public source-backed occurrence inventory…</p><small>Symbols indicate an LGA-level report, not the exact site of a farm, mineral deposit or flood.</small></div>
       <div class="layerSection"><strong>Map labels</strong><div class="layerButtons"><button type="button" class="toggle" id="labelsToggle" aria-pressed="true">Hide labels</button></div></div>
       <p>Administrative boundaries are provisional. Detailed streams are modelled, not surveyed.</p>
@@ -472,7 +472,7 @@ header .nav button{padding:8px 12px}
 
 const extent=[2.4,3.95,15.6,15.32],full={x:0,y:0,w:1020,h:750};
 const el=id=>document.getElementById(id),canvas=el('mapCanvas'),ctx=canvas.getContext('2d',{alpha:true});
-let catchments=[],geo=[],national=null,countryContext=null,administrative=null,admStates=null,admLgas=null,lgaPromise=null,selected=null,occurrenceData=null,occurrenceOn=false,selectedOccurrenceId=null,occurrenceMarkerHits=[],waterMeta=null,detailedManifest=null,riverComparison=null,faoTopologySummary=null,fao89Audit=null,faoOutletPreflight=null,faoTopologyGraph=null,faoTopologyRequest=null,faoGeometrySummary=null,faoUncutThree=null,faoEndpointGapMap=null,faoGapRequest=null,activeSourceTrace=null,knowledgeIndex=null,sourceContentModel=null,publicEvidence=null,evidenceLoadState='pending',damQuality=null;
+let catchments=[],geo=[],national=null,countryContext=null,administrative=null,admStates=null,admLgas=null,lgaPromise=null,selected=null,occurrenceData=null,occurrenceOn=false,occurrenceManualPreference=null,selectedOccurrenceId=null,occurrenceMarkerHits=[],waterMeta=null,detailedManifest=null,riverComparison=null,faoTopologySummary=null,fao89Audit=null,faoOutletPreflight=null,faoTopologyGraph=null,faoTopologyRequest=null,faoGeometrySummary=null,faoUncutThree=null,faoEndpointGapMap=null,faoGapRequest=null,activeSourceTrace=null,knowledgeIndex=null,sourceContentModel=null,publicEvidence=null,evidenceLoadState='pending',damQuality=null;
 let stakeholderAtlas=null,resourceAtlasOn=true,resourceAtlasMarkerHits=[];
 let labelsOn=true,nationalOn=true,statesOn=true,lgasOn=false,riversOn=true,lakesOn=true,riverScope='all',riverDensity='medium',expanded=false,viewport={...full},compiledDamOn=false,compiledDamData=null,selectedDamRef=null;
 let catchPaths=new Map(),statePaths=[],countryPath=null,lgaPaths=new Map(),riverPaths=[],lakePaths=[],activeLGA=null,activeHydro=null,paintScheduled=false,detailCache=new Map(),detailAbort=null,detailSequence=0,detailStatus='idle';
@@ -1411,10 +1411,23 @@ function acceptSupplementaryLGAEvidence(d){
  })&&d.unmapped.every(r=>r.status==='REVIEW_ONLY_NOT_PLOTTED'&&!r.lga_uid);
 }
 function allOccurrenceRecords(){return [...(occurrenceData?.records||[]),...(stakeholderLGAEvidence?.records||[]),...(supplementaryLGAEvidence?.records||[])];}
+async function activateSelectedLgaReports(){
+ if(!selected||occurrenceManualPreference===false||!allOccurrenceRecords().some(r=>r.catchment_id===selected))return;
+ try{
+  await ensureOccurrenceLgaGeometry();
+  if(!selected||occurrenceManualPreference===false)return;
+  occurrenceOn=true;
+  const btn=el('occurrenceLayerToggle');
+  btn.setAttribute('aria-pressed','true');btn.textContent='Hide reported LGA occurrences';
+  el('occurrenceLayerStatus').textContent='Layer on · LGA representative markers only, not exact occurrence coordinates';
+  schedulePaint();
+ }catch(e){console.warn('LGA representative positions unavailable',e)}
+}
 function updateOccurrenceStatus(){
  const count=allOccurrenceRecords().length;
  el('occurrenceLayerToggle').disabled=count===0;
  el('occurrenceLayerStatus').textContent=count?count+' source-attributed LGA records · representative, not exact locations':'No source-attributed LGA records loaded.';
+ if(selected&&count)activateSelectedLgaReports();
 }
 function filteredOccurrenceRecords(id=selected){
  const group=el('occurrenceCategory')?.value||'all';
@@ -1567,7 +1580,7 @@ function openStakeholderResource(id){
 }
 function drawStakeholderResourceSymbols(){
  resourceAtlasMarkerHits=[];
- if(!resourceAtlasOn||!stakeholderAtlas)return;
+ if(!resourceAtlasOn||!stakeholderAtlas||selected)return;
  const dim=screen(),dpr=Math.min(window.devicePixelRatio||1,1.5),category=el('resourceAtlasCategory').value;
  ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
  for(const c of catchments){
@@ -1659,7 +1672,7 @@ function choose(id,zoom){
  selected=id;riverScope='selected';mapMetrics.selected=id;syncCatchmentURL(id);mapMetrics.riverScope='selected';
  el('mapActiveSummary').textContent=chosen.name+' · '+Math.round(chosen.area_km2).toLocaleString()+' km² · modeled river network';
  el('mapNote').textContent='Selected catchment: inspect modeled river reaches. Choose All catchments to return to the study-wide map.';
- updateRiverScopeUI();renderList();renderDetails();updateOriginalStatementList();nodes();
+ updateRiverScopeUI();renderList();renderDetails();updateOriginalStatementList();nodes();activateSelectedLgaReports();
  if(zoom)focusSelected();
  if(previousSelection!==id){originalShown=24;keepSelectedVisible();}
  el('details').scrollTop=0;
@@ -2179,9 +2192,9 @@ el('occurrenceCategory').addEventListener('change',()=>{if(selected)refreshOccur
 el('occurrenceLayerToggle').addEventListener('click',async()=>{
  const btn=el('occurrenceLayerToggle');
  if(!allOccurrenceRecords().length)return;
- if(occurrenceOn){occurrenceOn=false;btn.textContent='Show reported LGA occurrences';btn.setAttribute('aria-pressed','false');el('occurrenceLayerStatus').textContent='Layer off · source-reported LGA locations available';schedulePaint();return}
+ if(occurrenceOn){occurrenceManualPreference=false;occurrenceOn=false;btn.textContent='Show reported LGA occurrences';btn.setAttribute('aria-pressed','false');el('occurrenceLayerStatus').textContent='Layer off · source-reported LGA locations available';schedulePaint();return}
  btn.disabled=true;btn.textContent='Loading LGA positions…';
- try{await ensureOccurrenceLgaGeometry();occurrenceOn=true;btn.setAttribute('aria-pressed','true');btn.textContent='Hide reported LGA occurrences';el('occurrenceLayerStatus').textContent='Layer on · LGA representative markers only, not exact occurrence coordinates';schedulePaint()}catch(err){el('occurrenceLayerStatus').textContent='LGA representative map positions unavailable: '+err.message}finally{btn.disabled=false}
+ try{await ensureOccurrenceLgaGeometry();occurrenceManualPreference=true;occurrenceOn=true;btn.setAttribute('aria-pressed','true');btn.textContent='Hide reported LGA occurrences';el('occurrenceLayerStatus').textContent='Layer on · LGA representative markers only, not exact occurrence coordinates';schedulePaint()}catch(err){el('occurrenceLayerStatus').textContent='LGA representative map positions unavailable: '+err.message}finally{btn.disabled=false}
 });
 el('details').addEventListener('click',e=>{const b=e.target.closest('[data-occurrence-select]');if(b)showOccurrenceRecord(b.dataset.occurrenceSelect)});
 fetch('data/public_lga_occurrences.json').then(r=>{if(!r.ok)throw Error('source inventory unavailable');return r.json()}).then(d=>{
