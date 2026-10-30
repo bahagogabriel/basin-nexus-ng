@@ -93,6 +93,8 @@ assert "el('insightTheme').value=theme" in html
 assert "Direct link to this catchment" in html
 assert "renderStakeholderResourcePanel(c)" in html
 assert "resourceGlobalPanel" in html and "resourceAtlasToggle" in html
+assert "originalStakeholderStatements" in html and "stakeholder_source_detail.json" in html
+assert "originalDocType" in html and "originalTextSearch" in html
 assert mod["individual_public_claims_approved"]==0
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
