@@ -1420,8 +1420,13 @@ function showOccurrenceRecord(id){
  const provenance=r.source_locators
   ?'<p><b>Stakeholder-reported; not independently verified.</b> Source: '+r.source_locators.map(x=>esc(x.document)+' · paragraph '+Number(x.paragraph)+' ('+esc(x.theme.replaceAll('_',' '))+')').join('; ')+'. See <b>Original sources</b> above to read each source statement.</p>'
   :'<p>Government-published Sokoto–Zamfara SCMP, Annex 2 Table A-1, source page '+Number(r.source_pdf_page)+'. <a href="'+esc(r.public_report_url)+'" target="_blank" rel="noopener noreferrer">View government report</a>.</p>';
+ const quoted=r.source_locators? r.source_locators.slice(0,2).map(x=>{
+  const original=originalStatements?.entries.find(e=>e.c===r.catchment_id
+    &&originalStatements.documents[e.d]===x.document&&e.p===x.paragraph&&e.s===x.theme);
+  return original?'<blockquote style="margin:7px 0;padding:9px 12px;border-left:3px solid #3b8e82;background:#f8fcfa">'+esc(original.t)+'</blockquote>':'';
+ }).join(''):'';
  const siblings=allOccurrenceRecords().filter(x=>x.catchment_id===r.catchment_id&&x.lga_id===r.lga_id&&x.category===r.category&&x.id!==r.id);
- out.innerHTML='<strong>'+esc(r.name)+' · '+esc(r.lga_name)+' LGA, '+esc(r.state)+'</strong>'+provenance
+ out.innerHTML='<strong>'+esc(r.name)+' · '+esc(r.lga_name)+' LGA, '+esc(r.state)+'</strong>'+provenance+quoted
   +'<p><b>Location precision:</b> representative overlap point inside the named LGA and catchment. Not a surveyed site, a verified resource reserve or proof of constructed infrastructure.</p>'
   +(siblings.length?'<p><b>Other '+esc(r.category)+' reports at this LGA:</b></p><div class="occurrenceRows">'+siblings.map(x=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(x.id)+'">'+esc(x.name)+'</button>').join('')+'</div>':'');
  const row=el('details')?.querySelector('[data-occurrence-select="'+id+'"]');if(row)row.scrollIntoView({block:'nearest'});
