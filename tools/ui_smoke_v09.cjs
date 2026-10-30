@@ -813,6 +813,7 @@ async function testReachComparison(browser){
  await page.locator('#reachCompareRows button[data-reach-focus="SCMP-C17"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C17',{timeout:5000});
  assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
+ await page.locator('#details [data-profile-view="technical"]').first().click();
  assert.match(await page.locator('#details').innerText(),/not measured drainage density/);
  await page.locator('#reachProfileCompare').click();
  assert.equal(await page.locator('#navData').getAttribute('aria-current'),'page');
