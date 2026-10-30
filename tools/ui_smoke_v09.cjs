@@ -156,6 +156,7 @@ async function test(page,name){
  if(name==='desktop'){
   await page.locator('#catchmentList button[data-id="SCMP-C08"]').click();
   await page.waitForFunction(()=>document.querySelectorAll('#profileOccurrences [data-occurrence-select^="BN-S20-"]').length===59,{timeout:30000});
+  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready',{timeout:45000});
   await page.locator('#profileOccurrences').evaluate(el=>{el.open=true});
   await page.locator('#profileOccurrences [data-occurrence-select^="BN-S20-"]').first().click();
   assert.match(await page.locator('#occurrenceDetail').innerText(),/Supplementary institutional LGA inventory/);
