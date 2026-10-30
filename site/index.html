@@ -1452,7 +1452,8 @@ function refreshOccurrenceProfile(){
 function showOccurrenceRecord(id){
  const r=allOccurrenceRecords().find(x=>x.id===id);if(!r)return;
  if(selected!==r.catchment_id)choose(r.catchment_id,true);
- selectedOccurrenceId=id;const out=el('occurrenceDetail');if(!out)return;
+ selectedOccurrenceId=id;const section=el('profileOccurrences');if(section)section.open=true;
+ const out=el('occurrenceDetail');if(!out)return;
  const provenance=r.source_document
  ?'<p><b>Supplementary institutional LGA inventory; not field-verified.</b> Source: '+esc(r.source_document)+(r.source_row?' · table row '+Number(r.source_row):' · LGA section '+esc(r.lga_name))+'. '+(r.reported_legal_status?'Reported legal status: '+esc(r.reported_legal_status)+'. ':'')+(r.reported_area_ha?'Reported extent: '+Number(r.reported_area_ha).toLocaleString()+' ha. ':'')+'Named communities are context only; no exact occurrence coordinates were provided.</p>'
  :r.source_locators
