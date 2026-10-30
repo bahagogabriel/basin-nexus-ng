@@ -20,7 +20,7 @@ assert doc['records']==[], 'STOP: individual evidence records require new human-
 assert result=={'validated_public_records':0,'mapped_locations':0}
 html=(site/'index.html').read_text('utf-8')
 for phrase in (
- 'approved evidence catalogue preview v1.12',
+ '© 2026 Basin Nexus NG', 'Designed by <a href="https://bahagogabriel.com/"',
  'id="evidenceCataloguePanel"','id="evidenceList"','id="evidenceSearch"',
  'id="evidenceStatus"','id="evidenceTheme"',
  "function acceptPublicEvidence(document)",'function renderEvidenceCatalogue(scope)',
