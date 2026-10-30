@@ -101,6 +101,32 @@ async function test(page,name){
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.frames>0&&document.querySelector('#details h2')?.textContent==='Explore all 20 catchments',{timeout:35000});
  await responsiveUX(page,name);
+ // Stage S15 resource atlas: exercise real source-linked LGA symbols without inventing asset coordinates.
+ if(name==='desktop'){
+  assert.equal(await page.locator('#guideQuickstart').count(),1,'Visitor quickstart guide visible');
+  await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.disabled===false,{timeout:25000});
+  await page.locator('#catchmentList button[data-id="SCMP-C17"]').click();
+  await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Sokoto-Zamfara');
+  assert.equal(await page.locator('#details [data-occurrence-select]').count(),15,'15 published report-backed occurrences in profile');
+  const manager=page.locator('#layerManager');await manager.locator('summary').click();
+  await page.locator('#occurrenceLayerToggle').click();
+  await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
+  assert.match(await page.locator('#occurrenceLayerStatus').innerText(),/LGA representative markers only/);
+  await manager.evaluate(el=>{el.open=true});
+  await page.locator('#occurrenceCategory').selectOption('mineral');
+  assert.equal(await page.locator('#details [data-occurrence-select]').count(),8,'mineral category should filter occurrence list');
+  await page.locator('#details [data-occurrence-select]').first().click();
+  assert.match(await page.locator('#occurrenceDetail').innerText(),/not a surveyed site/i);
+  await manager.evaluate(el=>{el.open=true});
+  await page.locator('#occurrenceCategory').selectOption('all');
+  await manager.evaluate(el=>{el.open=true});
+  await page.locator('#occurrenceLayerToggle').click();
+  assert.equal(await page.locator('#occurrenceLayerToggle').getAttribute('aria-pressed'),'false');
+  await manager.evaluate(el=>{el.open=false});
+  await page.locator('#overviewBtn').click();
+  await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Explore all 20 catchments');
+  console.log(name+': Stage S15 PASS 15 LGA-level source entries, category filters, symbol layer and visible guide');
+ }
  // Stage 3D-S: source research overlay starts hidden, is opt-in, and never confirms a dam.
  assert.equal(await page.locator('#compiledDamQuickToggle').isEnabled(),true,name+': optional source research layer loaded');
  assert.equal(await page.locator('#compiledDamToggle').getAttribute('aria-pressed'),'false');
