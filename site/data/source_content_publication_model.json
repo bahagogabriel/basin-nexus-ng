@@ -363,5 +363,148 @@
     "publication_index": "https://acresal.gov.ng/publications/",
     "checked_date": "2026-10-29",
     "scope": "External government-hosted links only. All 20 plans reported validated, but individual public report links independently located for nine. No private-source claims released, and a linked document is not independently verified evidence of individual reported facilities or completed proposals."
+  },
+  "official_report_page_guides": {
+    "status": "SOURCE_PAGE_NAVIGATION_NOT_FACT_VALIDATION",
+    "date": "2026-10-30",
+    "publisher_pdf_pages_indexed": 6,
+    "total_page_anchors": 19,
+    "viewer_page_numbering": "PDF viewer pages are 1-based and differ from printed report page numbers. Links use #page=N.",
+    "limitations": "These are topical entry points located from the publisher's searchable report text. The linked report is not independent corroboration of private workshop statements, verified asset status, permission to republish private text, or verification of proposed interventions. Two oversized publisher PDFs (Rima and Sokoto-Zamfara) were not accessible for page indexing in this reader.",
+    "entries": [
+      {
+        "catchment_id": "SCMP-C04",
+        "theme": "natural_resources",
+        "topic": "Shea trees and vegetation",
+        "pdf_page_1_based": 60,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C04",
+        "theme": "threats_challenges",
+        "topic": "Deforestation and soil erosion",
+        "pdf_page_1_based": 63,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C04",
+        "theme": "policies",
+        "topic": "Water Users Association Law reference",
+        "pdf_page_1_based": 194,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C06",
+        "theme": "natural_resources",
+        "topic": "Reported gemstone locations",
+        "pdf_page_1_based": 166,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C06",
+        "theme": "threats_challenges",
+        "topic": "Siltation and flood challenges",
+        "pdf_page_1_based": 127,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C06",
+        "theme": "socioeconomics",
+        "topic": "Existing and potential irrigation",
+        "pdf_page_1_based": 78,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C06",
+        "theme": "policies",
+        "topic": "Stakeholder policy-review discussion",
+        "pdf_page_1_based": 168,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C11",
+        "theme": "water_infrastructure",
+        "topic": "Geidam basin water-use table",
+        "pdf_page_1_based": 77,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C11",
+        "theme": "threats_challenges",
+        "topic": "Seasonal flooding and floodplains",
+        "pdf_page_1_based": 65,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C11",
+        "theme": "threats_challenges",
+        "topic": "Reported land-degradation pressures",
+        "pdf_page_1_based": 143,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C16",
+        "theme": "natural_resources",
+        "topic": "Pandam-area tourism and wildlife",
+        "pdf_page_1_based": 199,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C16",
+        "theme": "threats_challenges",
+        "topic": "Jos Plateau mining and tailings",
+        "pdf_page_1_based": 57,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C16",
+        "theme": "policies",
+        "topic": "Federal Land Use Act discussion",
+        "pdf_page_1_based": 237,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C18",
+        "theme": "water_infrastructure",
+        "topic": "Hydrology and water resources",
+        "pdf_page_1_based": 68,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C18",
+        "theme": "socioeconomics",
+        "topic": "Grid and rural power infrastructure",
+        "pdf_page_1_based": 105,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C18",
+        "theme": "interventions",
+        "topic": "Proposed forest-reserve restoration",
+        "pdf_page_1_based": 174,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C19",
+        "theme": "socioeconomics",
+        "topic": "Farming and sorghum references",
+        "pdf_page_1_based": 50,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C19",
+        "theme": "threats_challenges",
+        "topic": "Stakeholder-reported siltation and flooding",
+        "pdf_page_1_based": 167,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C19",
+        "theme": "natural_resources",
+        "topic": "Reported aquatic resources",
+        "pdf_page_1_based": 167,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      }
+    ]
   }
 }

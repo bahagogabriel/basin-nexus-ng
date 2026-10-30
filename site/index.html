@@ -1650,7 +1650,12 @@ function renderOfficialSCMPReports(scope){
  const name=catchments.find(c=>c.id===r.id)?.name||r.id;
  const valid=url=>typeof url==='string'&&url.startsWith('https://acresal.gov.ng/');
  if(!valid(r.official_publication_page))return '';
- return '<article class="officialSCMPEntry"><strong>'+esc(name)+'</strong><p><a href="'+esc(r.official_publication_page)+'" target="_blank" rel="noopener noreferrer">ACReSAL publication page</a>'+(valid(r.official_public_pdf)?' · <a href="'+esc(r.official_public_pdf)+'" target="_blank" rel="noopener noreferrer">Government-hosted PDF</a>':'')+'</p><small>Official external report · proposals are not completed projects by default</small></article>';
+ return '<article class="officialSCMPEntry"><strong>'+esc(name)+'</strong><p><a href="'+esc(r.official_publication_page)+'" target="_blank" rel="noopener noreferrer">ACReSAL publication page</a>'+(valid(r.official_public_pdf)?' · <a href="'+esc(r.official_public_pdf)+'" target="_blank" rel="noopener noreferrer">Government-hosted PDF</a>':'')+'</p><small>Official external report · proposals are not completed projects by default</small>'+
+ (valid(r.official_public_pdf)?(()=>{
+ const pages=sourceContentModel?.official_report_page_guides?.entries?.filter(x=>x.catchment_id===r.id)||[];
+ return pages.length?'<details class="officialSCMPPages"><summary>Browse '+pages.length+' report topics by PDF page</summary><ul>'+
+ pages.map(x=>'<li><a href="'+esc(r.official_public_pdf)+'#page='+Number(x.pdf_page_1_based)+'" target="_blank" rel="noopener noreferrer">'+esc(x.topic)+' · PDF page '+Number(x.pdf_page_1_based)+'</a></li>').join('')+'</ul><small>Publisher-reported discussion, not separately confirmed field evidence</small></details>':'';
+ })():'')+'</article>';
  }).join(''):'<p>No individually verified official report link for the current selection. This does not imply that no report exists.</p>';
 }
 function renderKnowledge(){
