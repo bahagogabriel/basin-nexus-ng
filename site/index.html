@@ -317,6 +317,13 @@ header .nav button{padding:8px 12px}
 <section id="knowledgeThemePanel" class="knowledgeThemePanel" aria-live="polite" aria-label="Thematic summary"></section>
 <p id="knowledgeCount" aria-live="polite">Loading source coverage…</p>
 <div class="knowledgeCards" id="knowledgeCards"></div>
+<section id="official2026Updates" class="evidenceCatalogue" aria-label="Official ACReSAL planning and consultation milestones">
+<h3>2026 catchment planning and consultation updates</h3>
+<p>ACReSAL reported validation of all 20 Strategic Catchment Management Plans on 22 March 2026. Its 15 October article names ten catchments in a final round of implementation-focused consultations. <strong>Consultation, prioritisation and validation are not evidence that proposed projects are constructed or funded.</strong></p>
+<p><a href="https://acresal.gov.ng/nigeria-endorses-20-historic-strategic-blueprints-to-restore-degraded-landscapes-and-water-bodies/" target="_blank" rel="noopener noreferrer">March 2026: official 20-plan validation announcement</a> · <a href="https://acresal.gov.ng/acresal-world-bank-call-for-urgent-stakeholder-ownership-as-implementation-focused-engagements-for-20-strategic-catchment-management-plans-conclude/" target="_blank" rel="noopener noreferrer">October 2026: final-ten implementation consultation phase</a></p>
+<p id="official2026Count" aria-live="polite">Loading official consultation references…</p>
+<div id="official2026Entries" class="officialSCMPEntries" aria-live="polite"></div>
+</section>
 <section id="officialSCMP" class="evidenceCatalogue" aria-label="Government-published original catchment plans">
 <h3>Read official Strategic Catchment Management Plans</h3>
 <p>ACReSAL reports that all 20 plans have been developed and validated. We have verified nine individually listed publication pages on the official ACReSAL website, with direct PDFs for eight. Follow the publisher's links to read these plans; the source report is not proof that every proposed intervention has been completed. The restricted workshop communiqués are not published here.</p>
@@ -1639,6 +1646,20 @@ function filteredKnowledge(){
  });
  return result;
 }
+function renderOfficial2026Updates(scope){
+ const counter=el('official2026Count'),panel=el('official2026Entries');
+ const meta=sourceContentModel?.official_2026_consultations;
+ if(!meta||meta.status!=='OFFICIAL_PUBLISHER_REPORTING_ONLY'||meta.count_catchments_in_final_10!==10||meta.count_individual_activity_articles!==5||meta.catchments?.length!==20){counter.textContent='Official milestones unavailable';panel.textContent='Use ACReSAL\'s announcements above for the original source.';return}
+ const ids=new Set(scope.map(x=>x.id));
+ const listed=meta.catchments.filter(x=>ids.has(x.id)&&x.mentioned_in_2026_oct15_final_ten);
+ counter.textContent=listed.length+' of '+scope.length+' matching catchments were named in the October 2026 final-ten consultation article · all 20 plans were reported validated in March 2026';
+ panel.innerHTML=listed.length?listed.map(x=>{
+   const name=catchments.find(c=>c.id===x.id)?.name||x.id,story=x.individual_activity_news;
+   const allow=url=>typeof url==='string'&&(url.startsWith('https://acresal.gov.ng/')||url.startsWith('https://www.acresalfcta.org.ng/'));
+   const article=story&&allow(story.url)?'<p><a href="'+esc(story.url)+'" target="_blank" rel="noopener noreferrer">'+esc(story.published)+' · '+esc(story.publisher)+' account: '+esc(story.headline)+'</a></p>':'<p>Named in the official 15 October 2026 catchment consultation announcement.</p>';
+   return '<article class="officialSCMPEntry"><strong>'+esc(name)+'</strong>'+article+'<small>Planning/consultation status only; no infrastructure-completion claim</small></article>';
+ }).join(''):'<p>None of the selected catchments is specifically named in the October 15 final-ten article. ACReSAL still reports development and validation of all 20 plans; the absence of a named article is not evidence of inactivity.</p>';
+}
 function renderOfficialSCMPReports(scope){
  const count=el('officialSCMPCount'),out=el('officialSCMPEntries');
  const meta=sourceContentModel?.official_scmp_publication_links;
@@ -1668,6 +1689,7 @@ function renderKnowledge(){
  el('knowledgeExport').disabled=result.length===0;
  renderEvidenceCatalogue(result);
  renderOfficialSCMPReports(result);
+ renderOfficial2026Updates(result);
  el('knowledgeCards').innerHTML=result.length?result.map(c=>{
   const row=catchments.find(x=>x.id===c.id), admin=administrative?.byCatchment?.[c.id];
   const river=detailedManifest?.files?.[c.id], stateRecord=(admin?.states||[]).find(s=>s.name===state),
