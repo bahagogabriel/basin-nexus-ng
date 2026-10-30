@@ -10,7 +10,8 @@ assert "if(riversOn&&riverPaths.length&&riverScope==='all')" in s
 assert "function riverAllowedAt(world)" in s
 assert "if(riversOn&&riverScope==='all'&&riverAllowedAt(world))" in s
 assert "mapMetrics.riverScope=riverScope" in s
-assert "FAO AQUASTAT river reaches are modelled" in s\nassert "not surveyed channels" in s
+assert "FAO AQUASTAT river reaches are modelled" in s
+assert "not surveyed channels" in s
 assert "not a complete survey" in s
 assert "canvas.setPointerCapture(e.pointerId)" in s
 print("CATCHMENT RIVER FOCUS REGRESSION: PASS")
