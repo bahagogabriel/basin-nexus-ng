@@ -1452,7 +1452,7 @@ async function ensureOccurrenceLgaGeometry(){
 }
 function acceptStakeholderAtlas(d){
  if(!d||d.schema_version!=='BN_STAKEHOLDER_RESOURCE_ATLAS_V1'||d.release_status!=='OWNER_AUTHORIZED_ANONYMIZED_STAKEHOLDER_INVENTORY'||d.catchment_count!==20||d.resource_records!==375||d.source_mentions!==592||d.resources?.length!==375||d.catchments?.length!==20)return false;
- const ids=new Set(catchments.map(c=>c.id)),valid=new Set(['crop','mineral','ecology','water','pressure']);
+ const ids=new Set(d.catchments.map(c=>c.id)),valid=new Set(['crop','mineral','ecology','water','pressure']);
  return d.catchments.every(c=>ids.has(c.id)&&c.distinct_resource_terms>0)
  &&d.resources.every(x=>ids.has(x.catchment_id)&&valid.has(x.category)&&x.location_precision==='CATCHMENT_LEVEL'&&x.source_status==='INSTITUTIONAL_STAKEHOLDER_REPORTED'&&typeof x.reported_resource==='string'&&x.reported_resource.length>0&&!Object.keys(x).some(k=>['coordinates','longitude','latitude','stakeholder_source_text_private'].includes(k)));
 }
