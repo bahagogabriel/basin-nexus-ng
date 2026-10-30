@@ -3,7 +3,7 @@
 from pathlib import Path
 s=(Path(__file__).resolve().parents[1]/'site/index.html').read_text(encoding='utf-8')
 for marker in (
- 'function keepSelectedVisible(){',"if(previousSelection!==id)keepSelectedVisible()",
+ 'function keepSelectedVisible(){','keepSelectedVisible()','if(previousSelection!==id)',
  "el('catchmentList').scrollTop=0",'id="mapHint"',
  'summary aria-label="Show map instructions"','id="mapNote"',
  'class="profileJumps"','data-profile-target="profileRivers"',
