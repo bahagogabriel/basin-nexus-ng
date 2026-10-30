@@ -83,6 +83,9 @@ assert all(25<=len(t["summary"])<=350 for p in pilot["profiles"] for t in p["top
 assert "catchmentInsightsPanel" in html and "renderCatchmentInsights(result)" in html
 assert "data-insight-map" in html and "insightTheme" in html
 assert "renderCatchmentContentBridge(c)" in html
+assert "profilePublishedSections" in html
+assert "sourceSections" in html
+assert "official_report_page_guides" in html
 assert "profileTopics" in html and "data-open-catchment-topic" in html
 assert "syncCatchmentURL(id)" in html and "restoreSharedCatchment()" in html
 assert "window.history.replaceState" in html
