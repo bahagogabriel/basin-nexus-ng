@@ -39,6 +39,7 @@ jobs:
         run: |
           python tools/test_public_lga_occurrences.py
           python tools/test_stakeholder_lga_occurrences.py
+          python tools/test_s20_supplementary_lga_resources.py
       - name: Validate public-only external research source registry and synthetic CSV integrity
         run: |
           python tools/test_external_reference_sources.py

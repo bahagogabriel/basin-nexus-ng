@@ -152,6 +152,20 @@ async function test(page,name){
   await page.locator('#overviewBtn').click();
   console.log('S18 PASS: original Gulbin/Gaji documents, source provenance, map/profile filter isolation and no false empty panel');
  }
+ // S20: supplementary institutional mineral and grazing listings preserve source attribution.
+ if(name==='desktop'){
+  await page.locator('#catchmentList button[data-id="SCMP-C08"]').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#profileOccurrences [data-occurrence-select^="BN-S20-"]').length===59,{timeout:30000});
+  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready',{timeout:45000});
+  await page.locator('#profileOccurrences').evaluate(el=>{el.open=true});
+  await page.locator('#profileOccurrences [data-occurrence-select^="BN-S20-"]').first().click();
+  assert.match(await page.locator('#occurrenceDetail').innerText(),/Supplementary institutional LGA inventory/);
+  assert.match(await page.locator('#occurrenceDetail').innerText(),/not field-verified/);
+  await page.locator('#catchmentList button[data-id="SCMP-C20"]').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#profileOccurrences [data-occurrence-select^="BN-S20-"]').length===68,{timeout:30000});
+  await page.locator('#overviewBtn').click();
+  console.log('S20 PASS: 127 supplementary LGA records with distinct source attribution and no exact sites');
+ }
  // Stage S15 resource atlas: exercise real source-linked LGA symbols without inventing asset coordinates.
  if(name==='desktop'){
   assert.equal(await page.locator('#guideQuickstart').count(),1,'Visitor quickstart guide visible');
@@ -162,8 +176,8 @@ async function test(page,name){
   assert.equal(await page.locator('#details [data-occurrence-select^="BN-PUB-"]').count(),15,'All 15 original official Sokoto occurrences remain');
   assert(await page.locator('#details [data-occurrence-select^="BN-S19-"]').count()>0,'S19 original-communique records added');
   const manager=page.locator('#layerManager');await manager.locator('summary').click();
-  await page.locator('#occurrenceLayerToggle').click();
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
+  assert.equal(await page.locator('#resourceAtlasToggle').getAttribute('aria-pressed'),'true','Regional overview category toggle is preserved separately');
   assert.match(await page.locator('#occurrenceLayerStatus').innerText(),/LGA representative markers only/);
   await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceCategory').selectOption('mineral');
