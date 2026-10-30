@@ -109,7 +109,7 @@ async function test(page,name){
   await page.waitForFunction(()=>document.querySelector('#profileResourcePanel .stakeResourceRow')?.textContent.includes('Cassava'));
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),24,'Aloma–Konshisha source terms populated');
   await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
-  await page.waitForFunction(()=>document.querySelector('#profileResourcePanel .stakeResourceRow')?.textContent.includes('Rice'));
+  await page.waitForFunction(()=>[...document.querySelectorAll('#profileResourcePanel .stakeResourceRow')].some(x=>x.textContent.includes('Rice')));
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),27,'Benue–Mada source terms populated');
   await page.locator('#resourceProfileSearch').fill('gold');
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),1,'Per-catchment resource search filters');
