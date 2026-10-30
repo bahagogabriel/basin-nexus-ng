@@ -44,7 +44,9 @@ for key,entry in admin['byCatchment'].items():
    ids[lga['id']] = (lga['name'],lga['state'])
 assert (state_links,lga_links,len(ids))==(102,754,495)
 
-assert "approved evidence catalogue preview v1.12" in html
+assert '© 2026 Basin Nexus NG' in html
+assert 'id="navGuide"' in html and 'id="pageGuide"' in html
+assert 'Designed by <a href="https://bahagogabriel.com/"' in html
 assert "function riverClassesFor(id)" in html
 assert "function renderKnowledgeLens(rows)" in html
 assert "function renderKnowledgeCardLens(c,row,admin,river)" in html
