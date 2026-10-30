@@ -43,6 +43,14 @@ assert sum(bool(r["official_publication_page"]) for r in records)==9
 assert sum(bool(r["official_public_pdf"]) for r in records)==8
 assert all(r["official_report_link_status"]==("ACRESAL_PUBLICATION_ENTRY_INDEXED" if r["official_publication_page"] else "INDIVIDUAL_PUBLIC_LINK_NOT_VERIFIED") for r in records)
 assert all((r["official_publication_page"] is None or r["official_publication_page"].startswith("https://acresal.gov.ng/publications/")) and (r["official_public_pdf"] is None or r["official_public_pdf"].startswith("https://acresal.gov.ng/wp-content/uploads/2025/11/")) for r in records)
+assert mod["official_report_page_guides"]["total_page_anchors"]==19
+assert mod["official_report_page_guides"]["publisher_pdf_pages_indexed"]==6
+page_entries=mod["official_report_page_guides"]["entries"]
+assert len(page_entries)==19 and len({x["catchment_id"] for x in page_entries})==6
+assert all(x["catchment_id"] in {r["id"] for r in records if r["official_public_pdf"]} for x in page_entries)
+assert all(x["review_scope"]=="PUBLIC_REPORT_PAGE_NAVIGATION_ONLY" and isinstance(x["pdf_page_1_based"],int) and 1<=x["pdf_page_1_based"]<=277 for x in page_entries)
+assert all(set(x)=={"catchment_id","theme","topic","pdf_page_1_based","review_scope"} for x in page_entries)
+assert "officialSCMPPages" in html and "pdf_page_1_based" in html
 assert mod["individual_public_claims_approved"]==0
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
