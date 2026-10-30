@@ -34,7 +34,12 @@ assert source_model['publication_status']=='PUBLIC_METADATA_ONLY' and source_mod
 assert {x['id'] for x in source_model['catchments']}=={x['id'] for x in d['catchments']}
 assert sum(x['linked_shared_vision_source_in_restricted_set'] for x in source_model['catchments'])==19
 html=(site/'index.html').read_text()
-assert 'approved evidence catalogue preview v1.12' in html
+assert '© 2026 Basin Nexus NG' in html
+assert 'Designed by <a href="https://bahagogabriel.com/"' in html
+assert 'id="navGuide"' in html and 'id="pageGuide"' in html
+assert 'id="themeSwitch"' in html and 'data-profile-pane="sources"' in html
+# The obsolete 2026 preview-v1.12 footer must not falsely describe the current S21 source-attributed release.
+assert 'approved evidence catalogue preview v1.12' not in html
 assert "id=\"knowledgeLenses\"" in html
 assert "id=\"knowledgeCrossborder\"" in html
 assert "function renderKnowledgeLens(rows)" in html
