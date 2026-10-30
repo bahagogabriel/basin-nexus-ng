@@ -6,6 +6,8 @@ on:
       - 'site/data/stakeholder_coverage_index.json'
       - 'site/data/source_content_publication_model.json'
       - 'site/data/public_lga_occurrences.json'
+      - 'site/data/stakeholder_resource_atlas.json'
+      - 'tools/test_stakeholder_resource_atlas.py'
       - 'tools/test_public_lga_occurrences.py'
       - 'site/data/public_evidence_catalogue.json'
       - 'tools/validate_public_release.py'
@@ -34,6 +36,8 @@ jobs:
         run: python tools/test_stage_s2_source_content_model.py
       - name: Test source-data adversarial privacy contract
         run: python -m unittest discover -s tools -p 'test_engagement_source_contract.py' -v
+      - name: Verify owner-authorized 20-catchment resource catalogue
+        run: python tools/test_stakeholder_resource_atlas.py
       - name: Check public LGA-level stakeholder occurrence geometry and disclosure
         run: python tools/test_public_lga_occurrences.py
       - name: Check downstream public evidence zero-record gate
