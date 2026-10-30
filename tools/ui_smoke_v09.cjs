@@ -105,7 +105,7 @@ async function test(page,name){
  if(name==='desktop'){
   await page.locator('#navGuide').click();await page.locator('#pageGuide').waitFor({state:'visible'});
   assert.match(await page.locator('#pageGuide').innerText(),/Choose one topic/);
-  assert.match(await page.locator('footer').innerText(),/Samuel Bahago Gabriel/);
+  assert.match(await page.locator('footer.foot').innerText(),/Samuel Bahago Gabriel/);
   await page.locator('#guideGo').click();await page.locator('#pageExplore').waitFor({state:'visible'});
   await page.locator('#catchmentList button[data-id="SCMP-C04"]').click();
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
@@ -117,7 +117,7 @@ async function test(page,name){
   await page.locator('#details [data-profile-view="resources"]').first().click();
   assert(await page.locator('#profileOccurrences [data-occurrence-select]').count()>=1);
   assert((await page.locator('#profileOccurrences .occurrenceRow b').allTextContents()).every(x=>x==='Lithium'));
-  assert.match(await page.locator('#resourceLegendRows').innerText(),/Lithium/);
+  assert.match(await page.locator('#resourceLegendRows').textContent(),/Lithium/);
   await page.locator('#themeSwitch [data-theme="crop"]').click();
   assert.equal(await page.locator('#occurrenceCategory').inputValue(),'crop');
   assert.equal(await page.locator('#resourceTypeFilter').inputValue(),'all');
