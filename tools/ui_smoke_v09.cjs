@@ -124,6 +124,32 @@ async function test(page,name){
   await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Explore all 20 catchments');
   console.log('S17: PASS all-catchment resource catalogue, Aloma/Benue content, search, Knowledge → map navigation');
  }
+ // S18: the actual original documents must populate every profile, not just the 375-keyword summary.
+ if(name==='desktop'){
+  await page.locator('#catchmentList button[data-id="SCMP-C04"]').click();
+  await page.waitForFunction(()=>document.querySelector('#originalStatementCount')?.textContent.includes('157 matching original statements'),{timeout:30000});
+  assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),14,'Gulbin-Ka full resource names displayed');
+  assert.equal(await page.locator('#profileOccurrences').count(),0,'Do not display a false 0 records legacy-pilot card outside Sokoto–Zamfara');
+  await page.locator('#originalTopic').selectOption('resources');
+  assert.match(await page.locator('#originalStatementCount').innerText(),/24 matching original statements/,'All resource paragraphs are visible from original Gulbin-Ka communiqué');
+  assert.match(await page.locator('#originalStatementEntries').innerText(),/soya beans in Danko LGA/i);
+  assert.match(await page.locator('#originalStatementEntries').innerText(),/Lithium in Shanga/i);
+  await page.locator('#layerManager').evaluate(el=>{el.open=true});
+  await page.locator('#resourceAtlasCategory').selectOption('ecology');
+  assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),14,'Map ecology filter must NOT suppress the catchment resource inventory');
+  await page.locator('#originalTopic').selectOption('all');
+  await page.locator('#originalDocType').selectOption('vision');
+  assert.match(await page.locator('#originalStatementCount').innerText(),/55 matching original statements/);
+  await page.locator('#originalDocType').selectOption('all');
+  await page.locator('#originalTextSearch').fill('Rijau');
+  assert(await page.locator('#originalStatementEntries .sourceStatementItem').count()>0,'Search original text for a named LGA');
+  await page.locator('#catchmentList button[data-id="SCMP-C03"]').click();
+  await page.waitForFunction(()=>document.querySelector('#originalStatementCount')?.textContent.includes('259 matching original statements'));
+  assert.equal(await page.locator('#profileOccurrences').count(),0);
+  await page.locator('#layerManager').evaluate(el=>{el.open=false});
+  await page.locator('#overviewBtn').click();
+  console.log('S18 PASS: original Gulbin/Gaji documents, source provenance, map/profile filter isolation and no false empty panel');
+ }
  // Stage S15 resource atlas: exercise real source-linked LGA symbols without inventing asset coordinates.
  if(name==='desktop'){
   assert.equal(await page.locator('#guideQuickstart').count(),1,'Visitor quickstart guide visible');
@@ -138,6 +164,7 @@ async function test(page,name){
   await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceCategory').selectOption('mineral');
   assert.equal(await page.locator('#details [data-occurrence-select]').count(),8,'mineral category should filter occurrence list');
+  await page.locator('#profileOccurrences').evaluate(el=>{el.open=true});
   await page.locator('#details [data-occurrence-select]').first().click();
   assert.match(await page.locator('#occurrenceDetail').innerText(),/not a surveyed site/i);
   await manager.evaluate(el=>{el.open=true});
@@ -359,7 +386,7 @@ async function test(page,name){
   return row.top>=box.top-1&&row.bottom<=box.bottom+1;
  });
  assert(visibleRow,name+': active catchment should remain visible in the directory');
- assert.equal(await page.locator('.profileJumps button').count(),6);
+ assert.equal(await page.locator('.profileJumps button').count(),7);
  assert.equal(await page.locator('#profileTopics').count(),1,'Map profile must provide content topics');
  assert.equal(await page.locator('#profileTopics button[data-open-catchment-topic]').count(),5);
  assert.equal(new URL(page.url()).searchParams.get('catchment'),'SCMP-C15','Selected catchment deep link must match map selection');
