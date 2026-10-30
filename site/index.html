@@ -326,6 +326,45 @@ header .nav button{padding:8px 12px}
 .foot a{color:#126f68;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:640px){.guideSteps{grid-template-columns:1fr}.nav{gap:2px;flex-wrap:wrap}.nav button{font-size:12px}}
 
+
+/* S21 mobile map-first density: prevent the new map themes from pushing the map below the fold */
+@media(max-width:980px){
+ .themeSwitch{padding:6px 10px;gap:5px}
+ .themeLabel{font-size:10px}
+ .themeChoices{width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;padding-bottom:2px}
+ .themeChoices button{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap;min-height:32px}
+ .themeInfo{font-size:10px}
+ .symbolLegend{margin:0}
+}
+@media(max-width:540px){
+ header .top{padding:8px 12px;gap:5px}
+ header .brandname{font-size:18px}
+ header .brandsub{font-size:8px}
+ header .nav{width:100%;flex:1 1 100%;order:2;display:flex;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;gap:2px}
+ header .nav button{padding:5px 8px;font-size:11px;flex:0 0 auto}
+ header .status{display:none}
+ #pageExplore{padding-top:7px}
+ #pageExplore .hero{margin-bottom:5px}
+ #pageExplore .hero .eyebrow,#pageExplore .hero p{display:none}
+ #pageExplore .hero h1{font-size:18px;line-height:1.15;margin:0}
+ .mapPanel .maphead{min-height:0;padding:6px 9px;gap:6px}
+ .mapPanel .map-title h2{font-size:15px}
+ .mapPanel .map-title p{display:none}
+ .mapPanel .map-actions{gap:4px;flex-wrap:nowrap}
+ .mapPanel .map-actions .toggle{font-size:10px;padding:6px 7px;min-height:30px}
+ .mapPanel .map-actions #focusMapBtn{display:none}
+ .mapPanel .mapbar{padding:5px 8px}
+ .mapPanel .mapbar-primary{gap:5px}
+ .mapPanel #compiledDamQuickToggle{display:none}
+ .mapPanel .riverDensityLabel{display:none}
+ .themeSwitch{padding:5px 8px;gap:4px}
+ .themeLabel,.themeInfo,.symbolLegend{display:none}
+ .themeChoices{width:100%;gap:4px}
+ .themeChoices button{padding:6px 8px;font-size:10px;min-height:29px}
+ .themeSubtype{width:100%;font-size:10px;justify-content:space-between}
+ .themeSubtype select{max-width:210px;min-height:28px;padding:4px 6px;font-size:10px}
+}
+
 </style><script src="climate.js" defer></script></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge">Find evidence</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria. <a href="#guide" id="heroGuideLink">Start here · Visitor guide</a></p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
