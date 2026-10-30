@@ -129,7 +129,8 @@ async function test(page,name){
   await page.locator('#catchmentList button[data-id="SCMP-C04"]').click();
   await page.waitForFunction(()=>document.querySelector('#originalStatementCount')?.textContent.includes('157 matching original statements'),{timeout:30000});
   assert.equal(await page.locator('#profileResourcePanel .stakeResourceRow').count(),14,'Gulbin-Ka full resource names displayed');
-  assert.equal(await page.locator('#profileOccurrences').count(),0,'Do not display a false 0 records legacy-pilot card outside Sokoto–Zamfara');
+  await page.waitForFunction(()=>document.querySelector('#profileOccurrences .occurrenceRow')?.textContent.includes('LGA'),{timeout:30000});
+  assert(await page.locator('#profileOccurrences .occurrenceRow').count()>0,'Gulbin-Ka reports named LGA-level records');
   await page.locator('#originalTopic').selectOption('resources');
   assert.match(await page.locator('#originalStatementCount').innerText(),/24 matching original statements/,'All resource paragraphs are visible from original Gulbin-Ka communiqué');
   assert.match(await page.locator('#originalStatementEntries').innerText(),/soya beans in Danko LGA/i);
@@ -145,7 +146,8 @@ async function test(page,name){
   assert(await page.locator('#originalStatementEntries .sourceStatementItem').count()>0,'Search original text for a named LGA');
   await page.locator('#catchmentList button[data-id="SCMP-C03"]').click();
   await page.waitForFunction(()=>document.querySelector('#originalStatementCount')?.textContent.includes('259 matching original statements'));
-  assert.equal(await page.locator('#profileOccurrences').count(),0);
+  await page.waitForFunction(()=>document.querySelector('#profileOccurrences .occurrenceRow')?.textContent.includes('LGA'),{timeout:30000});
+  assert(await page.locator('#profileOccurrences .occurrenceRow').count()>0,'Gaji-Lamurde reports named LGA occurrences');
   await page.locator('#layerManager').evaluate(el=>{el.open=false});
   await page.locator('#overviewBtn').click();
   console.log('S18 PASS: original Gulbin/Gaji documents, source provenance, map/profile filter isolation and no false empty panel');
@@ -156,14 +158,17 @@ async function test(page,name){
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.disabled===false,{timeout:25000});
   await page.locator('#catchmentList button[data-id="SCMP-C17"]').click();
   await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Sokoto-Zamfara');
-  assert.equal(await page.locator('#details [data-occurrence-select]').count(),15,'15 published report-backed occurrences in profile');
+  await page.waitForFunction(()=>document.querySelectorAll('#details [data-occurrence-select]').length>15,{timeout:30000});
+  assert.equal(await page.locator('#details [data-occurrence-select^="BN-PUB-"]').count(),15,'All 15 original official Sokoto occurrences remain');
+  assert(await page.locator('#details [data-occurrence-select^="BN-S19-"]').count()>0,'S19 original-communique records added');
   const manager=page.locator('#layerManager');await manager.locator('summary').click();
   await page.locator('#occurrenceLayerToggle').click();
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
   assert.match(await page.locator('#occurrenceLayerStatus').innerText(),/LGA representative markers only/);
   await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceCategory').selectOption('mineral');
-  assert.equal(await page.locator('#details [data-occurrence-select]').count(),8,'mineral category should filter occurrence list');
+  assert.equal(await page.locator('#details [data-occurrence-select^="BN-PUB-"]').count(),8,'Eight original published-plan mineral entries retained');
+  assert(await page.locator('#details [data-occurrence-select^="BN-S19-"]').count()>0,'Newly mapped minerals visible');
   await page.locator('#profileOccurrences').evaluate(el=>{el.open=true});
   await page.locator('#details [data-occurrence-select]').first().click();
   assert.match(await page.locator('#occurrenceDetail').innerText(),/not a surveyed site/i);
@@ -175,7 +180,7 @@ async function test(page,name){
   await manager.evaluate(el=>{el.open=false});
   await page.locator('#overviewBtn').click();
   await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Explore all 20 catchments');
-  console.log(name+': Stage S15 PASS 15 LGA-level source entries, category filters, symbol layer and visible guide');
+  console.log(name+': S19 PASS original 15 government-plan entries plus mapped SCMP LGA reports, category filters and symbols');
  }
  // Stage 3D-S: source research overlay starts hidden, is opt-in, and never confirms a dam.
  assert.equal(await page.locator('#compiledDamQuickToggle').isEnabled(),true,name+': optional source research layer loaded');

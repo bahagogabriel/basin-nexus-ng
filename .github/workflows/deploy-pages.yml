@@ -36,7 +36,9 @@ jobs:
       - name: Verify authorized all-catchment resource catalogue
         run: python tools/test_stakeholder_resource_atlas.py
       - name: Verify source-backed LGA occurrence map and zero exact-asset coordinates
-        run: python tools/test_public_lga_occurrences.py
+        run: |
+          python tools/test_public_lga_occurrences.py
+          python tools/test_stakeholder_lga_occurrences.py
       - name: Validate public-only external research source registry and synthetic CSV integrity
         run: |
           python tools/test_external_reference_sources.py

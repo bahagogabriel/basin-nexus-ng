@@ -8,6 +8,8 @@ on:
       - 'site/data/public_lga_occurrences.json'
       - 'site/data/stakeholder_resource_atlas.json'
       - 'site/data/stakeholder_source_detail.json'
+      - 'site/data/stakeholder_lga_occurrences.json'
+      - 'tools/test_stakeholder_lga_occurrences.py'
       - 'tools/test_original_stakeholder_statements.py'
       - 'tools/test_stakeholder_resource_atlas.py'
       - 'tools/test_public_lga_occurrences.py'
@@ -44,5 +46,7 @@ jobs:
         run: python tools/test_stakeholder_resource_atlas.py
       - name: Check public LGA-level stakeholder occurrence geometry and disclosure
         run: python tools/test_public_lga_occurrences.py
+      - name: Verify all original-source LGA occurrences and paragraph provenance
+        run: python tools/test_stakeholder_lga_occurrences.py
       - name: Check downstream public evidence zero-record gate
         run: python tools/test_public_evidence_catalogue.py

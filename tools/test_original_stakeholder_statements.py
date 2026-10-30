@@ -29,7 +29,7 @@ assert "tin & columbite" in text_for("SCMP-C02")
 assert "maize" in text_for("SCMP-C20")
 html=(base/"index.html").read_text(encoding="utf-8")
 assert "renderOriginalStatementsPanel(c)" in html and "updateOriginalStatementList()" in html
-assert "if(c.id!=='SCMP-C17')return ''" in html
+assert 'function renderOccurrenceList(c)' in html and 'allOccurrenceRecords()' in html
 assert "sourceResourcesFor(c.id,'all')" in html
 assert "originalStakeholderStatements" in html and "data-profile-target=\"originalStakeholderStatements\"" in html
 assert json.loads((base/"data/public_evidence_catalogue.json").read_text())["records"]==[]
