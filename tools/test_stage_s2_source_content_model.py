@@ -51,6 +51,19 @@ assert all(x["catchment_id"] in {r["id"] for r in records if r["official_public_
 assert all(x["review_scope"]=="PUBLIC_REPORT_PAGE_NAVIGATION_ONLY" and isinstance(x["pdf_page_1_based"],int) and 1<=x["pdf_page_1_based"]<=277 for x in page_entries)
 assert all(set(x)=={"catchment_id","theme","topic","pdf_page_1_based","review_scope"} for x in page_entries)
 assert "officialSCMPPages" in html and "pdf_page_1_based" in html
+activity=mod["official_2026_consultations"]
+assert activity["status"]=="OFFICIAL_PUBLISHER_REPORTING_ONLY"
+assert activity["count_catchments_in_final_10"]==10
+assert activity["count_individual_activity_articles"]==5
+assert activity["individual_story_source_types"]=={"ACReSAL":4,"FCT ACReSAL":1}
+assert len(activity["catchments"])==20 and {r["id"] for r in activity["catchments"]}==ids
+assert sum(r["mentioned_in_2026_oct15_final_ten"] for r in activity["catchments"])==10
+assert sum(bool(r["individual_activity_news"]) for r in activity["catchments"])==5
+assert all(not r["individual_activity_news"] or r["mentioned_in_2026_oct15_final_ten"] for r in activity["catchments"])
+assert all(not r["individual_activity_news"] or (r["individual_activity_news"]["url"].startswith("https://acresal.gov.ng/") or r["individual_activity_news"]["url"].startswith("https://www.acresalfcta.org.ng/")) for r in activity["catchments"])
+assert activity["all_20_validated_attribution"]["source_date"]=="2026-03-22"
+assert activity["final_10_consultation_phase"]["source_date"]=="2026-10-15"
+assert "official2026Updates" in html and "renderOfficial2026Updates(result)" in html
 assert mod["individual_public_claims_approved"]==0
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
