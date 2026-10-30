@@ -226,7 +226,7 @@
       "spatial_claims_cleared": false,
       "signed_materials_published": false,
       "official_publication_page": "https://acresal.gov.ng/publications/ngada-west-chad-strategic-catchment-management-plan/",
-      "official_public_pdf": null,
+      "official_public_pdf": "https://acresal.gov.ng/wp-content/uploads/2025/11/NGADA-WEST-CHAD-STRATEGICCATCHMENTMANAGEMENTPLAN-Ready1.pdf",
       "official_report_link_status": "ACRESAL_PUBLICATION_ENTRY_INDEXED"
     },
     {
@@ -358,7 +358,7 @@
   "official_scmp_publication_links": {
     "publisher": "ACReSAL — Federal Government of Nigeria",
     "listed_pages": 9,
-    "indexed_direct_pdfs": 8,
+    "indexed_direct_pdfs": 9,
     "validation_announcement": "https://acresal.gov.ng/nigeria-endorses-20-historic-strategic-blueprints-to-restore-degraded-landscapes-and-water-bodies/",
     "publication_index": "https://acresal.gov.ng/publications/",
     "checked_date": "2026-10-29",
@@ -367,10 +367,10 @@
   "official_report_page_guides": {
     "status": "SOURCE_PAGE_NAVIGATION_NOT_FACT_VALIDATION",
     "date": "2026-10-30",
-    "publisher_pdf_pages_indexed": 6,
-    "total_page_anchors": 19,
+    "publisher_pdf_pages_indexed": 7,
+    "total_page_anchors": 24,
     "viewer_page_numbering": "PDF viewer pages are 1-based and differ from printed report page numbers. Links use #page=N.",
-    "limitations": "These are topical entry points located from the publisher's searchable report text. The linked report is not independent corroboration of private workshop statements, verified asset status, permission to republish private text, or verification of proposed interventions. Two oversized publisher PDFs (Rima and Sokoto-Zamfara) were not accessible for page indexing in this reader.",
+    "limitations": "PDF viewer-page numbers are one-based. The newly located 176-page Ngada plan provides five topical source-navigation anchors. Rima and Sokoto-Zamfara PDF bytes still exceed available transfer/reader limits, so no pages are guessed. Proposed interventions and the Ngada Shared Vision annex are not proof of constructed facilities, independently confirmed assets or cleared private workshop passages.",
     "entries": [
       {
         "catchment_id": "SCMP-C04",
@@ -503,6 +503,41 @@
         "theme": "natural_resources",
         "topic": "Reported aquatic resources",
         "pdf_page_1_based": 167,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C12",
+        "theme": "drainage",
+        "topic": "Drainage and surface-water systems",
+        "pdf_page_1_based": 53,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C12",
+        "theme": "biodiversity",
+        "topic": "Wetlands, land cover and biodiversity",
+        "pdf_page_1_based": 63,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C12",
+        "theme": "shared_vision",
+        "topic": "Strategic vision and goals",
+        "pdf_page_1_based": 126,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C12",
+        "theme": "proposed_interventions",
+        "topic": "Proposed strategic interventions—not completed works",
+        "pdf_page_1_based": 130,
+        "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
+      },
+      {
+        "catchment_id": "SCMP-C12",
+        "theme": "shared_vision_annex",
+        "topic": "Shared Vision annex and proposed priorities",
+        "pdf_page_1_based": 165,
         "review_scope": "PUBLIC_REPORT_PAGE_NAVIGATION_ONLY"
       }
     ]
@@ -662,5 +697,76 @@
       }
     ],
     "limitations": "These records describe documented publisher announcements and workshops. No public workshop source extract, participant data, 80 private editorial claim, dam capacity, project completion status or site coordinates is published. An article naming a catchment does not prove a proposed intervention was approved, funded or implemented."
+  },
+  "official_2025_event_archive": {
+    "version": "BN_2025_OFFICIAL_EVENTS_V1",
+    "checked_on": "2026-10-30",
+    "publisher": "ACReSAL",
+    "articles": 5,
+    "distinct_linked_catchments": 11,
+    "events": [
+      {
+        "event_id": "ACR25-JAN09",
+        "date": "2025-01-09",
+        "title": "Hadejia–Jama'are early technical planning session",
+        "type": "PLANNING",
+        "catchment_ids": [
+          "SCMP-C06"
+        ],
+        "url": "https://acresal.gov.ng/mallam-mahmud-adamu-kambari-permanent-secretary-federal-ministry-of-environment-chairman-federal-technical-committee-acresal-successfully-hosted-a-technical-session-to-finalize-the-first-phase-o/",
+        "scope_note": "Publisher describes initial planning, not a completed physical project."
+      },
+      {
+        "event_id": "ACR25-FEB13",
+        "date": "2025-02-13",
+        "title": "Sokoto group stakeholder engagement",
+        "type": "ENGAGEMENT",
+        "catchment_ids": [
+          "SCMP-C04",
+          "SCMP-C14",
+          "SCMP-C17"
+        ],
+        "url": "https://acresal.gov.ng/acresal-holds-stakeholders-engagement-for-strategic-catchment-management-plans-in-sokoto-zamfara-rima-and-golbin-ka/",
+        "scope_note": "Published name Golbin-Ka refers to the existing Gulbin-Ka identity."
+      },
+      {
+        "event_id": "ACR25-JUN17A",
+        "date": "2025-06-17",
+        "title": "Yedseram and Misau planning endorsement account",
+        "type": "PRESENTATION_ENDORSEMENT",
+        "catchment_ids": [
+          "SCMP-C11",
+          "SCMP-C19"
+        ],
+        "url": "https://acresal.gov.ng/acresal-stakeholders-validate-strategic-roadmaps-for-integrated-landscapes-restoration-in-nigeria-the-stretagic-plans-will-guide-government-and-private-sector-investment/",
+        "scope_note": "Publisher reports planning endorsement; no independently verified completed intervention."
+      },
+      {
+        "event_id": "ACR25-JUN17B",
+        "date": "2025-06-17",
+        "title": "Makurdi plans validation for Ngada, Shemankar and Wase",
+        "type": "VALIDATION",
+        "catchment_ids": [
+          "SCMP-C12",
+          "SCMP-C16",
+          "SCMP-C18"
+        ],
+        "url": "https://acresal.gov.ng/fg-reaffirms-commitment-to-tackling-climate-change-and-land-degradation-through-acresal-project/",
+        "scope_note": "Published June 17 reporting describes an earlier June validation meeting."
+      },
+      {
+        "event_id": "ACR25-AUG30",
+        "date": "2025-08-30",
+        "title": "Gombe-region early stakeholder engagement",
+        "type": "ENGAGEMENT",
+        "catchment_ids": [
+          "SCMP-C03",
+          "SCMP-C07"
+        ],
+        "url": "https://acresal.gov.ng/acresal-kicks-off-final-phase-of-catchment-management-plan-engagements-in-gombe-state/",
+        "scope_note": "Publisher also mentions Gongola without a clear source identity; Zungur–Gongola is not automatically assigned."
+      }
+    ],
+    "release_policy": "Public publisher event links only; publication dates do not necessarily equal workshop dates. No private statement, facility claim or implementation status is approved."
   }
 }
