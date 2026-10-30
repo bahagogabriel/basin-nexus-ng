@@ -82,6 +82,15 @@ assert all({t["theme"] for t in p["topics"]}=={"natural_resources","threats_chal
 assert all(25<=len(t["summary"])<=350 for p in pilot["profiles"] for t in p["topics"])
 assert "catchmentInsightsPanel" in html and "renderCatchmentInsights(result)" in html
 assert "data-insight-map" in html and "insightTheme" in html
+assert "renderCatchmentContentBridge(c)" in html
+assert "profilePublishedSections" in html
+assert "sourceSections" in html
+assert "official_report_page_guides" in html
+assert "profileTopics" in html and "data-open-catchment-topic" in html
+assert "syncCatchmentURL(id)" in html and "restoreSharedCatchment()" in html
+assert "window.history.replaceState" in html
+assert "el('insightTheme').value=theme" in html
+assert "Direct link to this catchment" in html
 assert mod["individual_public_claims_approved"]==0
 assert 'value="past_present_interventions"' in html and "sourceContentModel" in html
 for bad in ("drive.google.com","private_drive_id","original_source_excerpt_private","source_file_name_private","source_url_private","Signed Stakeholder Engagement"):
