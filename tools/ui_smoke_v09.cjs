@@ -112,14 +112,17 @@ async function test(page,name){
   await page.locator('#occurrenceLayerToggle').click();
   await page.waitForFunction(()=>document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')==='true',{timeout:45000});
   assert.match(await page.locator('#occurrenceLayerStatus').innerText(),/LGA representative markers only/);
+  await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceCategory').selectOption('mineral');
   assert.equal(await page.locator('#details [data-occurrence-select]').count(),8,'mineral category should filter occurrence list');
   await page.locator('#details [data-occurrence-select]').first().click();
   assert.match(await page.locator('#occurrenceDetail').innerText(),/not a surveyed site/i);
+  await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceCategory').selectOption('all');
+  await manager.evaluate(el=>{el.open=true});
   await page.locator('#occurrenceLayerToggle').click();
   assert.equal(await page.locator('#occurrenceLayerToggle').getAttribute('aria-pressed'),'false');
-  await manager.locator('summary').click();
+  await manager.evaluate(el=>{el.open=false});
   await page.locator('#overviewBtn').click();
   await page.waitForFunction(()=>document.querySelector('#details h2')?.textContent==='Explore all 20 catchments');
   console.log(name+': Stage S15 PASS 15 LGA-level source entries, category filters, symbol layer and visible guide');
