@@ -310,7 +310,17 @@ async function test(page,name){
   return row.top>=box.top-1&&row.bottom<=box.bottom+1;
  });
  assert(visibleRow,name+': active catchment should remain visible in the directory');
- assert.equal(await page.locator('.profileJumps button').count(),5);
+ assert.equal(await page.locator('.profileJumps button').count(),6);
+ assert.equal(await page.locator('#profileTopics').count(),1,'Map profile must provide content topics');
+ assert.equal(await page.locator('#profileTopics button[data-open-catchment-topic]').count(),5);
+ assert.equal(new URL(page.url()).searchParams.get('catchment'),'SCMP-C15','Selected catchment deep link must match map selection');
+ await page.locator('#profileTopics button[data-open-catchment-topic="threats_challenges"]').click();
+ await page.locator('#pageKnowledge').waitFor({state:'visible'});
+ assert.equal(await page.locator('#insightTheme').inputValue(),'threats_challenges');
+ assert.equal(await page.locator('#knowledgeSearch').inputValue(),'Sarkin Pawa-Kaduna');
+ await page.locator('#navExplore').click();
+ await page.locator('#pageExplore').waitFor({state:'visible'});
+ assert.equal((await metric(page)).selected,'SCMP-C15','Knowledge navigation must preserve selected map catchment');
  await page.locator('button[data-profile-target="profileAdmin"]').click();
  await page.waitForFunction(()=>{
   const panel=document.querySelector('#details'),target=document.querySelector('#profileAdmin');
