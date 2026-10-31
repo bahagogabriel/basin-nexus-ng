@@ -37,7 +37,10 @@ html=(site/'index.html').read_text()
 assert '© 2026 Basin Nexus NG' in html
 assert 'Designed by <a href="https://bahagogabriel.com/"' in html
 assert 'id="navGuide"' in html and 'id="pageGuide"' in html
-assert 'id="themeSwitch"' in html and 'data-profile-pane="sources"' in html
+assert 'id="themeSwitch"' in html and "data-profile-pane=\"resources\"" in html
+assert "data-profile-pane=\"sources\"" not in html
+assert "data-profile-pane=\"technical\"" not in html
+assert "resource-icons.js" in html
 # The obsolete 2026 preview-v1.12 footer must not falsely describe the current S21 source-attributed release.
 assert 'approved evidence catalogue preview v1.12' not in html
 assert "id=\"knowledgeLenses\"" in html
