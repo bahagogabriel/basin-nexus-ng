@@ -38,6 +38,30 @@ const P={
  laterite:'M3 18 6 7l8-4 7 9-3 9H7z M6 7l12 14 M14 3v12',
  beryl:'M7 3h10l4 6-4 12H7L3 9z M7 3l3 7-3 11 M17 3l-3 7 3 11 M3 9h18',
  sharp_sand:'M3 20 6 11 10 18 14 9 18 17 21 10 M3 20h18 M5 6h1 M13 3h1 M19 6h1',
+ asbestos:'M4 4q8 5 16 0 M4 9q8 5 16 0 M4 14q8 5 16 0 M4 19q8 5 16 0',
+ ballclay:'M3 8h18l-3 12H6z M3 8q9-10 18 0 M8 15h8',
+ columbite:'M3 7l8-4 10 5-5 13-10-3z M11 3l1 12-6 3 M12 15l9-7',
+ gemstone:'M5 4h14l4 7-11 11L1 11z M5 4l7 7 7-7 M1 11h22 M12 11v11',
+ hydrocarbon:'M12 2Q4 12 4 16a8 8 0 0 0 16 0Q20 12 12 2z M8 15q0 5 5 5',
+ marl:'M3 7h18 M3 11h18 M3 15h18 M3 19h18 M6 7l4 12 M15 7l3 12',
+ phosphate:'M12 2v6 M12 16v6 M2 12h6 M16 12h6 M5 5l5 5 M14 14l5 5 M19 5l-5 5 M10 14l-5 5 M9 9h6v6H9z',
+ smokyquartz:'M7 21 5 9 11 2h5l4 8-2 11z M11 2v11l2 9 M16 2l-3 11 5 8 M5 9l8 4 7-3',
+ zircon:'M12 2l7 5 2 11-9 4-9-4L5 7z M5 7h14 M12 2v20 M3 18l9-7 9 7',
+ monazite:'M12 2l9 8-3 11H6L3 10z M12 2v19 M3 10h18 M6 21l15-11',
+ wolframite:'M3 5h18l-5 16H8z M3 5l8 16 M21 5l-8 16 M8 11h8',
+ tantalite:'M5 2h14l3 10-3 10H5L2 12z M8 6h8 M7 12h10 M8 18h8',
+ uranium:'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M12 10l-9 6 3 5 6-4 6 4 3-5z',
+ ginger:'M10 3q-3 3 0 6l-6 2q-3 3 2 6l4-1 2 6 6-2-2-5 5-3-4-4-3 2z',
+ cowpea:'M12 3C3 4 2 18 12 21c10-3 9-17 0-18z M8 10q4-4 8 0 M9 15q3 3 6 0',
+ pepper:'M12 4q-8 0-8 8 0 8 6 10 7-3 10-11 0-7-8-7z M12 4l2-3 M13 4l6-1',
+ plantain:'M5 3q-5 12 4 18 10 4 12-8Q13 19 5 3z M8 4q0 9 9 11',
+ palmoil:'M12 21V8 M12 9L3 3 M12 9l9-6 M12 9 3 10 M12 9l9 1 M7 20h10',
+ fish:'M2 12q6-8 14-5l6 5-6 5q-8 3-14-5z M9 12h.5 M16 7v10',
+ elephants:'M5 3h13l3 7-3 10h-4v-6h-3v6H7v-7H4z M10 7h.5 M18 9v7',
+ gumarabic:'M12 2 6 8l4 5-4 6 6 3 6-3-4-6 4-5z M12 10v12',
+ locustbean:'M4 5q9-4 16 2 0 13-16 12Q0 14 4 5z M8 11h1 M12 14h1 M16 10h1',
+ irrigationscheme:'M4 22V4h4v18 M15 22V8h5v14 M4 10h16 M4 15q4-3 8 0t8 0',
+ soildegradation:'M2 5h20 M5 10l5 5-4 6 M12 10l6 8 4-4 M3 22h19',
  dam:'M3 4v17 M21 4v17 M7 7h10l-2 14H9z M7 11h10 M9 16h6 M2 23q4-3 8 0t8 0t5 0',
  borehole:'M10 3h4v11h-4z M7 14h10v3H7z M12 17v5 M4 22h16 M7 5l-4 3',
  lake:'M2 10q5-5 10 0t10 0 M2 15q5-5 10 0t10 0 M2 20q5-5 10 0t10 0',
@@ -87,7 +111,12 @@ const a=Object.freeze({
  'grazing reserve':'grazingreserve','forest reserve':'forestreserve',
  'water pollution':'waterpollution','land degradation':'landdegradation',
  'hot springs':'hotsprings','silica sand':'sharp_sand','sharp sand':'sharp_sand',
- 'palm oil':'sheabutter','bambara nuts':'soybeans',
+ 'palm oil':'palmoil','bambara nuts':'cowpea',
+ 'ball clay':'ballclay','smoky quartz':'smokyquartz','soybean':'soybeans',
+ 'soil degradation':'soildegradation','irrigation scheme':'irrigationscheme',
+ 'gum arabic':'gumarabic','locust bean':'locustbean',
+ 'fisheries':'fish','fish':'fish','elephants':'elephants',
+ 'pepper':'pepper','plantain':'plantain',
  'iron':'ironore','flood':'flooding'
 });
 const defaults={mineral:'quartz',crop:'wheat',ecology:'forestreserve',water:'river',pressure:'erosion'};
@@ -104,7 +133,16 @@ function keyFor(r){
  if(r?.category==='crop' && /nut/.test(key))return 'groundnut';
  return defaults[r?.category]||'quartz';
 }
-function tint(r){let base=bg[r?.category]||'#48706c';return base}
+function tint(r){
+ const category=r?.category||'mineral',key=keyFor(r);
+ const palettes={
+  mineral:['#9a6631','#856136','#6e668f','#5d7486','#85634d','#65764c','#8a5c74','#5e7477'],
+  crop:['#337d4b','#478341','#2c8460','#4b7842'],
+  ecology:['#176d5c','#2f7b65'],water:['#2475a3','#376d9c'],pressure:['#b34a39','#ab5d34']
+ };
+ let sum=0;for(let i=0;i<key.length;i++)sum=(sum*31+key.charCodeAt(i))>>>0;
+ const p=palettes[category];return p?p[sum%p.length]:(bg[category]||'#48706c');
+}
 function markup(r,cls=''){
  const key=keyFor(r),path=P[key],label=canonical(r?.name||key);
  const color=tint(r);return '<span class="bnIcon '+cls+'" style="background:'+color+'" title="'+String(label).replace(/[<>"]/g,'')+'" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="'+path+'"/></svg></span>';
