@@ -12,7 +12,7 @@ external=[tag for tag,body in scripts if re.search(r'\bsrc\s*=',tag,flags=re.I)]
 assert len(inline)==1, f'Expected exactly one inline app script, got {len(inline)}'
 assert len(external)==2 and all(any(re.search(r'\bsrc\s*=\s*["\']'+re.escape(name)+r'["\']',tag,flags=re.I) for tag in external) for name in ('climate.js','resource-icons.js')), 'Unreviewed external app scripts'
 with TemporaryDirectory() as folder:
-    for name,source in [('page.mjs',inline[0]),('climate.mjs',(root/'site'/'climate.js').read_text('utf-8'))]:
+    for name,source in [('page.mjs',inline[0]),('climate.mjs',(root/'site'/'climate.js').read_text('utf-8')),('icons.mjs',(root/'site'/'resource-icons.js').read_text('utf-8'))]:
         target=Path(folder)/name
         target.write_text(source,encoding='utf-8')
         result=subprocess.run(['node','--check',str(target)],capture_output=True,text=True)
