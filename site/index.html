@@ -1551,29 +1551,33 @@ function refreshProfileSnapshot(){
  const lgas=new Set(all.map(r=>r.lga_id)),names=new Set(all.map(r=>r.category+'|'+r.name));
  box.textContent=all.length+' source-attributed reports · '+lgas.size+' mapped LGAs · '+names.size+' distinct reported types';
 }
+function canonicalResourceName(name){
+ return window.BNResourceIcons?.canonical?.(name)||(/^baryte$/i.test(String(name))?'Barite':String(name||'').trim());
+}
+function themeLabel(theme){
+ return ({mineral:'Minerals',crop:'Crops',ecology:'Ecology',water:'Water',pressure:'Pressures',all:'All resources'})[theme]||'Resources';
+}
 function refreshThemeControls(){
- const category=el('occurrenceCategory').value;
- el('themeSwitch').querySelectorAll('[data-theme]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===category)));
- const sel=el('resourceTypeFilter'),previous=sel.value;
- const names=[...new Set(allOccurrenceRecords().filter(r=>r.catchment_id===selected&&(category==='all'||category===r.category)).map(r=>r.name))].sort((a,b)=>a.localeCompare(b));
- sel.innerHTML='<option value="all">All within theme</option>'+names.map(n=>'<option value="'+esc(n)+'">'+esc(n)+'</option>').join('');
- if(names.includes(previous))sel.value=previous;
+ const category=el('occurrenceCategory')?.value||'mineral';
+ const theme=el('themeSwitch');
+ if(theme)theme.querySelectorAll('[data-theme]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===category)));
+ const badge=el('layerSummaryText');if(badge)badge.textContent='Layers · '+themeLabel(category);
  refreshResourceLegend();
- sel.disabled=!selected||names.length===0;
- const summary=el('themeMapInfo');
- summary.textContent=selected?(names.length?names.length+' different reported resource names · select a symbol or choose a specific type. Symbols are schematic LGA references.':'No mapped '+category+' reports in this catchment; choose another theme or review Original sources.'):'Select a catchment for LGA-specific resource symbols. Overview symbols summarize themes only.';
+ const unique=new Set(allOccurrenceRecords().filter(r=>r.catchment_id===selected&&(category==='all'||category===r.category)).map(r=>r.category+'|'+canonicalResourceName(r.name)));
+ const status=el('themeMapInfo');
+ if(status)status.textContent=selected?unique.size+' reported resource types in this catchment. Select the map symbols to inspect their LGA.':'Select a catchment to see resource locations.';
 }
 function selectResourceTheme(theme){
  if(!['all','crop','mineral','ecology','water','pressure'].includes(theme))return;
  el('occurrenceCategory').value=theme;
- el('resourceTypeFilter').value='all';
- selectedOccurrenceId=null;refreshThemeControls();
- if(selected)refreshOccurrenceProfile();
- refreshResourceLegend();schedulePaint();
+ if(el('resourceAtlasCategory'))el('resourceAtlasCategory').value=theme;
+ selectedOccurrenceId=null;
+ refreshThemeControls();if(selected)refreshOccurrenceProfile();
+ schedulePaint();
 }
 function filteredOccurrenceRecords(id=selected){
- const group=el('occurrenceCategory')?.value||'mineral',type=el('resourceTypeFilter')?.value||'all';
- return allOccurrenceRecords().filter(r=>r.catchment_id===id&&(group==='all'||group===r.category)&&(type==='all'||r.name===type));
+ const group=el('occurrenceCategory')?.value||'mineral';
+ return allOccurrenceRecords().filter(r=>r.catchment_id===id&&(group==='all'||group===r.category));
 }
 const preferredSymbols={
  mineral:{gold:'Au',lithium:'Li',coal:'Co',limestone:'Ls','ironore':'Fe',iron:'Fe',manganese:'Mn',mica:'Mi',kaolin:'Ka',barite:'Ba',baryte:'Ba',gypsum:'Gy',lead:'Pb',zinc:'Zn',copper:'Cu',talc:'Ta',quartz:'Qz',quartzite:'Qt',feldspar:'Fd',granite:'Gr',graphite:'Gp',amethyst:'Am',sapphire:'Sa',tourmaline:'Tm',topaz:'Tp',monazite:'Mz',zircon:'Zr',uranium:'U',bentonite:'Bt',dolomite:'Do',magnetite:'Mt',clay:'Cl',fluorite:'Fl',calcite:'Cc',kyanite:'Ky',tantalite:'Tn',wolframite:'Wf',beryl:'Be',silicasand:'Si',laterite:'Lt',sharpsand:'Ss',hydrocarbon:'HC'},
@@ -2417,7 +2421,7 @@ fetch('data/stakeholder_resource_atlas.json').then(r=>{if(!r.ok)throw Error('sta
 }).catch(err=>{el('resourceAtlasStatus').textContent='All-catchment resource catalogue unavailable; existing layers remain usable';console.warn(err)});
 el('occurrenceCategory').addEventListener('change',()=>selectResourceTheme(el('occurrenceCategory').value));
 el('themeSwitch').addEventListener('click',e=>{const button=e.target.closest('[data-theme]');if(button)selectResourceTheme(button.dataset.theme)});
-el('resourceTypeFilter').addEventListener('change',()=>{selectedOccurrenceId=null;if(selected)refreshOccurrenceProfile();refreshResourceLegend();schedulePaint()});
+
 el('occurrenceLayerToggle').addEventListener('click',async()=>{
  const btn=el('occurrenceLayerToggle');
  if(!allOccurrenceRecords().length)return;
