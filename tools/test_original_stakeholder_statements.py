@@ -31,6 +31,11 @@ html=(base/"index.html").read_text(encoding="utf-8")
 assert "renderOriginalStatementsPanel(c)" in html and "updateOriginalStatementList()" in html
 assert 'function renderOccurrenceList(c)' in html and 'allOccurrenceRecords()' in html
 assert "sourceResourcesFor(c.id,'all')" in html
-assert "originalStakeholderStatements" in html and "data-profile-target=\"originalStakeholderStatements\"" in html
+# S22 intentionally removes raw source-browser controls from the visitor profile;
+# the full 37-document / 3,277-statement dataset and its validation remain unchanged.
+assert 'data-profile-pane="sources"' not in html
+assert 'data-profile-pane="technical"' not in html
+assert 'data-profile-pane="resources"' in html
+assert "stakeholder_source_detail.json" in html
 assert json.loads((base/"data/public_evidence_catalogue.json").read_text())["records"]==[]
 print("S18 PASS: 20 catchments, 1,654 communiqué + 1,623 Shared Vision statements, no false zero-resource labels")
