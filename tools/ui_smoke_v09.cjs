@@ -397,6 +397,7 @@ async function test(page,name){
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C02',{timeout:45000});
  await page.locator('#zoomReset').click();
  assert.equal((await metric(page)).riverScope,'selected');
+ await page.locator('#layerManager').evaluate(el=>{el.open=true});
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'all');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'selected');
  await page.locator('#layerManager').evaluate(e=>{e.open=false});
