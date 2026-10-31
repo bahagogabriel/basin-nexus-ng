@@ -413,13 +413,32 @@ header .nav button{padding:8px 12px}
 .compactAdmin .admin-panel{border:0;margin:0;padding:10px;background:#fff}
 .profilePane[data-profile-pane="resources"]{padding:4px 0}
 
+
+/* S22 — prioritize the map over repeated introductory controls and dense sidebars. */
+@media(min-width:1121px){
+ .columns{grid-template-columns:minmax(194px,235px) minmax(0,2.8fr) minmax(270px,.94fr);gap:11px}
+}
+#pageExplore .guideQuickstart{display:none!important}
+#pageExplore .hero{margin-bottom:9px}
+#pageExplore .hero .eyebrow{font-size:10px}
+#pageExplore .hero h1{font-size:23px}
+#pageExplore .hero p{font-size:12px}
+#navKnowledge{display:none!important}
+.mapPanel .maphead{padding:10px 12px}
+.mapPanel .map-title h2{font-size:17px}
+.mapPanel .map-actions{gap:6px}
+#focusMapBtn{display:none!important}
+#compiledDamQuickToggle{display:none!important}
+@media(min-width:800px){.mapPanel{height:clamp(645px,calc(100dvh - 195px),985px)}}
+@media(max-width:640px){#pageExplore .hero .eyebrow,#pageExplore .hero p{display:none!important}}
+
 </style><script src="climate.js" defer></script><script src="resource-icons.js" defer></script></head><body>
-<header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge">Find evidence</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
+<header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge" hidden aria-hidden="true" tabindex="-1">Knowledge index</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria. <a href="#guide" id="heroGuideLink">Start here · Visitor guide</a></p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
 <div class="columns" id="columns"><section class="panel directory" aria-label="Catchment directory"><div class="panelhead"><h2>Catchment directory</h2><p>Search catchment, state or LGA</p><input class="search" id="catchmentSearch" aria-label="Find catchment, state or LGA" placeholder="Find catchment, state or LGA..."></div><div class="list" id="catchmentList" aria-live="polite"><div class="spinner">Loading catchments…</div></div><div class="count" id="catchmentCount">20 catchments</div></section>
 <section class="panel mapPanel" aria-label="Interactive strategic catchment and river map"><div class="maphead">
   <div class="map-title"><h2>Explore the map</h2><p id="mapActiveSummary" aria-live="polite">20 strategic catchments · choose a region to explore its rivers</p></div>
-  <div class="map-actions"><button type="button" class="toggle" id="overviewBtn" aria-label="Show all 20 catchments" disabled>All catchments</button><button type="button" class="toggle focus-btn" id="focusMapBtn" title="Zoom to the selected catchment" disabled>Focus catchment</button><button type="button" class="toggle" id="expandBtn" aria-expanded="false">Expand map</button></div>
+  <div class="map-actions"><button type="button" class="toggle" id="overviewBtn" aria-label="Show all 20 catchments" disabled>All catchments</button><button type="button" class="toggle focus-btn" id="focusMapBtn" title="Zoom to the selected catchment" disabled>Focus catchment</button><button type="button" class="toggle" id="expandBtn" aria-expanded="false">Full map</button></div>
 </div>
 <div class="mapbar"><span class="mapbarCaption">Map overlays</span><details class="layerManager" id="layerManager">
     <summary aria-label="Open all map layer settings"><span aria-hidden="true">☷</span> <span id="layerSummaryText">Layers · Minerals</span></summary>
