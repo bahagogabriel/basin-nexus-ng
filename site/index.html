@@ -432,6 +432,15 @@ header .nav button{padding:8px 12px}
 @media(min-width:800px){.mapPanel{height:clamp(645px,calc(100dvh - 195px),985px)}}
 @media(max-width:640px){#pageExplore .hero .eyebrow,#pageExplore .hero p{display:none!important}}
 
+
+/* Avoid duplicate category selectors: the six theme buttons are the only public resource selector. */
+#layerManager label[for="occurrenceCategory"],#layerManager label[for="resourceAtlasCategory"]{display:none!important}
+#layerManager .layerAdvanced>small{display:none}
+#layerManager .layerAdvanced .layerButtons{margin-top:6px}
+#layerManager .layerButtons button{font-size:12px}
+.mapbar .layerManager>summary{min-width:137px;justify-content:center}
+#resourceLegend>summary{width:100%;font-size:11px}
+
 </style><script src="climate.js" defer></script><script src="resource-icons.js" defer></script></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge" hidden aria-hidden="true" tabindex="-1">Knowledge index</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria. <a href="#guide" id="heroGuideLink">Start here · Visitor guide</a></p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
