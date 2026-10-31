@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'site/index.html'
+      - 'site/resource-icons.js'
       - 'site/data/stakeholder_coverage_index.json'
       - 'site/data/source_content_publication_model.json'
       - 'site/data/public_lga_occurrences.json'
