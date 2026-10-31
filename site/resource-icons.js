@@ -39,6 +39,7 @@ const P={
  beryl:'M7 3h10l4 6-4 12H7L3 9z M7 3l3 7-3 11 M17 3l-3 7 3 11 M3 9h18',
  sharp_sand:'M3 20 6 11 10 18 14 9 18 17 21 10 M3 20h18 M5 6h1 M13 3h1 M19 6h1',
  asbestos:'M4 4q8 5 16 0 M4 9q8 5 16 0 M4 14q8 5 16 0 M4 19q8 5 16 0',
+ kyanite:'M5 3l6 2 4-2 5 5-4 13H8L4 8z M11 5l0 16 M5 11h13',
  ballclay:'M3 8h18l-3 12H6z M3 8q9-10 18 0 M8 15h8',
  columbite:'M3 7l8-4 10 5-5 13-10-3z M11 3l1 12-6 3 M12 15l9-7',
  gemstone:'M5 4h14l4 7-11 11L1 11z M5 4l7 7 7-7 M1 11h22 M12 11v11',
@@ -112,7 +113,7 @@ const a=Object.freeze({
  'water pollution':'waterpollution','land degradation':'landdegradation',
  'hot springs':'hotsprings','silica sand':'sharp_sand','sharp sand':'sharp_sand',
  'palm oil':'palmoil','bambara nuts':'cowpea',
- 'ball clay':'ballclay','smoky quartz':'smokyquartz','soybean':'soybeans',
+ 'ball clay':'ballclay','smoky quartz':'smokyquartz','soybean':'soybeans','sharp sand':'sharp_sand',
  'soil degradation':'soildegradation','irrigation scheme':'irrigationscheme',
  'gum arabic':'gumarabic','locust bean':'locustbean',
  'fisheries':'fish','fish':'fish','elephants':'elephants',
@@ -122,7 +123,13 @@ const a=Object.freeze({
 const defaults={mineral:'quartz',crop:'wheat',ecology:'forestreserve',water:'river',pressure:'erosion'};
 const bg={mineral:'#916125',crop:'#2c854b',ecology:'#186b59',water:'#2475a3',pressure:'#b34a39'};
 function normalized(name){return String(name||'').toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim()}
-function canonical(name){const value=normalized(name);return value==='baryte'||value==='barites'||value==='barite'||value==='barytes'?'Barite':String(name||'').trim()}
+function canonical(name){
+ const value=normalized(name);
+ if(['baryte','barites','barite','barytes'].includes(value))return 'Barite';
+ if(value==='soybean'||value==='soybeans')return 'Soybeans';
+ if(value==='wetlands'||value==='wetland')return 'Wetland';
+ return String(name||'').trim();
+}
 function keyFor(r){
  let key=normalized(canonical(r?.name||'')); key=a[key]||key.replace(/\s+/g,'');
  if(P[key])return key;
