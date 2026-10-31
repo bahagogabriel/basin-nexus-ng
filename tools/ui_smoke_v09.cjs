@@ -368,6 +368,7 @@ async function test(page,name){
  assert.equal((await metric(page)).selected,'SCMP-C02');
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===1769,{timeout:45000});
  assert.equal((await metric(page)).detailFor,'SCMP-C02',name+': expected Benue-Mada detailed rivers');
+ await page.locator('#layerManager').evaluate(e=>{e.open=true});
  const riverSelector=page.locator('#riverDensity');
  await riverSelector.selectOption('main');assert.equal(await riverSelector.inputValue(),'main');
  await riverSelector.selectOption('medium');assert.equal(await riverSelector.inputValue(),'medium');
@@ -398,6 +399,7 @@ async function test(page,name){
  assert.equal((await metric(page)).riverScope,'selected');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'all');
  await page.locator('#riverScopeToggle').click();assert.equal((await metric(page)).riverScope,'selected');
+ await page.locator('#layerManager').evaluate(e=>{e.open=false});
  await testWaterLayers(page,name);
  const manager=page.locator('#layerManager');
  assert.equal(await manager.evaluate(n=>n.open),false,'Layers menu should be collapsed on load');
