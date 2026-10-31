@@ -329,8 +329,8 @@ async function test(page,name){
  assert.match(await page.locator('#knowledgeCards h3').innerText(),/Benue-Mada/);
  await page.locator('button[data-knowledge-map="SCMP-C02"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C02');
- assert.match(await page.locator('#details .knowledgeProfile').innerText(),/Lokoja/,name+': profile must expose institutional workshop provenance');
- assert.match(await page.locator('#details .knowledgeProfile').innerText(),/15–23 August 2025/,name+': profile must expose source date range');
+ assert.equal(await page.locator('#statesLGAs').count(),1,name+': map-focused Overview retains administrative context');
+ assert.equal(await page.locator('#details [data-profile-view="technical"]').count(),0);
  assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
  await page.locator('#overviewBtn').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected===null);
@@ -375,8 +375,8 @@ async function test(page,name){
  // Validate the exact catchment shown in the user's screenshots.
  await page.locator('#catchmentList button[data-id="SCMP-C15"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.detailStatus==='ready'&&window.__BN_MAP_DIAGNOSTICS__.detailFor==='SCMP-C15'&&window.__BN_MAP_DIAGNOSTICS__.detailCount===2038,{timeout:45000});
- await page.locator('#details [data-profile-view="technical"]').first().click();
- assert.match(await page.locator('#details').innerText(),/2,038/);
+ await page.waitForFunction(()=>document.querySelector('#profileRivers')?.textContent.includes('2,038'));
+ assert.match(await page.locator('#profileRivers').innerText(),/2,038/);
  const activeRow=page.locator('#catchmentList button.active');
  assert.equal(await activeRow.getAttribute('data-id'),'SCMP-C15');
  const visibleRow=await page.evaluate(()=>{
@@ -384,27 +384,12 @@ async function test(page,name){
   return row.top>=box.top-1&&row.bottom<=box.bottom+1;
  });
  assert(visibleRow,name+': active catchment should remain visible in the directory');
- assert.equal(await page.locator('.profileViews [role="tab"]').count(),4);
- assert.equal(await page.locator('.profileJumps button').count(),7);
- assert.equal(await page.locator('#profileTopics').count(),1,'Map profile must provide content topics');
- assert.equal(await page.locator('#profileTopics button[data-open-catchment-topic]').count(),5);
+ assert.equal(await page.locator('.profileViews [role="tab"]').count(),2,'Only Overview and Resources are visitor tabs');
+ assert.equal(await page.locator('#statesLGAs').count(),1);
  assert.equal(new URL(page.url()).searchParams.get('catchment'),'SCMP-C15','Selected catchment deep link must match map selection');
- await page.locator('#profileTopics button[data-open-catchment-topic="threats_challenges"]').click();
- await page.locator('#pageKnowledge').waitFor({state:'visible'});
- assert.equal(await page.locator('#insightTheme').inputValue(),'threats_challenges');
- assert.equal(await page.locator('#knowledgeSearch').inputValue(),'Sarkin Pawa-Kaduna');
- await page.locator('#navExplore').click();
- await page.locator('#pageExplore').waitFor({state:'visible'});
- await page.locator('#details [data-profile-view="technical"]').first().click();
- assert.equal((await metric(page)).selected,'SCMP-C15','Knowledge navigation must preserve selected map catchment');
- await page.locator('button[data-profile-target="profileAdmin"]').click();
- await page.waitForFunction(()=>{
-  const panel=document.querySelector('#details'),target=document.querySelector('#profileAdmin');
-  const r=target.getBoundingClientRect();
-  return panel.scrollTop>45||(r.top>=0&&r.top<innerHeight*.65);
- },{timeout:5500});
- assert.equal(await page.locator('#profileAdmin').count(),1);
- await page.locator('button[data-profile-target="profileRivers"]').click();
+ await page.locator('#statesLGAs > summary').click();
+ assert.equal(await page.locator('#profileAdmin').count(),1,'States and LGAs are inside Overview');
+ assert.match(await page.locator('#profileRivers').innerText(),/2,038/);
  await page.screenshot({path:path.join(folder,name+'_sarkin_rivers.png'),fullPage:true});
  console.log(name+': PASS regional launch + overview return + 2,038 Sarkin Pawa–Kaduna FAO reaches, all river density choices');
  await page.locator('#catchmentList button[data-id="SCMP-C02"]').click();
@@ -756,10 +741,9 @@ async function testReachComparison(browser){
  await page.locator('#reachCompareRows button[data-reach-focus="SCMP-C17"]').click();
  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.selected==='SCMP-C17',{timeout:5000});
  assert.equal(await page.locator('#navExplore').getAttribute('aria-current'),'page');
- await page.locator('#details [data-profile-view="technical"]').first().click();
- assert.match(await page.locator('#details').innerText(),/not measured drainage density/);
- await page.locator('#reachProfileCompare').click();
- assert.equal(await page.locator('#navData').getAttribute('aria-current'),'page');
+ assert.equal(await page.locator('#details [data-profile-view="technical"]').count(),0);
+ await page.locator('#navData').click();
+ assert.equal(await page.locator('#navData').getAttribute('aria-current'),'page','detailed river comparisons remain on Data page');
  await ctx.close();
  const invalid=await browser.newContext();
  await invalid.route('**/data/river_reach_comparison.json',async route=>{
