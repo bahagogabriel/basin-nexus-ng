@@ -392,6 +392,13 @@ header .nav button{padding:8px 12px}
 @media(max-width:980px){.layerManager .themeSwitch{display:block!important}.layerManager .themeChoices{flex-wrap:wrap!important;overflow:visible!important}}
 @media(max-width:600px){.mapbar{min-height:40px;padding:4px 9px!important}.mapbarCaption{font-size:10px}.layerManager>.layerPanel{width:min(345px,calc(100vw - 22px));right:4px;max-height:66vh}}
 
+
+.resourceListTitle{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.resourceListTitle h3{margin:0}.resourceListTitle small{font-size:11px;white-space:nowrap;opacity:.8}
+.resourceSelected{display:flex;align-items:center;gap:8px}.resourceSelected .bnIcon{width:36px;height:36px}
+.occurrenceRow>.bnIcon{width:32px;height:32px}
+.resourceProvenance{margin-top:9px;font-size:11px;opacity:.8}.resourceProvenance summary{cursor:pointer}
+.symbolLegendItem{display:flex;gap:6px;align-items:center}
 </style><script src="climate.js" defer></script><script src="resource-icons.js" defer></script></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge">Find evidence</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria. <a href="#guide" id="heroGuideLink">Start here · Visitor guide</a></p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
@@ -1610,49 +1617,40 @@ function resourceSymbol(r){
  }
  return symbolCodes.get(r.category+'|'+r.name)||'?';
 }
+function resourceIconMarkup(r,cls=''){return window.BNResourceIcons?.markup?.(r,cls)||'<span class="bnIcon" aria-hidden="true">◆</span>'}
 function refreshResourceLegend(){
  const holder=el('resourceLegendRows');if(!holder)return;
- if(!selected){holder.innerHTML='<span>Choose a catchment to see its resource symbols.</span>';return}
- const theme=el('occurrenceCategory').value,names=[...new Map(filteredOccurrenceRecords().map(r=>[r.category+'|'+r.name,r])).values()].sort((a,b)=>a.name.localeCompare(b.name));
- holder.innerHTML=names.map(r=>'<span class="symbolLegendItem"><b style="background:'+resourceStyle(r.category).color+'">'+esc(resourceSymbol(r))+'</b>'+esc(r.name)+'</span>').join('')||'<p>No mapped resource types for this selection.</p>';
+ const unique=[...new Map(filteredOccurrenceRecords().map(r=>[r.category+'|'+canonicalResourceName(r.name),r])).values()].sort((a,b)=>canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
+ holder.innerHTML=unique.map(r=>'<span class="symbolLegendItem">'+resourceIconMarkup(r)+esc(canonicalResourceName(r.name))+'</span>').join('')||'<p>No mapped reports in this theme.</p>';
+ const count=el('resourceLegendCount');if(count)count.textContent=unique.length+' types';
 }
 function resourceStyle(category){
  return ({crop:{symbol:'🌾',color:'#3e9150'},mineral:{symbol:'◆',color:'#9b7034'},ecology:{symbol:'♣',color:'#287863'},water:{symbol:'≋',color:'#277fad'},pressure:{symbol:'!',color:'#c65b3b'}})[category]||{symbol:'?',color:'#555'};
 }
+function displayOccurrenceRows(id=selected){
+ const groups=new Map();
+ for(const r of filteredOccurrenceRecords(id)){const key=r.category+'|'+r.lga_id+'|'+canonicalResourceName(r.name).toLowerCase();if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}
+ return [...groups.values()].sort((a,b)=>canonicalResourceName(a[0].name).localeCompare(canonicalResourceName(b[0].name))||a[0].lga_name.localeCompare(b[0].lga_name));
+}
 function renderOccurrenceList(c){
- const rows=filteredOccurrenceRecords(c.id);
- if(!occurrenceData&&!stakeholderLGAEvidence&&!supplementaryLGAEvidence)return '<section class="profileThemePanel" id="profileOccurrences"><h3>Reported LGA resources</h3><p class="captionline">Loading LGA source occurrences…</p></section>';
- const list=rows.map(r=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(r.id)+'"><span class="occurrenceIcon" style="background:'+resourceStyle(r.category).color+'">'+esc(resourceSymbol(r))+'</span><span><b>'+esc(r.name)+'</b><small>'+esc(r.lga_name)+' LGA · '+esc(r.state)+' · '+(r.source_document?'Supplementary source inventory':r.source_locators?'Original communiqué':'Published SCMP plan')+'</small></span></button>').join('');
- return '<details class="profileThemePanel" id="profileOccurrences"><summary><b>Mapped LGA-level reports · '+rows.length+' records</b></summary><div class="eyebrow">Source-attributed map locations</div><h3>Reported resources, water references and pressures</h3><p class="captionline">'+rows.length+' LGA-resource combinations for this catchment and active category. Open Layers → reported LGA occurrences to show representative symbols. An LGA marker is <b>not an exact asset or deposit location.</b></p><div class="occurrenceRows">'+(list||'<p>No location-matched LGA occurrences in this category. More information remains available under Original sources.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></details>';
+ const groups=displayOccurrenceRows(c.id);
+ if(!occurrenceData&&!stakeholderLGAEvidence&&!supplementaryLGAEvidence)return '<section class="profileThemePanel" id="profileOccurrences"><h3>Reported resources</h3><p>Loading LGA reports…</p></section>';
+ const items=groups.map(g=>{const r=g[0],sub=g.length>1?g.length+' reported records':'LGA report';return '<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(r.id)+'">'+resourceIconMarkup(r)+'<span><b>'+esc(canonicalResourceName(r.name))+'</b><small>'+esc(r.lga_name)+' LGA · '+sub+'</small></span></button>'}).join('');
+ return '<section class="profileThemePanel" id="profileOccurrences"><div class="resourceListTitle"><h3>'+esc(themeLabel(el('occurrenceCategory')?.value||'mineral'))+' reported by LGA</h3><small>'+groups.length+' mapped entries</small></div><p class="captionline">Select a resource or map symbol to see its named LGA. Reports are not exact surveyed sites.</p><div class="occurrenceRows">'+(items||'<p>No LGA reports mapped for this theme in this catchment.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></section>';
 }
 function refreshOccurrenceProfile(){
- const c=catchments.find(x=>x.id===selected),old=el('profileOccurrences');
- if(!c||!old)return;
- const wasOpen=old.open===true;
- old.outerHTML=renderOccurrenceList(c);
- if(wasOpen&&el('profileOccurrences'))el('profileOccurrences').open=true;
+ const c=catchments.find(x=>x.id===selected),old=el('profileOccurrences');if(!c||!old)return;
+ old.outerHTML=renderOccurrenceList(c);refreshResourceLegend();
 }
 function showOccurrenceRecord(id){
  const r=allOccurrenceRecords().find(x=>x.id===id);if(!r)return;
  if(selected!==r.catchment_id)choose(r.catchment_id,true);
- setProfileView('resources');selectedOccurrenceId=id;const section=el('profileOccurrences');if(section)section.open=true;
- const out=el('occurrenceDetail');if(!out)return;
- const provenance=r.source_document
- ?'<p><b>Supplementary institutional LGA inventory; not field-verified.</b> Source: '+esc(r.source_document)+(r.source_row?' · table row '+Number(r.source_row):' · LGA section '+esc(r.lga_name))+'. '+(r.reported_legal_status?'Reported legal status: '+esc(r.reported_legal_status)+'. ':'')+(r.reported_area_ha?'Reported extent: '+Number(r.reported_area_ha).toLocaleString()+' ha. ':'')+'Named communities are context only; no exact occurrence coordinates were provided.</p>'
- :r.source_locators
-  ?'<p><b>Stakeholder-reported; not independently verified.</b> Source: '+r.source_locators.map(x=>esc(x.document)+' · paragraph '+Number(x.paragraph)+' ('+esc(x.theme.replaceAll('_',' '))+')').join('; ')+'. See <b>Original sources</b> above to read each source statement.</p>'
-  :'<p>Government-published Sokoto–Zamfara SCMP, Annex 2 Table A-1, source page '+Number(r.source_pdf_page)+'. <a href="'+esc(r.public_report_url)+'" target="_blank" rel="noopener noreferrer">View government report</a>.</p>';
- const quoted=r.source_locators? r.source_locators.slice(0,2).map(x=>{
-  const original=originalStatements?.entries.find(e=>e.c===r.catchment_id
-    &&originalStatements.documents[e.d]===x.document&&e.p===x.paragraph&&e.s===x.theme);
-  return original?'<blockquote style="margin:7px 0;padding:9px 12px;border-left:3px solid #3b8e82;background:#f8fcfa">'+esc(original.t)+'</blockquote>':'';
- }).join(''):'';
- const siblings=allOccurrenceRecords().filter(x=>x.catchment_id===r.catchment_id&&x.lga_id===r.lga_id&&x.category===r.category&&x.id!==r.id);
- out.innerHTML='<strong>'+esc(r.name)+' · '+esc(r.lga_name)+' LGA, '+esc(r.state)+'</strong>'+provenance+quoted
-  +'<p><b>Location precision:</b> representative overlap point inside the named LGA and catchment. Not a surveyed site, a verified resource reserve or proof of constructed infrastructure.</p>'
-  +(siblings.length?'<p><b>Other '+esc(r.category)+' reports at this LGA:</b></p><div class="occurrenceRows">'+siblings.map(x=>'<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(x.id)+'">'+esc(x.name)+'</button>').join('')+'</div>':'');
- const row=el('details')?.querySelector('[data-occurrence-select="'+id+'"]');if(row)row.scrollIntoView({block:'nearest'});
- schedulePaint();
+ setProfileView('resources');selectedOccurrenceId=id;
+ const area=el('occurrenceDetail');if(!area)return;
+ const matches=allOccurrenceRecords().filter(x=>x.catchment_id===r.catchment_id&&x.lga_id===r.lga_id&&x.category===r.category&&canonicalResourceName(x.name)===canonicalResourceName(r.name));
+ const titles=[...new Set(matches.flatMap(x=>x.source_document?[x.source_document]:x.source_locators?.map(y=>y.document)||['Published SCMP plan']))];
+ area.innerHTML='<div class="resourceSelected">'+resourceIconMarkup(r)+'<strong>'+esc(canonicalResourceName(r.name))+' · '+esc(r.lga_name)+' LGA</strong></div><p>Reported within '+esc(r.lga_name)+' LGA, '+esc(r.state)+'. Symbol placement is schematic and does not establish a surveyed site or resource quantity.</p><details class="resourceProvenance"><summary>Information basis ('+matches.length+' reports)</summary><p>'+titles.map(esc).join(' · ')+'</p></details>';
+ el('details')?.querySelector('[data-occurrence-select="'+id+'"]')?.scrollIntoView({block:'nearest'});schedulePaint();
 }
 function occurrenceRepresentativePoint(lgaId,catchmentId){
  const entry=lgaPaths.get(lgaId),clip=catchPaths.get(catchmentId);
@@ -1669,53 +1667,35 @@ function occurrenceRepresentativePoint(lgaId,catchmentId){
  ctx.restore();return best;
 }
 function drawOccurrenceSymbols(){
- occurrenceMarkerHits=[];
- if(!occurrenceOn||!selected||!admLgas)return;
- // One visible glyph per distinct reported type and LGA. Multiple source reports
- // stay independently accessible in the profile; we never replace a type with a number.
+ occurrenceMarkerHits=[];if(!occurrenceOn||!selected||!admLgas)return;
  const lgas=new Map();
- for(const r of filteredOccurrenceRecords()){
-  if(!lgas.has(r.lga_id))lgas.set(r.lga_id,new Map());
-  const key=r.category+'|'+clean(r.name);
-  if(!lgas.get(r.lga_id).has(key))lgas.get(r.lga_id).set(key,r);
- }
+ for(const r of filteredOccurrenceRecords()){if(!lgas.has(r.lga_id))lgas.set(r.lga_id,new Map());const key=r.category+'|'+canonicalResourceName(r.name).toLowerCase();if(!lgas.get(r.lga_id).has(key))lgas.get(r.lga_id).set(key,r)}
  const dpr=Math.min(window.devicePixelRatio||1,1.5),dim=screen(),placed=[];
- const radius=12,minDist=27,maxOffset=175;
+ const size=27,minDist=30,maxOffset=125;let omitted=0,shown=0;
  ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
- let omitted=0,shown=0;
  for(const [lgaId,types] of [...lgas.entries()].sort((a,b)=>a[0].localeCompare(b[0]))){
-  const where=occurrenceRepresentativePoint(lgaId,selected);if(!where){omitted+=types.size;continue}
-  const base=toScreen(where.x,where.y),entries=[...types.values()].sort((a,b)=>a.name.localeCompare(b.name));
-  for(let index=0;index<entries.length;index++){
-   const r=entries[index];let pos=null;
-   for(let attempt=0;attempt<115;attempt++){
-    const ring=Math.floor(Math.sqrt(attempt)),distance=ring===0?0:Math.min(maxOffset,23*ring+10);
-    const theta=(attempt*2.399963229728653)+index*.18+(index%5)*.1;
-    const x=base.x+Math.cos(theta)*distance,y=base.y+Math.sin(theta)*distance;
-    if(x<radius+2||y<radius+2||x>dim.w-radius-2||y>dim.h-radius-2)continue;
-    if(placed.some(p=>(p.x-x)**2+(p.y-y)**2<minDist*minDist))continue;
+  const point=occurrenceRepresentativePoint(lgaId,selected);if(!point){omitted+=types.size;continue}
+  const base=toScreen(point.x,point.y),entries=[...types.values()].sort((a,b)=>canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
+  for(let i=0;i<entries.length;i++){
+   const r=entries[i];let pos=null;
+   for(let attempt=0;attempt<110;attempt++){
+    const ring=Math.floor(Math.sqrt(attempt)),distance=Math.min(maxOffset,ring*22+(ring?9:0)),angle=attempt*2.399963229728653+i*.09;
+    const x=base.x+Math.cos(angle)*distance,y=base.y+Math.sin(angle)*distance;
+    if(x<16||y<16||x>dim.w-16||y>dim.h-16||placed.some(p=>(p.x-x)**2+(p.y-y)**2<minDist*minDist))continue;
     pos={x,y};break;
    }
    if(!pos){omitted++;continue}
    placed.push(pos);shown++;
-   const style=resourceStyle(r.category),code=resourceSymbol(r),active=selectedOccurrenceId===r.id;
-   const span=Math.hypot(pos.x-base.x,pos.y-base.y);
-   if(span>18){ctx.beginPath();ctx.moveTo(base.x,base.y);ctx.lineTo(pos.x,pos.y);ctx.strokeStyle='#30564d88';ctx.lineWidth=.8;ctx.setLineDash([2,3]);ctx.stroke();ctx.setLineDash([])}
-   ctx.beginPath();ctx.arc(pos.x,pos.y,active?14:radius,0,2*Math.PI);ctx.fillStyle=style.color;ctx.fill();
-   ctx.strokeStyle=active?'#fff':'#f6fcf9';ctx.lineWidth=active?3:1.5;ctx.stroke();
-   ctx.font='bold '+(code.length>=4?'9':'10.5')+'px Arial, sans-serif';
-   ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(code,pos.x,pos.y+.5);
+   if(Math.hypot(pos.x-base.x,pos.y-base.y)>19){ctx.beginPath();ctx.moveTo(base.x,base.y);ctx.lineTo(pos.x,pos.y);ctx.strokeStyle='#245e5380';ctx.lineWidth=.7;ctx.setLineDash([2,3]);ctx.stroke();ctx.setLineDash([])}
+   if(window.BNResourceIcons?.draw)window.BNResourceIcons.draw(ctx,r,pos.x,pos.y,size,r.id===selectedOccurrenceId);
+   else{ctx.fillStyle=resourceStyle(r.category).color;ctx.fillRect(pos.x-13,pos.y-13,26,26)}
    occurrenceMarkerHits.push({id:r.id,x:pos.x,y:pos.y});
   }
  }
  ctx.restore();
- const message=el('themeMapInfo');
- if(message){
-  const full=[...lgas.values()].reduce((n,x)=>n+x.size,0);
-  const detail=shown+' of '+full+' distinct resource–LGA symbols displayed';
-  const text=omitted?detail+' · '+omitted+' off screen or too close to another marker; zoom or choose one resource. All source records remain in the profile.':detail+' · select a symbol to inspect its LGA and source.';
-  if(message.textContent!==text)message.textContent=text;
- }
+ const status=el('themeMapInfo');
+ if(status){const full=[...lgas.values()].reduce((total,x)=>total+x.size,0);
+  status.textContent=shown+' of '+full+' individual resource–LGA symbols visible'+(omitted?' · '+omitted+' cannot fit; zoom closer.':'.')+' Reports remain listed under Resources.'}
 }
 function hitOccurrenceSymbol(px,py){
  if(!occurrenceOn)return null;
