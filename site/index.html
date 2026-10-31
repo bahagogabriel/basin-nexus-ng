@@ -1344,9 +1344,11 @@ function renderCompiledDamLayer(scale){
   const rec=compiledDamData.records[i];if(!compiledReferenceVisible(rec))continue;
   const p=xy([rec[0],rec[1]]);
   const active=selectedDamRef===i;
-  ctx.beginPath();ctx.arc(p[0],p[1],(active?6.1:4.3)/scale,0,2*Math.PI);
-  ctx.fillStyle=rec[3]===null?'#74819a':'#98623e';ctx.fill();
-  ctx.lineWidth=(active?3:1.6)/scale;ctx.strokeStyle='#fffdf5';ctx.stroke();
+  // Dam-shaped pictogram for research references; styling still distinguishes unverified evidence.
+  ctx.save();ctx.translate(p[0],p[1]);ctx.scale(1/scale,1/scale);
+  if(window.BNResourceIcons?.draw)window.BNResourceIcons.draw(ctx,{name:'Dam',category:'water'},0,0,active?25:21,active);
+  else{ctx.fillStyle='#277fad';ctx.fillRect(-9,-9,18,18)}
+  ctx.restore();
  }
 }
 function hideDamRefPopup(){
