@@ -10,7 +10,7 @@ scripts=re.findall(r'(<script\b[^>]*>)(.*?)</script>',html,flags=re.I|re.S)
 inline=[body for tag,body in scripts if not re.search(r'\bsrc\s*=',tag,flags=re.I)]
 external=[tag for tag,body in scripts if re.search(r'\bsrc\s*=',tag,flags=re.I)]
 assert len(inline)==1, f'Expected exactly one inline app script, got {len(inline)}'
-assert len(external)==1 and re.search(r'\bsrc\s*=\s*["\']climate\.js["\']',external[0],flags=re.I), 'Unreviewed external app scripts'
+assert len(external)==2 and all(any(re.search(r'\bsrc\s*=\s*["\']'+re.escape(name)+r'["\']',tag,flags=re.I) for tag in external) for name in ('climate.js','resource-icons.js')), 'Unreviewed external app scripts'
 with TemporaryDirectory() as folder:
     for name,source in [('page.mjs',inline[0]),('climate.mjs',(root/'site'/'climate.js').read_text('utf-8'))]:
         target=Path(folder)/name
