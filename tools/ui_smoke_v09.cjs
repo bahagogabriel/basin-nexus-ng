@@ -88,11 +88,15 @@ async function responsiveUX(page,label){
  assert(inspect.active.includes('20 strategic catchments'),label+': regional context must be shown on arrival');
  assert(!inspect.layerOpen,label+': settings must start closed');
  if(v.width<=780)assert(!inspect.legendOpen,label+': legend should start collapsed on phones');
+ assert(await page.locator('#layerManager #countryLegend').count()===1,label+': geographic legend belongs inside Layers, not over map');
+ await page.locator('#layerManager > summary').click();
  await page.locator('#countryLegend > summary').click();
  const toggled=await page.locator('#countryLegend').evaluate(n=>n.open);
  assert.equal(toggled,!inspect.legendOpen,label+': legend disclosure is not interactive');
  await page.locator('#countryLegend > summary').click();
  assert.equal(await page.locator('#countryLegend').evaluate(n=>n.open),inspect.legendOpen,label+': legend should return to original state');
+ await page.locator('#layerManager > summary').click();
+ assert.equal(await page.locator('#layerManager').evaluate(n=>n.open),false,label+': Layers closed after legend test');
  console.log(label+': RESPONSIVE UX PASS '+v.width+'px, map width '+Math.round(inspect.canvas.w)+'px, no overflow');
 }
 
