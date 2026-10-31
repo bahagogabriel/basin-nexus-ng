@@ -6,10 +6,9 @@ for marker in (
  'function keepSelectedVisible(){','keepSelectedVisible()','if(previousSelection!==id)',
  "el('catchmentList').scrollTop=0",'id="mapHint"',
  'summary aria-label="Show map instructions"','id="mapNote"',
- 'class="profileJumps"','data-profile-target="profileRivers"',
- 'data-profile-target="profileBorders"','data-profile-target="profileAdmin"',
- 'data-profile-target="profileCatalogue"','id="profileRivers"',
- 'id="profileBorders"','id="profileAdmin"','id="profileCatalogue"',
+ 'class="profileViews"','data-profile-view="overview"',
+ 'data-profile-view="resources"','id="statesLGAs"',
+ 'id="profileRivers"','id="profileAdmin"','id="profileOccurrences"',
  "el('details').addEventListener('click'","el('details').scrollTop=0"
 ):assert marker in s,marker
 assert s.count('id="mapHint"')==1
