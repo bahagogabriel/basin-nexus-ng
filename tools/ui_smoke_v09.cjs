@@ -23,6 +23,56 @@ async function ready(){
 }
 async function metric(page){return page.evaluate(()=>JSON.parse(JSON.stringify(window.__BN_MAP_DIAGNOSTICS__)))}
 
+async function testResourceCoverageAcross20(page){
+ await page.waitForFunction(()=>document.querySelector('#mapKey')&&document.querySelector('#catchmentList [data-id="SCMP-C20"]'),null,{timeout:30000});
+ const ids=Array.from({length:20},(_,i)=>'SCMP-C'+String(i+1).padStart(2,'0'));
+ let cases=0,catchmentOnly=0,offscreen=0;
+ for(const id of ids){
+  const before=await page.evaluate(()=>window.__BN_MAP_DIAGNOSTICS__.frames);
+  await page.evaluate(id=>choose(id,true),id);
+  await page.waitForFunction(({id,before})=>window.__BN_MAP_DIAGNOSTICS__.selected===id&&window.__BN_MAP_DIAGNOSTICS__.frames>before,{id,before},{timeout:16000});
+  for(const theme of ['crop','mineral','ecology','water','pressure']){
+   const frames=await page.evaluate(()=>window.__BN_MAP_DIAGNOSTICS__.frames);
+   await page.evaluate(theme=>selectResourceTheme(theme),theme);
+   await page.waitForFunction(frames=>window.__BN_MAP_DIAGNOSTICS__.frames>frames,frames,{timeout:16000});
+   const a=await page.evaluate(()=>{
+    const r=window.__BN_MAP_DIAGNOSTICS__;
+    const mapped=uniqueMappedTypes(),source=catchmentOnlySourceTypes();
+    const els=[...document.querySelectorAll('#mapKeyItems [data-resource-type]')];
+    const unshown=els.filter(e=>e.classList.contains('mapKeyItem--outside'));
+    return {mapped:mapped.length,source:source.length,sourceItems:document.querySelectorAll('#mapKeyItems .mapKeyItem--source').length,
+     plotted:r.resourceMarkerHits,plottedTypes:r.visibleResourceTypes?.length||0,
+     hidden:r.resourceHiddenCount,inside:r.resourceMarkerInsideCatchment,
+     key:els.length,unshown:unshown.length,types:new Set(r.visibleResourceTypes||[]).size,
+     catalogLoaded:!!stakeholderAtlas};
+   });
+   assert(a.catalogLoaded,id+': original source inventory did not load');
+   assert(a.inside,id+' '+theme+': marker outside selected catchment polygon');
+   assert.equal(a.key,a.mapped,id+' '+theme+': legend must include LGA-mapped types');
+   assert.equal(a.sourceItems,a.source,id+' '+theme+': catchment-only types must be listed without map coordinates');
+   assert.equal(a.plottedTypes,a.types,id+' '+theme+': map marker visibility ledger inconsistent');
+   assert.equal(a.unshown,a.mapped-a.plottedTypes,id+' '+theme+': unshown map-key types must be marked');
+   if(a.source>0)catchmentOnly++;
+   if(a.unshown>0)offscreen++;
+   cases++;
+   if(id==='SCMP-C06'&&theme==='crop'){
+    assert.equal(a.mapped,0,'Hadejia crop cannot be assigned to an invented LGA');
+    assert(a.source>=1,'Hadejia original catchment-scope Rice report must be visible');
+    assert.match(await page.locator('#mapKeyItems').innerText(),/Rice/);
+    await page.locator('#details [data-profile-view="resources"]').click();
+    assert.match(await page.locator('#catchmentOnlyReports').innerText(),/Rice/);
+    await page.screenshot({path:path.join(folder,'hadejia_catchment_only_rice.png'),fullPage:false});
+   }
+   if(id==='SCMP-C02'&&theme==='crop'){
+    assert(a.mapped>=1&&a.source>=1,'Benue-Mada must distinguish mapped crops from catchment-only crops');
+    await page.screenshot({path:path.join(folder,'benue_mada_crop_visibility.png'),fullPage:false});
+   }
+  }
+ }
+ assert.equal(cases,100);
+ console.log('S22.3 ALL CATCHMENTS PASS: '+cases+' theme/catchment views; '+catchmentOnly+' with catchment-only source terms; '+offscreen+' with explicit offscreen key symbols');
+ await page.evaluate(()=>showOverview());
+}
 async function testWaterLayers(page,name){
  const manager=page.locator('#layerManager');
  if(!await manager.evaluate(n=>n.open))await page.locator('#layerManager > summary').click();
@@ -883,7 +933,7 @@ async function testEvidenceCatalogueFixture(browser){
 (async()=>{try{
  await ready();browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const desktop=await browser.newPage({viewport:{width:1512,height:950}});
- await test(desktop,'desktop');await assertIdleStability(desktop,'desktop after drag');await desktop.close();
+ await test(desktop,'desktop');await testResourceCoverageAcross20(desktop);await assertIdleStability(desktop,'desktop after drag');await desktop.close();
  await testReachComparison(browser);
  await testFaoSourceTopology(browser);
  await testOriginalPublisherGapReview(browser);
