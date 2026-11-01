@@ -1832,7 +1832,7 @@ function drawReadableResourceNames(dim){
   ctx.fillStyle='#102c29';ctx.beginPath();ctx.roundRect(box.x,box.y,box.w,box.h,6);ctx.fill();
   ctx.shadowBlur=0;ctx.shadowOffsetY=0;
   ctx.strokeStyle=window.BNResourceIcons?.tint?.(r)||'#fff';ctx.lineWidth=2;ctx.stroke();
-  ctx.fillStyle='#fff';ctx.fillText(name,box.x+8,box.y+h/2,box.w-12);
+  ctx.fillStyle='#fff';ctx.fillText(name,box.x+8,box.y+box.h/2,box.w-12);
   mapMetrics.resourceLabelsShown++;mapMetrics.resourceLabelTypes.push(name);
  }
  ctx.restore();
