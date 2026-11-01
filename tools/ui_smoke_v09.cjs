@@ -119,6 +119,9 @@ async function test(page,name){
   assert.deepEqual(sources,{statements:3277,resources:375,lgas:622,supplement:127,unplaced:21});
   assert.equal(await page.evaluate(()=>window.BNResourceIcons.canonical('Baryte')),'Barite');
   assert.equal(await page.evaluate(()=>window.BNResourceIcons.canonical('Barite')),'Barite');
+  assert.equal(await page.evaluate(()=>window.BNResourceIcons.keyFor({name:'Shea',category:'ecology'})),'sheabutter','Shea must not use a generic forest icon');
+  assert.equal(await page.evaluate(()=>window.BNResourceIcons.keyFor({name:'Wetlands',category:'ecology'})),'wetland','Wetlands need the correct ecological pictogram');
+  assert.equal(await page.evaluate(()=>window.BNResourceIcons.keyFor({name:'Pollution',category:'pressure'})),'waterpollution','Pollution needs a descriptive pressure pictogram');
   for(const name of ['gold','lithium','barite','coal','iron ore','manganese','rice','maize','cassava','flooding','dam']){
    const key=await page.evaluate(name=>window.BNResourceIcons.keyFor({name,category:['rice','maize','cassava'].includes(name)?'crop':['flooding'].includes(name)?'pressure':['dam'].includes(name)?'water':'mineral'}),name);
    assert(key,'Pictogram key missing for '+name);
