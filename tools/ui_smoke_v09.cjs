@@ -151,23 +151,18 @@ async function test(page,name){
   assert.equal(await page.locator('#details [data-profile-view="sources"]').count(),0);
   assert.equal(await page.locator('#details [data-profile-view="technical"]').count(),0);
   assert.equal(await page.locator('#statesLGAs').count(),1);
-  await page.waitForTimeout(4000);
-  const markerDebug=await page.evaluate(()=>({
-   selected:window.__BN_MAP_DIAGNOSTICS__?.selected,
-   frames:window.__BN_MAP_DIAGNOSTICS__?.frames,
-   labels:window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown,
-   markerHits:window.__BN_MAP_DIAGNOSTICS__?.resourceMarkerHits,
-   groupCount:window.__BN_MAP_DIAGNOSTICS__?.labelCandidateGroups,
-   names:window.__BN_MAP_DIAGNOSTICS__?.resourceLabelTypes,
-   toggle:document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed'),
-   toggleDisabled:document.querySelector('#occurrenceLayerToggle')?.disabled,
-   nameToggle:document.querySelector('#resourceNameToggle')?.getAttribute('aria-pressed'),
-   status:document.querySelector('#occurrenceLayerStatus')?.textContent,
-   themeStatus:document.querySelector('#themeMapInfo')?.textContent,
-   key:document.querySelector('#mapKeyMeta')?.textContent
-  }));
-  console.log('S22.2 MARKER DIAGNOSTIC',JSON.stringify(markerDebug),'PAGE ERRORS',JSON.stringify(errors.slice(-6)));
-  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown>0,{timeout:30000});
+  try{
+   await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown>0,{timeout:15000});
+  }catch(error){
+   const debug=await page.evaluate(()=>({
+    selected:window.__BN_MAP_DIAGNOSTICS__?.selected,labels:window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown,
+    markerHits:window.__BN_MAP_DIAGNOSTICS__?.resourceMarkerHits,
+    groups:window.__BN_MAP_DIAGNOSTICS__?.labelCandidateGroups,
+    toggle:document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')
+   }));
+   console.error('Resource-name callout diagnostics',debug,'Browser errors',errors.slice(-6));
+   throw error;
+  }
   const named=await metric(page);
   assert(named.resourceLabelsShown>=1,'Map must display readable resource names without requiring icon lookup');
   assert(named.resourceLabelTypes.length===new Set(named.resourceLabelTypes).size,'Resource name labels must not repeat needlessly');
