@@ -4,7 +4,7 @@ from pathlib import Path
 site=Path(__file__).resolve().parents[1]/"site"/"index.html"
 s=site.read_text(encoding="utf-8")
 for marker in ('class="mapbar"','class="layerManager" id="layerManager"','<summary aria-label="Open all map layer settings">',
-               'class="layerSection"','id="focusMapBtn"','id="overviewBtn"','id="mapActiveSummary"',
+               'class="layerSection"','id="mapKey"','id="mapKeyItems"','id="mapKeyMeta"','id="focusMapBtn"','id="overviewBtn"','id="mapActiveSummary"',
                '<details class="countryLegend" id="countryLegend">',
                'class="legendContent"','riverDensity=\'medium\'',
                "el('focusMapBtn').addEventListener('click',focusSelected)",
@@ -17,5 +17,8 @@ assert s.count('id="riverDensity"')==1
 assert s.count('id="expandBtn"')==1
 assert s.count('id="lgaToggle"')==1
 assert s.count('id="countryLegend"')==1
+assert 'id="statesLGAs" open' in s
+assert 'function refreshQuickMapKey()' in s
+assert '.bnIcon--crop' in s and '.bnIcon--ecology' in s and '.bnIcon--water' in s and '.bnIcon--pressure' in s
 assert 'selected catchment' in s
 print('UX-A STRUCTURAL CONTRACT: PASS')
