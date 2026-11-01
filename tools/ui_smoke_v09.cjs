@@ -158,7 +158,6 @@ async function test(page,name){
    labels:window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown,
    markerHits:window.__BN_MAP_DIAGNOSTICS__?.resourceMarkerHits,
    groupCount:window.__BN_MAP_DIAGNOSTICS__?.labelCandidateGroups,
-   pageErrors:errors.slice(-5),
    names:window.__BN_MAP_DIAGNOSTICS__?.resourceLabelTypes,
    toggle:document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed'),
    toggleDisabled:document.querySelector('#occurrenceLayerToggle')?.disabled,
@@ -167,7 +166,7 @@ async function test(page,name){
    themeStatus:document.querySelector('#themeMapInfo')?.textContent,
    key:document.querySelector('#mapKeyMeta')?.textContent
   }));
-  console.log('S22.2 MARKER DIAGNOSTIC',JSON.stringify(markerDebug));
+  console.log('S22.2 MARKER DIAGNOSTIC',JSON.stringify(markerDebug),'PAGE ERRORS',JSON.stringify(errors.slice(-6)));
   await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown>0,{timeout:30000});
   const named=await metric(page);
   assert(named.resourceLabelsShown>=1,'Map must display readable resource names without requiring icon lookup');
