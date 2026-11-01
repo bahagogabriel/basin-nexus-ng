@@ -140,7 +140,8 @@ function keyFor(r){
  if(r?.category==='crop' && /nut/.test(key))return 'groundnut';
  return defaults[r?.category]||'quartz';
 }
-/* Category colors are stable; slight within-category variations complement unique silhouettes. */
+/* Named resources use distinct editorial marker colors, not inferred mineral or crop properties.
+   Outer silhouettes still identify the five resource categories, even without color vision. */
 const categoryPalette=Object.freeze({
  mineral:['#a66724','#946022','#ad752b'],
  crop:['#28793d','#318b46','#247448'],
@@ -148,8 +149,26 @@ const categoryPalette=Object.freeze({
  water:['#176db5','#257dc1','#145f9e'],
  pressure:['#bc3e3e','#aa373b','#c64f38']
 });
+const namedPalette=Object.freeze({
+ // High-frequency mineral commodities: separate contrasting hues at actual 27px map scale.
+ gold:'#bf830e',ironore:'#a14934',lithium:'#6658ae',clay:'#bc694b',
+ limestone:'#416f79',granite:'#68718a',lead:'#44546a',tin:'#396a91',
+ columbite:'#51489c',kaolin:'#867343',monazite:'#91517b',barite:'#8b6743',
+ coal:'#44464c',gypsum:'#7864a0',copper:'#ae5b3c',zinc:'#587779',
+ // Crops: stronger differences than multiple near-identical green circles.
+ cassava:'#437a2b',rice:'#b08c27',sheabutter:'#9b6330',
+ yam:'#815238',ginger:'#bb712c',sesame:'#6e8535',sugarcane:'#1e795d',
+ maize:'#b1831c',groundnut:'#985c40',millet:'#6a8a3b',
+ // Preserve thematic meaning for ecology, water and pressure.
+ wetland:'#138b91',forestreserve:'#237858',grazingreserve:'#6e8451',
+ river:'#2379b8',lake:'#257fa2',dam:'#2d72ac',
+ flooding:'#b74834',erosion:'#a94e37',drought:'#af7b2c',
+ deforestation:'#974536',waterpollution:'#a1395a'
+});
 function tint(r){
- const key=keyFor(r),colors=categoryPalette[r?.category]||categoryPalette.mineral;
+ const key=keyFor(r);
+ if(namedPalette[key])return namedPalette[key];
+ const colors=categoryPalette[r?.category]||categoryPalette.mineral;
  let hash=0;for(let i=0;i<key.length;i++)hash=(hash*31+key.charCodeAt(i))>>>0;
  return colors[hash%colors.length];
 }
