@@ -1795,12 +1795,20 @@ function drawReadableResourceNames(dim){
   for(const entry of group){
    const {hit,name}=entry;
    const w=Math.min(120,Math.ceil(ctx.measureText(name).width)+16),h=22;
-   const candidates=[
-    {x:hit.x+19,y:hit.y-h/2,w,h},
-    {x:hit.x-19-w,y:hit.y-h/2,w,h},
-    {x:hit.x-w/2,y:hit.y+19,w,h},
-    {x:hit.x-w/2,y:hit.y-19-h,w,h}
-   ];
+   const candidates=[];
+   // Start with nearby attached pills, then gently displace into open map space.
+   for(const distance of [19,34,52,76,104,132]){
+    candidates.push(
+     {x:hit.x+distance,y:hit.y-h/2,w,h},
+     {x:hit.x-distance-w,y:hit.y-h/2,w,h},
+     {x:hit.x-w/2,y:hit.y+distance,w,h},
+     {x:hit.x-w/2,y:hit.y-distance-h,w,h},
+     {x:hit.x+distance*.7,y:hit.y+distance*.7,w,h},
+     {x:hit.x-distance*.7-w,y:hit.y-distance*.7-h,w,h},
+     {x:hit.x+distance*.7,y:hit.y-distance*.7-h,w,h},
+     {x:hit.x-distance*.7-w,y:hit.y+distance*.7,w,h}
+    );
+   }
    for(const box of candidates){
     if(box.x<5||box.y<5||box.x+box.w>dim.w-5||box.y+box.h>dim.h-5)continue;
     if(markers.some(m=>intersects(m,box,2))||reserved.some(m=>intersects(m,box,5)))continue;
@@ -1811,6 +1819,14 @@ function drawReadableResourceNames(dim){
   if(!chosen)continue;
   const {hit,r,name,box}=chosen;
   reserved.push(box);hit.labelBounds={...box};
+  // A light leader makes displaced name callouts unambiguously refer to their mapped icon.
+  const nearX=Math.max(box.x,Math.min(hit.x,box.x+box.w));
+  const nearY=Math.max(box.y,Math.min(hit.y,box.y+box.h));
+  if(Math.hypot(nearX-hit.x,nearY-hit.y)>9){
+   ctx.beginPath();ctx.moveTo(hit.x,hit.y);ctx.lineTo(nearX,nearY);
+   ctx.strokeStyle=window.BNResourceIcons?.tint?.(r)||'#fff';
+   ctx.lineWidth=1.2;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);
+  }
   ctx.shadowColor='rgba(2,20,17,.38)';ctx.shadowBlur=3;ctx.shadowOffsetY=1;
   ctx.fillStyle='#102c29';ctx.beginPath();ctx.roundRect(box.x,box.y,box.w,box.h,6);ctx.fill();
   ctx.shadowBlur=0;ctx.shadowOffsetY=0;
