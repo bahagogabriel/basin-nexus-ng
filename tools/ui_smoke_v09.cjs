@@ -29,11 +29,11 @@ async function testResourceCoverageAcross20(page){
  let cases=0,catchmentOnly=0,offscreen=0;
  for(const id of ids){
   const before=await page.evaluate(()=>window.__BN_MAP_DIAGNOSTICS__.frames);
-  await page.evaluate(id=>choose(id,true),id);
+  await page.locator('#catchmentList button[data-id="'+id+'"]').click();
   await page.waitForFunction(({id,before})=>window.__BN_MAP_DIAGNOSTICS__.selected===id&&window.__BN_MAP_DIAGNOSTICS__.frames>before,{id,before},{timeout:16000});
   for(const theme of ['crop','mineral','ecology','water','pressure']){
    const frames=await page.evaluate(()=>window.__BN_MAP_DIAGNOSTICS__.frames);
-   await page.evaluate(theme=>selectResourceTheme(theme),theme);
+   await page.evaluate(theme=>document.querySelector('#themeSwitch [data-theme="'+theme+'"]').click(),theme);
    await page.waitForFunction(frames=>window.__BN_MAP_DIAGNOSTICS__.frames>frames,frames,{timeout:16000});
    const a=await page.evaluate(()=>{
     const r=window.__BN_MAP_DIAGNOSTICS__;
@@ -71,7 +71,7 @@ async function testResourceCoverageAcross20(page){
  }
  assert.equal(cases,100);
  console.log('S22.3 ALL CATCHMENTS PASS: '+cases+' theme/catchment views; '+catchmentOnly+' with catchment-only source terms; '+offscreen+' with explicit offscreen key symbols');
- await page.evaluate(()=>showOverview());
+ await page.locator('#overviewBtn').click();
 }
 async function testWaterLayers(page,name){
  const manager=page.locator('#layerManager');
