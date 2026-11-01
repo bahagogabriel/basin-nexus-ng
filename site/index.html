@@ -497,7 +497,7 @@ header .nav button{padding:8px 12px}
       <div class="layerSection"><strong>Administrative boundaries</strong><div class="layerButtons"><button type="button" class="toggle" id="nationalToggle" aria-pressed="true">Hide Nigeria border</button><button type="button" class="toggle" id="stateToggle" aria-pressed="true">Hide states</button><button type="button" class="toggle" id="lgaToggle" aria-pressed="false" disabled title="Select a catchment to inspect its LGAs">Show LGAs</button></div></div>
       <div class="layerSection"><strong>Research dam references (not confirmed)</strong><div class="layerButtons"><button type="button" class="toggle" id="compiledDamToggle" aria-pressed="false" disabled>Show compiled dam references</button></div><p id="compiledDamStatus" role="status" aria-live="polite">Preparing 2026 published-source reference points. Confirmed individual dams: 0.</p></div>
       <div class="layerSection layerAdvanced"><strong>Regional resource overview</strong><div class="layerButtons"><button type="button" id="resourceAtlasToggle" class="toggle" aria-pressed="true">Hide resource category symbols</button><label for="resourceAtlasCategory">Category <select id="resourceAtlasCategory"><option value="all">All resources</option><option value="crop">Crops</option><option value="mineral">Minerals</option><option value="ecology">Ecology</option><option value="water">Water resources</option><option value="pressure">Environmental pressures</option></select></label></div><p id="resourceAtlasStatus" role="status" aria-live="polite">Loading reported resources for all 20 catchments…</p><small>Overview category symbols are only shown on the all-catchment map. Select a catchment to see named LGA reports, not precise farms, mines or water installations.</small></div>
-      <div class="layerSection layerAdvanced"><strong>Mapped LGA reports</strong><div class="layerButtons"><button type="button" class="toggle" id="occurrenceLayerToggle" aria-pressed="false" disabled>Show reported LGA occurrences</button><label for="occurrenceCategory">Category <select id="occurrenceCategory"><option value="all">All categories</option><option value="crop">🌾 Crops</option><option value="mineral" selected>◆ Minerals</option><option value="ecology">♣ Ecology</option><option value="water">≋ Water</option><option value="pressure">! Environmental pressures</option></select></label></div><p id="occurrenceLayerStatus" role="status" aria-live="polite">Loading public source-backed occurrence inventory…</p><small>Symbols indicate an LGA-level report, not the exact site of a farm, mineral deposit or flood.</small></div>
+      <div class="layerSection layerAdvanced"><strong>Mapped LGA reports</strong><div class="layerButtons"><button type="button" class="toggle" id="occurrenceLayerToggle" aria-pressed="false" disabled>Show reported LGA occurrences</button><label for="occurrenceCategory">Category <select id="occurrenceCategory"><option value="all">All categories</option><option value="crop">🌾 Crops</option><option value="mineral" selected>◆ Minerals</option><option value="ecology">♣ Ecology</option><option value="water">≋ Water</option><option value="pressure">! Environmental pressures</option></select></label><button type="button" class="toggle" id="resourceNameToggle" aria-pressed="true" title="Map labels automatically avoid crowded symbols">Hide map resource names</button></div><p id="occurrenceLayerStatus" role="status" aria-live="polite">Loading public source-backed occurrence inventory…</p><small>Symbols indicate an LGA-level report, not the exact site of a farm, mineral deposit or flood.</small></div>
       <div class="layerSection"><strong>Map labels</strong><div class="layerButtons"><button type="button" class="toggle" id="labelsToggle" aria-pressed="true">Hide labels</button></div></div>
       <div class="layerSection"><strong>Legend &amp; sources</strong><details class="countryLegend" id="countryLegend"><summary>Legend &amp; sources</summary><div class="legendContent"><div id="nationalLegend" class="legendItem"><span class="swatch"></span>Nigeria · 1:110m</div><div id="stateLegend" class="legendItem"><span class="swatch state"></span>States/FCT · 2022</div><div id="lgaLegend" class="legendItem hidden"><span class="swatch lga"></span>LGAs · tap a polygon</div><div id="riverLegend" class="legendItem"><span class="swatch river"></span>Regional rivers · Natural Earth 1:10m</div><div class="legendItem"><small id="riverScopeInfo" aria-live="polite">Select a catchment to load its FAO 2026 modeled river network</small></div><div id="lakeLegend" class="legendItem"><span class="swatch lake"></span>Lakes / reservoirs · overview</div><div id="damRefLegend" class="legendItem hidden"><span class="swatch" style="background:#98623e;border-radius:100%"></span>Compiled research points · not independently verified; amber named in source, grey unnamed</div></div></details></div>
       <p>FAO AQUASTAT river reaches are modelled, not surveyed channels. Administrative boundaries are provisional; detailed streams are not a complete survey.</p>
@@ -680,7 +680,7 @@ let profilePaneChoice='overview';
 let labelsOn=true,nationalOn=true,statesOn=true,lgasOn=false,riversOn=true,lakesOn=true,riverScope='all',riverDensity='medium',expanded=false,viewport={...full},compiledDamOn=false,compiledDamData=null,selectedDamRef=null;
 let catchPaths=new Map(),statePaths=[],countryPath=null,lgaPaths=new Map(),riverPaths=[],lakePaths=[],activeLGA=null,activeHydro=null,paintScheduled=false,detailCache=new Map(),detailAbort=null,detailSequence=0,detailStatus='idle';
 let pointerMap=new Map(),startSingle=null,pinch=null,gestureUsed=false,dragged=false,hoverName='';
-const mapMetrics={frames:0,pinchMoves:0,panMoves:0,tapHits:0,lastDrawMs:0,view:{...full},selected:null,selectedLGA:null,riverScope:'all',detailStatus:'idle',detailCount:0,detailFor:null};
+const mapMetrics={frames:0,pinchMoves:0,panMoves:0,tapHits:0,lastDrawMs:0,view:{...full},selected:null,selectedLGA:null,riverScope:'all',detailStatus:'idle',detailCount:0,detailFor:null,resourceLabelsShown:0,resourceLabelTypes:[]};
 window.__BN_MAP_DIAGNOSTICS__=mapMetrics;
 function clean(s){return String(s||'').normalize('NFKD').toLowerCase().replace(/[^a-z0-9]/g,'')}
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
@@ -1768,12 +1768,81 @@ function occurrenceRepresentativePoint(lgaId,catchmentId){
  }
  ctx.restore();return best;
 }
+
+/* S22.2: readable, decluttered commodity names, each attached to a real mapped LGA
+   representative marker. Full labels appear at most once per distinct resource type.
+   No label or marker implies exact physical site coordinates. */
+function drawReadableResourceNames(dim){
+ mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];
+ if(el('resourceNameToggle')?.getAttribute('aria-pressed')==='false'||!occurrenceMarkerHits.length)return;
+ const maxLabels=dim.w<440?4:dim.w<680?7:dim.w<880?10:14;
+ const markers=occurrenceMarkerHits.map(h=>({x:h.x-17,y:h.y-17,w:34,h:34}));
+ const reserved=[];const perName=new Map();
+ for(const hit of occurrenceMarkerHits){
+  const r=allOccurrenceRecords().find(x=>x.id===hit.id);
+  if(!r)continue;
+  const key=r.category+'|'+canonicalResourceName(r.name).toLowerCase();
+  if(!perName.has(key))perName.set(key,[]);
+  perName.get(key).push({hit,r,name:canonicalResourceName(r.name)});
+ }
+ mapMetrics.labelCandidateGroups=perName.size;mapMetrics.resourceMarkerHits=occurrenceMarkerHits.length;
+ // Prefer compact, recognizable names first; multiple occurrences can offer alternate label locations.
+ const groups=[...perName.values()].sort((a,b)=>a[0].name.length-b[0].name.length||a[0].name.localeCompare(b[0].name));
+ ctx.save();ctx.font='700 12px "Segoe UI", Arial, sans-serif';ctx.textAlign='left';ctx.textBaseline='middle';
+ const intersects=(a,b,space=4)=>a.x<b.x+b.w+space&&a.x+a.w+space>b.x&&a.y<b.y+b.h+space&&a.y+a.h+space>b.y;
+ for(const group of groups){
+  if(mapMetrics.resourceLabelsShown>=maxLabels)break;
+  let chosen=null;
+  for(const entry of group){
+   const {hit,name}=entry;
+   const w=Math.min(120,Math.ceil(ctx.measureText(name).width)+16),h=22;
+   const candidates=[];
+   // Start with nearby attached pills, then gently displace into open map space.
+   for(const distance of [19,34,52,76,104,132]){
+    candidates.push(
+     {x:hit.x+distance,y:hit.y-h/2,w,h},
+     {x:hit.x-distance-w,y:hit.y-h/2,w,h},
+     {x:hit.x-w/2,y:hit.y+distance,w,h},
+     {x:hit.x-w/2,y:hit.y-distance-h,w,h},
+     {x:hit.x+distance*.7,y:hit.y+distance*.7,w,h},
+     {x:hit.x-distance*.7-w,y:hit.y-distance*.7-h,w,h},
+     {x:hit.x+distance*.7,y:hit.y-distance*.7-h,w,h},
+     {x:hit.x-distance*.7-w,y:hit.y+distance*.7,w,h}
+    );
+   }
+   for(const box of candidates){
+    if(box.x<5||box.y<5||box.x+box.w>dim.w-5||box.y+box.h>dim.h-5)continue;
+    if(markers.some(m=>intersects(m,box,2))||reserved.some(m=>intersects(m,box,5)))continue;
+    chosen={...entry,box};break;
+   }
+   if(chosen)break;
+  }
+  if(!chosen)continue;
+  const {hit,r,name,box}=chosen;
+  reserved.push(box);hit.labelBounds={...box};
+  // A light leader makes displaced name callouts unambiguously refer to their mapped icon.
+  const nearX=Math.max(box.x,Math.min(hit.x,box.x+box.w));
+  const nearY=Math.max(box.y,Math.min(hit.y,box.y+box.h));
+  if(Math.hypot(nearX-hit.x,nearY-hit.y)>9){
+   ctx.beginPath();ctx.moveTo(hit.x,hit.y);ctx.lineTo(nearX,nearY);
+   ctx.strokeStyle=window.BNResourceIcons?.tint?.(r)||'#fff';
+   ctx.lineWidth=1.2;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);
+  }
+  ctx.shadowColor='rgba(2,20,17,.38)';ctx.shadowBlur=3;ctx.shadowOffsetY=1;
+  ctx.fillStyle='#102c29';ctx.beginPath();ctx.roundRect(box.x,box.y,box.w,box.h,6);ctx.fill();
+  ctx.shadowBlur=0;ctx.shadowOffsetY=0;
+  ctx.strokeStyle=window.BNResourceIcons?.tint?.(r)||'#fff';ctx.lineWidth=2;ctx.stroke();
+  ctx.fillStyle='#fff';ctx.fillText(name,box.x+8,box.y+box.h/2,box.w-12);
+  mapMetrics.resourceLabelsShown++;mapMetrics.resourceLabelTypes.push(name);
+ }
+ ctx.restore();
+}
 function drawOccurrenceSymbols(){
- occurrenceMarkerHits=[];if(!occurrenceOn||!selected||!admLgas)return;
+ occurrenceMarkerHits=[];mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];mapMetrics.resourceMarkerHits=0;mapMetrics.labelCandidateGroups=0;if(!occurrenceOn||!selected||!admLgas)return;
  const lgas=new Map();
  for(const r of filteredOccurrenceRecords()){if(!lgas.has(r.lga_id))lgas.set(r.lga_id,new Map());const key=r.category+'|'+canonicalResourceName(r.name).toLowerCase();if(!lgas.get(r.lga_id).has(key))lgas.get(r.lga_id).set(key,r)}
  const dpr=Math.min(window.devicePixelRatio||1,1.5),dim=screen(),placed=[];
- const size=27,minDist=30,maxOffset=125;let omitted=0,shown=0;
+ const size=30,minDist=34,maxOffset=125;let omitted=0,shown=0;
  ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
  for(const [lgaId,types] of [...lgas.entries()].sort((a,b)=>a[0].localeCompare(b[0]))){
   const point=occurrenceRepresentativePoint(lgaId,selected);if(!point){omitted+=types.size;continue}
@@ -1794,14 +1863,17 @@ function drawOccurrenceSymbols(){
    occurrenceMarkerHits.push({id:r.id,x:pos.x,y:pos.y});
   }
  }
+ drawReadableResourceNames(dim);
  ctx.restore();
  const status=el('themeMapInfo');
  if(status){const full=[...lgas.values()].reduce((total,x)=>total+x.size,0);
-  status.textContent=shown+' of '+full+' individual resource–LGA symbols visible'+(omitted?' · '+omitted+' cannot fit; zoom closer.':'.')+' Reports remain listed under Resources.'}
+  status.textContent=shown+' of '+full+' individual resource–LGA symbols visible; '+mapMetrics.resourceLabelsShown+' distinct resource names labeled without overlaps'+(omitted?' · '+omitted+' symbols cannot fit; zoom closer.':'.')+' All names are in the Map key.'}
 }
 function hitOccurrenceSymbol(px,py){
  if(!occurrenceOn)return null;
- const closest=occurrenceMarkerHits.map(x=>({...x,dist:Math.hypot(x.x-px,x.y-py)})).filter(x=>x.dist<=16).sort((a,b)=>a.dist-b.dist)[0];
+ const labelHit=occurrenceMarkerHits.find(x=>x.labelBounds&&px>=x.labelBounds.x&&px<=x.labelBounds.x+x.labelBounds.w&&py>=x.labelBounds.y&&py<=x.labelBounds.y+x.labelBounds.h);
+ if(labelHit)return labelHit.id;
+ const closest=occurrenceMarkerHits.map(x=>({...x,dist:Math.hypot(x.x-px,x.y-py)})).filter(x=>x.dist<=18).sort((a,b)=>a.dist-b.dist)[0];
  return closest?.id||null;
 }
 async function ensureOccurrenceLgaGeometry(){
@@ -2517,6 +2589,11 @@ fetch('data/stakeholder_resource_atlas.json').then(r=>{if(!r.ok)throw Error('sta
  if(!acceptStakeholderAtlas(d))throw Error('invalid stakeholder resource catalogue');
  stakeholderAtlas=d;el('resourceAtlasStatus').textContent=d.resource_records+' resource/catchment names reported across all '+d.catchment_count+' catchments · catchment-level map symbols';if(selected){renderDetails();updateOriginalStatementList()}renderResourceGlobalSearch();schedulePaint();
 }).catch(err=>{el('resourceAtlasStatus').textContent='All-catchment resource catalogue unavailable; existing layers remain usable';console.warn(err)});
+el('resourceNameToggle').addEventListener('click',()=>{
+ const button=el('resourceNameToggle'),enabled=button.getAttribute('aria-pressed')!=='true';
+ button.setAttribute('aria-pressed',String(enabled));button.textContent=enabled?'Hide map resource names':'Show map resource names';
+ schedulePaint();
+});
 el('occurrenceCategory').addEventListener('change',()=>selectResourceTheme(el('occurrenceCategory').value));
 el('themeSwitch').addEventListener('click',e=>{const button=e.target.closest('[data-theme]');if(button)selectResourceTheme(button.dataset.theme)});
 

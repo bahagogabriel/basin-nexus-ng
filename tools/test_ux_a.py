@@ -16,6 +16,10 @@ assert s.count('id="riverScopeToggle"')==1
 assert s.count('id="riverDensity"')==1
 assert s.count('id="expandBtn"')==1
 assert s.count('id="lgaToggle"')==1
+assert 'id="resourceNameToggle"' in s
+assert 'function drawReadableResourceNames(dim)' in s
+assert 'resourceLabelsShown' in s
+assert 'labelBounds' in s
 assert s.count('id="countryLegend"')==1
 assert 'id="statesLGAs" open' in s
 assert 'function refreshQuickMapKey()' in s

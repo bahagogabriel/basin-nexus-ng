@@ -151,6 +151,36 @@ async function test(page,name){
   assert.equal(await page.locator('#details [data-profile-view="sources"]').count(),0);
   assert.equal(await page.locator('#details [data-profile-view="technical"]').count(),0);
   assert.equal(await page.locator('#statesLGAs').count(),1);
+  try{
+   await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown>0,{timeout:15000});
+  }catch(error){
+   const debug=await page.evaluate(()=>({
+    selected:window.__BN_MAP_DIAGNOSTICS__?.selected,labels:window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown,
+    markerHits:window.__BN_MAP_DIAGNOSTICS__?.resourceMarkerHits,
+    groups:window.__BN_MAP_DIAGNOSTICS__?.labelCandidateGroups,
+    toggle:document.querySelector('#occurrenceLayerToggle')?.getAttribute('aria-pressed')
+   }));
+   console.error('Resource-name callout diagnostics',debug,'Browser errors',errors.slice(-6));
+   throw error;
+  }
+  const named=await metric(page);
+  assert(named.resourceLabelsShown>=1,'Map must display readable resource names without requiring icon lookup');
+  assert(named.resourceLabelTypes.length===new Set(named.resourceLabelTypes).size,'Resource name labels must not repeat needlessly');
+  assert(named.resourceLabelTypes.every(x=>typeof x==='string'&&x.length>1),'Map labels must use descriptive names rather than letter-only symbols');
+  const distinct=await page.evaluate(()=>{
+    const r=(name,category)=>window.BNResourceIcons.tint({name,category});
+    return {gold:r('Gold','mineral'),tin:r('Tin','mineral'),lithium:r('Lithium','mineral'),clay:r('Clay','mineral'),rice:r('Rice','crop'),cassava:r('Cassava','crop'),shea:r('Shea Butter','crop')};
+  });
+  assert.equal(new Set(Object.values(distinct).slice(0,4)).size,4,'Common minerals must use contrasting resource colors');
+  assert.equal(new Set(Object.values(distinct).slice(4)).size,3,'Common crops must use contrasting resource colors');
+  assert.equal(await page.locator('#resourceNameToggle').getAttribute('aria-pressed'),'true','Readable resource names must be on by default');
+  await page.locator('#layerManager').evaluate(e=>{e.open=true});
+  await page.locator('#resourceNameToggle').click();
+  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown===0);
+  assert.equal(await page.locator('#resourceNameToggle').getAttribute('aria-pressed'),'false');
+  await page.locator('#resourceNameToggle').click();
+  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelsShown>0);
+  await page.locator('#layerManager').evaluate(e=>{e.open=false});
   assert.equal(await page.locator('#statesLGAs').evaluate(n=>n.open),true,'States and LGAs must be expanded by default');
   assert.equal(await page.locator('#profileAdmin > details').first().evaluate(n=>n.open),false,'Complete LGA list remains collapsed');
   assert.match(await page.locator('#mapKeyTitle').innerText(),/Minerals/);
@@ -166,6 +196,7 @@ async function test(page,name){
   await page.locator('#layerManager').evaluate(e=>{e.open=true});
   await page.locator('#themeSwitch [data-theme="crop"]').click();
   assert.equal(await page.locator('#occurrenceCategory').inputValue(),'crop');
+  await page.waitForFunction(()=>window.__BN_MAP_DIAGNOSTICS__?.resourceLabelTypes?.some(x=>['Cassava','Rice','Shea Butter'].includes(x)),{timeout:30000});
   assert.match(await page.locator('#mapKeyTitle').innerText(),/Crops/);
   assert(await page.locator('#mapKeyItems .bnIcon--crop').count()>0,'Crops must have immediate labeled map key');
   assert.equal(await page.locator('#mapKeyItems .bnIcon--mineral').count(),0,'Theme switch must remove mineral legend');
