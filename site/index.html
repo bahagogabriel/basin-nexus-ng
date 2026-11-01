@@ -480,6 +480,22 @@ header .nav button{padding:8px 12px}
  .mapKeyHint{font-size:10px}
 }
 
+
+/* S22.3: distinguish sources mapped at LGAs from catchment-level-only reports. */
+.mapKeyItem--outside{opacity:.63;border-style:dashed}
+.mapKeyItem--outside:after{content:'•';font-size:12px;color:#aa7d3b}
+.mapKeyItem--source{border-style:dashed;border-color:#cba77b;background:#fff8eb;color:#694b22}
+.mapKeyItem--source .bnIcon{opacity:.8}
+.mapKeySourceInfo{font-size:10px;color:#785536;font-weight:750;padding:4px 3px;white-space:nowrap}
+.mapKeyItem:focus-visible{outline:2px solid #166b69;outline-offset:2px}
+.catchmentOnlyResources{margin-top:14px}
+.catchmentOnlyList{display:grid;grid-template-columns:1fr;gap:5px;margin-top:8px}
+.catchmentOnlyRow{display:flex;gap:9px;align-items:center;background:#fcf6e8;border:1px dashed #c3a878;border-radius:8px;padding:7px 9px;font-size:12px}
+.catchmentOnlyRow .bnIcon{flex:none}
+.catchmentOnlyRow strong{display:block}
+.catchmentOnlyRow small{display:block;line-height:1.4;color:#7e6948}
+.mapKeyHeading small{line-height:1.35}
+
 </style><script src="climate.js" defer></script><script src="resource-icons.js" defer></script></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge" hidden aria-hidden="true" tabindex="-1">Knowledge index</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria. <a href="#guide" id="heroGuideLink">Start here · Visitor guide</a></p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
@@ -1702,9 +1718,27 @@ function resourceSymbol(r){
  return symbolCodes.get(r.category+'|'+r.name)||'?';
 }
 function resourceIconMarkup(r,cls=''){return window.BNResourceIcons?.markup?.(r,cls)||'<span class="bnIcon" aria-hidden="true">◆</span>'}
+function resourceIdentity(r){
+ const name=canonicalResourceName(r?.name||r?.reported_resource||'');
+ return r?.category+'|'+name.trim().toLowerCase();
+}
+function uniqueMappedTypes(id=selected,category=el('occurrenceCategory')?.value||'mineral'){
+ const set=new Map();
+ for(const r of allOccurrenceRecords()){
+  if(r.catchment_id!==id||(category!=='all'&&r.category!==category))continue;
+  const key=resourceIdentity(r);if(!set.has(key))set.set(key,r);
+ }
+ return [...set.values()].sort((a,b)=>a.category.localeCompare(b.category)||canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
+}
+function catchmentOnlySourceTypes(id=selected,category=el('occurrenceCategory')?.value||'mineral'){
+ if(!stakeholderAtlas||!id)return [];
+ const mapped=new Set(uniqueMappedTypes(id,category).map(resourceIdentity));
+ return sourceResourcesFor(id,category).filter(r=>!mapped.has(resourceIdentity(r)))
+   .sort((a,b)=>a.category.localeCompare(b.category)||a.reported_resource.localeCompare(b.reported_resource));
+}
 function refreshResourceLegend(){
  const holder=el('resourceLegendRows');if(!holder)return;
- const unique=[...new Map(filteredOccurrenceRecords().map(r=>[r.category+'|'+canonicalResourceName(r.name),r])).values()].sort((a,b)=>canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
+ const unique=uniqueMappedTypes().sort((a,b)=>canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
  holder.innerHTML=unique.map(r=>'<span class="symbolLegendItem">'+resourceIconMarkup(r)+esc(canonicalResourceName(r.name))+'</span>').join('')||'<p>No mapped reports in this theme.</p>';
  const count=el('resourceLegendCount');if(count)count.textContent=unique.length+' types';
 }
@@ -1719,12 +1753,28 @@ function refreshQuickMapKey(){
   root.innerHTML='<span class="mapKeyItem"><span class="mapKeyOverviewCount" aria-hidden="true">3</span>Number = reported themes per catchment</span><span class="mapKeyHint">Choose a catchment to see named LGA resource symbols.</span>';
   return;
  }
- const unique=[...new Map(filteredOccurrenceRecords().map(r=>[r.category+'|'+canonicalResourceName(r.name).toLowerCase(),r])).values()]
-  .sort((a,b)=>a.category.localeCompare(b.category)||canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
+ const unique=uniqueMappedTypes();
+ const sourceOnly=catchmentOnlySourceTypes();
  heading.textContent='Map key · '+themeLabel(category);
- meta.textContent=unique.length+' reported types · scroll to browse';
- root.innerHTML=unique.length?unique.map(r=>'<span class="mapKeyItem" title="'+esc(canonicalResourceName(r.name))+' · '+esc(themeLabel(r.category))+'">'+resourceIconMarkup(r)+esc(canonicalResourceName(r.name))+'</span>').join(''):'<span class="mapKeyHint">No mapped LGA reports in this theme. Try another theme in Layers.</span>';
- root.scrollLeft=0;
+ meta.textContent=unique.length+' LGA types'+(sourceOnly.length?' · '+sourceOnly.length+' catchment-only':'')+' · scroll to browse';
+ const mappedHTML=unique.map(r=>'<button type="button" class="mapKeyItem mapKeyItem--outside" data-resource-type="'+esc(resourceIdentity(r))+'" data-occurrence-select="'+esc(r.id)+'" title="'+esc(canonicalResourceName(r.name))+' · LGA-reported; visibility depends on zoom">'+resourceIconMarkup(r)+esc(canonicalResourceName(r.name))+'</button>').join('');
+ const sourceHTML=sourceOnly.length?'<span class="mapKeySourceInfo">Catchment only (no LGA position):</span>'+sourceOnly.map(r=>'<span class="mapKeyItem mapKeyItem--source" title="Reported at catchment level only; no mapped LGA position">'+resourceIconMarkup({name:r.reported_resource,category:r.category})+esc(r.reported_resource)+'</span>').join(''):'';
+ root.innerHTML=mappedHTML+sourceHTML||'<span class="mapKeyHint">No mapped or catchment-wide reports in this theme.</span>';
+ root.scrollLeft=0;syncMapKeyVisibility();
+}
+function syncMapKeyVisibility(){
+ const root=el('mapKeyItems');if(!root||!selected)return;
+ const visible=new Set(mapMetrics.visibleResourceTypes||[]);
+ const items=root.querySelectorAll('[data-resource-type]');
+ let onscreen=0;for(const item of items){
+  const exists=visible.has(item.dataset.resourceType);
+  item.classList.toggle('mapKeyItem--outside',!exists);
+  item.title=(exists?'Marker visible in current map view':'LGA-mapped report, not plotted at current zoom/extent')+' · select to inspect its LGA';
+  if(exists)onscreen++;
+ }
+ const sourceOnly=root.querySelectorAll('.mapKeyItem--source').length;
+ const meta=el('mapKeyMeta');
+ if(meta)meta.textContent=onscreen+'/'+items.length+' LGA types visible'+(sourceOnly?' · '+sourceOnly+' catchment-only':'')+' · zoom to explore';
 }
 function resourceStyle(category){
  return ({crop:{symbol:'🌾',color:'#3e9150'},mineral:{symbol:'◆',color:'#9b7034'},ecology:{symbol:'♣',color:'#287863'},water:{symbol:'≋',color:'#277fad'},pressure:{symbol:'!',color:'#c65b3b'}})[category]||{symbol:'?',color:'#555'};
@@ -2587,7 +2637,7 @@ el('details').addEventListener('input',e=>{if(e.target?.id==='resourceProfileSea
 el('details').addEventListener('click',e=>{const node=e.target.closest('[data-stake-resource]');if(node)openStakeholderResource(node.dataset.stakeResource)});
 fetch('data/stakeholder_resource_atlas.json').then(r=>{if(!r.ok)throw Error('stakeholder resource data not available');return r.json()}).then(d=>{
  if(!acceptStakeholderAtlas(d))throw Error('invalid stakeholder resource catalogue');
- stakeholderAtlas=d;el('resourceAtlasStatus').textContent=d.resource_records+' resource/catchment names reported across all '+d.catchment_count+' catchments · catchment-level map symbols';if(selected){renderDetails();updateOriginalStatementList()}renderResourceGlobalSearch();schedulePaint();
+ stakeholderAtlas=d;refreshQuickMapKey();el('resourceAtlasStatus').textContent=d.resource_records+' resource/catchment names reported across all '+d.catchment_count+' catchments · catchment-level map symbols';if(selected){renderDetails();updateOriginalStatementList()}renderResourceGlobalSearch();schedulePaint();
 }).catch(err=>{el('resourceAtlasStatus').textContent='All-catchment resource catalogue unavailable; existing layers remain usable';console.warn(err)});
 el('resourceNameToggle').addEventListener('click',()=>{
  const button=el('resourceNameToggle'),enabled=button.getAttribute('aria-pressed')!=='true';
