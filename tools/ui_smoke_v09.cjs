@@ -26,6 +26,22 @@ async function metric(page){return page.evaluate(()=>JSON.parse(JSON.stringify(w
 async function testResourceCoverageAcross20(page){
  await page.waitForFunction(()=>document.querySelector('#mapKey')&&document.querySelector('#catchmentList [data-id="SCMP-C20"]'),null,{timeout:30000});
  const ids=Array.from({length:20},(_,i)=>'SCMP-C'+String(i+1).padStart(2,'0'));
+ const coverage=await page.evaluate(async()=>{
+  const [stake,pub,sup,atlas]=await Promise.all([
+   'stakeholder_lga_occurrences.json','public_lga_occurrences.json',
+   'supplementary_lga_resource_references.json','stakeholder_resource_atlas.json'
+  ].map(x=>fetch('data/'+x).then(r=>r.json())));
+  const map=[...stake.records,...pub.records,...sup.records];
+  const canonical=n=>window.BNResourceIcons.canonical(n).trim().toLowerCase();
+  const out={};
+  for(let i=1;i<=20;i++)for(const cat of ['crop','mineral','ecology','water','pressure']){
+   const id='SCMP-C'+String(i).padStart(2,'0');
+   const mapped=new Set(map.filter(r=>r.catchment_id===id&&r.category===cat).map(r=>cat+'|'+canonical(r.name)));
+   const source=atlas.resources.filter(r=>r.catchment_id===id&&r.category===cat&&!mapped.has(cat+'|'+canonical(r.reported_resource)));
+   out[id+'|'+cat]={mapped:mapped.size,source:source.length};
+  }
+  return out;
+ });
  let cases=0,catchmentOnly=0,offscreen=0;
  for(const id of ids){
   const before=await page.evaluate(()=>window.__BN_MAP_DIAGNOSTICS__.frames);
@@ -37,19 +53,18 @@ async function testResourceCoverageAcross20(page){
    await page.waitForFunction(frames=>window.__BN_MAP_DIAGNOSTICS__.frames>frames,frames,{timeout:16000});
    const a=await page.evaluate(()=>{
     const r=window.__BN_MAP_DIAGNOSTICS__;
-    const mapped=uniqueMappedTypes(),source=catchmentOnlySourceTypes();
     const els=[...document.querySelectorAll('#mapKeyItems [data-resource-type]')];
     const unshown=els.filter(e=>e.classList.contains('mapKeyItem--outside'));
-    return {mapped:mapped.length,source:source.length,sourceItems:document.querySelectorAll('#mapKeyItems .mapKeyItem--source').length,
+    return {mapped:els.length,source:document.querySelectorAll('#mapKeyItems .mapKeyItem--source').length,sourceItems:document.querySelectorAll('#mapKeyItems .mapKeyItem--source').length,
      plotted:r.resourceMarkerHits,plottedTypes:r.visibleResourceTypes?.length||0,
      hidden:r.resourceHiddenCount,inside:r.resourceMarkerInsideCatchment,
      key:els.length,unshown:unshown.length,types:new Set(r.visibleResourceTypes||[]).size,
-     catalogLoaded:!!stakeholderAtlas};
+     catalogLoaded:document.querySelector('#mapKeyMeta')?.textContent?.includes('LGA types visible')};
    });
    assert(a.catalogLoaded,id+': original source inventory did not load');
    assert(a.inside,id+' '+theme+': marker outside selected catchment polygon');
-   assert.equal(a.key,a.mapped,id+' '+theme+': legend must include LGA-mapped types');
-   assert.equal(a.sourceItems,a.source,id+' '+theme+': catchment-only types must be listed without map coordinates');
+   assert.equal(a.key,coverage[id+'|'+theme].mapped,id+' '+theme+': legend must include all source-backed mapped types');
+   assert.equal(a.sourceItems,coverage[id+'|'+theme].source,id+' '+theme+': preserve original catchment-only reports without invented coordinates');
    assert.equal(a.plottedTypes,a.types,id+' '+theme+': map marker visibility ledger inconsistent');
    assert.equal(a.unshown,a.mapped-a.plottedTypes,id+' '+theme+': unshown map-key types must be marked');
    if(a.source>0)catchmentOnly++;
