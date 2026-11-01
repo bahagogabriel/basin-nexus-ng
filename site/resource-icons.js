@@ -108,7 +108,7 @@ const P={
 };
 const a=Object.freeze({
  barite:'barite',baryte:'barite',barites:'barite',barytes:'barite',
- 'iron ore':'ironore','iron deposits':'ironore','shea butter':'sheabutter',
+ 'iron ore':'ironore','iron deposits':'ironore','shea butter':'sheabutter',shea:'sheabutter',wetlands:'wetland',pollution:'waterpollution',
  'grazing reserve':'grazingreserve','forest reserve':'forestreserve',
  'water pollution':'waterpollution','land degradation':'landdegradation',
  'hot springs':'hotsprings','silica sand':'sharp_sand','sharp sand':'sharp_sand',
