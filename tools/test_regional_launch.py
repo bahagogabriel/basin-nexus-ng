@@ -9,7 +9,7 @@ for value in ("riverScope='all',riverDensity='medium'","selected=null;riverScope
 "Select a catchment to load its FAO 2026 modeled river network",
 "renderList();el('catchmentList').scrollTop=0;refreshThemeControls();renderDetails();el('details').scrollTop=0;setView(full)",
 "20 strategic catchments · choose a region to explore its rivers",
-"Click any catchment on the map","public geographic data"):
+"Select a catchment on the map or in the directory.","public geographic data"):
  if value=="showOverview()).catch":continue
  if value=="public geographic data":continue
  assert value in s,value
