@@ -87,6 +87,9 @@ async function responsiveUX(page,label){
  }
  assert(inspect.active.includes('20 strategic catchments'),label+': regional context must be shown on arrival');
  assert(!inspect.layerOpen,label+': settings must start closed');
+ assert.equal(await page.locator('#mapKey').isVisible(),true,label+': map key must be visible on first view');
+ assert.equal(await page.locator('#mapKey .mapKeyOverviewCount').count(),1,label+': all-catchment key must explain numbered category markers');
+ assert(await page.locator('#mapKey').evaluate(n=>n.getBoundingClientRect().bottom<=document.querySelector('#mapCanvas').getBoundingClientRect().top+2),label+': map key must not obscure the map');
  if(v.width<=780)assert(!inspect.legendOpen,label+': legend should start collapsed on phones');
  assert(await page.locator('#layerManager #countryLegend').count()===1,label+': geographic legend belongs inside Layers, not over map');
  await page.locator('#layerManager > summary').click();
@@ -109,6 +112,18 @@ async function test(page,name){
  if(name==='desktop'){
   assert.equal(await page.locator('#resourceTypeFilter').count(),0,'No per-resource drop-down');
   assert.equal(await page.locator('#resourceLegend').count(),0,'No map-covering symbol legend');
+  assert.equal(await page.locator('#mapKey').count(),1,'Only one visible map key');
+  const distinctions=await page.evaluate(()=>{
+   const api=window.BNResourceIcons;
+   return ['mineral','crop','ecology','water','pressure'].map(category=>({
+    category,shape:api.shapeFor({category}),
+    markup:api.markup({name:({mineral:'Gold',crop:'Rice',ecology:'Wetlands',water:'River',pressure:'Erosion'})[category],category}),
+    color:api.tint({name:'Example',category})
+   }));
+  });
+  assert.equal(new Set(distinctions.map(x=>x.shape)).size,5,'Each category needs a different silhouette');
+  assert.equal(new Set(distinctions.map(x=>x.color)).size,5,'Resource classes should be visually differentiated');
+  assert(distinctions.every(x=>x.markup.includes('bnIcon--'+x.category)),'Legend and profile must use shape-specific SVG symbols');
   assert.equal(await page.locator('#layerManager #themeSwitch').count(),1,'All themed map controls inside Layers');
   assert.equal(await page.locator('#navKnowledge').isVisible(),false,'Evidence search removed from primary navigation');
   assert.equal(await page.locator('#guideQuickstart').isVisible(),false,'Redundant bottom guide does not push map');
@@ -136,6 +151,11 @@ async function test(page,name){
   assert.equal(await page.locator('#details [data-profile-view="sources"]').count(),0);
   assert.equal(await page.locator('#details [data-profile-view="technical"]').count(),0);
   assert.equal(await page.locator('#statesLGAs').count(),1);
+  assert.equal(await page.locator('#statesLGAs').evaluate(n=>n.open),true,'States and LGAs must be expanded by default');
+  assert.equal(await page.locator('#profileAdmin > details').first().evaluate(n=>n.open),false,'Complete LGA list remains collapsed');
+  assert.match(await page.locator('#mapKeyTitle').innerText(),/Minerals/);
+  assert(await page.locator('#mapKeyItems .bnIcon--mineral').count()>0,'Visible legend must show named mineral types');
+  assert.match(await page.locator('#mapKeyItems').innerText(),/Barite/);
   await page.locator('#statesLGAs > summary').click();
   assert.equal(await page.locator('#profileAdmin').count(),1,'Provisional States and LGAs available within Overview');
   await page.locator('#details [data-profile-view="resources"]').first().click();
@@ -146,10 +166,14 @@ async function test(page,name){
   await page.locator('#layerManager').evaluate(e=>{e.open=true});
   await page.locator('#themeSwitch [data-theme="crop"]').click();
   assert.equal(await page.locator('#occurrenceCategory').inputValue(),'crop');
+  assert.match(await page.locator('#mapKeyTitle').innerText(),/Crops/);
+  assert(await page.locator('#mapKeyItems .bnIcon--crop').count()>0,'Crops must have immediate labeled map key');
+  assert.equal(await page.locator('#mapKeyItems .bnIcon--mineral').count(),0,'Theme switch must remove mineral legend');
   assert.equal(await page.locator('#themeSwitch [data-theme="mineral"]').getAttribute('aria-pressed'),'false');
   assert((await page.locator('#profileOccurrences .occurrenceRow b').allTextContents()).every(x=>!['Barite','Gold','Lithium'].includes(x)),'Crops exclude mineral resource rows');
   await page.locator('#themeSwitch [data-theme="mineral"]').click();
   assert(await page.locator('#profileOccurrences .occurrenceRow b').count()>0,'All mineral resources shown without a type drop-down');
+  assert(await page.locator('#mapKeyItems .bnIcon--mineral').count()>0,'Map key must update back to mineral icons');
   await page.locator('#layerManager').evaluate(e=>{e.open=false});
   await page.locator('#overviewBtn').click();
 
