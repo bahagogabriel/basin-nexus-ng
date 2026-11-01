@@ -1785,6 +1785,7 @@ function drawReadableResourceNames(dim){
   if(!perName.has(key))perName.set(key,[]);
   perName.get(key).push({hit,r,name:canonicalResourceName(r.name)});
  }
+ mapMetrics.labelCandidateGroups=perName.size;mapMetrics.resourceMarkerHits=occurrenceMarkerHits.length;
  // Prefer compact, recognizable names first; multiple occurrences can offer alternate label locations.
  const groups=[...perName.values()].sort((a,b)=>a[0].name.length-b[0].name.length||a[0].name.localeCompare(b[0].name));
  ctx.save();ctx.font='700 12px "Segoe UI", Arial, sans-serif';ctx.textAlign='left';ctx.textBaseline='middle';
@@ -1837,7 +1838,7 @@ function drawReadableResourceNames(dim){
  ctx.restore();
 }
 function drawOccurrenceSymbols(){
- occurrenceMarkerHits=[];mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];if(!occurrenceOn||!selected||!admLgas)return;
+ occurrenceMarkerHits=[];mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];mapMetrics.resourceMarkerHits=0;mapMetrics.labelCandidateGroups=0;if(!occurrenceOn||!selected||!admLgas)return;
  const lgas=new Map();
  for(const r of filteredOccurrenceRecords()){if(!lgas.has(r.lga_id))lgas.set(r.lga_id,new Map());const key=r.category+'|'+canonicalResourceName(r.name).toLowerCase();if(!lgas.get(r.lga_id).has(key))lgas.get(r.lga_id).set(key,r)}
  const dpr=Math.min(window.devicePixelRatio||1,1.5),dim=screen(),placed=[];
