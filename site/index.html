@@ -454,6 +454,32 @@ header .nav button{padding:8px 12px}
 .layerPanel .countryLegend>summary{min-height:34px;padding:8px 10px}
 .layerPanel .countryLegend .legendContent{padding:4px 10px 10px;max-height:220px;overflow:auto}
 
+
+/* S22.1: visible theme-aware map key outside the map canvas */
+.mapKey{display:grid;grid-template-columns:minmax(98px,124px) minmax(0,1fr);gap:9px;align-items:center;min-height:76px;padding:7px 11px;background:#eef7f2;border-bottom:1px solid #c0d7c9;color:#194c42}
+.mapKeyHeading{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mapKeyHeading strong{font-size:12px;font-weight:800}
+.mapKeyHeading small{font-size:10px;line-height:1.2;color:#536e63}
+.mapKeyItems{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,28px);grid-auto-columns:max-content;gap:4px 7px;align-items:center;overflow-x:auto;overflow-y:hidden;max-width:100%;min-width:0;padding:2px 3px 5px;scrollbar-width:thin;scrollbar-color:#8cb6a7 transparent}
+.mapKeyItem{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #cadecf;border-radius:7px;padding:1px 8px 1px 3px;color:#193e38;font-size:11px;font-weight:700;white-space:nowrap;height:28px}
+.mapKeyItem .bnIcon{width:24px;height:24px;box-shadow:none;border-width:1px}
+.mapKeyItem .bnIcon svg{width:19px;height:19px}
+.mapKeyHint{font-size:11px;white-space:normal;line-height:1.35}
+.mapKeyOverviewCount{background:#176e65;color:#fff;border:2px solid #fff;border-radius:50%;width:25px;height:25px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.bnIcon--mineral{border-radius:5px;clip-path:none}
+.bnIcon--crop{border-radius:50%;clip-path:none}
+.bnIcon--ecology{border-radius:0;clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.bnIcon--water{border-radius:0;clip-path:polygon(50% 0,78% 35%,96% 66%,88% 85%,67% 100%,33% 100%,12% 85%,4% 66%,22% 35%)}
+.bnIcon--pressure{border-radius:0;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+@media(max-width:740px){
+ .mapKey{grid-template-columns:minmax(70px,82px) minmax(0,1fr);min-height:53px;padding:5px 7px;gap:6px}
+ .mapKeyHeading strong{font-size:11px}
+ .mapKeyHeading small{font-size:9px}
+ .mapKeyItems{grid-template-rows:30px;gap:5px;padding:2px 2px 5px}
+ .mapKeyItem{height:29px}
+ .mapKeyHint{font-size:10px}
+}
+
 </style><script src="climate.js" defer></script><script src="resource-icons.js" defer></script></head><body>
 <header><div class="top"><a href="#" class="brand" id="brandHome" aria-label="Basin Nexus NG Home"><div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 12c6 0 7 11 15 11s9-11 15-11" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M8 24c4 0 5 7 12 7s8-7 12-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="10" r="3" fill="currentColor"/></svg></div><div><div class="brandname">Basin Nexus <span>NG</span></div><div class="brandsub">NIGERIA'S OPEN CATCHMENT KNOWLEDGE ATLAS</div></div></a><div class="nav"><button id="navExplore" aria-current="page">Explore map</button><button id="navGuide">Start here</button><button id="navKnowledge" hidden aria-hidden="true" tabindex="-1">Knowledge index</button><button id="navData">Data & downloads</button><button id="navAbout">About</button></div><div class="status">PUBLIC GEOGRAPHY PREVIEW</div></div></header>
 <main class="layout" id="pageExplore"><div class="hero" aria-label="Atlas introduction"><div class="hero-copy"><div class="eyebrow">Basin Nexus NG · Spatial discovery</div><h1>Explore Northern Nigeria’s strategic catchments</h1><p>Choose a catchment, explore its rivers and boundaries, and inspect public geographic data. Some catchments extend beyond Nigeria. <a href="#guide" id="heroGuideLink">Start here · Visitor guide</a></p></div><div class="stats" aria-label="Atlas coverage"><div class="stat"><b>20</b><small>Catchments</small></div><div class="stat"><b>2026</b><small>River data</small></div></div></div>
@@ -476,7 +502,7 @@ header .nav button{padding:8px 12px}
       <div class="layerSection"><strong>Legend &amp; sources</strong><details class="countryLegend" id="countryLegend"><summary>Legend &amp; sources</summary><div class="legendContent"><div id="nationalLegend" class="legendItem"><span class="swatch"></span>Nigeria · 1:110m</div><div id="stateLegend" class="legendItem"><span class="swatch state"></span>States/FCT · 2022</div><div id="lgaLegend" class="legendItem hidden"><span class="swatch lga"></span>LGAs · tap a polygon</div><div id="riverLegend" class="legendItem"><span class="swatch river"></span>Regional rivers · Natural Earth 1:10m</div><div class="legendItem"><small id="riverScopeInfo" aria-live="polite">Select a catchment to load its FAO 2026 modeled river network</small></div><div id="lakeLegend" class="legendItem"><span class="swatch lake"></span>Lakes / reservoirs · overview</div><div id="damRefLegend" class="legendItem hidden"><span class="swatch" style="background:#98623e;border-radius:100%"></span>Compiled research points · not independently verified; amber named in source, grey unnamed</div></div></details></div>
       <p>FAO AQUASTAT river reaches are modelled, not surveyed channels. Administrative boundaries are provisional; detailed streams are not a complete survey.</p>
     </div>
-  </details></div><div class="mapbody" id="mapbody"><canvas id="mapCanvas" tabindex="0" aria-label="Interactive canvas map. Drag to pan, pinch to zoom on touch devices, or use plus and minus buttons. Select a catchment on the map or in the directory."></canvas><div class="lgaInfo hidden" id="lgaInfo" role="status" aria-live="polite"></div><div class="lgaInfo hidden" id="hydroInfo" role="status" aria-live="polite"></div><div class="lgaInfo hidden" id="damRefInfo" role="status" aria-live="polite"></div><div class="maptools"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomReset" aria-label="Reset map">⌂</button></div><div class="mapfoot"><details class="mapHint" id="mapHint"><summary aria-label="Show map instructions">ⓘ Map guide</summary><div class="note"><strong>Exploring the map · provisional</strong> <span id="mapNote">Select a catchment on the map or in the directory. Drag to pan; pinch or scroll to zoom.</span></div></details></div><div class="tooltip" id="tooltip"></div></div></section>
+  </details></div><div class="mapKey" id="mapKey" role="region" aria-label="Visible map symbol key"><div class="mapKeyHeading"><strong id="mapKeyTitle">Map key</strong><small id="mapKeyMeta" aria-live="polite">Select a catchment</small></div><div class="mapKeyItems" id="mapKeyItems"><span class="mapKeyHint">Choose a catchment to see named icons.</span></div></div><div class="mapbody" id="mapbody"><canvas id="mapCanvas" tabindex="0" aria-label="Interactive canvas map. Drag to pan, pinch to zoom on touch devices, or use plus and minus buttons. Select a catchment on the map or in the directory."></canvas><div class="lgaInfo hidden" id="lgaInfo" role="status" aria-live="polite"></div><div class="lgaInfo hidden" id="hydroInfo" role="status" aria-live="polite"></div><div class="lgaInfo hidden" id="damRefInfo" role="status" aria-live="polite"></div><div class="maptools"><button id="zoomIn" aria-label="Zoom in">+</button><button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomReset" aria-label="Reset map">⌂</button></div><div class="mapfoot"><details class="mapHint" id="mapHint"><summary aria-label="Show map instructions">ⓘ Map guide</summary><div class="note"><strong>Exploring the map · provisional</strong> <span id="mapNote">Select a catchment on the map or in the directory. Drag to pan; pinch or scroll to zoom.</span></div></details></div><div class="tooltip" id="tooltip"></div></div></section>
 <section class="panel detailPanel" aria-label="Catchment profile"><div class="details" id="details"><div class="spinner">Choose a catchment to see its geographic profile.</div></div></section></div><details id="guideQuickstart" class="guideQuickstart"><summary><strong>Start here · Guide to Basin Nexus NG</strong> <span>How to explore resources, risks and catchments</span></summary><ol><li><b>Choose a catchment</b> from the directory or map to see rivers, geography and source themes.</li><li><b>choose a theme in Layers</b>: Minerals, Crops, Ecology, Water or Pressures; all resource types in the chosen theme are shown.</li><li><b>Select a symbol or a resource in the profile</b> to see what was reported, its LGA and original published-plan attribution.</li><li><b>Use the Overview and Resources tabs</b> to move between a simple summary and detailed source-backed material. Each reported location is shown only at the precision supported by its source.</li></ol><p>Symbols are schematic LGA references, <strong>not exact farm, deposit or hazard coordinates</strong>. Proposed facilities are never shown as completed assets.</p><p><a href="#guide" id="quickGuideLink">Open the full optional visitor guide</a></p></details></main>
 <section class="layout hidden" id="pageGuide" aria-label="Basin Nexus NG visitor guide"><div class="other atlasGuide"><div class="eyebrow">Welcome to Basin Nexus NG</div><h2>Find what matters in a catchment</h2><p>Basin Nexus NG brings together geographic reference data and source-attributed stakeholder reports for 20 strategic catchments in Nigeria and adjoining areas. Use the map to explore <strong>where resources or pressures were reported</strong>, compare catchments, and trace findings to source documents.</p><div class="guideSteps"><article><span>01</span><h3>Choose a catchment</h3><p>Select one from the directory or directly on the map. The river network and catchment profile update for your selection.</p></article><article><span>02</span><h3>Choose one topic</h3><p>Switch between Minerals, Crops, Ecology, Water and Pressures. The map shows only that category’s reported resource symbols. Choose All for a combined view.</p></article><article><span>03</span><h3>Select a resource symbol</h3><p>Each marker identifies a named resource or pressure reported within an LGA. Symbols may be spread schematically to prevent overlap: they are <strong>not precise deposit or facility coordinates</strong>.</p></article><article><span>04</span><h3>Read the supporting evidence</h3><p>Use Overview to understand the catchment and Resources to inspect LGA-level reports. Supporting material remains in the downloadable data.</p></article></div><div class="guideEvidence"><h3>How to interpret the map</h3><p><strong>Source-reported</strong> means a statement or inventory mentions a resource, place or pressure; this does not prove its present existence, quantity or exact location. Administrative boundaries are provisional, rivers are modelled, and research dam points are not independently confirmed facilities.</p><p>Some named LGAs in the original documents fall outside the available catchment intersection and are kept in a separate review queue instead of being plotted in the wrong place.</p></div><button class="buttonlink" type="button" id="guideGo">Explore the interactive map</button></div></section><section class="layout hidden" id="pageKnowledge" aria-label="Stakeholder source-coverage index"><div class="other">
 <section id="resourceGlobalPanel" class="evidenceCatalogue" aria-label="Search stakeholder resource reports across 20 catchments"><h3>Find crops, minerals and environmental resources</h3><p>Search the original stakeholder-reported resource names across all 20 catchments. Resource locations are shown at catchment level unless a source identifies a more specific administrative area. Mentions are not measured production volumes or surveyed sites.</p><div class="resourceSearchControls"><label for="resourceGlobalSearch">Resource name <input id="resourceGlobalSearch" type="search" placeholder="e.g. rice, gold, erosion, borehole"></label><label for="resourceGlobalCategory">Category <select id="resourceGlobalCategory"><option value="all">All categories</option><option value="crop">Crops</option><option value="mineral">Minerals</option><option value="ecology">Ecology</option><option value="water">Water mentions</option><option value="pressure">Environmental pressures</option></select></label></div><p id="resourceGlobalCount" role="status" aria-live="polite">Loading source inventory…</p><div id="resourceGlobalList" class="resourceSearchGrid"></div></section>
@@ -1627,7 +1653,7 @@ function refreshThemeControls(){
  const theme=el('themeSwitch');
  if(theme)theme.querySelectorAll('[data-theme]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.theme===category)));
  const badge=el('layerSummaryText');if(badge)badge.textContent='Layers · '+themeLabel(category);
- refreshResourceLegend();
+ refreshResourceLegend();refreshQuickMapKey();
  const unique=new Set(allOccurrenceRecords().filter(r=>r.catchment_id===selected&&(category==='all'||category===r.category)).map(r=>r.category+'|'+canonicalResourceName(r.name)));
  const status=el('themeMapInfo');
  if(status)status.textContent=selected?unique.size+' reported resource types in this catchment. Select the map symbols to inspect their LGA.':'Select a catchment to see resource locations.';
@@ -1681,6 +1707,24 @@ function refreshResourceLegend(){
  const unique=[...new Map(filteredOccurrenceRecords().map(r=>[r.category+'|'+canonicalResourceName(r.name),r])).values()].sort((a,b)=>canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
  holder.innerHTML=unique.map(r=>'<span class="symbolLegendItem">'+resourceIconMarkup(r)+esc(canonicalResourceName(r.name))+'</span>').join('')||'<p>No mapped reports in this theme.</p>';
  const count=el('resourceLegendCount');if(count)count.textContent=unique.length+' types';
+}
+/* Visible map key summarizes exactly the currently selected catchment and resource theme. */
+function refreshQuickMapKey(){
+ const root=el('mapKeyItems'),heading=el('mapKeyTitle'),meta=el('mapKeyMeta');
+ if(!root||!heading||!meta)return;
+ const category=el('occurrenceCategory')?.value||'mineral';
+ if(!selected){
+  heading.textContent='Map key · Overview';
+  meta.textContent=themeLabel(category);
+  root.innerHTML='<span class="mapKeyItem"><span class="mapKeyOverviewCount" aria-hidden="true">3</span>Number = reported themes per catchment</span><span class="mapKeyHint">Choose a catchment to see named LGA resource symbols.</span>';
+  return;
+ }
+ const unique=[...new Map(filteredOccurrenceRecords().map(r=>[r.category+'|'+canonicalResourceName(r.name).toLowerCase(),r])).values()]
+  .sort((a,b)=>a.category.localeCompare(b.category)||canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
+ heading.textContent='Map key · '+themeLabel(category);
+ meta.textContent=unique.length+' reported types · scroll to browse';
+ root.innerHTML=unique.length?unique.map(r=>'<span class="mapKeyItem" title="'+esc(canonicalResourceName(r.name))+' · '+esc(themeLabel(r.category))+'">'+resourceIconMarkup(r)+esc(canonicalResourceName(r.name))+'</span>').join(''):'<span class="mapKeyHint">No mapped LGA reports in this theme. Try another theme in Layers.</span>';
+ root.scrollLeft=0;
 }
 function resourceStyle(category){
  return ({crop:{symbol:'🌾',color:'#3e9150'},mineral:{symbol:'◆',color:'#9b7034'},ecology:{symbol:'♣',color:'#287863'},water:{symbol:'≋',color:'#277fad'},pressure:{symbol:'!',color:'#c65b3b'}})[category]||{symbol:'?',color:'#555'};
@@ -1882,7 +1926,7 @@ function renderDetails(){
  const stateCount=admin?.states?.length||0,lgaCount=admin?.lgas?.length||0;
  const snapshot='<p id="profileSnapshot" class="profileSummaryStat" role="status">Loading LGA report coverage…</p>';
  const rivers=river?'<div class="profileFact" id="profileRivers"><b>'+river.count.toLocaleString()+'</b><small>modelled river reaches</small></div>':'';
- const geography='<details class="compactAdmin" id="statesLGAs"><summary><b>States &amp; LGAs</b><small>'+stateCount+' states/FCT · '+lgaCount+' mapped LGAs</small></summary>'+adminPanel(c)+'</details>';
+ const geography='<details class="compactAdmin" id="statesLGAs" open><summary><b>States &amp; LGAs</b><small>'+stateCount+' states/FCT · '+lgaCount+' mapped LGAs</small></summary>'+adminPanel(c)+'</details>';
  const selectedNote='<p class="captionline">Resource icons represent reports within LGAs, not independently surveyed site coordinates. Catchment and administrative boundaries are provisional.</p>';
  const shortGuide='<p class="intro">Explore the selected catchment by map. Use <b>Layers</b> to choose Minerals, Crops, Ecology, Water or Pressures; then select an icon to see its reported LGA.</p>';
  const legend='<details class="symbolLegend" id="resourceLegend"><summary>Resource icon guide <small id="resourceLegendCount"></small></summary><div id="resourceLegendRows"></div><p>Each icon identifies the reported type. Map offsets are for legibility, not site coordinates. FAO comparison statistics, where supplied, are clipped reaches per 1,000 km², not measured drainage density.</p></details>';
@@ -1893,7 +1937,7 @@ function renderDetails(){
   +geography+selectedNote+'</section>'
   +'<section class="profilePane" data-profile-pane="resources"><p class="captionline">All LGA reports for the selected map theme are listed below.</p>'+renderOccurrenceList(c)+legend+'</section>';
  setProfileView(profilePaneChoice);
- refreshProfileSnapshot();refreshResourceLegend();
+ refreshProfileSnapshot();refreshResourceLegend();refreshQuickMapKey();
 }
 function updateRiverScopeUI(){
  const scoped=riverScope==='selected',hasSelection=!!selected;
