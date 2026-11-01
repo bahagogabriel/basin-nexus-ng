@@ -1832,7 +1832,7 @@ function occurrenceRepresentativePoint(lgaId,catchmentId){
 function drawReadableResourceNames(dim){
  mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];
  if(el('resourceNameToggle')?.getAttribute('aria-pressed')==='false'||!occurrenceMarkerHits.length)return;
- const maxLabels=dim.w<440?4:dim.w<680?7:dim.w<880?10:14;
+ const maxLabels=dim.w<440?2:dim.w<680?4:dim.w<880?5:8;
  const markers=occurrenceMarkerHits.map(h=>({x:h.x-17,y:h.y-17,w:34,h:34}));
  const reserved=[];const perName=new Map();
  for(const hit of occurrenceMarkerHits){
@@ -1855,7 +1855,7 @@ function drawReadableResourceNames(dim){
    const w=Math.min(120,Math.ceil(ctx.measureText(name).width)+16),h=22;
    const candidates=[];
    // Start with nearby attached pills, then gently displace into open map space.
-   for(const distance of [19,34,52,76,104,132]){
+   for(const distance of [19,28,40]){
     candidates.push(
      {x:hit.x+distance,y:hit.y-h/2,w,h},
      {x:hit.x-distance-w,y:hit.y-h/2,w,h},
@@ -1895,36 +1895,80 @@ function drawReadableResourceNames(dim){
  ctx.restore();
 }
 function drawOccurrenceSymbols(){
- occurrenceMarkerHits=[];mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];mapMetrics.resourceMarkerHits=0;mapMetrics.labelCandidateGroups=0;if(!occurrenceOn||!selected||!admLgas)return;
- const lgas=new Map();
- for(const r of filteredOccurrenceRecords()){if(!lgas.has(r.lga_id))lgas.set(r.lga_id,new Map());const key=r.category+'|'+canonicalResourceName(r.name).toLowerCase();if(!lgas.get(r.lga_id).has(key))lgas.get(r.lga_id).set(key,r)}
- const dpr=Math.min(window.devicePixelRatio||1,1.5),dim=screen(),placed=[];
- const size=30,minDist=34,maxOffset=125;let omitted=0,shown=0;
- ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
- for(const [lgaId,types] of [...lgas.entries()].sort((a,b)=>a[0].localeCompare(b[0]))){
-  const point=occurrenceRepresentativePoint(lgaId,selected);if(!point){omitted+=types.size;continue}
-  const base=toScreen(point.x,point.y),entries=[...types.values()].sort((a,b)=>canonicalResourceName(a.name).localeCompare(canonicalResourceName(b.name)));
-  for(let i=0;i<entries.length;i++){
-   const r=entries[i];let pos=null;
-   for(let attempt=0;attempt<110;attempt++){
-    const ring=Math.floor(Math.sqrt(attempt)),distance=Math.min(maxOffset,ring*22+(ring?9:0)),angle=attempt*2.399963229728653+i*.09;
-    const x=base.x+Math.cos(angle)*distance,y=base.y+Math.sin(angle)*distance;
-    if(x<16||y<16||x>dim.w-16||y>dim.h-16||placed.some(p=>(p.x-x)**2+(p.y-y)**2<minDist*minDist))continue;
-    pos={x,y};break;
-   }
-   if(!pos){omitted++;continue}
-   placed.push(pos);shown++;
-   if(Math.hypot(pos.x-base.x,pos.y-base.y)>19){ctx.beginPath();ctx.moveTo(base.x,base.y);ctx.lineTo(pos.x,pos.y);ctx.strokeStyle='#245e5380';ctx.lineWidth=.7;ctx.setLineDash([2,3]);ctx.stroke();ctx.setLineDash([])}
-   if(window.BNResourceIcons?.draw)window.BNResourceIcons.draw(ctx,r,pos.x,pos.y,size,r.id===selectedOccurrenceId);
-   else{ctx.fillStyle=resourceStyle(r.category).color;ctx.fillRect(pos.x-13,pos.y-13,26,26)}
-   occurrenceMarkerHits.push({id:r.id,x:pos.x,y:pos.y});
+ occurrenceMarkerHits=[];mapMetrics.resourceLabelsShown=0;mapMetrics.resourceLabelTypes=[];
+ mapMetrics.visibleResourceTypes=[];mapMetrics.resourceMarkerHits=0;mapMetrics.labelCandidateGroups=0;
+ mapMetrics.resourceHiddenCount=0;mapMetrics.resourceTotalCount=0;mapMetrics.resourceMarkerInsideCatchment=true;
+ if(!occurrenceOn||!selected||!admLgas){syncMapKeyVisibility();return}
+ const clip=catchPaths.get(selected);if(!clip){syncMapKeyVisibility();return}
+ // First reserve one candidate per resource type, then distribute remaining LGA occurrences.
+ // This avoids alphabetical LGA ordering hiding entire types at small map extents.
+ const groupedLGAs=new Map();
+ for(const r of filteredOccurrenceRecords()){
+  if(!groupedLGAs.has(r.lga_id))groupedLGAs.set(r.lga_id,new Map());
+  const key=resourceIdentity(r);if(!groupedLGAs.get(r.lga_id).has(key))groupedLGAs.get(r.lga_id).set(key,r);
+ }
+ const dim=screen(),dpr=Math.min(window.devicePixelRatio||1,1.5);
+ const types=new Map(),screenCenter={x:dim.w/2,y:dim.h/2};
+ for(const [lgaId,records] of groupedLGAs){
+  const point=occurrenceRepresentativePoint(lgaId,selected);
+  for(const r of records.values()){
+   if(!point){mapMetrics.resourceHiddenCount++;continue}
+   const base=toScreen(point.x,point.y),key=resourceIdentity(r);
+   if(!types.has(key))types.set(key,[]);
+   types.get(key).push({r,base,key});
   }
  }
+ for(const group of types.values())group.sort((a,b)=>
+  Math.hypot(a.base.x-screenCenter.x,a.base.y-screenCenter.y)-Math.hypot(b.base.x-screenCenter.x,b.base.y-screenCenter.y));
+ const byKey=[...types.keys()].sort((a,b)=>a.localeCompare(b));
+ const queue=[],maxRound=Math.max(0,...[...types.values()].map(x=>x.length));
+ for(let round=0;round<maxRound;round++)for(const k of byKey){const record=types.get(k)[round];if(record)queue.push(record)}
+ const bounds=clip.bounds,tl=toScreen(bounds.x,bounds.y),br=toScreen(bounds.x+bounds.w,bounds.y+bounds.h);
+ const xmin=Math.max(0,Math.min(tl.x,br.x)),xmax=Math.min(dim.w,Math.max(tl.x,br.x));
+ const ymin=Math.max(0,Math.min(tl.y,br.y)),ymax=Math.min(dim.h,Math.max(tl.y,br.y));
+ const approxArea=Math.max(0,xmax-xmin)*Math.max(0,ymax-ymin);
+ const maxMarkers=Math.min(30,Math.max(6,Math.floor(approxArea/13000)));
+ const placed=[],visibleTypes=new Set();
+ let drawn=0,crowded=0;
+ ctx.save();ctx.setTransform(dpr,0,0,dpr,0,0);
+ for(const item of queue){
+  if(drawn>=maxMarkers){crowded++;continue}
+  const {r,base,key}=item;
+  if(base.x<-48||base.y<-48||base.x>dim.w+48||base.y>dim.h+48){crowded++;continue}
+  let pos=null;
+  for(let attempt=0;attempt<90;attempt++){
+   const ring=attempt===0?0:Math.ceil(attempt/12);
+   const distance=Math.min(44,ring*9),angle=attempt*2.399963229728653;
+   const x=base.x+Math.cos(angle)*distance,y=base.y+Math.sin(angle)*distance;
+   if(x<18||y<18||x>dim.w-18||y>dim.h-18)continue;
+   if(placed.some(p=>(p.x-x)**2+(p.y-y)**2<33*33))continue;
+   const world=fromScreen(x,y);
+   if(!ctx.isPointInPath(clip.path,world.x,world.y,'evenodd'))continue;
+   pos={x,y};break;
+  }
+  if(!pos){crowded++;continue}
+  placed.push(pos);drawn++;visibleTypes.add(key);
+  if(Math.hypot(pos.x-base.x,pos.y-base.y)>17){
+   ctx.beginPath();ctx.moveTo(base.x,base.y);ctx.lineTo(pos.x,pos.y);
+   ctx.strokeStyle='#245e5399';ctx.lineWidth=.8;ctx.setLineDash([2,3]);ctx.stroke();ctx.setLineDash([]);
+  }
+  if(window.BNResourceIcons?.draw)window.BNResourceIcons.draw(ctx,r,pos.x,pos.y,29,r.id===selectedOccurrenceId);
+  else{ctx.fillStyle=resourceStyle(r.category).color;ctx.fillRect(pos.x-14,pos.y-14,28,28)}
+  occurrenceMarkerHits.push({id:r.id,x:pos.x,y:pos.y});
+ }
+ mapMetrics.resourceTotalCount=queue.length+mapMetrics.resourceHiddenCount;
+ mapMetrics.resourceHiddenCount+=crowded;
+ mapMetrics.resourceMarkerHits=occurrenceMarkerHits.length;
+ mapMetrics.visibleResourceTypes=[...visibleTypes];
+ // Every marker center is inside the actual selected catchment display polygon.
+ mapMetrics.resourceMarkerInsideCatchment=occurrenceMarkerHits.every(p=>{
+  const world=fromScreen(p.x,p.y);return ctx.isPointInPath(clip.path,world.x,world.y,'evenodd');
+ });
  drawReadableResourceNames(dim);
  ctx.restore();
+ syncMapKeyVisibility();
  const status=el('themeMapInfo');
- if(status){const full=[...lgas.values()].reduce((total,x)=>total+x.size,0);
-  status.textContent=shown+' of '+full+' individual resource–LGA symbols visible; '+mapMetrics.resourceLabelsShown+' distinct resource names labeled without overlaps'+(omitted?' · '+omitted+' symbols cannot fit; zoom closer.':'.')+' All names are in the Map key.'}
+ if(status)status.textContent=drawn+' of '+mapMetrics.resourceTotalCount+' individual resource–LGA symbols visible at this scale'+(mapMetrics.resourceHiddenCount?' · '+mapMetrics.resourceHiddenCount+' withheld from crowded/offscreen areas; zoom in or choose a map-key item to inspect the LGA.':'.')+' Labels are limited to keep the catchment legible.';
 }
 function hitOccurrenceSymbol(px,py){
  if(!occurrenceOn)return null;
