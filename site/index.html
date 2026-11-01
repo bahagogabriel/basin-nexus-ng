@@ -1784,15 +1784,22 @@ function displayOccurrenceRows(id=selected){
  for(const r of filteredOccurrenceRecords(id)){const key=r.category+'|'+r.lga_id+'|'+canonicalResourceName(r.name).toLowerCase();if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r)}
  return [...groups.values()].sort((a,b)=>canonicalResourceName(a[0].name).localeCompare(canonicalResourceName(b[0].name))||a[0].lga_name.localeCompare(b[0].lga_name));
 }
+function renderCatchmentOnlyReports(c){
+ if(!stakeholderAtlas)return '<section class="profileThemePanel" id="catchmentOnlyReports"><h3>Catchment-wide reports</h3><p>Loading original stakeholder inventory…</p></section>';
+ const resources=catchmentOnlySourceTypes(c.id);
+ if(!resources.length)return '';
+ const rows=resources.map(r=>'<div class="catchmentOnlyRow">'+resourceIconMarkup({category:r.category,name:r.reported_resource})+'<span><strong>'+esc(r.reported_resource)+'</strong><small>'+esc(themeLabel(r.category))+' · catchment-wide report · '+r.stakeholder_source_mentions+' mention'+(r.stakeholder_source_mentions===1?'':'s')+' · original communiqué '+esc((r.source_locators||[]).join(', '))+'</small></span></div>').join('');
+ return '<section class="profileThemePanel catchmentOnlyResources" id="catchmentOnlyReports"><h3>Also reported across this catchment</h3><p class="captionline">These reported types have no mapped LGA record. Their absence from the map <b>does not mean they are absent</b>. No coordinates have been invented.</p><div class="catchmentOnlyList">'+rows+'</div></section>';
+}
 function renderOccurrenceList(c){
  const groups=displayOccurrenceRows(c.id);
  if(!occurrenceData&&!stakeholderLGAEvidence&&!supplementaryLGAEvidence)return '<section class="profileThemePanel" id="profileOccurrences"><h3>Reported resources</h3><p>Loading LGA reports…</p></section>';
  const items=groups.map(g=>{const r=g[0],sub=g.length>1?g.length+' reported records':'LGA report';return '<button type="button" class="occurrenceRow" data-occurrence-select="'+esc(r.id)+'">'+resourceIconMarkup(r)+'<span><b>'+esc(canonicalResourceName(r.name))+'</b><small>'+esc(r.lga_name)+' LGA · '+sub+'</small></span></button>'}).join('');
- return '<section class="profileThemePanel" id="profileOccurrences"><div class="resourceListTitle"><h3>'+esc(themeLabel(el('occurrenceCategory')?.value||'mineral'))+' reported by LGA</h3><small>'+groups.length+' mapped entries</small></div><p class="captionline">Select a resource or map symbol to see its named LGA. Reports are not exact surveyed sites.</p><div class="occurrenceRows">'+(items||'<p>No LGA reports mapped for this theme in this catchment.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></section>';
+ return '<section class="profileThemePanel" id="profileOccurrences"><div class="resourceListTitle"><h3>'+esc(themeLabel(el('occurrenceCategory')?.value||'mineral'))+' reported by LGA</h3><small>'+groups.length+' mapped entries</small></div><p class="captionline">Select a resource or map symbol to see its named LGA. Reports are not exact surveyed sites.</p><div class="occurrenceRows">'+(items||'<p>No LGA reports mapped for this theme in this catchment.</p>')+'</div><div id="occurrenceDetail" class="occurrenceDetail" aria-live="polite"></div></section>'+renderCatchmentOnlyReports(c);
 }
 function refreshOccurrenceProfile(){
  const c=catchments.find(x=>x.id===selected),old=el('profileOccurrences');if(!c||!old)return;
- old.outerHTML=renderOccurrenceList(c);refreshResourceLegend();
+ el('catchmentOnlyReports')?.remove();old.outerHTML=renderOccurrenceList(c);refreshResourceLegend();refreshQuickMapKey();
 }
 function showOccurrenceRecord(id){
  const r=allOccurrenceRecords().find(x=>x.id===id);if(!r)return;
@@ -2655,6 +2662,7 @@ el('occurrenceLayerToggle').addEventListener('click',async()=>{
  try{await ensureOccurrenceLgaGeometry();occurrenceManualPreference=true;occurrenceOn=true;btn.setAttribute('aria-pressed','true');btn.textContent='Hide reported LGA occurrences';el('occurrenceLayerStatus').textContent='Layer on · LGA representative markers only, not exact occurrence coordinates';schedulePaint()}catch(err){el('occurrenceLayerStatus').textContent='LGA representative map positions unavailable: '+err.message}finally{btn.disabled=false}
 });
 el('details').addEventListener('click',e=>{const b=e.target.closest('[data-occurrence-select]');if(b)showOccurrenceRecord(b.dataset.occurrenceSelect)});
+el('mapKeyItems').addEventListener('click',e=>{const b=e.target.closest('[data-occurrence-select]');if(b)showOccurrenceRecord(b.dataset.occurrenceSelect)});
 fetch('data/public_lga_occurrences.json').then(r=>{if(!r.ok)throw Error('source inventory unavailable');return r.json()}).then(d=>{
  if(!acceptOccurrenceCatalogue(d))throw Error('invalid source or map precision');
  occurrenceData=d;updateOccurrenceStatus();
